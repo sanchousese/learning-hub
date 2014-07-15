@@ -1,6 +1,5 @@
 package ua.com.learninghub.rest;
 
-import org.codehaus.jettison.json.JSONObject;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,7 +24,7 @@ public class Main {
         Student[] students = new Student[10];
 
         for (int i = 0; i < students.length; i++) {
-            students[i] = new Student(i, i+1);
+            students[i] = new Student(1, 2, "Lobod", "root", "Lol");
         }
 
         return students;

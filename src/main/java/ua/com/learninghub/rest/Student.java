@@ -1,26 +1,57 @@
 package ua.com.learninghub.rest;
 
 public class Student {
-    int x, y;
+    int id;
+    int idCategory;
+    String login;
+    String password;
+    String email;
 
-    public Student(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Student(int id, int idCategory, String login, String password, String email) {
+        this.id = id;
+        this.idCategory = idCategory;
+        this.login = login;
+        this.password = password;
+        this.email = email;
     }
 
-    public int getX() {
-        return x;
+    public int getId() {
+        return id;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getY() {
-        return y;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
