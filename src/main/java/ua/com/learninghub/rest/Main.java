@@ -10,7 +10,6 @@ public class Main {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-
     public String sayPlainTextHello(@PathParam("userName") String name) {
         return "Hello, " + name + "!";
     }
