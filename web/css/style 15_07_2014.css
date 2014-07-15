@@ -1,0 +1,178 @@
+/*Основной цвет сайта*/
+body{
+    background: #fff;
+}
+/*Задаем цвет меню*/
+.navbar{
+    background: #f8f8f8; 
+}
+.navbar-default a.navbar-brand {
+	color: #000; /* цвет слогана */
+	font-style: italic;
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+.navbar-default a.navbar-brand:hover {
+	color: #000; /* убрали серый hover стандартный */ 
+}
+.navbar-default a.navbar-brand span{
+	color: #2972b0; /* цвет 2 слова слогана */
+}
+.navbar-toggle { /* кнопку меню в мини версии слева */
+	float: left; 
+	margin-left: 10px;
+    border:none; /*Убрал бордер меню*/
+}
+.navbar-toggle-search { /* кнопку поиска в мини версии справа */
+	float: right;
+	width: 33px;
+	height: 33px;
+	padding: 10px 10px;
+	margin-top: 7px;
+	margin-right: 15px;
+	margin-bottom: 8px;
+	background-color: transparent;
+	background: url(../img/search.png) 5px 5px no-repeat;
+/*	border: 1px solid #ddd;*/ /*Убрал бордер кнопки поиска*/
+    border: none;
+    background-origin: ;
+	border-radius: 4px;
+	}
+
+.search-collapse { /* элементы поиска в мини версии справа */
+	float: right;
+	display: none;
+}
+/* ---------- Вставлеям логотип --------- */
+.navbar-brand:before{
+	 display: block;
+	 float: left;
+	 content: '';
+	 background: url(../img/logo.png) no-repeat;
+	 width: 3em;
+	 height: 3em;
+	 margin-right: .25em;
+	 margin-top: -0.55em;
+}
+/******************** Задаем стили менюшке *************************/
+.navbar-nav li:hover {
+	background: #4188c5; /* цвет 2 слова слогана 4188c5 чуть светлее*/
+}
+
+.nav.navbar-nav li:hover a:hover {
+	color: #fff; /* белый текст на синем фоне - !!! без li:hover не рабоает изменение цвета !!!!*/
+}
+/*Задаем отступ от меню*/
+/*Задаем положение кнопки справа*/
+.btn-right{
+    float: right;
+    margin-left: 10px;
+}
+/**********          **************/
+#carousel-example-generic{
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+.pr_bl{
+/*    outline: 1px solid black;*/
+    margin-right: 20px;
+    width: 260px;
+}
+.pr_bl img {
+    margin-left: 30px;
+/*    background: red;*/
+}
+.pr_bl a{
+        margin-left: 30px;
+}
+/*Убираем кнопку поиска при размере экрана больше 690 пикселей*/
+@media (min-width: 690px){
+.navbar-toggle-search {
+        display: none;
+    }  
+}
+/*
+@media (min-width: 1200px){
+.course_big {
+    width: 300px;
+    margin: 1em 0 ;
+    border-radius: 20px;
+     margin-left: 10px;
+     box-shadow: 0 1px 1px #666;
+ }
+}
+*/
+/*Задаем разделительную линию */
+hr {
+    border: none; /* Убираем границу */
+    background-color: #f8f8f8; /* Цвет линии */
+    color: red; /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+   }
+
+/*<Блоки курсов */
+ .course_big{
+    margin: 1em 0 ;
+    border-radius: 20px;
+     background: #f8f8f8;
+     width: 380px;
+     margin-left: 10px;
+     box-shadow: 0 1px 1px #666;
+ }
+
+.news_cover {
+	width:auto;
+	height: 12em;
+	border-radius: .25em .25em 0 0;
+	position: relative;
+	left: 0;
+	top:0;
+    background:#aab2bd;
+}
+.news_cover img {
+	position: absolute;
+	top:0;
+	right: 0;
+	bottom:0;
+	left: 0;
+	margin:auto;
+	max-width:300px;
+}
+.news_content {
+	padding: .5em;
+}
+/*Конец блока курсы*/
+.clear{clear:both}
+
+/*Задаем размеры кнопки для загрузки дополнительных курсов на страницу*/
+.more {
+    display: block;  
+    margin: 1em auto;
+    height: 50px;
+    width: 180px;
+    padding: 12px;
+    border-color: #0081c9;
+}
+.more:hover {
+    background: #0081c9;
+    color: #fff;
+}
+.btn-login{
+    border-color: #0081c9;
+}
+.btn-login:hover{
+    background: #0081c9;
+    color: #fff;
+}
+
+
+
+footer{
+	background:#e6e9ed;
+	color:#aab2bd;
+	font-size: 1em;
+	text-align: right;
+	padding: 1em 0;
+}
+
+footer p{padding: 0 1em}
