@@ -23,7 +23,7 @@ public class Main {
         User user = new User();
         user.setLogin("Some login");
         return user;
-    }*/
+    }*///
 
     @GET
     @Path("/getJson")
