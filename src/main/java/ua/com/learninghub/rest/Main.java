@@ -21,7 +21,7 @@ public class Main {
     @Produces(MediaType.APPLICATION_JSON)
     public User gketUser(){
         User user = new User();
-        user.setLogin("Some login");
+        user.setLogin("Some login");//
         return user;
     }
 
