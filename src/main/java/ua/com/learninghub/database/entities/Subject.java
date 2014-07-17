@@ -14,7 +14,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idSubject;
 
-    String name;
+    String name;//cool
     @Column(columnDefinition = "text")
     String description;
     String logoPath;

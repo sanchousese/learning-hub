@@ -7,9 +7,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-//@Path("/user/{userName}")
+@Path("/user")
 public class Main {
     @GET
+    @Path("/{userName}")
     @Produces(MediaType.TEXT_PLAIN)
     public String sayPlainTextHello(@PathParam("userName") String name) {
         return "Hello, " + name + "!";
@@ -22,5 +23,12 @@ public class Main {
         User user = new User();
         user.setLogin("Some login");
         return user;
+    }
+
+    @GET
+    @Path("/user/get")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void someData(int id){
+        System.out.println(id);
     }
 }
