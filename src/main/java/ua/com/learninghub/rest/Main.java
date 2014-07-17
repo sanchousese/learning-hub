@@ -7,7 +7,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/user")
+
+@Path("/")
 public class Main {
 
     @GET
@@ -23,5 +24,6 @@ public class Main {
     public Student getJson() {
         Student student = new Student(1, 2, "Lobod", "root", "Lol");
         return student;
+
     }
 }
