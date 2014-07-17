@@ -12,7 +12,7 @@ body{
 }
 */
 .navbar-default a.navbar-brand {
-	color: #000; /* цвет слогана */
+	color: #3c3f41; /* цвет слогана */
 	font-style: italic;
 	text-transform: uppercase;
 	font-size: 1.2em;
@@ -53,7 +53,7 @@ body{
 	 display: block;
 	 float: left;
 	 content: '';
-	 background: url(../img/logo.png) no-repeat;
+	 background: url(../img/logo2.png) no-repeat;
 	 width: 3em;
 	 height: 3em;
 	 margin-right: .25em;
@@ -78,9 +78,13 @@ body{
     margin-top: 50px;
     margin-bottom: 15px;
 }
+.placeholder img {
+    margin: 0 auto;
+}
+/*
 .pr_bl{
     margin-right: 20px;
-/*    width: 230px;*/
+    width: 230px;
 }
 .pr_bl img {
     margin-left: 30px;
@@ -92,6 +96,7 @@ body{
 .pr_bl a{
         margin-left: 80px;
 }
+*/
 /*Убираем кнопку поиска при размере экрана больше 690 пикселей*/
 @media (min-width: 690px){
 .navbar-toggle-search {
@@ -119,30 +124,38 @@ hr {
 
 /*<Блоки курсов */
  .course_big{
-    margin: 16px 0 16px 16px;
+     padding: 0 10px;
+/*    margin: 16px 0 16px 30px;*/
     border-radius: 20px;
      background: #f8f8f8;
-     width: calc(30% - 16px);
+/*     width: calc(30% - 16px);*/
 /*     margin-top: 16px;*/
      box-shadow: 0 1px 1px #666;
  }
+.padding_5{
+    padding: 0 5px;
+    margin-top: 10px;
+}
 .news_cover {
-	width:auto;
-	height: 12em;
+	width:100%;
+/*	height: 12em;*/
 	border-radius: .25em .25em 0 0;
 	position: relative;
 	left: 0;
-	top:0;
-    background:#aab2bd;
+	top:15px;    
+/*    background:#aab2bd;*/
 }
-.news_cover img {
+.news_cover img {/*
 	position: absolute;
 	top:0;
 	right: 0;
 	bottom:0;
 	left: 0;
-	margin:auto;
-	max-width:300px;
+*/
+/*	margin:auto;*/
+/*	max-width:300px;*/
+    width:100%;
+/*	height: 12em;*/
 }
 .news_content {
 	padding: .5em;
@@ -169,12 +182,15 @@ hr {
     background: #0081c9;
     color: #fff;
 }
-footer{
+.footer{
 	background:#e6e9ed;
 	color:#aab2bd;
 	font-size: 1em;
 	text-align: right;
-	padding: 1em 0;
+	padding: 2em 0;
 }
 
-footer p{padding: 0 1em}
+footer p{padding: 0 1.5em}
+#vk{
+    float: left;
+}
