@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1 id="Student"></h1>
-    <input id="myText" type="text"/>
+    <input id="login" type="text"/>
+    <input id="password" type="password"/>
     <button id="but">Submit</button>
 </select>
 <script src="jquery-2.1.1.min.js"></script>
@@ -18,12 +19,33 @@
         });
     });
 
+
+
     $('#but').click(function (event) {
-        var o = new Object();
-        o.login = $('#myText').val();
-        var lol = JSON.stringify(o);
-        $('#Student').append(lol);
+        var Auth = {
+            login: $('#login').val(),
+            password: $('#password').val()
+        };
+        var lol = JSON.stringify(Auth);
+        $('#Student').append(" Your deserialization password: " + lol);
+        addData(Auth)
     })
+
+    function addData(data){// pass your data in method
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/rest/user/login",
+            data: JSON.stringify(data),// now data come in this function
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                alert("success..." + JSON.stringify(data));
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+    }
 </script>
 </body>
 </html>
