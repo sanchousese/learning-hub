@@ -7,7 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-//@Path("/user/{userName}")
+@Path("/user/{userName}")
 public class Main {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -16,9 +16,9 @@ public class Main {
     }
 
     @GET
-    @Path("/user")
+    @Path("/getJsonUser")
     @Produces(MediaType.APPLICATION_JSON)
-    public User gketUser(){
+    public User getUser(){
         User user = new User();
         user.setLogin("Some login");
         return user;
