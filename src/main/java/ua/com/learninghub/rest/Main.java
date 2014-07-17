@@ -20,13 +20,8 @@ public class Main {
     @GET
     @Path("/getJson")
     @Produces(MediaType.APPLICATION_JSON)
-    public Student[] getJson() {
-        Student[] students = new Student[10];
-
-        for (int i = 0; i < students.length; i++) {
-            students[i] = new Student(1, 2, "Lobod", "root", "Lol");
-        }
-
-        return students;
+    public Student getJson() {
+        Student student = new Student(1, 2, "Lobod", "root", "Lol");
+        return student;
     }
 }

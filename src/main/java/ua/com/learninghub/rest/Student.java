@@ -1,11 +1,17 @@
 package ua.com.learninghub.rest;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 public class Student {
     int id;
     int idCategory;
     String login;
     String password;
     String email;
+
+    public Student() {
+    }
 
     public Student(int id, int idCategory, String login, String password, String email) {
         this.id = id;
