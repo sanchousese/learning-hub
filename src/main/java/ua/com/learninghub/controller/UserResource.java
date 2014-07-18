@@ -16,15 +16,15 @@ import java.util.List;
 @Path("/user")
 public class UserResource {
 
-        UserDao userDao = new UserDao();
+    UserDao userDao = new UserDao();
 
-        @POST
-        @Path("/login")
-        @Consumes({ MediaType.APPLICATION_JSON})
-        public Response checkUser(JSONObject obj) throws JSONException {
-            User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
-            return user == null ? Response.status(401).build() : Response.status(200).build();
-        }
+    @POST
+    @Path("/login")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    public Response checkUser(JSONObject obj) throws JSONException {
+        User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
+        return user == null ? Response.status(401).build() : Response.status(200).build();
+    }
 
 
     @POST
