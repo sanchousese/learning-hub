@@ -4,6 +4,7 @@ import ua.com.learninghub.database.entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -53,5 +54,22 @@ public class UserDao {
         entityManager.persist(user);
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+
+    public User findByLoginPass(String login, String pass){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.login = :u_log AND usr.pass = :u_pass");
+        query.setParameter("u_log", login);
+        query.setParameter("u_pass", pass);
+        User user = null;
+        try {
+            user = (User) query.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        }
+        finally {
+            entityManager.close();
+        }
+        return user;
     }
 }
