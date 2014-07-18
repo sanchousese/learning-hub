@@ -4,7 +4,7 @@
     <meta charset="utf-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Template</title>
+    <title>Learning Hub</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,11 +37,101 @@
                   <li><a href="#">Курсы</a></li>
                   <li><a href="#">Специализация</a></li>
                   <li><a href="#">О нас</a></li>
-                  <li class="divider-vertical"></li>
-                  <button type="button" class="btn btn-default navbar-btn btn-right btn-login ">Login</button>
-                   <button type="button" class="btn btn-default btn-success navbar-btn btn-right ">Sign in</button>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
+                <!--  Форма входа в систему-->
+                    <div class="popover-markup login-bl">
+                        <a href="#" class="trigger btn-default   btn-login " data-placement="bottom">Login</a> 
+                        <div class="head hide">  Войдите </div>
+                        <div class="content hide">
+                            <div class="form-group">
+                                <input type="text" id="login" class="form-control" placeholder="Login">
+                                <input type="password" id="password" class="form-control" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-default btn-block btn-login" id="but" onclick="submitButton()">Submit</button>
+                        </div>
+<!--                        <div class="footer hide">test</div>-->
+                    </div>
+                <!--Конец входа в систему-->
+<!--                <a class="btn-slide ">Login</a>  btn btn-default btn-login  role="button"-->
+                
+<!--
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                      Launch demo modal
+                    </button>
+-->
+                    <a href="#ModalOpen" title="" class="  btn-registration">Регистрация</a>
+                    <div id="ModalOpen" class="Window">
+	                    <div>
+		                <a href="#close" title="Закрыть" class="close">X</a>
+<!--
+                    <form role="form">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" id="exampleInputFile">
+                            <p class="help-block">Example block-level help text here.</p>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox"> Check me out
+                            </label>
+                          </div>
+                          <button type="submit" class="btn btn-default">Submit</button>
+                            </form> 
+-->                      <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <legend>Регистрация нового пользователя</legend>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                  <label class="control-label" for="textinput">Введите имя пользователя</label>
+                                  <div class="controls">
+                                    <input type="text" class="form-control" placeholder="Login">
+
+                                  </div>
+                                </div>
+
+                                <!-- Password input-->
+                                <div class="control-group">
+                                  <label class="control-label" for="passwordinput">Введите  пароль</label>
+                                  <div class="controls">
+                                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+
+                                  </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                  <label class="control-label" for="textinput">Введите Ваш E-mail</label>
+                                  <div class="controls">
+                                    <input type="text" class="form-control" placeholder="E-mail">
+
+                                  </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="control-group">
+                                  <label class="control-label" for="singlebutton"></label>
+                                  <div class="controls">
+                                    <button type="button" class="btn btn-success btn-block">Регистрация</button>
+                                  </div>
+                                </div>
+
+                                </fieldset>
+                                </form>
+                      
+                       </div>
+
+                
+<!--                 <button type="button" class="btn btn-default btn-success navbar-btn btn-right ">Sign in</button>-->
               </ul>
             </div> 
               <div class="search-collapse">              
@@ -89,22 +179,22 @@
 				</div>
                 <div class="row placeholders">
               <div class="col-xs-6 col-sm-3 placeholder">
-                   <img src="img/4.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive">
+                   <div class="pr-wrapper"><img src="img/4.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
                    <p class="text-center">Преимущества студентов</p>
                     <p class="text-center"><a href="" >Подробнее...</a></p>
                </div>
                 <div class="col-xs-6 col-sm-3 placeholder ">
-                   <img src="img/1.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive">
+                  <div class="pr-wrapper"> <img src="img/1.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
                   <p class="text-center">Преимущества студентов</p>
                     <p class="text-center"><a href="">Подробнее...</a></p>
                </div>
                  <div class="col-xs-6 col-sm-3 placeholder">
-                   <img src="img/2.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive">
+                   <div class="pr-wrapper"><img src="img/2.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
                    <p class="text-center">Преимущества студентов</p>
                     <p class="text-center"><a href="">Подробнее...</a></p>
                </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                   <img src="img/3.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive" >
+                   <div class="pr-wrapper"><img src="img/3.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive" ></div>
                   <p class="text-center">Преимущества студентов</p>
                     <p class="text-center"><a href="">Подробнее...</a></p>
                </div>
@@ -195,12 +285,17 @@
 			</div>
 			</div>
     </div>
-               </div>
-        <a href="#" class="btn btn-default btn-lg more" role="button">Загрузить еще ...</a>
+<!--               </div>-->
+        <a href="#" class="btn btn-default btn-lg more" id="more_courses" role="button">Загрузить еще ...</a>
         <div class="footer">
 			<div class="container">
-			<a><img src="img/vk.png" alt="vk" id="vk"></a>
-				<p >&copy; 2014 Мэрри Попинс.</p>
+			<div class="social-bl">
+			<a href="#"><img src="img/vk.png" alt="vk" class="social"></a>
+            <a href="#"><img src="img/fb.png" alt="fb" class="social"></a>
+            <a href="#"><img src="img/rss.png" alt="rss" class="social"></a>
+            <a href="#"><img src="img/google.png" alt="g+" class="social"></a>
+            <p class="text-right copy-right" ><a href="">&copy; 2014 Detroit team</a></p>
+			</div>
 			</div>
 		</div>
             
@@ -209,5 +304,8 @@
      <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/autorization.js"></script>
+<!--    <script src="js/register.js"></script>-->
   </body>
 </html>

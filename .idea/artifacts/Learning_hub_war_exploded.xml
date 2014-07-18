@@ -2,37 +2,65 @@
   <artifact type="exploded-war" name="Learning-hub:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/Learning_hub_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Learning-hub/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Learning-hub" />
+          <element id="jpa-descriptors" facet="Learning-hub/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-server:1.9" />
           <element id="library" level="project" name="Maven: asm:asm:3.1" />
           <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.9" />
           <element id="library" level="project" name="Maven: com.sun.jersey:jersey-grizzly2:1.9.1" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http:2.1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-framework:2.1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish.gmbal:gmbal-api-only:3.0.0-b023" />
+          <element id="library" level="project" name="Maven: org.glassfish.external:management-api:3.0.0-b012" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http-server:2.1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-rcm:2.1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http-servlet:2.1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish:javax.servlet:3.1" />
           <element id="library" level="project" name="Maven: com.sun.jersey:jersey-json:1.9" />
-          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-server:1.9" />
+          <element id="library" level="project" name="Maven: org.codehaus.jettison:jettison:1.1" />
+          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
           <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.3-1" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.2.2" />
           <element id="library" level="project" name="Maven: javax.xml.stream:stax-api:1.0-2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.8.3" />
-          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.8.3" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.8.3" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.8.3" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.8.3" />
-          <element id="library" level="project" name="Maven: org.codehaus.jettison:jettison:1.1" />
-          <element id="library" level="project" name="Maven: org.glassfish.external:management-api:3.0.0-b012" />
-          <element id="library" level="project" name="Maven: org.glassfish.gmbal:gmbal-api-only:3.0.0-b023" />
-          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-framework:2.1.2" />
-          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http-server:2.1.2" />
-          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http-servlet:2.1.2" />
-          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http:2.1.2" />
-          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-rcm:2.1.2" />
-          <element id="library" level="project" name="Maven: org.glassfish:javax.servlet:3.1" />
-          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:4.2.14.Final" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.0.GA" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.2.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:4.2.14.Final" />
+          <element id="library" level="project" name="Maven: junit:junit:4.11" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
+          <element id="file-copy" path="$APPLICATION_HOME_DIR$/lib/junit.jar" />
+          <element id="library" level="project" name="Maven: junit:junit:4.10" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-server:1.18.1" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.18.1" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-grizzly2:1.18.1" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http:2.2.16" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-framework:2.2.16" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-http-server:2.2.16" />
+          <element id="library" level="project" name="Maven: org.glassfish.grizzly:grizzly-rcm:2.2.16" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-json:1.18.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.9.2" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Learning-hub/web/Web" />
     </root>
   </artifact>
 </component>
