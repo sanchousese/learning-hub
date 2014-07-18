@@ -94,7 +94,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="textinput">Введите имя пользователя</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Login">
+                                    <input type="text" class="form-control" id="registerLogin" placeholder="Login">
 
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="passwordinput">Введите  пароль</label>
                                 <div class="controls">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                    <input type="password" class="form-control" id="registerPassword" placeholder="Password">
 
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="textinput">Введите Ваш E-mail</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="E-mail">
+                                    <input type="text" class="form-control" id="registerEmail" placeholder="E-mail">
 
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="singlebutton"></label>
                                 <div class="controls">
-                                    <button type="button" class="btn btn-success btn-block">Регистрация</button>
+                                    <button onclick="registerButton()" type="button" class="btn btn-success btn-block">Регистрация</button>
                                 </div>
                             </div>
 
@@ -306,6 +306,6 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/login.js"></script>
 <script src="js/autorization.js"></script>
-<!--    <script src="js/register.js"></script>-->
+ <script src="js/register.js"></script>
 </body>
 </html>

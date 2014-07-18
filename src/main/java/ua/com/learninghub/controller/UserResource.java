@@ -1,39 +1,40 @@
 package ua.com.learninghub.controller;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.model.dao.UserCategoryDao;
+import ua.com.learninghub.model.dao.UserDao;
 import ua.com.learninghub.model.entities.User;
+import ua.com.learninghub.model.entities.UserCategory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-
-/**
- * Created by Max on 18.07.2014.
- */
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/user")
 public class UserResource {
-    @GET
-    @Path("/{userName}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sayPlainTextHello(@PathParam("userName") String name) {
-        return "Hello, " + name + "!";
+
+        UserDao userDao = new UserDao();
+
+        @POST
+        @Path("/login")
+        @Consumes({ MediaType.APPLICATION_JSON})
+        public Response checkUser(JSONObject obj) throws JSONException {
+            User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
+            return user == null ? Response.status(401).build() : Response.status(200).build();
+        }
+
+
+    @POST
+    @Path("/addUser")
+    @Consumes({ MediaType.APPLICATION_JSON})
+    public Response addUser(User user) throws JSONException {
+        user.setCategory((new UserCategoryDao()).selectById(2));
+        userDao.insert(user);
+        System.out.println(user);
+        return Response.status(200).build();
     }
 
-    @GET
-    @Path("/user")
-    @Produces(MediaType.APPLICATION_JSON)
-    public User getUser() {
-        User user = new User();
-        user.setLogin("Some login");
-        return user;
-    }
-
-    @GET
-    @Path("/user/get")
-    @Produces(MediaType.APPLICATION_JSON)
-    public void someData(int id) {
-        System.out.println(id);
-    }
 }
