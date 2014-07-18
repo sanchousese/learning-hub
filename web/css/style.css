@@ -6,8 +6,13 @@ body{
 .navbar{
     background: #f8f8f8; 
 }
+/*
+.navbar-brand{
+    margin-left: 70px;
+}
+*/
 .navbar-default a.navbar-brand {
-	color: #000; /* цвет слогана */
+	color: #3c3f41; /* цвет слогана */
 	font-style: italic;
 	text-transform: uppercase;
 	font-size: 1.2em;
@@ -48,7 +53,7 @@ body{
 	 display: block;
 	 float: left;
 	 content: '';
-	 background: url(../img/logo.png) no-repeat;
+	 background: url(../img/logo2.png) no-repeat;
 	 width: 3em;
 	 height: 3em;
 	 margin-right: .25em;
@@ -73,18 +78,25 @@ body{
     margin-top: 50px;
     margin-bottom: 15px;
 }
+.placeholder img {
+    margin: 0 auto;
+}
+/*
 .pr_bl{
-/*    outline: 1px solid black;*/
     margin-right: 20px;
-    width: 260px;
+    width: 230px;
 }
 .pr_bl img {
     margin-left: 30px;
-/*    background: red;*/
+    margin-bottom: 15px;
+}
+.pr_bl p {
+    margin-left: 50px;
 }
 .pr_bl a{
-        margin-left: 30px;
+        margin-left: 80px;
 }
+*/
 /*Убираем кнопку поиска при размере экрана больше 690 пикселей*/
 @media (min-width: 690px){
 .navbar-toggle-search {
@@ -112,38 +124,44 @@ hr {
 
 /*<Блоки курсов */
  .course_big{
-    margin: 1em 0 ;
+     padding: 0 10px;
+/*    margin: 16px 0 16px 30px;*/
     border-radius: 20px;
      background: #f8f8f8;
-     width: 380px;
-     margin-left: 10px;
+/*     width: calc(30% - 16px);*/
+/*     margin-top: 16px;*/
      box-shadow: 0 1px 1px #666;
  }
-
+.padding_5{
+    padding: 0 5px;
+    margin-top: 10px;
+}
 .news_cover {
-	width:auto;
-	height: 12em;
+	width:100%;
+/*	height: 12em;*/
 	border-radius: .25em .25em 0 0;
 	position: relative;
 	left: 0;
-	top:0;
-    background:#aab2bd;
+	top:15px;    
+/*    background:#aab2bd;*/
 }
-.news_cover img {
+.news_cover img {/*
 	position: absolute;
 	top:0;
 	right: 0;
 	bottom:0;
 	left: 0;
-	margin:auto;
-	max-width:300px;
+*/
+/*	margin:auto;*/
+/*	max-width:300px;*/
+    width:100%;
+/*	height: 12em;*/
 }
 .news_content {
 	padding: .5em;
 }
 /*Конец блока курсы*/
 .clear{clear:both}
-
 /*Задаем размеры кнопки для загрузки дополнительных курсов на страницу*/
 .more {
     display: block;  
@@ -159,15 +177,25 @@ hr {
 }
 .btn-login{
     border-color: #0081c9;
+    float: right;
+    display: block;
+    margin: 8px 5px;
 }
 .btn-login:hover{
     background: #0081c9;
     color: #fff;
 }
-
-
-
-footer{
+.btn-registration{
+        float: right;
+        color: #7f7f7f;
+        padding: 10px;
+         outline: 1px solid red;
+}
+.btn-registration:hover{
+        color: #7f7f7f;
+        text-decoration: none;
+}
+.footer{
 	background:#e6e9ed;
 	color:#aab2bd;
 	font-size: 1em;
@@ -175,4 +203,106 @@ footer{
 	padding: 1em 0;
 }
 
-footer p{padding: 0 1em}
+.social{
+    float: left;
+    display: block;
+    height: 62px;
+    width: 62px;
+    margin-left: 10px;
+}
+.copy-right{
+    float: right;
+    display: block;
+    width: 150px;
+    height: auto;
+    margin-top: 25px;
+}
+.copy-right a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: black;
+}
+
+.social-bl{
+    margin-left: -25px;
+}
+.pr-wrapper {
+    width: 90%;
+}
+.pr-wrapper img{
+    width: 70%;
+}
+/*Форма авторизации*/
+.login-bl{
+/*    margin-top: 15px;*/
+    float: left;
+}
+.login-bl a{
+    color: #777;
+    text-decoration: none;
+/*    outline: 1px solid red;*/
+    padding: 7px 10px; 
+    border-radius: 5px;
+    background: #fff;
+    margin-left: 2px;
+    border: 1px solid #00819c ;
+/*    border-color: #00819c;*/
+}
+/*
+.login-bl a:hover {
+    border: 1px solid blue;
+    background: #fff;
+}
+*/
+/* Стили модальног окна*/
+
+	.Window {
+		position: fixed;
+		font-family: Arial, Helvetica, sans-serif;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+/*		background: rgba(0,0,0,0.7);*/
+		z-index: 99999;
+		-webkit-transition: opacity 400ms ease-in;
+		-moz-transition: opacity 400ms ease-in;
+		transition: opacity 400ms ease-in;
+		display: none;
+		pointer-events: none;
+	}
+
+	.Window:target {
+		display: block;
+		pointer-events: auto;
+	}
+
+	.Window > div {
+		width: 460px;
+		position: relative;
+		margin: 10% auto;
+		padding: 30px 10px 10px;
+		border-radius: 10px;
+		background: #fff;
+		box-shadow: 0px 0px 20px 2px;
+	}
+
+	.close {
+		background: #cc3300;
+		color: #FFFFFF;
+		line-height: 25px;
+		position: absolute;
+		right: -12px;
+		text-align: center;
+		top: -10px;
+		width: 24px;
+		text-decoration: none;
+		font-weight: bold;
+		-webkit-border-radius: 12px;
+		-moz-border-radius: 12px;
+		border-radius: 12px;
+		-moz-box-shadow: 1px 1px 3px #000;
+		-webkit-box-shadow: 1px 1px 3px #000;
+		box-shadow: 1px 1px 3px #000;
+        opacity:1;
+    }
