@@ -6,28 +6,18 @@
 
 </head>
 <body>
-    <h1 id="Student"></h1>
     <input id="login" type="text"/>
     <input id="password" type="password"/>
     <button id="but">Submit</button>
 </select>
 <script src="jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $.getJSON('http://localhost:8080/rest/user/getJson', function(data) {
-            $('#Student').append(data.login);
-        });
-    });
-
-
 
     $('#but').click(function (event) {
         var Auth = {
             login: $('#login').val(),
             password: $('#password').val()
         };
-        var lol = JSON.stringify(Auth);
-        $('#Student').append(" Your deserialization password: " + lol);
         addData(Auth)
     })
 
@@ -35,14 +25,16 @@
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/rest/user/login",
-            data: JSON.stringify(data),// now data come in this function
+            data: JSON.stringify(data),
             contentType: "application/json",
             dataType: "json",
-            success: function (data, status, jqXHR) {
-                alert("success..." + JSON.stringify(data));
-            },
-            error: function () {
-                alert("Error");
+            statusCode :{
+                200: function () {
+                    alert("success...");
+                },
+                401: function() {
+                    alert("Error");
+                 }
             }
         });
     }

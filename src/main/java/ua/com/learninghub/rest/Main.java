@@ -1,14 +1,11 @@
 package ua.com.learninghub.rest;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import ua.com.learninghub.database.entities.User;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/user")
 public class Main {
@@ -28,6 +25,15 @@ public class Main {
         return user;
     }*///
 
+
+    List<Student> studentList;
+
+    public void init() {
+        studentList = new ArrayList<Student>();
+        studentList.add(new Student(1, 2, "Lobod", "root", "Lol"));
+        studentList.add(new Student(1, 2, "root", "root", "root"));
+    }
+
     @GET
     @Path("/getJson")
     @Produces(MediaType.APPLICATION_JSON)
@@ -40,35 +46,17 @@ public class Main {
     @POST
     @Path("/login")
     @Consumes({ MediaType.APPLICATION_JSON})
-    @Produces({ MediaType.APPLICATION_JSON})
-    public Auth sayPlainTextHello(JSONObject obj) throws JSONException {
-        return new Auth(obj.getString("login"), obj.getString("password"));
-    }
+    public Response sayPlainTextHello(JSONObject obj) throws JSONException {
+        init();
+        String login = obj.getString("login");
+        String password = obj.getString("password");
 
-    public class Auth{
-        String login;
-        String password;
+        for (Student i : studentList)
+            if(i.login.equals(login) &&  i.password.equals(password))
+                return Response.status(200).build();
 
-        public Auth(String login, String password) {
-            this.login = login;
-            this.password = password;
-        }
 
-        public String getLogin() {
-            return login;
-        }
-
-        public void setLogin(String login) {
-            this.login = login;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
+        return Response.status(401).build();
     }
 
     public class Student {
