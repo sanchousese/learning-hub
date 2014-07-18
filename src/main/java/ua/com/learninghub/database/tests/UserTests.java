@@ -1,5 +1,6 @@
 package ua.com.learninghub.database.tests;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.junit.Test;
 import ua.com.learninghub.database.dao.UserCategoryDao;
@@ -44,5 +45,17 @@ public class UserTests {
         user.setMoney(1000);
         user.setCategory((new UserCategoryDao().selectById(2)));
         userDao.insert(user);
+    }
+
+    @Test
+    public void findTestExist(){
+        User urs = userDao.findByLoginPass("root", "pook");
+        Assert.assertEquals(urs.getEmail(), "mail@mail.com");
+    }
+
+    @Test
+    public void findTestNotExist(){
+        User urs = userDao.findByLoginPass("root", "pook2");
+        Assert.assertNull(urs);
     }
 }
