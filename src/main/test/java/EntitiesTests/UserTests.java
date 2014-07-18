@@ -46,6 +46,17 @@ public class UserTests {
     }
 
     @Test
+    public void InsertExistingUser(){
+        User user = new User();
+        user.setLogin("root");
+        user.setPass("pook");
+        user.setEmail("mail@mail.com");
+        user.setMoney(0);
+        user.setCategory((new UserCategoryDao().selectById(1)));
+        boolean b = userDao.insert(user);
+    }
+
+    @Test
     public void findTestExist(){
         User urs = userDao.findByLoginPass("root", "pook");
         Assert.assertEquals(urs.getEmail(), "mail@mail.com");
