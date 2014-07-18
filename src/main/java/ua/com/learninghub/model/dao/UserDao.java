@@ -1,11 +1,10 @@
 package ua.com.learninghub.model.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import ua.com.learninghub.model.entities.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -48,12 +47,20 @@ public class UserDao {
         return 1;
     }
 
-    public void insert(User user){
+    public boolean insert(User user){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        try {
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e) {
+            return false;
+        }
+        finally{
+            entityManager.close();
+        }
+        return true;
     }
 
     public User findByLoginPass(String login, String pass){
