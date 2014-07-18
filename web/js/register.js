@@ -21,8 +21,8 @@
                 dataType: "json",
                 statusCode :{
                     200: function () {
-//                   alert("success...");
-                        document.location.href = "http://google.com";
+                      alert("success...");
+                        //document.location.href = "http://google.com";
                     },
                     400: function() {
                         alert("Invalid e-mail address. Please, try again.");

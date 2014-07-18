@@ -1,170 +1,133 @@
 /*Основной цвет сайта*/
 body{
     background: #fff;
+    margin-top: 50px;
+    padding-top: 0;
 }
 /*Задаем цвет меню*/
 .navbar{
-    background: #f8f8f8; 
+    background: #f8f8f8;
 }
-/*
-.navbar-brand{
-    margin-left: 70px;
-}
-*/
 .navbar-default a.navbar-brand {
-	color: #3c3f41; /* цвет слогана */
-	font-style: italic;
-	text-transform: uppercase;
-	font-size: 1.2em;
+    color: #3c3f41; /* цвет слогана */
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.2em;
 }
 .navbar-default a.navbar-brand:hover {
-	color: #000; /* убрали серый hover стандартный */ 
+    color: #000; /* убрали серый hover стандартный */
 }
 .navbar-default a.navbar-brand span{
-	color: #2972b0; /* цвет 2 слова слогана */
+    color: #2972b0; /* цвет 2 слова слогана */
 }
 .navbar-toggle { /* кнопку меню в мини версии слева */
-	float: left; 
-	margin-left: 10px;
+    float: left;
+    margin-left: 10px;
     border:none; /*Убрал бордер меню*/
 }
 .navbar-toggle-search { /* кнопку поиска в мини версии справа */
-	float: right;
-	width: 33px;
-	height: 33px;
-	padding: 10px 10px;
-	margin-top: 7px;
-	margin-right: 15px;
-	margin-bottom: 8px;
-	background-color: transparent;
-	background: url(../img/search.png) 5px 5px no-repeat;
-/*	border: 1px solid #ddd;*/ /*Убрал бордер кнопки поиска*/
+    float: right;
+    width: 33px;
+    height: 33px;
+    padding: 10px 10px;
+    margin-top: 7px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background: url(../img/search.png) 5px 5px no-repeat;
     border: none;
     background-origin: ;
-	border-radius: 4px;
-	}
+    border-radius: 4px;
+}
 
 .search-collapse { /* элементы поиска в мини версии справа */
-	float: right;
-	display: none;
+    float: right;
+    display: none;
 }
 /* ---------- Вставлеям логотип --------- */
 .navbar-brand:before{
-	 display: block;
-	 float: left;
-	 content: '';
-	 background: url(../img/logo2.png) no-repeat;
-	 width: 3em;
-	 height: 3em;
-	 margin-right: .25em;
-	 margin-top: -0.55em;
+    display: block;
+    float: left;
+    content: '';
+    background: url(../img/logo2.PNG) no-repeat;
+    width: 3em;
+    height: 3em;
+    margin-right: .25em;
+    margin-top: -0.55em;
 }
 /******************** Задаем стили менюшке *************************/
 .navbar-nav li:hover {
-	background: #4188c5; /* цвет 2 слова слогана 4188c5 чуть светлее*/
+    background: #4188c5; /* цвет 2 слова слогана 4188c5 чуть светлее*/
 }
 
 .nav.navbar-nav li:hover a:hover {
-	color: #fff; /* белый текст на синем фоне - !!! без li:hover не рабоает изменение цвета !!!!*/
+    color: #fff; /* белый текст на синем фоне - !!! без li:hover не рабоает изменение цвета !!!!*/
 }
 /*Задаем отступ от меню*/
+
 /*Задаем положение кнопки справа*/
+
 .btn-right{
     float: right;
     margin-left: 10px;
+    margin-top: 8px;
 }
 /**********          **************/
 #carousel-example-generic{
-    margin-top: 50px;
+    margin-top: 4px;
     margin-bottom: 15px;
 }
 .placeholder img {
     margin: 0 auto;
 }
-/*
-.pr_bl{
-    margin-right: 20px;
-    width: 230px;
-}
-.pr_bl img {
-    margin-left: 30px;
-    margin-bottom: 15px;
-}
-.pr_bl p {
-    margin-left: 50px;
-}
-.pr_bl a{
-        margin-left: 80px;
-}
-*/
-/*Убираем кнопку поиска при размере экрана больше 690 пикселей*/
+
 @media (min-width: 690px){
-.navbar-toggle-search {
+    .navbar-toggle-search {
         display: none;
-    }  
+    }
 }
-/*
-@media (min-width: 1200px){
-.course_big {
-    width: 300px;
-    margin: 1em 0 ;
-    border-radius: 20px;
-     margin-left: 10px;
-     box-shadow: 0 1px 1px #666;
- }
-}
-*/
 /*Задаем разделительную линию */
 hr {
     border: none; /* Убираем границу */
     background-color: #f8f8f8; /* Цвет линии */
     color: red; /* Цвет линии для IE6-7 */
     height: 2px; /* Толщина линии */
-   }
+}
 
 /*<Блоки курсов */
- .course_big{
-     padding: 0 10px;
-/*    margin: 16px 0 16px 30px;*/
+
+.course_big{
+    padding: 0 10px;
     border-radius: 20px;
-     background: #f8f8f8;
-/*     width: calc(30% - 16px);*/
-/*     margin-top: 16px;*/
-     box-shadow: 0 1px 1px #666;
- }
+    background: #f8f8f8;
+    box-shadow: 0 1px 1px #666;
+}
 .padding_5{
     padding: 0 5px;
     margin-top: 10px;
 }
 .news_cover {
-	width:100%;
-/*	height: 12em;*/
-	border-radius: .25em .25em 0 0;
-	position: relative;
-	left: 0;
-	top:15px;    
-/*    background:#aab2bd;*/
-}
-.news_cover img {/*
-	position: absolute;
-	top:0;
-	right: 0;
-	bottom:0;
-	left: 0;
-*/
-/*	margin:auto;*/
-/*	max-width:300px;*/
     width:100%;
-/*	height: 12em;*/
+    border-radius: .25em .25em 0 0;
+    position: relative;
+    left: 0;
+    top:15px;
+}
+.news_cover img {
+    width:100%;
 }
 .news_content {
-	padding: .5em;
+    padding: .5em;
 }
+
 /*Конец блока курсы*/
+
 .clear{clear:both}
+
 /*Задаем размеры кнопки для загрузки дополнительных курсов на страницу*/
+
 .more {
-    display: block;  
+    display: block;
     margin: 1em auto;
     height: 50px;
     width: 180px;
@@ -186,23 +149,22 @@ hr {
     color: #fff;
 }
 .btn-registration{
-        float: right;
-        color: #7f7f7f;
-        padding: 10px;
-         outline: 1px solid red;
+    float: right;
+    color: #7f7f7f;
+    padding: 10px;
+    outline: 1px solid red;
 }
 .btn-registration:hover{
-        color: #7f7f7f;
-        text-decoration: none;
+    color: #7f7f7f;
+    text-decoration: none;
 }
 .footer{
-	background:#e6e9ed;
-	color:#aab2bd;
-	font-size: 1em;
-	text-align: right;
-	padding: 1em 0;
+    background:#e6e9ed;
+    color:#aab2bd;
+    font-size: 1em;
+    text-align: right;
+    padding: 1em 0;
 }
-
 .social{
     float: left;
     display: block;
@@ -222,7 +184,6 @@ hr {
     text-transform: capitalize;
     color: black;
 }
-
 .social-bl{
     margin-left: -25px;
 }
@@ -234,75 +195,24 @@ hr {
 }
 /*Форма авторизации*/
 .login-bl{
-/*    margin-top: 15px;*/
     float: left;
 }
 .login-bl a{
     color: #777;
     text-decoration: none;
-/*    outline: 1px solid red;*/
-    padding: 7px 10px; 
+    padding: 7px 10px;
     border-radius: 5px;
     background: #fff;
     margin-left: 2px;
     border: 1px solid #00819c ;
-/*    border-color: #00819c;*/
 }
-/*
-.login-bl a:hover {
-    border: 1px solid blue;
-    background: #fff;
+
+.mardgin_bottom_5 {
+    margin-bottom: 5px;
 }
-*/
-/* Стили модальног окна*/
-
-	.Window {
-		position: fixed;
-		font-family: Arial, Helvetica, sans-serif;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-/*		background: rgba(0,0,0,0.7);*/
-		z-index: 99999;
-		-webkit-transition: opacity 400ms ease-in;
-		-moz-transition: opacity 400ms ease-in;
-		transition: opacity 400ms ease-in;
-		display: none;
-		pointer-events: none;
-	}
-
-	.Window:target {
-		display: block;
-		pointer-events: auto;
-	}
-
-	.Window > div {
-		width: 460px;
-		position: relative;
-		margin: 10% auto;
-		padding: 30px 10px 10px;
-		border-radius: 10px;
-		background: #fff;
-		box-shadow: 0px 0px 20px 2px;
-	}
-
-	.close {
-		background: #cc3300;
-		color: #FFFFFF;
-		line-height: 25px;
-		position: absolute;
-		right: -12px;
-		text-align: center;
-		top: -10px;
-		width: 24px;
-		text-decoration: none;
-		font-weight: bold;
-		-webkit-border-radius: 12px;
-		-moz-border-radius: 12px;
-		border-radius: 12px;
-		-moz-box-shadow: 1px 1px 3px #000;
-		-webkit-box-shadow: 1px 1px 3px #000;
-		box-shadow: 1px 1px 3px #000;
-        opacity:1;
-    }
+.mardgin_top_15 {
+    margin-top: 15px;
+}
+.float-right{
+    float: right;
+}

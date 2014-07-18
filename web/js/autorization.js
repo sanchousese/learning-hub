@@ -15,8 +15,8 @@
             dataType: "json",
             statusCode :{
                 200: function () {
-//                   alert("success...");
-                    document.location.href = "http://google.com";
+                  alert("success...");
+     //               document.location.href = "http://google.com";
                 },
                 401: function() {
                     alert("Error");
