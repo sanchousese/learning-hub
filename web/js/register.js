@@ -26,6 +26,9 @@
                     },
                     400: function() {
                         alert("Invalid e-mail address. Please, try again.");
+                    },
+                    401: function() {
+                        alert("Invalid login. We already have user with this login");
                     }
                 }
             });
