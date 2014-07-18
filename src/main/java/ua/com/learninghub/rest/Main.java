@@ -9,22 +9,6 @@ import java.util.List;
 
 @Path("/user")
 public class Main {
-    /*@GET
-    @Path("/{userName}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sayPlainTextHello(@PathParam("userName") String name) {
-        return "Hello, " + name + "!";
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/user")
-    public User gketUser(){
-        User user = new User();
-        user.setLogin("Some login");
-        return user;
-    }*///
-
 
     List<Student> studentList;
 
