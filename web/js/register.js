@@ -17,7 +17,7 @@
                 type: "POST",
                 url: "http://localhost:8080/rest/user/addUser",
                 data: JSON.stringify(data),
-                contentType: "application/json",
+                contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 statusCode :{
                     200: function () {

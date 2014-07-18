@@ -11,7 +11,7 @@
             type: "POST",
             url: "http://localhost:8080/rest/user/login",
             data: JSON.stringify(data),
-            contentType: "application/json",
+            contentType: "application/json; charset=utf-8",
             dataType: "json",
             statusCode :{
                 200: function () {
@@ -19,7 +19,7 @@
      //               document.location.href = "http://google.com";
                 },
                 401: function() {
-                    alert("Error");
+                    alert("Invalid login or password");
                  }
             }
         });
