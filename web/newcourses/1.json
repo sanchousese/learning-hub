@@ -1,0 +1,6 @@
+{
+    "courses":[{'id':1,
+        "title":"JavaScript",
+        "url":"http://google.com"
+    }]
+}
