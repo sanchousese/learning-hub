@@ -1,6 +1,8 @@
 /*Основной цвет сайта*/
 body{
     background: #fff;
+    margin-top: 50px;
+    padding-top: 0;
 }
 /*Задаем цвет меню*/
 .navbar{
@@ -72,7 +74,7 @@ body{
 }
 /**********          **************/
 #carousel-example-generic{
-    margin-top: 50px;
+    margin-top: 4px;
     margin-bottom: 15px;
 }
 .placeholder img {
@@ -205,5 +207,12 @@ hr {
     border: 1px solid #00819c ;
 }
 
-#register-btn {
+.mardgin_bottom_5 {
+    margin-bottom: 5px;
+}
+.mardgin_top_15 {
+    margin-top: 15px;
+}
+.float-right{
+    float: right;
 }

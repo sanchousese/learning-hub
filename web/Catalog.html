@@ -32,9 +32,9 @@
   </head>
 
   <body>
-     <div class="navbar navbar-default navbar-fixed-top"> 
+     <div class="navbar navbar-default navbar-fixed-top "> 
          <div class="col-md-11">
-           <div class="col-md-1"></div>
+<!--           <div class="col-md-1"></div>-->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -76,14 +76,64 @@
             </div>  
             </div>      
          </div>
-
+			<div class="col-md-10 col-md-offset-1 mardgin_top_15">
 <!--      <div class="row row-offcanvas row-offcanvas-left">-->
         <div class="col-md-4 sidebar-offcanvas" id="sidebar" role="navigation">
         <div class="panel panel-default">
 <!--          <div class="panel-heading">Panel heading without title</div>-->
           <div class="panel-body">  
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
-<!--
+        <div class="col-xs-12 col-sm-12 sidebar-offcanvas" id="sidebar" >
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+           Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim 
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+         Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+           Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
+         
+         
+         
+         
+         
+         <!--
           <div class="list-group">
             <a href="#" class="list-group-item active">Link</a>
             <a href="#" class="list-group-item">Link</a>
@@ -104,9 +154,46 @@
 <!--            <div class="container">-->
          <div class="col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading">Panel heading without title</div>
+         
+          <div class="panel-heading">
+<!--             <div class="row">-->
+             <form class="form-inline" role="form">
+              <div class="form-group">
+              <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+    </ul>
+    </div>
+        </div>
+        <div class="form-group">    
+        <input type="text" class="form-control" placeholder="Search">
+        </div>
+         <div class="form-group float-right">    
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default active">
+            <input type="radio" name="options" id="option1" checked>  1
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="option2"> 2
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="option3">  3
+          </label>
+        </div>
+        </div>
+    </form>  
+<!--         </div>-->
+          </div>
           <div class="panel-body">  
-        <div class="col-xs-12 col-sm-9">
+<!--        <div class="col-xs-12 col-sm-9">-->
           <p class="pull-left visible-xs">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
           </p>
@@ -192,22 +279,37 @@
 				</div>
 				</div>
 			</div>
+<!--
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Heading</h2>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
+            </div>/span
+-->
+         
           </div><!--/row-->
-        </div><!--/span-->
+<!--        </div>/span-->
         </div>
-                       <div class="panel-footer">Panel footer</div>
-                        <a href="#" class="btn btn-default btn-lg more" id="more_courses" role="button">Загрузить еще ...</a>
+                       <div class="panel-footer">
+                           <ul class="pagination">
+                              <li class="disabled"><span>&laquo;</span></li>
+                              <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+                                  <li><a href="#">2</a></li>
+                                  <li><a href="#">3</a></li>
+                                  <li><a href="#">4</a></li>
+                                  <li><a href="#">5</a></li>
+                                 <li><a href="#">&raquo;</a></li>
+                            </ul>
+                           
+                       </div>
+<!--                        <a href="#" class="btn btn-default btn-lg more" id="more_courses" role="button">Загрузить еще ...</a>-->
 
     </div>
 
 <!--      </div>/row-->
 
 <!--      <hr>-->
+</div>
 </div>
 <!--    </div>/.container-->
                    <!-- Modal -->
