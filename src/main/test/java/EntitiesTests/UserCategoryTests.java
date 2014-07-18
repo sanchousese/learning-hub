@@ -1,4 +1,4 @@
-package ua.com.learninghub.dao;
+package EntitiesTests;
 
 import org.junit.Test;
 import ua.com.learninghub.model.dao.UserCategoryDao;

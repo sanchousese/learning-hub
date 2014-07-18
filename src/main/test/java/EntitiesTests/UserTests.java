@@ -1,4 +1,4 @@
-package ua.com.learninghub.dao;
+package EntitiesTests;
 
 import junit.framework.Assert;
 import org.junit.Test;
