@@ -1,4 +1,4 @@
-package ua.com.learninghub.database.dao;
+package ua.com.learninghub.model.dao;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

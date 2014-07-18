@@ -1,8 +1,8 @@
-package ua.com.learninghub.database.tests;
+package ua.com.learninghub.dao;
 
 import org.junit.Test;
-import ua.com.learninghub.database.dao.RuleTypeDao;
-import ua.com.learninghub.database.entities.RuleType;
+import ua.com.learninghub.model.dao.RuleTypeDao;
+import ua.com.learninghub.model.entities.RuleType;
 
 import java.util.List;
 

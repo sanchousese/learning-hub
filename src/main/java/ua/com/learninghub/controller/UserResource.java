@@ -1,5 +1,6 @@
-package ua.com.learninghub.rest;
-import ua.com.learninghub.database.entities.User;
+package ua.com.learninghub.controller;
+
+import ua.com.learninghub.model.entities.User;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -7,8 +8,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Created by Max on 18.07.2014.
+ */
+
 @Path("/user")
-public class Main {
+public class UserResource {
     @GET
     @Path("/{userName}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -19,7 +24,7 @@ public class Main {
     @GET
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
-    public User gketUser(){
+    public User getUser() {
         User user = new User();
         user.setLogin("Some login");
         return user;
@@ -28,7 +33,7 @@ public class Main {
     @GET
     @Path("/user/get")
     @Produces(MediaType.APPLICATION_JSON)
-    public void someData(int id){
+    public void someData(int id) {
         System.out.println(id);
     }
 }

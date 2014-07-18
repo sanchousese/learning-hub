@@ -1,9 +1,7 @@
-package ua.com.learninghub.database.dao;
+package ua.com.learninghub.model.dao;
 
-import ua.com.learninghub.database.entities.RuleType;
-import ua.com.learninghub.database.entities.UserCategory;
+import ua.com.learninghub.model.entities.RuleType;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;

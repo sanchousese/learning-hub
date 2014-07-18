@@ -1,8 +1,8 @@
-package ua.com.learninghub.database.tests;
+package ua.com.learninghub.dao;
 
 import org.junit.Test;
-import ua.com.learninghub.database.dao.SubjectDao;
-import ua.com.learninghub.database.entities.Subject;
+import ua.com.learninghub.model.dao.SubjectDao;
+import ua.com.learninghub.model.entities.Subject;
 
 import java.util.List;
 

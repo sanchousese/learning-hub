@@ -1,12 +1,8 @@
-package ua.com.learninghub.database.tests;
+package ua.com.learninghub.dao;
 
 import org.junit.Test;
-import ua.com.learninghub.database.dao.UserCategoryDao;
-import ua.com.learninghub.database.dao.UserDao;
-import ua.com.learninghub.database.entities.User;
-import ua.com.learninghub.database.entities.UserCategory;
-
-import java.util.List;
+import ua.com.learninghub.model.dao.UserCategoryDao;
+import ua.com.learninghub.model.entities.UserCategory;
 
 /**
  * Created by vasax32 on 15.07.14.

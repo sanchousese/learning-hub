@@ -1,7 +1,6 @@
-package ua.com.learninghub.database.dao;
+package ua.com.learninghub.model.dao;
 
-import ua.com.learninghub.database.entities.Course;
-import ua.com.learninghub.database.entities.User;
+import ua.com.learninghub.model.entities.Course;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,11 +30,11 @@ public class CourseDao {
         return course;
     }
 
-    public int update(Course course) {
+    public Course update(Course course) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Course course1Upd = (Course) entityManager.find(Course.class, course.getIdCourse());
 
-        if (course1Upd == null) return 0;
+        if (course1Upd == null) return null;
 
         entityManager.getTransaction().begin();
         course1Upd.setName(course.getName());
@@ -47,7 +46,7 @@ public class CourseDao {
         course1Upd.setSubject(course.getSubject());
         entityManager.getTransaction().commit();
         entityManager.close();
-        return 1;
+        return course1Upd;
     }
 
     public void insert(Course course){
@@ -56,5 +55,9 @@ public class CourseDao {
         entityManager.persist(course);
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+
+    public void delete(int courseId) {
+        //delete from course where courseid = ?
     }
 }

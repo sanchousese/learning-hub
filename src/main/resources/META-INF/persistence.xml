@@ -6,10 +6,10 @@
     <persistence-unit name="MySqlManager" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <!--<class>com.miholap.jpaEx.entities.Student</class>-->
-        <class>ua.com.learninghub.database.entities.User</class>
-        <class>ua.com.learninghub.database.entities.Course</class>
-        <class>ua.com.learninghub.database.entities.RuleType</class>
-        <class>ua.com.learninghub.database.entities.UserCategory</class>
+        <class>ua.com.learninghub.model.entities.User</class>
+        <class>ua.com.learninghub.model.entities.Course</class>
+        <class>ua.com.learninghub.model.entities.RuleType</class>
+        <class>ua.com.learninghub.model.entities.UserCategory</class>
         <properties>
             <property name="hibernate.show_sql" value="true" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
