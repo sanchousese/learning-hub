@@ -22,6 +22,7 @@
 <select id="countries">
     <option disabled>Выберите страну</option>
 </select>
+<H1 id="hed"></H1>
 <script src="jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
     $(function(){
@@ -30,6 +31,13 @@
             $.each(data, function(key, val) {
                 $('#countries').append('<option value="' + val + '">' + key + '</option>');
             });
+            /*document.writeln("id: "+data.id + "<br />");
+            document.writeln("idCategory: "+data.idCategory + "<br />");
+            document.writeln("login: "+data.login + "<br />");
+            document.writeln("password: "+data.password + "<br />");
+            document.writeln("email: "+data.email + "<br />");*/
+            $('#hed').append(data.email);
+
         });
     });
 </script>

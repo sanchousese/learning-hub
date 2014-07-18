@@ -1,11 +1,10 @@
 package ua.com.learninghub.rest;
-import ua.com.learninghub.database.entities.User;
+import com.sun.jersey.api.core.HttpRequestContext;
+import ua.com.learninghub.rest.User;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/user")
 public class Main {
@@ -28,13 +27,25 @@ public class Main {
     @GET
     @Path("/getJson")
     @Produces(MediaType.APPLICATION_JSON)
-    public Student getJson() {
-        Student student = new Student(1, 2, "Lobod", "root", "Lol");
-        return student;
+    public String getJson() {
+        //Student student = new Student(1, 2, "Lobod", "root", "Lol");
+        return "SomeString";
 
     }
 
-    public class Student {
+    @POST
+    @Path("/postUser")
+    //@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public UserResponse postUser(User user) {
+        System.out.println(user);
+        //return Response.status(Response.Status.OK).build();
+
+        //return Response.ok(new UserResponse("Проверка utf-8", "1.jpg")).status(200).build();
+        return new UserResponse("SomeDescription", "1.jpg");
+    }
+
+    /*public class Student {
         int id;
         int idCategory;
         String login;
@@ -88,5 +99,5 @@ public class Main {
         public void setEmail(String email) {
             this.email = email;
         }
-    }
+    }*/
 }
