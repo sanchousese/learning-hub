@@ -1,6 +1,6 @@
-package ua.com.learninghub.database.dao;
+package ua.com.learninghub.model.dao;
 
-import ua.com.learninghub.database.entities.User;
+import ua.com.learninghub.model.entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

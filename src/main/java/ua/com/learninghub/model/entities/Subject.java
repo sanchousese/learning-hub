@@ -1,4 +1,4 @@
-package ua.com.learninghub.database.entities;
+package ua.com.learninghub.model.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;

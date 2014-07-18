@@ -1,12 +1,10 @@
-package ua.com.learninghub.database.tests;
+package ua.com.learninghub.dao;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 import org.junit.Test;
-import ua.com.learninghub.database.dao.UserCategoryDao;
-import ua.com.learninghub.database.dao.UserDao;
-import ua.com.learninghub.database.entities.User;
-import ua.com.learninghub.database.entities.UserCategory;
+import ua.com.learninghub.model.dao.UserCategoryDao;
+import ua.com.learninghub.model.dao.UserDao;
+import ua.com.learninghub.model.entities.User;
 
 import java.util.List;
 

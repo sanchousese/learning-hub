@@ -1,8 +1,7 @@
-package ua.com.learninghub.database.entities;
+package ua.com.learninghub.model.entities;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;

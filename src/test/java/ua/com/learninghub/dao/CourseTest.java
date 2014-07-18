@@ -1,11 +1,9 @@
-package ua.com.learninghub.database.tests;
+package ua.com.learninghub.dao;
 
 import org.junit.Test;
-import ua.com.learninghub.database.dao.CourseDao;
-import ua.com.learninghub.database.dao.SubjectDao;
-import ua.com.learninghub.database.entities.Course;
-import ua.com.learninghub.database.entities.Subject;
-import ua.com.learninghub.database.entities.User;
+import ua.com.learninghub.model.dao.CourseDao;
+import ua.com.learninghub.model.dao.SubjectDao;
+import ua.com.learninghub.model.entities.Course;
 
 import java.sql.Date;
 import java.util.List;
