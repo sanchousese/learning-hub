@@ -24,8 +24,8 @@
 //                   alert("success...");
                         document.location.href = "http://google.com";
                     },
-                    401: function() {
-                        alert("Error");
+                    400: function() {
+                        alert("Invalid e-mail address. Please, try again.");
                     }
                 }
             });

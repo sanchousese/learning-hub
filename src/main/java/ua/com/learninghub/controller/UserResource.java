@@ -31,6 +31,10 @@ public class UserResource {
     @Path("/addUser")
     @Consumes({ MediaType.APPLICATION_JSON})
     public Response addUser(User user) throws JSONException {
+        if (!user.getEmail().matches("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$")) {
+            return Response.status(400).build();
+        }
+
         user.setCategory((new UserCategoryDao()).selectById(2));
         userDao.insert(user);
         System.out.println(user);
