@@ -1,5 +1,6 @@
 package ua.com.learninghub.model.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -19,6 +20,7 @@ public class RuleType {
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean enabled;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "rules")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserCategory> userCategories;
@@ -47,6 +49,7 @@ public class RuleType {
         this.enabled = enabled;
     }
 
+    @JsonIgnore
     public List<UserCategory> getUserCategories() {
         return userCategories;
     }

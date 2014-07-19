@@ -1,5 +1,6 @@
 package ua.com.learninghub.model.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -21,10 +22,12 @@ public class User {
     private String email;
     private int money;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idUserCategory")
     private UserCategory category;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "users")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Course> courses;
@@ -69,6 +72,7 @@ public class User {
         this.money = money;
     }
 
+    @JsonIgnore
     public UserCategory getCategory() {
         return category;
     }
@@ -92,6 +96,7 @@ public class User {
         return category ==null? newOwner == null : category.equals(newOwner);
     }
 
+    @JsonIgnore
     public List<Course> getCourses() {
         return courses;
     }

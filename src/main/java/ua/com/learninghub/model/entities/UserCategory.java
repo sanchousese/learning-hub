@@ -1,5 +1,6 @@
 package ua.com.learninghub.model.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -19,9 +20,11 @@ public class UserCategory {
 
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<User> userList;
 
+    @JsonIgnore
     @ManyToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "CategoryRule",
@@ -45,6 +48,7 @@ public class UserCategory {
         this.name = name;
     }
 
+    @JsonIgnore
     public ArrayList<User> getUserList(){
         return new ArrayList<User>(userList);
     }
@@ -68,6 +72,7 @@ public class UserCategory {
         user.setCategory(this);
     }
 
+    @JsonIgnore
     public List<RuleType> getRules() {
         return rules;
     }

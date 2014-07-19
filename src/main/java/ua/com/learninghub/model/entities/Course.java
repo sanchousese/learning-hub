@@ -1,5 +1,6 @@
 package ua.com.learninghub.model.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -24,11 +25,13 @@ public class Course {
     int price;
     int rate;
 
+    @JsonIgnore
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idUser")}, inverseJoinColumns = {@JoinColumn(name = "idCourse")})
     private List<User> users;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idSubject")
     private Subject subject;
@@ -90,6 +93,7 @@ public class Course {
         this.rate = rate;
     }
 
+    @JsonIgnore
     public List<User> getUsers() {
         return users;
     }
@@ -99,6 +103,7 @@ public class Course {
         this.users = users;
     }
 
+    @JsonIgnore
     public Subject getSubject() {
         return subject;
     }

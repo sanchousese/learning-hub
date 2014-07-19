@@ -1,5 +1,7 @@
 package ua.com.learninghub.model.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +16,12 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idSubject;
 
-    String name;//cool
+    String name;
     @Column(columnDefinition = "text")
     String description;
     String logoPath;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     private List<Course> courses;
 
@@ -54,6 +57,7 @@ public class Subject {
         this.logoPath = logoPath;
     }
 
+    @JsonIgnore
     public ArrayList<Course> getCourses() {
         return new ArrayList<Course>(courses);
     }
