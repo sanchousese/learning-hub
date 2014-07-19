@@ -65,12 +65,15 @@ public class UserDao {
 
     public User findByLoginPass(String login, String pass){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.login = :u_log AND usr.pass = :u_pass");
+        Query query = entityManager.createQuery(
+                "SELECT usr FROM User usr WHERE usr.login = :u_log AND usr.pass = :u_pass");
         query.setParameter("u_log", login);
         query.setParameter("u_pass", pass);
         User user = null;
         try {
             user = (User) query.getSingleResult();
+            if(!user.getLogin().equals(login))
+                return null;
         } catch (NoResultException e){
             return null;
         }
