@@ -23,7 +23,7 @@ public class UserTests {
 
     @Test
     public void selectByIdTest(){
-        User user = userDao.selectById(1);
+        User user = userDao.selectById(4);
         System.out.println(user);
     }
 
@@ -66,5 +66,24 @@ public class UserTests {
     public void findTestNotExist(){
         User urs = userDao.findByLoginPass("root", "pook2");
         Assert.assertNull(urs);
+    }
+
+    @Test
+    public void RussianTextTest(){
+        User user = new User();
+        user.setLogin("test");
+        user.setPass("test");
+        user.setEmail("Проверка текста");
+        user.setMoney(0);
+        user.setCategory((new UserCategoryDao().selectById(1)));
+        boolean b = userDao.insert(user);
+    }
+
+    @Test
+    public void firstLetterTest(){
+        String login = "русский";
+        String pass = "3242";
+        User usr = userDao.findByLoginPass(login, pass);
+        System.out.println(usr);
     }
 }
