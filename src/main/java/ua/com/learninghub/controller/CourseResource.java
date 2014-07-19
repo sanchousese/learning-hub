@@ -8,14 +8,22 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Max on 18.07.2014.
  */
+@Path("/course")
 public class CourseResource {
     private CourseDao courseDao = new CourseDao();
 
+    @POST
+    @Path("/getAll")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public List<Course> getAllCourses() {
+        return courseDao.selectAll();
+    }
     /* @DELETE
     @Path("{courseId}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -28,7 +36,7 @@ public class CourseResource {
         return Response.ok().build();
     }*/
 
-    @PUT
+    /*@PUT
     @Path("{courseId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -75,11 +83,7 @@ public class CourseResource {
         return course;
     }
 
-    @GET
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Course> getAllCourses() {
-        return courseDao.selectAll();
-    }
+
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -96,5 +100,5 @@ public class CourseResource {
         }
 
         return Response.ok().entity(course).build();
-    }
+    }*/
 }
