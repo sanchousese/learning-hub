@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Path("/course")
 public class CourseResource {
-    private CourseDao courseDao = new CourseDao();
+    private CourseDao courseDao = new CourseDao();//test
 
     @POST
     @Path("/getAll")
