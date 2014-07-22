@@ -1,10 +1,9 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import ua.com.learninghub.model.interfaces.HibernateL2Cache;
+import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**

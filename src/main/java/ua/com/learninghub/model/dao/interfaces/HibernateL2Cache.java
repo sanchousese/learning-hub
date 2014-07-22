@@ -1,4 +1,4 @@
-package ua.com.learninghub.model.interfaces;
+package ua.com.learninghub.model.dao.interfaces;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

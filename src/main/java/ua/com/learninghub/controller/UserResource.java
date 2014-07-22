@@ -2,30 +2,32 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import ua.com.learninghub.controller.auth.Session;
-import ua.com.learninghub.controller.auth.SessionRepository;
-import ua.com.learninghub.model.dao.SessionDao;
-import ua.com.learninghub.model.dao.UserCategoryDao;
-import ua.com.learninghub.model.dao.UserDao;
+import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
+import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
+import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
+import ua.com.learninghub.model.entities.Course;
+import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
+import ua.com.learninghub.model.dao.interfaces.UserDao;
+import ua.com.learninghub.model.entities.UserCategory;
+
+import java.util.List;
 
 @PermitAll
 @Path("/user")
 public class UserResource {
 
-    private UserDao userDao = new UserDao();
-    private SessionDao sessionDao = new SessionDao();
+    private UserDao userDao = new UserDaoImpl();
+    private SessionDaoImpl sessionDaoImpl = new SessionDaoImpl();
 
 //    @POST
 //    @Path("/login")
@@ -40,7 +42,7 @@ public class UserResource {
     @Path("/addUser")
     @Consumes({ MediaType.APPLICATION_JSON})
     public Response addUser(User user) throws JSONException {
-        user.setCategory((new UserCategoryDao()).selectById(2));
+        user.setCategory((new UserCategoryDaoImpl().selectById(2)));
         if (isNotEmail(user)) {
             return Response.status(400).build();
         }
@@ -61,14 +63,14 @@ public class UserResource {
     @Path("/userInfo")
     @Produces(MediaType.APPLICATION_JSON)
     public Response userInfo(@Context HttpServletRequest hsr) {
-        if(hsr == null) return Response.status(404).build();
+        if(hsr == null) return Response.status(403).build();
         HttpSession session =  hsr.getSession(false);
         if(session != null){
             String sessionId = session.getId();
-            User user = sessionDao.selectBySessionId(sessionId).getUser();
+            User user = sessionDaoImpl.selectBySessionId(sessionId).getUser();
             return Response.ok(user).build();
         }else{
-            return Response.status(404).build();
+            return Response.status(403).build();
         }
     }
 
@@ -81,7 +83,7 @@ public class UserResource {
             return Response.status(401).build();
         } else {
             String sessionID = hsr.getSession().getId();
-            boolean suc = sessionDao.insert(new Session(sessionID, user));
+            boolean suc = sessionDaoImpl.insert(new Session(sessionID, user));
             if(!suc) return Response.status(401).build();
             return Response.status(200).build();
         }
@@ -95,9 +97,9 @@ public class UserResource {
         HttpSession session =  hsr.getSession(false);
         if(session != null){
             String sessionId = session.getId();
-            User user = sessionDao.selectBySessionId(sessionId).getUser();
+            User user = sessionDaoImpl.selectBySessionId(sessionId).getUser();
             if(user != null){
-                sessionDao.deleteBySessionId(sessionId);
+                sessionDaoImpl.deleteBySessionId(sessionId);
                 session.invalidate();
                 return Response.ok().build();
             } else Response.status(404).build();
@@ -112,7 +114,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}")
     public User getUser(@PathParam("userId") String userId) {
-        User anUser = userDaoImpl.selectById(new Integer(userId));
+        User anUser = userDao.selectById(new Integer(userId));
         return anUser;
     }
 
@@ -120,7 +122,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}/courses")
     public List<Course> getUserCourses(@PathParam("userId") String userId) {
-        User anUser = userDaoImpl.selectById(new Integer(userId));
+        User anUser = userDao.selectById(new Integer(userId));
         List<Course> userCourses = anUser.getCourses();
         return userCourses;
     }
@@ -128,7 +130,7 @@ public class UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {
-        List<User> users = userDaoImpl.selectAll();
+        List<User> users = userDao.selectAll();
         return users;
     }
 }

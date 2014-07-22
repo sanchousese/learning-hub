@@ -1,19 +1,20 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
+import ua.com.learninghub.model.dao.HibernateUtil;
+import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
+import ua.com.learninghub.model.dao.interfaces.SessionDao;
 import ua.com.learninghub.model.entities.Session;
-import ua.com.learninghub.model.entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by vasax32 on 22.07.14.
  */
-public class SessionDao {
+public class SessionDaoImpl implements SessionDao, HibernateL2Cache {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
     public List<Session> selectAll() {

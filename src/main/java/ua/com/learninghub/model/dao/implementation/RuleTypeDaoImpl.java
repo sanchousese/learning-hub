@@ -1,6 +1,8 @@
 package ua.com.learninghub.model.dao.implementation;
 
 import ua.com.learninghub.model.dao.HibernateUtil;
+import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
+import ua.com.learninghub.model.dao.interfaces.RuleTypeDao;
 import ua.com.learninghub.model.entities.RuleType;
 
 import javax.persistence.EntityManager;
@@ -12,7 +14,7 @@ import java.util.List;
  * Created by vasax32 on 16.07.14.
  */
 
-public class RuleTypeDaoImpl implements ua.com.learninghub.model.dao.interfaces.RuleTypeDao {
+public class RuleTypeDaoImpl implements RuleTypeDao, HibernateL2Cache {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
     @Override

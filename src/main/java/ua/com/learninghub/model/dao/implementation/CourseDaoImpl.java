@@ -1,6 +1,8 @@
 package ua.com.learninghub.model.dao.implementation;
 
 import ua.com.learninghub.model.dao.HibernateUtil;
+import ua.com.learninghub.model.dao.interfaces.CourseDao;
+import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 import ua.com.learninghub.model.entities.Course;
 
 import javax.persistence.EntityManager;
@@ -11,7 +13,7 @@ import java.util.List;
 /**
  * Created by vasax32 on 17.07.14.
  */
-public class CourseDaoImpl implements ua.com.learninghub.model.dao.interfaces.CourseDao {
+public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
     @Override

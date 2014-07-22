@@ -1,6 +1,8 @@
 package ua.com.learninghub.model.dao.implementation;
 
 import ua.com.learninghub.model.dao.HibernateUtil;
+import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
+import ua.com.learninghub.model.dao.interfaces.UserDao;
 import ua.com.learninghub.model.entities.User;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by vasax32 on 15.07.14.
  */
-public class UserDaoImpl implements ua.com.learninghub.model.dao.interfaces.UserDao {
+public class UserDaoImpl implements UserDao, HibernateL2Cache {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
     @Override
