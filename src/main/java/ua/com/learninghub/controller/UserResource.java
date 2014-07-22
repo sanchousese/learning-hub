@@ -118,6 +118,7 @@ public class UserResource {
         return anUser;
     }
 
+    @RolesAllowed({"Admin", "Moderator"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}/courses")
@@ -127,6 +128,7 @@ public class UserResource {
         return userCourses;
     }
 
+    @RolesAllowed({"Admin", "Moderator"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {

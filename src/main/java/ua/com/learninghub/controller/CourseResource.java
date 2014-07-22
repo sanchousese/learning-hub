@@ -6,6 +6,8 @@ import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.entities.Course;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -15,10 +17,12 @@ import java.util.List;
 /**
  * Created by Max on 18.07.2014.
  */
+@PermitAll
 @Path("courses") // ...8080/rest/courses/
 public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();//test
 
+    @RolesAllowed({"Admin", "Moderator"})
     @POST
     @Path("course") // // ...8080/rest/courses/course
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,6 +37,7 @@ public class CourseResource {
 
     }
 
+    @RolesAllowed({"Admin", "Moderator"})
     @POST
     @Path("course1") // // ...8080/rest/courses/course
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
