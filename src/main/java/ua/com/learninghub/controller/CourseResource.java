@@ -1,11 +1,15 @@
 package ua.com.learninghub.controller;
 
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.entities.Course;
+import ua.com.learninghub.model.entities.Subject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -14,6 +18,44 @@ import java.util.List;
 @Path("courses") // ...8080/rest/courses/
 public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();//test
+
+    @POST
+    @Path("course") // // ...8080/rest/courses/course
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Course createCourse(Course course) {
+        System.out.println(course.getName());
+        System.out.println(course.getPrice());
+
+        //courseDao.insert(course);
+
+        return course;
+
+    }
+
+    @POST
+    @Path("course1") // // ...8080/rest/courses/course
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Course createCourseParams(MultivaluedMap<String, String> formParams) {
+        Course course = new Course();
+
+        course.setName(formParams.getFirst("name"));
+        course.setBeginDate(Date.valueOf(formParams.getFirst("beginDate")));
+        course.setEndDate((Date.valueOf(formParams.getFirst("endDate"))));
+        course.setDescription(formParams.getFirst("description"));
+        course.setPrice(Integer.parseInt(formParams.getFirst("price")));
+        course.setRate(Integer.parseInt(formParams.getFirst("rate")));
+        course.setSubject((new SubjectDaoImpl()).selectById(Integer.parseInt(formParams.getFirst("idSubject"))));
+        System.out.println(course);
+
+        courseDao.insert(course);
+
+
+        return null;
+    }
+
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -27,6 +69,8 @@ public class CourseResource {
     public Course getCourse(@PathParam("courseId") String courseId) {
         return courseDao.selectById((new Integer(courseId)).intValue());
     }
+
+
 
 /*
     @GET
