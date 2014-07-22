@@ -2,8 +2,9 @@ package EntitiesTests;
 
 import junit.framework.Assert;
 import org.junit.Test;
-import ua.com.learninghub.model.dao.UserCategoryDao;
-import ua.com.learninghub.model.dao.UserDao;
+import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
+import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.UserDao;
 import ua.com.learninghub.model.entities.User;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by vasax32 on 15.07.14.
  */
 public class UserTests {
-    UserDao userDao = new UserDao();
+    UserDao userDao = new UserDaoImpl();
 
     @Test
     public void selectAll(){
@@ -30,7 +31,7 @@ public class UserTests {
     @Test
     public void updateUsersCategoryTest(){
         User user = userDao.selectById(1);
-        user.setCategory((new UserCategoryDao().selectById(1)));
+        user.setCategory((new UserCategoryDaoImpl().selectById(1)));
         userDao.update(user);
     }
 
@@ -41,7 +42,7 @@ public class UserTests {
         user.setPass("SomePass");
         user.setEmail("some@mail.com");
         user.setMoney(1000);
-        user.setCategory((new UserCategoryDao().selectById(2)));
+        user.setCategory((new UserCategoryDaoImpl().selectById(2)));
         userDao.insert(user);
     }
 
@@ -52,7 +53,7 @@ public class UserTests {
         user.setPass("pook");
         user.setEmail("mail@mail.com");
         user.setMoney(0);
-        user.setCategory((new UserCategoryDao().selectById(1)));
+        user.setCategory((new UserCategoryDaoImpl().selectById(1)));
         boolean b = userDao.insert(user);
     }
 
@@ -75,7 +76,7 @@ public class UserTests {
         user.setPass("test");
         user.setEmail("Проверка текста");
         user.setMoney(0);
-        user.setCategory((new UserCategoryDao().selectById(1)));
+        user.setCategory((new UserCategoryDaoImpl().selectById(1)));
         boolean b = userDao.insert(user);
     }
 

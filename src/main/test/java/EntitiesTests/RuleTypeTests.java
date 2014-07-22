@@ -1,7 +1,8 @@
 package EntitiesTests;
 
 import org.junit.Test;
-import ua.com.learninghub.model.dao.RuleTypeDao;
+import ua.com.learninghub.model.dao.implementation.RuleTypeDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.RuleTypeDao;
 import ua.com.learninghub.model.entities.RuleType;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by vasax32 on 17.07.14.
  */
 public class RuleTypeTests {
-    private RuleTypeDao ruleTypeDao = new RuleTypeDao();
+    private RuleTypeDao ruleTypeDao = new RuleTypeDaoImpl();
 
     @Test
     public void SelectAllTest(){

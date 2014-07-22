@@ -1,5 +1,6 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.entities.RuleType;
 
 import javax.persistence.EntityManager;
@@ -11,9 +12,10 @@ import java.util.List;
  * Created by vasax32 on 16.07.14.
  */
 
-public class RuleTypeDao {
+public class RuleTypeDaoImpl implements ua.com.learninghub.model.dao.interfaces.RuleTypeDao {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    @Override
     public List<RuleType > selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT rule FROM RuleType rule");
@@ -22,6 +24,7 @@ public class RuleTypeDao {
         return rules;
     }
 
+    @Override
     public RuleType  selectById(int id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT rule FROM RuleType rule WHERE rule.idRuleType = :c_id");
@@ -31,6 +34,7 @@ public class RuleTypeDao {
         return rule;
     }
 
+    @Override
     public int update(RuleType rule) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         RuleType  ruleUpd = (RuleType) entityManager.find(RuleType.class, rule.getIdRuleType());
@@ -45,6 +49,7 @@ public class RuleTypeDao {
         return 1;
     }
 
+    @Override
     public void insert(RuleType ruleType){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

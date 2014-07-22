@@ -1,7 +1,6 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import org.hibernate.exception.ConstraintViolationException;
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.entities.User;
 
 import javax.persistence.*;
@@ -10,9 +9,10 @@ import java.util.List;
 /**
  * Created by vasax32 on 15.07.14.
  */
-public class UserDao {
+public class UserDaoImpl implements ua.com.learninghub.model.dao.interfaces.UserDao {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    @Override
     public List<User> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT usr FROM User usr");
@@ -21,6 +21,7 @@ public class UserDao {
         return students;
     }
 
+    @Override
     public User selectById(int id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.idUser = :u_id");
@@ -30,6 +31,7 @@ public class UserDao {
         return user;
     }
 
+    @Override
     public int update(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         User userUpd = (User) entityManager.find(User.class, user.getIdUser());
@@ -47,6 +49,7 @@ public class UserDao {
         return 1;
     }
 
+    @Override
     public boolean insert(User user){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -63,6 +66,7 @@ public class UserDao {
         return true;
     }
 
+    @Override
     public User findByLoginPass(String login, String pass){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery(

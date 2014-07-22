@@ -1,5 +1,6 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.entities.Course;
 
 import javax.persistence.EntityManager;
@@ -10,9 +11,10 @@ import java.util.List;
 /**
  * Created by vasax32 on 17.07.14.
  */
-public class CourseDao {
+public class CourseDaoImpl implements ua.com.learninghub.model.dao.interfaces.CourseDao {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    @Override
     public List<Course> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT courses FROM Course courses");
@@ -21,6 +23,7 @@ public class CourseDao {
         return courses;
     }
 
+    @Override
     public Course selectById(int id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT crs FROM Course crs WHERE crs.idCourse = :u_id");
@@ -30,6 +33,7 @@ public class CourseDao {
         return course;
     }
 
+    @Override
     public Course update(Course course) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Course course1Upd = (Course) entityManager.find(Course.class, course.getIdCourse());
@@ -49,6 +53,7 @@ public class CourseDao {
         return course1Upd;
     }
 
+    @Override
     public void insert(Course course){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -57,7 +62,9 @@ public class CourseDao {
         entityManager.close();
     }
 
+    @Override
     public void delete(int courseId) {
         //delete from course where courseid = ?
     }
+
 }
