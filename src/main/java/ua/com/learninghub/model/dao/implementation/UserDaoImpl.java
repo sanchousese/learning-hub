@@ -24,10 +24,18 @@ public class UserDaoImpl implements ua.com.learninghub.model.dao.interfaces.User
     @Override
     public User selectById(int id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.idUser = :u_id");
-        query.setParameter("u_id",id);
-        User user = (User)query.getSingleResult();
-        entityManager.close();
+        Query query = entityManager.createQuery(
+                "SELECT usr FROM User usr WHERE usr.idUser = :u_id");
+        query.setParameter("u_id", id);
+        User user = null;
+        try {
+            user = (User) query.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        }
+        finally {
+            entityManager.close();
+        }
         return user;
     }
 

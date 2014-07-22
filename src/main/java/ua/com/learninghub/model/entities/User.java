@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -12,12 +13,13 @@ import java.util.List;
  */
 @Entity
 @Table(name = "User")
-public class User {
+public class User  implements Principal{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
     private String login;
+    @JsonIgnore
     private String pass;
     private String email;
     private int money;
@@ -48,6 +50,7 @@ public class User {
         this.login = login;
     }
 
+    @JsonIgnore
     public String getPass() {
         return pass;
     }
@@ -145,5 +148,10 @@ public class User {
         result = 31 * result + money;
         result = 31 * result + (category != null ? category.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String getName() {
+        return "UserPrincipal";
     }
 }
