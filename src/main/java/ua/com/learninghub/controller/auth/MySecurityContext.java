@@ -14,7 +14,7 @@ import java.security.Principal;
 public class MySecurityContext implements javax.ws.rs.core.SecurityContext {
 
     private final User user;
-    private final Session session;
+    private final Session session;//
 
     public MySecurityContext(Session session, User user) {
         this.session = session;
