@@ -1,5 +1,6 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.entities.UserCategory;
 
 import javax.persistence.EntityManager;
@@ -10,9 +11,10 @@ import java.util.List;
 /**
  * Created by vasax32 on 15.07.14.
  */
-public class UserCategoryDao {
+public class UserCategoryDaoImpl implements ua.com.learninghub.model.dao.interfaces.UserCategoryDao {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    @Override
     public List<UserCategory> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT usr FROM User usr");
@@ -21,6 +23,7 @@ public class UserCategoryDao {
         return categories;
     }
 
+    @Override
     public UserCategory selectById(int id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT uCat FROM UserCategory uCat WHERE uCat.idUserCategory = :c_id");
@@ -30,6 +33,7 @@ public class UserCategoryDao {
         return category;
     }
 
+    @Override
     public int update(UserCategory category) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         UserCategory categoryUpd = (UserCategory) entityManager.find(UserCategory.class, category.getIdUserCategory());
@@ -43,6 +47,7 @@ public class UserCategoryDao {
         return 1;
     }
 
+    @Override
     public void insert(UserCategory category){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

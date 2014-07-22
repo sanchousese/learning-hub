@@ -2,20 +2,23 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.controller.auth.Session;
+import ua.com.learninghub.controller.auth.SessionRepository;
 import ua.com.learninghub.model.dao.SessionDao;
-import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.dao.UserCategoryDao;
 import ua.com.learninghub.model.dao.UserDao;
 import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 
 @PermitAll
 @Path("/user")
@@ -23,6 +26,15 @@ public class UserResource {
 
     private UserDao userDao = new UserDao();
     private SessionDao sessionDao = new SessionDao();
+
+//    @POST
+//    @Path("/login")
+//    @Consumes({ MediaType.APPLICATION_JSON })
+//    public Response checkUser(JSONObject obj) throws JSONException {
+//        User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
+//        return user == null ? Response.status(401).build() : Response.status(200).build();
+//    }
+
 
     @POST
     @Path("/addUser")
@@ -93,5 +105,30 @@ public class UserResource {
         }else{
             return Response.status(404).build();
         }
+    }
+    
+    //need to manage this
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{userId}")
+    public User getUser(@PathParam("userId") String userId) {
+        User anUser = userDaoImpl.selectById(new Integer(userId));
+        return anUser;
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{userId}/courses")
+    public List<Course> getUserCourses(@PathParam("userId") String userId) {
+        User anUser = userDaoImpl.selectById(new Integer(userId));
+        List<Course> userCourses = anUser.getCourses();
+        return userCourses;
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getUsers() {
+        List<User> users = userDaoImpl.selectAll();
+        return users;
     }
 }

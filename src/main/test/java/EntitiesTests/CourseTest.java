@@ -1,8 +1,9 @@
 package EntitiesTests;
 
 import org.junit.Test;
-import ua.com.learninghub.model.dao.CourseDao;
-import ua.com.learninghub.model.dao.SubjectDao;
+import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.entities.Course;
 
 import java.sql.Date;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by vasax32 on 17.07.14.
  */
 public class CourseTest {
-    private CourseDao courseDao = new CourseDao();
+    private CourseDao courseDao = new CourseDaoImpl();
 
     @Test
     public void selectAll(){
@@ -29,17 +30,17 @@ public class CourseTest {
         course.setEndDate(new Date(2014, 7, 28));
         course.setPrice(50);
         course.setRate(5);
-        course.setSubject((new SubjectDao()).selectById(1));
+        course.setSubject((new SubjectDaoImpl()).selectById(1));
         courseDao.insert(course);
     }
 
     @Test
     public void updateCourse(){
         Course course = courseDao.selectById(1);
-        course.setSubject((new SubjectDao()).selectById(2));
+        course.setSubject((new SubjectDaoImpl()).selectById(2));
         courseDao.update(course);
 
-        List<Course> courses = (new SubjectDao()).selectById(2).getCourses();
+        List<Course> courses = (new SubjectDaoImpl()).selectById(2).getCourses();
         System.out.println(courses);
     }
 

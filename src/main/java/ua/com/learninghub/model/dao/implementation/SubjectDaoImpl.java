@@ -1,5 +1,6 @@
-package ua.com.learninghub.model.dao;
+package ua.com.learninghub.model.dao.implementation;
 
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.entities.Subject;
 
 import javax.persistence.EntityManager;
@@ -10,9 +11,10 @@ import java.util.List;
 /**
  * Created by vasax32 on 17.07.14.
  */
-public class SubjectDao {
+public class SubjectDaoImpl implements ua.com.learninghub.model.dao.interfaces.SubjectDao {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    @Override
     public List<Subject> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT sbj FROM Subject sbj");
@@ -21,6 +23,7 @@ public class SubjectDao {
         return subjects;
     }
 
+    @Override
     public Subject selectById(int id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT sbj FROM Subject sbj WHERE sbj.idSubject = :u_id");
@@ -30,6 +33,7 @@ public class SubjectDao {
         return subject;
     }
 
+    @Override
     public int update(Subject subject) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Subject subjectUpd = (Subject) entityManager.find(Subject.class, subject.getIdSubject());
@@ -45,6 +49,7 @@ public class SubjectDao {
         return 1;
     }
 
+    @Override
     public void insert(Subject subject) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
