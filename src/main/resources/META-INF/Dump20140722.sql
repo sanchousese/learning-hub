@@ -405,7 +405,7 @@ CREATE TABLE `UserCategory` (
 
 LOCK TABLES `UserCategory` WRITE;
 /*!40000 ALTER TABLE `UserCategory` DISABLE KEYS */;
-INSERT INTO `UserCategory` VALUES (1,'Admin'),(2,'Moderator'),(4,'Student');
+INSERT INTO `UserCategory` VALUES (1,'Moderator'),(2,'Teacher'),(4,'Student');
 /*!40000 ALTER TABLE `UserCategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,4 +448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-22 23:24:06
+-- Dump completed on 2014-07-22 23:41:53

@@ -58,7 +58,7 @@ public class UserResource {
         return !user.getEmail().matches("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
     }
 
-    @RolesAllowed({"Admin", "Moderator", "Student"})
+    @RolesAllowed({"Moderator", "Teacher", "Student"})
     @POST
     @Path("/userInfo")
     @Produces(MediaType.APPLICATION_JSON)
@@ -89,7 +89,7 @@ public class UserResource {
         }
     }
 
-    @RolesAllowed({"Admin", "Moderator", "Student"})
+    @RolesAllowed({"Moderator", "Teacher", "Student"})
     @POST
     @Path("/logout")
     @Produces(MediaType.APPLICATION_JSON)
@@ -118,7 +118,7 @@ public class UserResource {
         return anUser;
     }
 
-    @RolesAllowed({"Admin", "Moderator"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}/courses")
@@ -128,7 +128,7 @@ public class UserResource {
         return userCourses;
     }
 
-    @RolesAllowed({"Admin", "Moderator"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {

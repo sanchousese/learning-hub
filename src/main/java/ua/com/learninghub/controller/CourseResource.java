@@ -22,7 +22,7 @@ import java.util.List;
 public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();//test
 
-    @RolesAllowed({"Admin", "Moderator"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("course") // // ...8080/rest/courses/course
     @Consumes(MediaType.APPLICATION_JSON)
@@ -37,7 +37,7 @@ public class CourseResource {
 
     }
 
-    @RolesAllowed({"Admin", "Moderator"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("course1") // // ...8080/rest/courses/course
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
