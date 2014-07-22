@@ -2,38 +2,27 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import ua.com.learninghub.controller.auth.Session;
-import ua.com.learninghub.controller.auth.SessionRepository;
+import ua.com.learninghub.model.dao.SessionDao;
+import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.dao.UserCategoryDao;
 import ua.com.learninghub.model.dao.UserDao;
 import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
 
 @PermitAll
 @Path("/user")
 public class UserResource {
 
     private UserDao userDao = new UserDao();
-    private SessionRepository sessionRepository = new SessionRepository();
-
-//    @POST
-//    @Path("/login")
-//    @Consumes({ MediaType.APPLICATION_JSON })
-//    public Response checkUser(JSONObject obj) throws JSONException {
-//        User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
-//        return user == null ? Response.status(401).build() : Response.status(200).build();
-//    }
-
+    private SessionDao sessionDao = new SessionDao();
 
     @POST
     @Path("/addUser")
@@ -60,10 +49,11 @@ public class UserResource {
     @Path("/userInfo")
     @Produces(MediaType.APPLICATION_JSON)
     public Response userInfo(@Context HttpServletRequest hsr) {
+        if(hsr == null) return Response.status(404).build();
         HttpSession session =  hsr.getSession(false);
         if(session != null){
             String sessionId = session.getId();
-            User user = userDao.selectById(sessionRepository.findOne(sessionId).getUserId());
+            User user = sessionDao.selectBySessionId(sessionId).getUser();
             return Response.ok(user).build();
         }else{
             return Response.status(404).build();
@@ -79,7 +69,8 @@ public class UserResource {
             return Response.status(401).build();
         } else {
             String sessionID = hsr.getSession().getId();
-            sessionRepository.add(new Session(sessionID, user.getIdUser()));
+            boolean suc = sessionDao.insert(new Session(sessionID, user));
+            if(!suc) return Response.status(401).build();
             return Response.status(200).build();
         }
     }
@@ -92,9 +83,9 @@ public class UserResource {
         HttpSession session =  hsr.getSession(false);
         if(session != null){
             String sessionId = session.getId();
-            User user = userDao.selectById(sessionRepository.findOne(sessionId).getUserId());
+            User user = sessionDao.selectBySessionId(sessionId).getUser();
             if(user != null){
-                sessionRepository.removeById(sessionId);
+                sessionDao.deleteBySessionId(sessionId);
                 session.invalidate();
                 return Response.ok().build();
             } else Response.status(404).build();

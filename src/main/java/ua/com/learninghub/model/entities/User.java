@@ -1,11 +1,15 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.*;
+import ua.com.learninghub.model.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +17,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "User")
-public class User  implements Principal{
+public class User  implements Principal, HibernateL2Cache, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
@@ -33,6 +37,11 @@ public class User  implements Principal{
     @ManyToMany(mappedBy = "users")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Course> courses;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Session> sessions;
 
     public int getIdUser() {
         return idUser;
@@ -109,6 +118,33 @@ public class User  implements Principal{
         this.courses = courses;
     }
 
+    @JsonIgnore
+    public ArrayList<Session> getSessions() {
+        return new ArrayList<Session>(sessions);
+    }
+
+    @Deprecated
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
+
+
+    public void removeSession(Session session) {
+        if(!sessions.contains(session))
+            return;
+        //removing user from current category
+        sessions.remove(session);
+        session.setUser(null);
+    }
+
+    public void addSession(Session session) {
+        if(sessions.contains(session))
+            return;
+        //add new user to current category
+        sessions.add(session);
+        //setting category of user to this category
+        session.setUser(this);
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -154,4 +190,5 @@ public class User  implements Principal{
     public String getName() {
         return "UserPrincipal";
     }
+
 }

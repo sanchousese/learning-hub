@@ -1,17 +1,18 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.*;
+import ua.com.learninghub.model.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.List;
 
 /**
  * Created by vasax32 on 16.07.14.
  */
 @Entity
-public class RuleType {
+public class RuleType implements HibernateL2Cache {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRuleType;

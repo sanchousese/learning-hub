@@ -1,8 +1,10 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import ua.com.learninghub.model.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  * Created by vasax32 on 17.07.14.
  */
 @Entity
-public class Subject {
+public class Subject implements HibernateL2Cache {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

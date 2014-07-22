@@ -4,6 +4,8 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.sun.jersey.spi.container.ResourceFilter;
+import ua.com.learninghub.model.dao.SessionDao;
+import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.dao.UserDao;
 import ua.com.learninghub.model.entities.User;
 
@@ -16,8 +18,7 @@ import javax.ws.rs.ext.Provider;
 @Provider    // register as jersey's provider
 public class SecurityContextFilter implements ResourceFilter, ContainerRequestFilter {
 
-    private SessionRepository sessionRepository = new SessionRepository();
-    private UserDao userDao = new UserDao();
+    private SessionDao sessionDao = new SessionDao();
 
     @Override
     public ContainerRequest filter(ContainerRequest request) {
@@ -37,11 +38,11 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
 
                 if (sessionId != null && sessionId.length() > 0) {
                     // Load session object from repository
-                    session = sessionRepository.findOne(sessionId);
+                    session = sessionDao.selectBySessionId(sessionId);
 
                     // Load associated user from session
                     if (null != session) {
-                        user = userDao.selectById(session.getUserId());
+                        user = session.getUser();
                     }
                 }
             }

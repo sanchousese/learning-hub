@@ -1,5 +1,6 @@
 package ua.com.learninghub.controller.auth;
 
+import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.entities.User;
 
 import javax.ws.rs.WebApplicationException;
@@ -32,12 +33,12 @@ public class MySecurityContext implements javax.ws.rs.core.SecurityContext {
 
     @Override
     public boolean isSecure() {
-        return (null != session) ? session.isSecure() : false;
+        return null != session;
     }
 
     @Override
     public boolean isUserInRole(String role) {
-        if (null == session || !session.isActive()) {
+        if (null == session) {
             // Forbidden
             Response denied = Response.status(Response.Status.FORBIDDEN).entity("Permission Denied").build();
             throw new WebApplicationException(denied);
