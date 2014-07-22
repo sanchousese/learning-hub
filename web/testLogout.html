@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+</head>
+<body>
+<H1 id = "hed"></H1>
+<form id = "formID">
+    <!--<input id = "login">-->
+    <!--<br><br>-->
+    <!--<input id = pass>-->
+    <!--<br><br>-->
+    <!--<input type="button" id = submit value="submit" >-->
+</form>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+    $.ajax({
+        //data: str,
+        type: "POST",
+        url: "http://localhost:8080/rest/user/userInfo",
+        datatype: "json",
+        contentType: "application/json", //; charset=utf-8
+        success: function(data) {
+            var frm = document.getElementById('formID');
+            frm.innerHTML += '<div>Hello, '+ data.login +'</div><br>' +
+                    '<input type="button" id = "logout" value="logout" onclick="fLogout()">';
+        },
+        statusCode: {
+            403: function() {
+                var frm = document.getElementById('formID');
+                frm.innerHTML += '<input id = "login">'+
+                        '<br><br>'+
+                        '<input id = pass>'+
+                        "<br><br>"+
+                        '<input type="button" id = submit value="submit" onclick="submitButton()" >';
+            }
+        }
+    });
+
+    function submitButton() {
+        var Auth = {
+            login: $('#login').val(),
+            password: $('#pass').val()
+        };
+        addData(Auth)
+    }
+
+    function addData(data) {// pass your data in method
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/rest/user/login",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            statusCode: {
+                200: function () {
+                    location.reload(true);
+                },
+                401: function () {
+                    alert("Invalid login or password");
+                }
+            }
+        });
+    }
+
+    function fLogout(data) {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/rest/user/logout",
+            contentType: "application/json; charset=utf-8",
+            statusCode: {
+                200: function () {
+                    location.reload(true);
+                },
+                404: function () {
+                    alert("Invalid request");
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
