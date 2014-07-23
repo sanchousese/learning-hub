@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import ua.com.learninghub.model.dao.interfaces.UserDao;
 import ua.com.learninghub.model.entities.UserCategory;
@@ -79,13 +80,15 @@ public class UserResource {
     @Consumes({ MediaType.APPLICATION_JSON })
     public Response loginAuth(@Context HttpServletRequest hsr, JSONObject obj) throws JSONException {
         User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
+        System.out.println(obj.getString("login") + " " + obj.getString("password"));
         if(user == null){
             return Response.status(401).build();
         } else {
             String sessionID = hsr.getSession().getId();
             boolean suc = sessionDaoImpl.insert(new Session(sessionID, user));
             if(!suc) return Response.status(401).build();
-            return Response.status(200).build();
+
+            return Response.status(200).cookie(new NewCookie("name", "value")).build();
         }
     }
 
