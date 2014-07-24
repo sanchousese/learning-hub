@@ -56,10 +56,14 @@ body{
 	 margin-top: -0.55em;
 }
 /******************** Задаем стили менюшке *************************/
+/*
 .navbar-nav li:hover {
-	background: #4188c5; /* цвет 2 слова слогана 4188c5 чуть светлее*/
+	background: #4188c5; 
 }
-
+*/
+.navbar-nav li:nth-child(-n+3):hover{
+    background: #4188c5;   
+}
 .nav.navbar-nav li:hover a:hover {
 	color: #fff; /* белый текст на синем фоне - !!! без li:hover не рабоает изменение цвета !!!!*/
 }
@@ -223,17 +227,30 @@ hr {
 .margin-rigth-fix {
     margin-right: 0;
 }
-#logout{
-    display: none;
-}
 .navbar-nav.navbar-right:last-child{
     margin-right: 0;
 }
 #hideRegisterForm,
 #register-btn,
-#user-info{
+#user-info,
+#logout{
     display: none;
 }
 #user-info{
+    text-decoration: underline;
+}
+/*
+.navbar-nav li:hover {
+    background: none;
+}*/
+.margin_8 {
     margin: 8px 5px;
+}
+/*
+.hover-fix:hover{
+    color:inherit;
+}
+*/
+.nav.navbar-nav li:hover .hover-fix:hover {
+ color: #428bca;
 }

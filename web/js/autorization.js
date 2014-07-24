@@ -21,6 +21,23 @@
                       $('#login').click();
                       $('#login').click();
                       $('#login').click();
+                      $('#user-info').css('display', 'block');
+                      $.ajax({
+                          //data: str,
+                          type: "POST",
+                          url: "http://localhost:8080/rest/user/userInfo",
+                          datatype: "json",
+                          contentType: "application/json",
+                          success: function(data) {
+                              document.getElementById("user-info").innerHTML = data.login;
+
+                          },
+                          statusCode: {
+                              403: function() {
+                                  alert("Internal error");
+                              }
+                          }
+                      });
                   },
                   401: function () {
                       alert("Invalid login or password");
@@ -39,6 +56,7 @@
                       $("#logout").hide('slow', function() {});
                       $('#register-btn').css('display', 'block');
                       $('#hideRegisterForm').css('display', 'block');
+                      $('#user-info').css('display', 'none');
                   },
                   404: function () {
                       alert("Invalid request");
@@ -60,8 +78,10 @@
               $('#login').click();
               $('#login').click();
               $('#login').click();
-              //$('#user-info').innerHTML += data.login;
-              //$('#user-info').css('display', 'inlineblock');
+              //alert(data.login);
+              //$('#user-info').childNodes[0].nodeValue  = data.login;
+              document.getElementById("user-info").innerHTML = data.login;
+              $('#user-info').css('display', 'block');
 
           },
           statusCode: {
