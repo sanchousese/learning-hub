@@ -83,9 +83,10 @@
           },
           statusCode: {
               403: function() {
-                  $("#logout").hide('slow', function() {});
+                  $("#logout").hide();
                   $('#register-btn').css('display', 'block');
                   $('#hideRegisterForm').css('display', 'block');
+                  $("#user-info").hide();
               }
           }
       });
