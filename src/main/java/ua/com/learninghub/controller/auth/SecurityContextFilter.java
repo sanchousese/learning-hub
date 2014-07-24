@@ -29,11 +29,13 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
 
         if(cookies != null) {
 
-            Cookie sessionCookie = cookies.get("JSESSIONID");
+            //Cookie sessionCookie = cookies.get("JSESSIONID");
+            Cookie sessionCookie = cookies.get("sessionUID");
 
             if(sessionCookie != null) {
 
                 final String sessionId = sessionCookie.getValue();
+                System.out.println("Find cookie: " + sessionId);
 
                 if (sessionId != null && sessionId.length() > 0) {
                     // Load session object from repository
@@ -44,7 +46,7 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
                         user = session.getUser();
                     }
                 }
-            }
+            } else System.out.println("Session cookie null");
         }
 
         // Set security context

@@ -41,7 +41,6 @@ public class MySecurityContext implements javax.ws.rs.core.SecurityContext {
         if (null == session) {
             // Forbidden
             Response denied = Response.status(Response.Status.FORBIDDEN).entity("Permission Denied").build();
-            System.out.println("Test");
             throw new WebApplicationException(denied);
         }
 
