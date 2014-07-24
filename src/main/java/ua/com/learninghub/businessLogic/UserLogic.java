@@ -3,21 +3,32 @@ package ua.com.learninghub.businessLogic;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by Sania_000 on 7/24/2014.
- */
+
 public class UserLogic {
-    private MessageDigest md;
 
-    public String encryptPass(String pass){
+    private static MessageDigest md;
+
+    public static String encryptPass(String pass){
         try {
-            md = MessageDigest.getInstance("MD5");
-
-            StringBuffer passDigestString = new StringBuffer();
-
-            return passDigestString.toString();
+            byte[] passDigestBytes = getDigestBytes(pass);
+            return getStringCode(passDigestBytes);
         }catch (NoSuchAlgorithmException e) {
             return null;
         }
+    }
+
+    private static String getStringCode(byte[] passDigestBytes) {
+        StringBuffer passDigestString = new StringBuffer();
+        for (int i = 0; i < passDigestBytes.length; i++) {
+            passDigestString.append(Integer.toHexString(0xff & passDigestBytes[i]));
+        }
+        return passDigestString.toString();
+    }
+
+    private static byte[] getDigestBytes(String pass) throws NoSuchAlgorithmException {
+        md = MessageDigest.getInstance("MD5");
+        md.reset();
+        byte[] passBytes = pass.getBytes();
+        return md.digest(passBytes);
     }
 }

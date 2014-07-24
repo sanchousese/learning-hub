@@ -2,6 +2,7 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.businessLogic.UserLogic;
 import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
@@ -31,6 +32,8 @@ public class UserResource {
     @Path("/addUser")
     @Consumes({ MediaType.APPLICATION_JSON})
     public Response addUser(User user) {
+        String md5Pass = UserLogic.encryptPass(user.getPass());
+        user.setPass(md5Pass);
         user.setCategory( new UserCategoryDaoImpl().selectById(4) );
         if (userDao.insert(user)) {
             return Response.status(200).build();
@@ -55,7 +58,9 @@ public class UserResource {
     @Consumes({ MediaType.APPLICATION_JSON })
     public Response loginAuth(@Context HttpServletRequest hsr, @Context HttpServletResponse rspn, JSONObject obj)
             throws JSONException {
-        User user = userDao.findByLoginPass(obj.getString("login"), obj.getString("password"));
+        String md5Pass = UserLogic.encryptPass(obj.getString("password"));
+
+        User user = userDao.findByLoginPass(obj.getString("login"), md5Pass);
         if(user != null && cookieUtil.insertSessionUID(rspn, user))
             return Response.status(200).build();
         else
