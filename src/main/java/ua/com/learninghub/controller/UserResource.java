@@ -3,23 +3,19 @@ package ua.com.learninghub.controller;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import ua.com.learninghub.controller.auth.CookieUtil;
-import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
 import ua.com.learninghub.model.entities.Course;
-import ua.com.learninghub.model.entities.Session;
 import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.*;
-import javax.servlet.http.Cookie;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 import ua.com.learninghub.model.dao.interfaces.UserDao;
-import ua.com.learninghub.model.entities.UserCategory;
 
 import java.util.List;
 
@@ -35,14 +31,10 @@ public class UserResource {
     @Path("/addUser")
     @Consumes({ MediaType.APPLICATION_JSON})
     public Response addUser(User user) {
-        user.setCategory((new UserCategoryDaoImpl().selectById(4)));
-        if (isEmail(user) && userDao.insert(user)) {
+        user.setCategory( new UserCategoryDaoImpl().selectById(4) );
+        if (userDao.insert(user)) {
             return Response.status(200).build();
         } else return Response.status(401).build();
-    }
-
-    private boolean isEmail(User user) {
-        return user.getEmail().matches("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
     }
 
     @RolesAllowed({"Moderator", "Teacher", "Student"})
