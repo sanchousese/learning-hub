@@ -19,8 +19,6 @@
                       $("#hideRegisterForm").hide('slow', function() {});
                       $('#logout').css('display', 'block');
                       $('#login').click();
-                      $('#login').click();
-                      $('#login').click();
                       $('#user-info').css('display', 'block');
                       $.ajax({
                           //data: str,
@@ -75,7 +73,6 @@
               $("#register-btn").hide();
               $("#hideRegisterForm").hide();
               $('#logout').css('display', 'block');
-              $('#login').click();
               $('#login').click();
               $('#login').click();
               //alert(data.login);
