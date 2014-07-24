@@ -5,6 +5,7 @@ import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * Created by vasax32 on 21.07.14.
@@ -31,8 +32,9 @@ public class Session implements HibernateL2Cache {
     public Session(String sessionId, User user){
         this.sessionId = sessionId;
         this.user = user;
+        createTime = new Timestamp(Calendar.getInstance().getTime().getTime());
+        lastAccessedTime = new Timestamp(Calendar.getInstance().getTime().getTime());
     }
-
     public String getSessionId() {
         return sessionId;
     }

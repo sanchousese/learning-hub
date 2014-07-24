@@ -10,12 +10,33 @@ import ua.com.learninghub.model.entities.User;
 
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.ext.Provider;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * Created by vasax32 on 21.07.14.
  */
 @Provider    // register as jersey's provider
 public class SecurityContextFilter implements ResourceFilter, ContainerRequestFilter {
+
+    public static final long timeout = 3600000;
+
+    SecurityContextFilter(){
+        (new Thread(new Runnable() {
+            public void run() {
+                while (true){
+                    try{
+                        (new SessionDaoImpl()).clearTimeout(timeout);
+                        Thread.sleep(1800000);
+                    } catch (InterruptedException e){
+
+                    }
+                }
+            }
+        })).start();
+
+
+    }
 
     private SessionDaoImpl sessionDaoImpl = new SessionDaoImpl();
 
@@ -31,11 +52,11 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
 
             //Cookie sessionCookie = cookies.get("JSESSIONID");
             Cookie sessionCookie = cookies.get("sessionUID");
-
+            //System.out.println(sessionCookie);
             if(sessionCookie != null) {
 
                 final String sessionId = sessionCookie.getValue();
-                System.out.println("Find cookie: " + sessionId);
+                //System.out.println("Find cookie: " + sessionId);
 
                 if (sessionId != null && sessionId.length() > 0) {
                     // Load session object from repository
@@ -43,6 +64,8 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
 
                     // Load associated user from session
                     if (null != session) {
+                        session.setLastAccessedTime(new Timestamp(Calendar.getInstance().getTime().getTime()));
+                        sessionDaoImpl.update(session);
                         user = session.getUser();
                     }
                 }

@@ -5,6 +5,8 @@ import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
 import ua.com.learninghub.model.entities.Session;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -33,5 +35,12 @@ public class SessionTest {
     @Test
     public void deleteSession(){
         System.out.println(sessionDaoImpl.deleteBySessionId("59874385399"));
+    }
+
+    @Test
+    public void updateTest(){
+        Session session = sessionDaoImpl.selectBySessionId("h31e7prcieb90fh5ipc035fuvc");
+        session.setLastAccessedTime(new Timestamp(Calendar.getInstance().getTime().getTime()));
+        sessionDaoImpl.update(session);
     }
 }

@@ -230,12 +230,12 @@ hr {
 .navbar-nav.navbar-right:last-child{
     margin-right: 0;
 }
-#hideRegisterForm,
-#register-btn,
-#user-info,
-#logout{
-/*    display: none;*/
-}
+/*#hideRegisterForm,*/
+/*#register-btn,*/
+/*#user-info,*/
+/*#logout{*/
+    /*display: none;*/
+/*}*/
 #user-info{
     text-decoration: underline;
 }

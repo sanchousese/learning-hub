@@ -2,6 +2,7 @@ package EntitiesTests;
 
 import junit.framework.Assert;
 import org.junit.Test;
+import ua.com.learninghub.businessLogic.UserLogic;
 import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.UserDao;
@@ -18,8 +19,10 @@ public class UserTests {
     @Test
     public void selectAll(){
         List<User> list = userDao.selectAll();
-        for (User usr: list)
-            System.out.println(usr);
+        for (User usr: list){
+            usr.setPass(UserLogic.encryptPass(usr.getPass()));
+            userDao.update(usr);
+        }
     }
 
     @Test
