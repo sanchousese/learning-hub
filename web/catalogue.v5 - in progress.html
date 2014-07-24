@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru"> 
+  <head>
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Hub</title>
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
+
+
+
+
+    <!-- Bootstrap -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"> <!-- здесь мы будем перезаписывать стандартные классы бутстрапа -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+
+<!-- ================================= НАВИГАЦИЯ ОТ ДИМЫ =============================================     -->
+  <div class="navbar navbar-default navbar-fixed-top"> 
+         <div class="col-md-11">
+           <div class="col-md-1"></div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Learning <span>Hub</span></a>
+            <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
+            </button>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Курсы</a></li>
+                  <li><a href="#">Специализация</a></li>
+                  <li><a href="#">О нас</a></li>
+                  <li class="divider-vertical"></li>
+                  <button type="button" class="btn btn-default navbar-btn btn-right btn-login"  data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus." >Login</button>
+<!--                      Форма входа на сайт-->
+<!--
+                       <div id="loginContainer">
+                <a href="#" id="loginButton"><span>Login</span><em></em></a>
+                <div style="clear:both"></div>
+                <div id="loginBox">                
+                    <form id="loginForm">
+                        <fieldset id="body">
+                            <fieldset>
+                                <label for="email">Email Address</label>
+                                <input type="text" name="email" id="email" />
+                            </fieldset>
+                            <fieldset>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" />
+                            </fieldset>
+                            <input type="submit" id="login" value="Sign in" />
+                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+                        </fieldset>
+                        <span><a href="#">Forgot your password?</a></span>
+                    </form>
+                </div>
+            </div>
+-->
+<!--
+                  <div class="container ">
+                     <div class="row">
+                         <div class="col-xs-12 col-sm-12 col-lg-6">
+                                 <div class="panel panel-primary">
+                                     <div class="panel-heading">
+                                     <h3 class="panel-title">
+                                    Авторизация на сайте</h3>
+                                     </div>
+                                 <div class="panel-body">
+                                     <div class="row">
+                                     <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br />
+                                     <a href="#" class="btn facebook btn-block" role="button">Войти с помощью Facebook</a>
+                                     <br />
+                                     <a href="#" class="btn twitter btn-block" role="button">Войти с помощью Twitter</a>
+                                     </div>
+                                     <div class="col-xs-6 col-sm-6 col-md-6 login-box">
+                                         <form role="form">
+                                         <div class="input-group">
+                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                             <input type="text" class="form-control" placeholder="Имя пользователя" required autofocus />
+                                         </div>
+                                         <div class="input-group">
+                                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                             <input type="password" class="form-control" placeholder="Ваш пароль" required />
+                                         </div>
+                                         <p>
+                                         <a href="#">Забыли свой пароль?</a></p>
+                                        У вас нет аккаунта? <a href="#">Регистрация</a>
+                                         </form>
+                                     </div>
+                                     </div>
+                                 </div>
+                                 <div class="panel-footer">
+                                     <div class="row">
+                                         <div class="col-xs-6 col-sm-6 col-md-6">
+                                         <div class="checkbox">
+                                         <label>
+                                         <input type="checkbox" value="Remember">
+                                        Запомнить меня
+                                         </label>
+                                         </div>
+                                     </div>
+                                     <div class="col-xs-6 col-sm-6 col-md-6">
+                                         <button type="button" class="btn btn-labeled btn-success">
+                                         <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Войти</button>
+                                         <button type="button" class="btn btn-labeled btn-danger">
+                                         <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Выход</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 </div>
+                                 </div>
+                         </div>
+                    </div>
+-->
+
+
+
+                   <button type="button" class="btn btn-default btn-success navbar-btn btn-right ">Sign in</button>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+              </ul>
+            </div> 
+              <div class="search-collapse">              
+              <input type="text" class="search-text" value="Enter text here">
+              <input type="submit" class="search-btn" value="ok">
+            </div>  
+            </div>      
+         </div>
+
+    <!-- ================================= КОНЕЦ НАВИГАЦИЯ ОТ ДИМЫ =============================================     -->
+
+
+          <div class="container margin-top-70">
+            <!-- ===================================================================== -->
+              <!-- КНОПКА ДЛЯ РАСКРЫТИЯ ASIDE ПРИ УМЕНЬШЕНИИ ЭКРАНА ПО АНАЛОГИИ С МЕНЮШНОЙ КНОПКОЙ -->
+              
+              <button type="button" class="aside-toggle trigger" id="aside-toggle" data-toggle="collapse" data-target=".aside-collapse"> 
+                    <label for="aside-toggle">Сортировка</label>
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <!-- ======================================================================== -->
+
+
+
+
+
+
+
+            <aside class=" col-xs-12 col-sm-10 col-md-4 aside-collapse panel">   
+              <p>Сортировка:</p>
+              <a href="#">Специализации:</a>
+                <ul class="list-group">
+                  <li class="list-group-item">Українська мова та література (обов'язковий)</li> 
+                  <li class="list-group-item">Математика</li> 
+                  <li class="list-group-item">Історія України</li> 
+                  <li class="list-group-item">Всесвітня історія</li> 
+                  <li class="list-group-item">Хімія</li> 
+                  <li class="list-group-item">Іноземна мова</li> 
+                  <li class="list-group-item">Російська мова</li> 
+                  <li class="list-group-item">Географія</li> 
+                  <li class="list-group-item">Фізика</li> 
+                  <li class="list-group-item">Біологія</li> 
+                  <li class="list-group-item">Світова література</li> 
+                </ul>
+
+              <a href="#">Специализации:</a>
+              <div class="list-group">
+                <a href="#" class="list-group-item active">Математика</a>
+                <a href="#" class="list-group-item">Всесвітня історія</a>
+                <a href="#" class="list-group-item">Хімія</a>
+                <a href="#" class="list-group-item">Географія</a>
+                <a href="#" class="list-group-item">Фізика</a>
+              </div>
+            </aside>
+            <div class="panel panel-default col-xs-12 col-md-8">
+              <div class="panel-heading clearfix">
+                
+                <div class="dropdown ">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="searchCourseDropdown" data-toggle="dropdown">
+                    Dropdown
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="searchCourseDropdown">
+                    <li role="presentation" class="dropdown-header">Dropdown header</li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation" class="dropdown-header">Dropdown header</li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                  </ul>
+                </div>
+
+                <form class="navbar-form navbar-left" id="searchCourseForm" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+
+
+                <div class="btn-group" id="searchCourseControls">
+                  <button type="button" class="btn btn-default">Left</button>
+                  <button type="button" class="btn btn-default">Middle</button>
+                  <button type="button" class="btn btn-default">Right</button>
+                </div> 
+
+
+               <!-- <h3 class="panel-title">Panel title</h3> -->
+                
+              </div> <!-- end of .panel-heading -->
+              <div class="panel-body"> Panel content <br/>
+
+
+              <!-- БЛОКИ ОТ ДИМЫ -->
+
+              <div class="col-xs-6  placeholder padding_5">
+                <div class="course_big">
+                  <div class="news_cover"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+                  <div class="news_content">
+                    <h3>Kenya Gold Coffee</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating"><span class="rating-bg"></span></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15h</li>
+                    </ul>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="col-xs-6  placeholder padding_5">
+                <div class="course_big">
+                  <div class="news_cover"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+                  <div class="news_content">
+                    <h3>Kenya Gold Coffee</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating"></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15h</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-6  placeholder padding_5">
+                <div class="course_big">
+                  <div class="news_cover"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+                  <div class="news_content">
+                    <h3>Kenya Gold Coffee</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+                  </div>
+                </div>
+              </div>               
+
+              <div class="col-xs-6  placeholder padding_5">
+                <div class="course_big">
+                  <div class="news_cover"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+                  <div class="news_content">
+                    <h3>Kenya Gold Coffee</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+                  </div>
+                </div>
+              </div>
+              <!-- КОНЕЦ ____ БЛОКИ ОТ ДИМЫ -->
+
+                <div> <!-- две колонки для спецкурсов -->
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                </div>   <!-- конец. две колонки для спецкурсов -->   
+
+                          <div> <!-- две колонки для спецкурсов -->
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                </div>   <!-- конец. две колонки для спецкурсов --> 
+
+                <div> <!-- две колонки для спецкурсов -->
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                </div>   <!-- конец. две колонки для спецкурсов --> 
+
+                <div> <!-- две колонки для спецкурсов -->
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+                    <a href="#" class="thumbnail"><img alt="..."></a>
+                    <h4>Child Nutrition and Cooking</h4>
+                    <figcaption>This course will help prepare participants to be the leading health providers, teachers and parents of the present and future.The text and other material in this course may include the opinion of the specific instructor and are not statements of advice, endorsement, opinion, or information of Stanford University.</figcaption>
+                    <ul class="courseDetails clearfix">
+                      <li class="courseComments"><span class="glyphicon glyphicon-search"></span>15</li>
+                      <li class="courseRating" ></li>
+                      <li class="courseUpdates"><span class="glyphicon glyphicon-dashboard"></span>15 hours ago</li>
+                    </ul>
+                  </div>
+
+                </div>   <!-- конец. две колонки для спецкурсов -->   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>  
+          </div>  
+
+
+
+
+
+<!-- ============================ FOOTER от Димы ========================================= -->
+
+
+<div class="footer">
+			<div class="container">
+			<div class="social-bl">
+			<a href="#"><img src="img/vk.png" alt="vk" class="social"></a>
+            <a href="#"><img src="img/fb.png" alt="fb" class="social"></a>
+            <a href="#"><img src="img/rss.png" alt="rss" class="social"></a>
+            <a href="#"><img src="img/google.png" alt="g+" class="social"></a>
+            <p class="text-right copy-right"><a href="">© 2014 Detroit team</a></p>
+			</div>
+			</div>
+		</div>
+		
+<!-- ============================ FOOTER от Димы ========================================= -->		
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<!-- =========================== ПРОБУЮ ЗАПИХНУТЬ OFFCANVAS ======================================= -->
+<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right active">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="http://getbootstrap.com/examples/offcanvas/#" role="button">View details »</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item active">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+            <a href="http://getbootstrap.com/examples/offcanvas/#" class="list-group-item">Link</a>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>© Company 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Off Canvas Template for Bootstrap_files/jquery.min.js"></script>
+    <script src="Off Canvas Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="Off Canvas Template for Bootstrap_files/offcanvas.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
+
