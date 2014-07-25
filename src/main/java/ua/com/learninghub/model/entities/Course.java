@@ -6,6 +6,8 @@ import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 import java.util.List;
 
@@ -20,7 +22,9 @@ public class Course implements HibernateL2Cache {
     int idCourse;
 
     String name;
+    //@XmlJavaTypeAdapter(SqlDateAdapter.class)
     Date beginDate;
+    //@XmlJavaTypeAdapter(SqlDateAdapter.class)
     Date endDate;
     String description;
     int price;
@@ -155,4 +159,24 @@ public class Course implements HibernateL2Cache {
         result = 31 * result + rate;
         return result;
     }
+}
+
+class SqlDateAdapter extends XmlAdapter<java.util.Date, Date> {
+
+    @Override
+    public java.util.Date marshal(java.sql.Date sqlDate) throws Exception {
+        if(null == sqlDate) {
+            return null;
+        }
+        return new java.util.Date(sqlDate.getTime());
+    }
+
+    @Override
+    public java.sql.Date unmarshal(java.util.Date utilDate) throws Exception {
+        if(null == utilDate) {
+            return null;
+        }
+        return new java.sql.Date(utilDate.getTime());
+    }
+
 }

@@ -214,8 +214,17 @@ hr {
 .mardgin_bottom_5 {
     margin-bottom: 5px;
 }
-.mardgin_top_15 {
+.margin_top_15 {
     margin-top: 15px;
+}
+.margin_top_10 {
+    margin-top: 10px;
+}
+.margin_top_30{
+    margin-top: 30px;
+}
+.margin_top_70 {
+    margin-top: 70px;
 }
 .float-right{
     float: right;
@@ -226,6 +235,9 @@ hr {
 }
 .margin-rigth-fix {
     margin-right: 0;
+}
+.margin-fix {
+    margin: 0;
 }
 .navbar-nav.navbar-right:last-child{
     margin-right: 0;
@@ -253,4 +265,21 @@ hr {
 */
 .nav.navbar-nav li:hover .hover-fix:hover {
  color: #428bca;
+}
+.padding-fix{
+    padding: 0;
+}
+.panel-dropdown{
+    display: block;
+    padding: 10px 15px;
+}
+.panel-title a:hover{
+    text-decoration: none;
+}
+.border-fix{
+    border: none;
+}
+.buy-btn{
+    margin: 10px auto;
+    min-width: 200px;
 }

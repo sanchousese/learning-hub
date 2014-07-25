@@ -1,9 +1,12 @@
 package ua.com.learninghub.controller;
 
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
+import ua.com.learninghub.model.dao.interfaces.SpecialtyDao;
 import ua.com.learninghub.model.entities.Course;
+import ua.com.learninghub.model.entities.Specialty;
 import ua.com.learninghub.model.entities.Subject;
 
 import javax.annotation.security.PermitAll;
@@ -11,6 +14,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.sql.Date;
 import java.util.List;
 
@@ -20,7 +24,18 @@ import java.util.List;
 @PermitAll
 @Path("/course") // ...8080/rest/courses/
 public class CourseResource {
-    private CourseDao courseDao = new CourseDaoImpl();//test
+    private CourseDao courseDao = new CourseDaoImpl();
+    private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
+
+//    @GET
+//    @Path("/getSpecialty")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getSpecialty(){
+//        List<Specialty> specialties = specialtyDao.selectAll();
+//        if(specialties == null){
+//            return Response.status(Response.Status.GONE).build();
+//        }else return Response.ok(specialties).build();
+//    }
 
     @RolesAllowed({"Moderator", "Teacher"})
     @POST
