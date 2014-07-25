@@ -88,9 +88,16 @@ public class CourseResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{courseId}") // ...8080/rest/courses/1234
     public Course getCourse(@PathParam("courseId") String courseId) {
+        courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size();
         return courseDao.selectById((new Integer(courseId)).intValue());
     }
 
+    @GET
+    @Produces("text/plain")
+    @Path("{courseId}/numberOfPeople") // ...8080/rest/courses/1234
+    public String getNumberOfPeopleCourse(@PathParam("courseId") String courseId) {
+        return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
+    }
 
 
 /*

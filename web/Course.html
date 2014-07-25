@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Learning <span>Hub</span></a>
+                <a class="navbar-brand" href="index.html">Learning <span>Hub</span></a>
             <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
             </button>
             </div>
@@ -88,13 +88,10 @@
     <div class="thumbnail">
       <img src="img/softwaretraining.jpg"  data-src="holder.js/300x300" alt="...">
       <div class="caption">
-        <h3>MS Office for profesional</h3>
-         <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span> 
-           <span class="glyphicon glyphicon-star"></span> 
-            <span class="glyphicon glyphicon-star"></span> 
-             <span class="glyphicon glyphicon-star-empty"></span> 
-        <p><span class="glyphicon glyphicon-user"> 100 Students</span></p>
+        <h3 id="titleCourse"></h3>
+          <div id="ratingCourse">
+          </div>
+        <p><span class="glyphicon glyphicon-user" id="numberUsersCourse"> </span></p>
       </div>
     </div>				    
 				</div>
@@ -104,14 +101,7 @@
            <div class="thumbnail">
         <img src="img/softwaretraining.jpg"  data-src="holder.js/100%x180" alt="...">
          </div>
-         <h4>Модуль 1</h4>
-  <p>Fusce in purus rutrum, tristique metus sed, laoreet mi. Nullam nec mauris in lorem blandit vehicula. Nulla felis lectus, luctus sed accumsan sit amet, posuere id elit. Mauris malesuada vulputate gravida. Nulla placerat mi dolor, ut molestie tortor porttitor ac. Duis leo ipsum, luctus in posuere nec, laoreet ac lectus.
-
-Etiam interdum justo nunc, ac volutpat erat elementum id. Fusce dapibus mauris ac dictum porta. Sed pretium luctus elementum. In sollicitudin felis semper purus imperdiet lobortis. In odio tellus, rhoncus eget dolor in, molestie laoreet lacus. Praesent velit elit, ultrices vitae dictum sed, molestie et eros. Etiam facilisis commodo mi sed sagittis. Mauris nec lobortis magna. Nam eleifend elit eget felis vulputate facilisis. Donec sed nunc diam.
-<h4>Модуль 2</h4>
-Donec tellus augue, dictum a urna id, adipiscing placerat turpis. Nunc malesuada urna lectus, non condimentum lorem elementum eu. Nulla tincidunt auctor euismod. Vestibulum sit amet diam vel quam viverra sodales. Cras nulla sem, rhoncus eu aliquet sed, placerat quis arcu. Vivamus orci felis, vestibulum bibendum lacus vel, sagittis tempor risus. Nullam vestibulum quis magna rutrum lobortis. Suspendisse eros magna, volutpat quis suscipit vitae, semper id sem. 
-diam. Donec tellus augue, dictum a urna id, adipiscing placerat turpis. Nunc malesuada urna lectus, non condimentum lorem elementum eu. Nulla tincidunt auctor euismod. Vestibulum sit amet diam vel quam viverra sodales. Cras nulla sem, rhoncus eu aliquet sed, placerat quis arcu. Vivamus orci felis, vestibulum bibendum lacus vel, sagittis tempor risus. Nullam vestibulum quis magna rutrum lobortis. Suspendisse eros magna, volutpat quis suscipit vitae, semper id sem.
-</p>
+         <div id="descriptionCourse"></div>
  </div>
 </div>
                                       <h3 class="text-center">Коментарии</h3>
@@ -125,7 +115,7 @@ diam. Donec tellus augue, dictum a urna id, adipiscing placerat turpis. Nunc mal
   <button type="button " class="btn btn-success btn-lg buy-btn center-block">Купить курс</button>
   <p></p>
 <!--  <a href="#" class="list-group-item border-fix">Dapibus ac facilisis in</a>-->
-<li class="list-group-item border-fix">Стоимость курса <span class="glyphicon glyphicon-shopping-cart float-right"></span></li>
+<li class="list-group-item border-fix" id="priceCourse">Стоимость курса:  <span class="glyphicon glyphicon-shopping-cart float-right"></span></li>
   <hr class="margin-fix">
 <li class="list-group-item border-fix">Продолжительность видео <span class="glyphicon glyphicon-eye-open float-right"></span></li>
    <hr class="margin-fix">
@@ -234,5 +224,7 @@ diam. Donec tellus augue, dictum a urna id, adipiscing placerat turpis. Nunc mal
     <script src="js/validator.js"></script>
     <script src="js/register.js"></script>
     <script src="js/btnHide.js"></script>
+    <script src="js/setFieldsCourse.js"></script>
+
   </body>
 </html>
