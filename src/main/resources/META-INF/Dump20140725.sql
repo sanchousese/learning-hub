@@ -85,17 +85,18 @@ DROP TABLE IF EXISTS `Course`;
 CREATE TABLE `Course` (
   `idCourse` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `beginDate` date NOT NULL,
-  `endDate` date NOT NULL,
+  `beginDate` date DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
   `description` varchar(45) NOT NULL,
-  `price` int(11) NOT NULL,
-  `rate` int(11) NOT NULL,
+  `price` int(11) DEFAULT '0',
+  `rate` int(11) DEFAULT '4',
   `idSubject` int(11) NOT NULL,
+  `mainImagePath` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCourse`),
   UNIQUE KEY `idCourse_UNIQUE` (`idCourse`),
   KEY `idSubject_idx` (`idSubject`),
   CONSTRAINT `idSubject` FOREIGN KEY (`idSubject`) REFERENCES `Subject` (`idSubject`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ CREATE TABLE `Course` (
 
 LOCK TABLES `Course` WRITE;
 /*!40000 ALTER TABLE `Course` DISABLE KEYS */;
-INSERT INTO `Course` VALUES (1,'SQL','2005-12-20','2015-01-25','Some greate description',100,100,2),(3,'PHP','3914-06-28','3914-08-28','Some very good description',50,5,1);
+INSERT INTO `Course` VALUES (1,'Jersey','2005-12-20','2015-01-25','Some greate description',100,100,1,NULL),(3,'Json','3914-06-28','3914-08-28','Some very good description',50,5,1,NULL);
 /*!40000 ALTER TABLE `Course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,6 +134,35 @@ CREATE TABLE `CourseComment` (
 LOCK TABLES `CourseComment` WRITE;
 /*!40000 ALTER TABLE `CourseComment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `CourseComment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Discipline`
+--
+
+DROP TABLE IF EXISTS `Discipline`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Discipline` (
+  `idDiscipline` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` text NOT NULL,
+  `idSpecialty` int(11) NOT NULL,
+  PRIMARY KEY (`idDiscipline`),
+  UNIQUE KEY `idDiscipline_UNIQUE` (`idDiscipline`),
+  KEY `idSpecialty_idx` (`idSpecialty`),
+  CONSTRAINT `idSpecialty` FOREIGN KEY (`idSpecialty`) REFERENCES `Specialty` (`idSpecialty`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Discipline`
+--
+
+LOCK TABLES `Discipline` WRITE;
+/*!40000 ALTER TABLE `Discipline` DISABLE KEYS */;
+INSERT INTO `Discipline` VALUES (1,'Java','Java is java',1),(2,'C#','C# is VS',1);
+/*!40000 ALTER TABLE `Discipline` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -271,6 +301,32 @@ LOCK TABLES `Session` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Specialty`
+--
+
+DROP TABLE IF EXISTS `Specialty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Specialty` (
+  `idSpecialty` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`idSpecialty`),
+  UNIQUE KEY `idSpecialty_UNIQUE` (`idSpecialty`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Specialty`
+--
+
+LOCK TABLES `Specialty` WRITE;
+/*!40000 ALTER TABLE `Specialty` DISABLE KEYS */;
+INSERT INTO `Specialty` VALUES (1,'IT','Thing about complex things'),(2,'Psychology','Know your self');
+/*!40000 ALTER TABLE `Specialty` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Subject`
 --
 
@@ -282,8 +338,11 @@ CREATE TABLE `Subject` (
   `name` varchar(45) NOT NULL,
   `description` text NOT NULL,
   `logoPath` tinytext NOT NULL,
+  `idDiscipline` int(11) NOT NULL,
   PRIMARY KEY (`idSubject`),
-  UNIQUE KEY `idSubject_UNIQUE` (`idSubject`)
+  UNIQUE KEY `idSubject_UNIQUE` (`idSubject`),
+  KEY `idDiscipline_idx` (`idDiscipline`),
+  CONSTRAINT `idDiscipline` FOREIGN KEY (`idDiscipline`) REFERENCES `Discipline` (`idDiscipline`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -293,7 +352,7 @@ CREATE TABLE `Subject` (
 
 LOCK TABLES `Subject` WRITE;
 /*!40000 ALTER TABLE `Subject` DISABLE KEYS */;
-INSERT INTO `Subject` VALUES (1,'Programming','JDBC','/img/1.jpg'),(2,'Subject Ins','Some awesome description','/img/2.jpg');
+INSERT INTO `Subject` VALUES (1,'Rest','Rest is secure','',1),(2,'Hiberanate','Hibernate isn\'t JPA','',1);
 /*!40000 ALTER TABLE `Subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +430,7 @@ CREATE TABLE `User` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `idUserCategory_idx` (`idUserCategory`),
   CONSTRAINT `idUserCategory` FOREIGN KEY (`idUserCategory`) REFERENCES `UserCategory` (`idUserCategory`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +439,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'root','pook','mail@mail.com',0,1),(2,'simple','pimple','goop@goop.com',0,2),(3,'vasa','gfhjkm','some@mail.com',1000,4);
+INSERT INTO `User` VALUES (1,'root','a2682158d73836ea511157606605055','mail@mail.com',0,1),(2,'simple','52378623b09f547e653611a99c592e2','goop@goop.com',0,2),(3,'vasa','d9d1b168eac8f197e0576b56cfc23ece','some@mail.com',1000,4);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,4 +507,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-22 23:41:53
+-- Dump completed on 2014-07-25 12:25:42
