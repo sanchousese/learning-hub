@@ -14,7 +14,7 @@ public interface CourseDao {
 
     Course update(Course course);
 
-    void insert(Course course);
+    boolean insert(Course course);
 
     void delete(int courseId);
 }

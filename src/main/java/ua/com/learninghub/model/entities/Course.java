@@ -6,6 +6,7 @@ import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
@@ -23,12 +24,15 @@ public class Course implements HibernateL2Cache {
 
     String name;
     //@XmlJavaTypeAdapter(SqlDateAdapter.class)
+    @XmlTransient
     Date beginDate;
     //@XmlJavaTypeAdapter(SqlDateAdapter.class)
+    @XmlTransient
     Date endDate;
     String description;
     int price;
     int rate;
+    String mainImagePath;
 
     @JsonIgnore
     @ManyToMany
@@ -58,6 +62,7 @@ public class Course implements HibernateL2Cache {
         this.name = name;
     }
 
+    @XmlTransient
     public Date getBeginDate() {
         return beginDate;
     }
@@ -66,6 +71,7 @@ public class Course implements HibernateL2Cache {
         this.beginDate = beginDate;
     }
 
+    @XmlTransient
     public Date getEndDate() {
         return endDate;
     }
@@ -117,13 +123,21 @@ public class Course implements HibernateL2Cache {
         this.subject = subject;
     }
 
+    public String getMainImagePath() {
+        return mainImagePath;
+    }
+
+    public void setMainImagePath(String mainImagePath) {
+        this.mainImagePath = mainImagePath;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "idCourse=" + idCourse +
                 ", name='" + name + '\'' +
-                ", beginDate=" + beginDate +
-                ", endDate=" + endDate +
+//                ", beginDate=" + beginDate +
+//                ", endDate=" + endDate +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", rate=" + rate +
@@ -140,9 +154,9 @@ public class Course implements HibernateL2Cache {
         if (idCourse != course.idCourse) return false;
         if (price != course.price) return false;
         if (rate != course.rate) return false;
-        if (!beginDate.equals(course.beginDate)) return false;
+        //if (!beginDate.equals(course.beginDate)) return false;
         if (!description.equals(course.description)) return false;
-        if (!endDate.equals(course.endDate)) return false;
+        //if (!endDate.equals(course.endDate)) return false;
         if (!name.equals(course.name)) return false;
 
         return true;
@@ -152,31 +166,11 @@ public class Course implements HibernateL2Cache {
     public int hashCode() {
         int result = idCourse;
         result = 31 * result + name.hashCode();
-        result = 31 * result + beginDate.hashCode();
-        result = 31 * result + endDate.hashCode();
+        //result = 31 * result + beginDate.hashCode();
+        //result = 31 * result + endDate.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + price;
         result = 31 * result + rate;
         return result;
     }
-}
-
-class SqlDateAdapter extends XmlAdapter<java.util.Date, Date> {
-
-    @Override
-    public java.util.Date marshal(java.sql.Date sqlDate) throws Exception {
-        if(null == sqlDate) {
-            return null;
-        }
-        return new java.util.Date(sqlDate.getTime());
-    }
-
-    @Override
-    public java.sql.Date unmarshal(java.util.Date utilDate) throws Exception {
-        if(null == utilDate) {
-            return null;
-        }
-        return new java.sql.Date(utilDate.getTime());
-    }
-
 }

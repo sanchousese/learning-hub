@@ -25,11 +25,12 @@ public class CourseTest {
     public void insertCourse(){
         Course course = new Course();
         course.setName("PHP");
-        course.setBeginDate(new Date(2014, 5, 28));
+        //course.setBeginDate(new Date(2014, 5, 28));
         course.setDescription("Some very good description");
-        course.setEndDate(new Date(2014, 7, 28));
+        //course.setEndDate(new Date(2014, 7, 28));
         course.setPrice(50);
         course.setRate(5);
+        course.setMainImagePath("img\\1.jpg");
         course.setSubject((new SubjectDaoImpl()).selectById(1));
         courseDao.insert(course);
     }

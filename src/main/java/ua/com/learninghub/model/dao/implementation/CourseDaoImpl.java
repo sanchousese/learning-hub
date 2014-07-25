@@ -44,11 +44,12 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
 
         entityManager.getTransaction().begin();
         course1Upd.setName(course.getName());
-        course1Upd.setBeginDate(course.getBeginDate());
+        //course1Upd.setBeginDate(course.getBeginDate());
         course1Upd.setDescription(course.getDescription());
-        course1Upd.setEndDate(course.getEndDate());
+        //course1Upd.setEndDate(course.getEndDate());
         course1Upd.setPrice(course.getPrice());
         course1Upd.setRate(course.getPrice());
+        course1Upd.setMainImagePath(course.getMainImagePath());
         course1Upd.setSubject(course.getSubject());
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -56,12 +57,20 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     }
 
     @Override
-    public void insert(Course course){
+    public boolean insert(Course course){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(course);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        try {
+            entityManager.persist(course);
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e) {
+            return false;
+        }
+        finally{
+            entityManager.close();
+        }
+        return true;
     }
 
     @Override
