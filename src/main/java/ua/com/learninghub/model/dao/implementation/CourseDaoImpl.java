@@ -16,6 +16,35 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    //select courses from idFrom to idTo
+    @Override
+    public List<Course> selectById(int idFrom, int idTo) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createQuery("SELECT courses FROM Course courses WHERE courses.idCourse >= :idF " +
+                "AND courses.idCourse < :idT");
+        query.setParameter("idF", idFrom);
+        query.setParameter("idT", idTo);
+        List<Course> courses = query.getResultList();
+        entityManager.close();
+        return courses;
+    }
+
+    //select courses started with "cName" string
+    @Override
+    public List<Course> selectByName(String cName) {
+        String nameParam = "%" + cName + "%";
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //SELECT DISTINCT * FROM learningdb.course
+        // where learningdb.course.name like "%ver%" or learningdb.course.description like "%ver%";
+
+        Query query = entityManager.createQuery("SELECT DISTINCT courses FROM Course courses " +
+                "WHERE courses.name  LIKE :namePar OR courses.description LIKE :namePar");
+        query.setParameter("namePar",nameParam);
+        List<Course> courses = query.getResultList();
+        entityManager.close();
+        return courses;
+    }
+
     @Override
     public List<Course> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

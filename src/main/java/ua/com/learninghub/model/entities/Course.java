@@ -136,8 +136,8 @@ public class Course implements HibernateL2Cache {
         return "Course{" +
                 "idCourse=" + idCourse +
                 ", name='" + name + '\'' +
-//                ", beginDate=" + beginDate +
-//                ", endDate=" + endDate +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", rate=" + rate +
@@ -154,9 +154,9 @@ public class Course implements HibernateL2Cache {
         if (idCourse != course.idCourse) return false;
         if (price != course.price) return false;
         if (rate != course.rate) return false;
-        //if (!beginDate.equals(course.beginDate)) return false;
+        if (!beginDate.equals(course.beginDate)) return false;
         if (!description.equals(course.description)) return false;
-        //if (!endDate.equals(course.endDate)) return false;
+        if (!endDate.equals(course.endDate)) return false;
         if (!name.equals(course.name)) return false;
 
         return true;
@@ -166,11 +166,12 @@ public class Course implements HibernateL2Cache {
     public int hashCode() {
         int result = idCourse;
         result = 31 * result + name.hashCode();
-        //result = 31 * result + beginDate.hashCode();
-        //result = 31 * result + endDate.hashCode();
+        result = 31 * result + beginDate.hashCode();
+        result = 31 * result + endDate.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + price;
         result = 31 * result + rate;
         return result;
     }
 }
+

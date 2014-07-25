@@ -1,7 +1,6 @@
 package ua.com.learninghub.controller;
 
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
-import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
@@ -34,6 +33,17 @@ public class CourseResource {
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
 
+//    @GET
+//    @Path("/getSpecialty")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getSpecialty(){
+//        List<Specialty> specialties = specialtyDao.selectAll();
+//        if(specialties == null){
+//            return Response.status(Response.Status.GONE).build();
+//        }else return Response.ok(specialties).build();
+//    }
+
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/getSpecialty")
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,48 +89,21 @@ public class CourseResource {
             System.out.println("Bad");
             return Response.status(401).build();
         }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{courseId}") // ...8080/rest/courses/1234
+    public Course getCourse(@PathParam("courseId") String courseId) {
+        //courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size();
+        return courseDao.selectById((new Integer(courseId)).intValue());
     }
-//
-//    @RolesAllowed({"Moderator", "Teacher"})
-//    @POST
-//    @Path("course1") // // ...8080/rest/courses/course
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Course createCourseParams(MultivaluedMap<String, String> formParams) {
-//        Course course = new Course();
-//
-//        course.setName(formParams.getFirst("name"));
-//        //course.setBeginDate(Date.valueOf(formParams.getFirst("beginDate")));
-//        //course.setEndDate((Date.valueOf(formParams.getFirst("endDate"))));
-//        course.setDescription(formParams.getFirst("description"));
-//        course.setPrice(Integer.parseInt(formParams.getFirst("price")));
-//        course.setRate(Integer.parseInt(formParams.getFirst("rate")));
-//        course.setSubject((new SubjectDaoImpl()).selectById(Integer.parseInt(formParams.getFirst("idSubject"))));
-//        System.out.println(course);
-//
-//        courseDao.insert(course);
-//
-//
-//        return null;
-//    }
-//
-//
-//
-//    @GET
-//    @Path("/getAll")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Course> getAllCourses() {
-//        return courseDao.selectAll();
-//    }
-//
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("{courseId}") // ...8080/rest/courses/1234
-//    public Course getCourse(@PathParam("courseId") String courseId) {
-//        return courseDao.selectById((new Integer(courseId)).intValue());
-//    }
-//
-//
+
+    @GET
+    @Produces("text/plain")
+    @Path("{courseId}/numberOfPeople") // ...8080/rest/courses/1234
+    public String getNumberOfPeopleCourse(@PathParam("courseId") String courseId) {
+        return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
+    }
+
 
 /*
     @GET
