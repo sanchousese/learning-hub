@@ -32,3 +32,4 @@ public class UserLogic {
         return md.digest(passBytes);
     }
 }
+
