@@ -5,9 +5,6 @@ $.ajax({
     datatype: "json",
     contentType: "application/json",
     success: function(data) {
-        //alert("Boom");
-        //alert("DataLoaded");
-        //$("#hed").append(data[0].name);
         var div = document.getElementById("coursesD");
         for (var i = 0; i < data.length; i++) {
             div.innerHTML +=
