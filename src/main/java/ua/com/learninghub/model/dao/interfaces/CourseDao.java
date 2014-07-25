@@ -17,4 +17,8 @@ public interface CourseDao {
     void insert(Course course);
 
     void delete(int courseId);
+
+    List<Course> selectByName(String name);
+
+    List<Course> selectById(int idFrom, int idTo);
 }

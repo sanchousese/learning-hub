@@ -27,6 +27,10 @@ public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();
     private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
 
+
+
+
+
 //    @GET
 //    @Path("/getSpecialty")
 //    @Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +40,8 @@ public class CourseResource {
 //            return Response.status(Response.Status.GONE).build();
 //        }else return Response.ok(specialties).build();
 //    }
+
+
 
     @RolesAllowed({"Moderator", "Teacher"})
     @POST
