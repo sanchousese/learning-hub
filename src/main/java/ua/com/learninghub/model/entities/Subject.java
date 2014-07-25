@@ -1,6 +1,8 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
@@ -24,8 +26,14 @@ public class Subject implements HibernateL2Cache {
     String logoPath;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "subject")
     private List<Course> courses;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idDiscipline")
+    private Discipline discipline;
 
     public int getIdSubject() {
         return idSubject;
@@ -67,6 +75,15 @@ public class Subject implements HibernateL2Cache {
     @Deprecated
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    @JsonIgnore
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
     }
 
     @Override

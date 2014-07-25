@@ -46,6 +46,7 @@ public class SubjectDaoImpl implements SubjectDao, HibernateL2Cache {
         subjectUpd.setName(subject.getName());
         subjectUpd.setDescription(subject.getDescription());
         subjectUpd.setLogoPath(subjectUpd.getLogoPath());
+        subjectUpd.setDiscipline(subject.getDiscipline());
         entityManager.getTransaction().commit();
         entityManager.close();
         return 1;

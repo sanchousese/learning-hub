@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Max on 18.07.2014.
  */
 @PermitAll
-@Path("courses") // ...8080/rest/courses/
+@Path("/course") // ...8080/rest/courses/
 public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();//test
 
@@ -63,6 +63,7 @@ public class CourseResource {
 
 
     @GET
+    @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Course> getAllCourses() {
         return courseDao.selectAll();
