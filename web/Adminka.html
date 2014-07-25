@@ -54,7 +54,6 @@
                             <button type="submit" class="btn btn-default btn-block btn-login" onclick="submitButton()" id="but">Submit</button>
                         </div>
                     </div>
-              
                   <li>               
 <!--                      Button trigger modal -->
                   <button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal" >
@@ -81,123 +80,89 @@
             </div>      
          </div>
 <!--   slaider -->
-		<div class="container-fluid">
+		<div class="container-fluid margin_top_70">
 		    <div class="row ">
 			<div class="col-md-10 col-md-offset-1">
-        <form class="form-horizontal" role="form" style="margin-top:40px;">
-  <div class="form-group">
-    <label for="" class="col-sm-2 control-label">Название курса</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="courseNameD" placeholder="Название курса">
-    </div>
-  </div>
-  <div class="form-group">
-  <label for="" class="col-sm-2 control-label">Выберите категорию</label>
-  <div class="col-md-10 sidebar-offcanvas" id="sidebar" role="navigation">
-        <div class="panel panel-default">
-<!--          <div class="panel-heading">Panel heading without title</div>-->
-          <div class="panel-body">  
-        <div class="col-xs-12 col-sm-12 sidebar-offcanvas" id="sidebar">
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading padding-fix">
-      <h4 class="panel-title">
-        <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-            Специальности
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body" id = "SpecialtyD">
-          <!--Here will be rendering specialties-->
+				<div class="col-md-3 padding_5">
+         <!--         Блок Преподавателя-->
+        <div class="thumbnail">
+      <img src="img/Teacher.jpg"  data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Коротков Виктор</h3>
+        <ul class="list-group">
+      <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+        <span class="badge">14</span>
+        Пройдено
+            </li>
+        <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+        <span class="badge">14</span>
+Средний бал
+         </li>
+        <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+        <span class="badge">14</span>
+Время обучения
+  </li>
+     <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+        <span class="badge">14</span>
+Сертификаты
+  </li>
+</ul>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading padding-fix">
-      <h4 class="panel-title">
-        <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id = "discipDHide">
-         Дисциплины
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body" id = "DisciplineD">
-        <!--Here will be rendering disciplines-->
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading padding-fix">
-      <h4 class="panel-title">
-        <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id = "subjDHide">
-           Тематики
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body" id = "SubjectD">
-          <!--Here will be rendering subjects-->
-      </div>
-    </div>
-  </div>
-</div>
-          </div>
-          </div>
-        </div><!--/span-->
-           </div>
-           </div>
-  <div class="form-group">
-    <label for="" class="col-sm-2 control-label">Описание курса</label>
-    <div class="col-sm-10">
-   <textarea class="large" name="textarea" cols="80" rows="6" required="required" aria-required="true" placeholder="Кототко 1-2 предложения" id = "courseDescD"></textarea>
-    </div>
-  </div>
-   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Стоимость курса</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="coursePriceD" placeholder="Стоимость курса">
-    </div>
-    </div>
-      <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Бесплатно
-        </label>
-      </div>
-    </div>
-    </div>
-   <div class="form-group">
-       <label for="inputEmail3" class="col-sm-2 control-label">Изображение курса</label>
-           <div class="col-sm-10">
-    <input type="file" id="">
-    <p class="help-block">Example block-level help text here.</p>
-    </div>
-  </div>
-     <div class="form-group">
-       <label for="inputEmail3" class="col-sm-2 control-label">Загрузить видео</label>
-           <div class="col-sm-10">
-    <input type="file" id="">
-    <p class="help-block">Example block-level help text here.</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Соглашаюсь с правилами сайта
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <a type="submit" class="btn btn-success" onclick="AddCourseInfo()">Добавить</a>
-    </div>
-  </div>
-  
-</form>
+    </div>			    
+				</div>
+      
+      
+       <div class="col-md-9 padding_5">
+       <div class="panel panel-default">
+       <div class="panel-heading">
+            <button type="button" class="btn btn-primary margin_gorizontal_15">Модератор</button>
+            <button type="button" class="btn btn-primary margin_gorizontal_15">Учитель</button>
+            <button type="button" class="btn btn-primary margin_gorizontal_15">Новости</button>
+            <button type="button" class="btn btn-primary margin_gorizontal_15">Курсы</button>
+       </div>
+       <div class="panel-heading">
+           <button type="button" class="btn btn-link margin_gorizontal_15">Текущие</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Новые</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Завершенные</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Отобраные</button>
+       </div>
+  <div class="panel-body">
+<!--
+     <div class="col-xs-12 col-sm-12 col-md-12  padding_5">
+     <div class="course_medium">
+				<img src="img/image.jpg" alt="Course img" class="img-rounded">
+					<h3 class="margin-top-fix">Kenya Gold Coffee</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+			</div>
+                    </div>
+-->
+                     <div class="col-xs-12 col-sm-12 col-md-12 padding_5 margin-fix">
+                     <div class="course_medium">
+				<div class="news_cover_medium"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+				<div class="news_content_medium">
+					<h3>Kenya Gold Coffee</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+					</div>
+			</div>
+                </div>
+                          <div class="col-xs-12 col-sm-12 col-md-12 padding_5 margin-fix">
+                     <div class="course_medium">
+				<div class="news_cover_medium"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+				<div class="news_content_medium">
+					<h3>Kenya Gold Coffee</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+					</div>
+			</div>
+                </div>
+                          <div class="col-xs-12 col-sm-12 col-md-12 padding_5 margin-fix">
+                     <div class="course_medium">
+				<div class="news_cover_medium"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>
+				<div class="news_content_medium">
+					<h3>Kenya Gold Coffee</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</p>
+					</div>
+			</div>
+                </div>
                  </div>
            </div>
            </div>
@@ -248,6 +213,9 @@
                         </div>
                       </div>
                     </div>
+                    </div>
+                    </div>
+                    </div>
         <div class="footer">
 			<div class="container">
 			<div class="social-bl">
@@ -259,10 +227,7 @@
 			</div>
 			</div>
 		</div>
-
-         
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
      <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
@@ -272,6 +237,5 @@
     <script src="js/validator.js"></script>
     <script src="js/register.js"></script>
     <script src="js/btnHide.js"></script>
-    <script src="js/courseAdd.js"></script>
   </body>
 </html>

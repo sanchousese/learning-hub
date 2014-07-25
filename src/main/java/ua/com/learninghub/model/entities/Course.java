@@ -6,6 +6,7 @@ import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
@@ -23,12 +24,15 @@ public class Course implements HibernateL2Cache {
 
     String name;
     //@XmlJavaTypeAdapter(SqlDateAdapter.class)
+    @XmlTransient
     Date beginDate;
     //@XmlJavaTypeAdapter(SqlDateAdapter.class)
+    @XmlTransient
     Date endDate;
     String description;
     int price;
     int rate;
+    String mainImagePath;
 
     @JsonIgnore
     @ManyToMany
@@ -58,6 +62,7 @@ public class Course implements HibernateL2Cache {
         this.name = name;
     }
 
+    @XmlTransient
     public Date getBeginDate() {
         return beginDate;
     }
@@ -66,6 +71,7 @@ public class Course implements HibernateL2Cache {
         this.beginDate = beginDate;
     }
 
+    @XmlTransient
     public Date getEndDate() {
         return endDate;
     }
@@ -117,6 +123,14 @@ public class Course implements HibernateL2Cache {
         this.subject = subject;
     }
 
+    public String getMainImagePath() {
+        return mainImagePath;
+    }
+
+    public void setMainImagePath(String mainImagePath) {
+        this.mainImagePath = mainImagePath;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -161,22 +175,3 @@ public class Course implements HibernateL2Cache {
     }
 }
 
-class SqlDateAdapter extends XmlAdapter<java.util.Date, Date> {
-
-    @Override
-    public java.util.Date marshal(java.sql.Date sqlDate) throws Exception {
-        if(null == sqlDate) {
-            return null;
-        }
-        return new java.util.Date(sqlDate.getTime());
-    }
-
-    @Override
-    public java.sql.Date unmarshal(java.util.Date utilDate) throws Exception {
-        if(null == utilDate) {
-            return null;
-        }
-        return new java.sql.Date(utilDate.getTime());
-    }
-
-}

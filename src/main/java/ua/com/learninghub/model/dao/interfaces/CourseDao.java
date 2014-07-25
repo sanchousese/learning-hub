@@ -14,7 +14,11 @@ public interface CourseDao {
 
     Course update(Course course);
 
-    void insert(Course course);
+    boolean insert(Course course);
 
     void delete(int courseId);
+
+    List<Course> selectByName(String name);
+
+    List<Course> selectById(int idFrom, int idTo);
 }

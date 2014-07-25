@@ -16,6 +16,35 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    //select courses from idFrom to idTo
+    @Override
+    public List<Course> selectById(int idFrom, int idTo) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createQuery("SELECT courses FROM Course courses WHERE courses.idCourse >= :idF " +
+                "AND courses.idCourse < :idT");
+        query.setParameter("idF", idFrom);
+        query.setParameter("idT", idTo);
+        List<Course> courses = query.getResultList();
+        entityManager.close();
+        return courses;
+    }
+
+    //select courses started with "cName" string
+    @Override
+    public List<Course> selectByName(String cName) {
+        String nameParam = "%" + cName + "%";
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //SELECT DISTINCT * FROM learningdb.course
+        // where learningdb.course.name like "%ver%" or learningdb.course.description like "%ver%";
+
+        Query query = entityManager.createQuery("SELECT DISTINCT courses FROM Course courses " +
+                "WHERE courses.name  LIKE :namePar OR courses.description LIKE :namePar");
+        query.setParameter("namePar",nameParam);
+        List<Course> courses = query.getResultList();
+        entityManager.close();
+        return courses;
+    }
+
     @Override
     public List<Course> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -44,11 +73,12 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
 
         entityManager.getTransaction().begin();
         course1Upd.setName(course.getName());
-        course1Upd.setBeginDate(course.getBeginDate());
+        //course1Upd.setBeginDate(course.getBeginDate());
         course1Upd.setDescription(course.getDescription());
-        course1Upd.setEndDate(course.getEndDate());
+        //course1Upd.setEndDate(course.getEndDate());
         course1Upd.setPrice(course.getPrice());
         course1Upd.setRate(course.getPrice());
+        course1Upd.setMainImagePath(course.getMainImagePath());
         course1Upd.setSubject(course.getSubject());
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -56,12 +86,20 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     }
 
     @Override
-    public void insert(Course course){
+    public boolean insert(Course course){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(course);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        try {
+            entityManager.persist(course);
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e) {
+            return false;
+        }
+        finally{
+            entityManager.close();
+        }
+        return true;
     }
 
     @Override

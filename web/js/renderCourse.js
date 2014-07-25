@@ -8,11 +8,11 @@ $.ajax({
         var div = document.getElementById("coursesD");
         for (var i = 0; i < data.length; i++) {
             div.innerHTML +=
-                '<div class="col-xs-12 col-sm-6 col-md-4  placeholder padding_5">' +
+                '<div class="col-xs-12 col-sm-6 col-md-4  placeholder padding_5" href="/Course.html">' +
                 '<div class="course_big">' +
-                '<div class="news_cover"><img src="img/image.jpg" alt="Course img" class="img-rounded"></div>' +
+                '<div class="news_cover"><a href="javascript:openCourse(' + data[i].idCourse + ');"><img src="img/image.jpg" alt="Course img" class="img-rounded"></a></div>' +
                 '<div class="news_content">' +
-                '<h3>' + data[i].name+'</h3>' +
+                '<h3><a href="javascript:openCourse(' + data[i].idCourse + ');">' + data[i].name + '</a></h3>' +
                 '<p>' + data[i].description + '</p>' +
                 '</div>' +
                 '</div>' +
@@ -20,3 +20,7 @@ $.ajax({
         }
     }
 });
+
+function openCourse( indexOfCourse ){
+    window.location = "/Course.html?" + indexOfCourse;
+}
