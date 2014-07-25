@@ -1,6 +1,7 @@
 package ua.com.learninghub.controller;
 
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
@@ -32,16 +33,6 @@ public class CourseResource {
     private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
-
-//    @GET
-//    @Path("/getSpecialty")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response getSpecialty(){
-//        List<Specialty> specialties = specialtyDao.selectAll();
-//        if(specialties == null){
-//            return Response.status(Response.Status.GONE).build();
-//        }else return Response.ok(specialties).build();
-//    }
 
     @RolesAllowed({"Moderator", "Teacher"})
     @POST
@@ -81,14 +72,14 @@ public class CourseResource {
     public Response createCourse(Course course) {
         course.setSubject(subjectDao.selectById(1));
         System.out.println("createCourse");
-        if(courseDao.insert(course)){
+        if (courseDao.insert(course)) {
             System.out.println("Ok");
             return Response.ok().build();
-        }
-        else{
+        } else {
             System.out.println("Bad");
             return Response.status(401).build();
         }
+    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{courseId}") // ...8080/rest/courses/1234
@@ -104,6 +95,12 @@ public class CourseResource {
         return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
     }
 
+    @GET
+    @Path("getAll")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Course> getAllCourses() {
+        return courseDao.selectAll();
+    }
 
 /*
     @GET
