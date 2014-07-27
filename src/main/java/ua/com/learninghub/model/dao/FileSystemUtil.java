@@ -3,8 +3,7 @@ package ua.com.learninghub.model.dao;
 import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 import javax.ws.rs.WebApplicationException;
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -37,6 +36,23 @@ public class FileSystemUtil {
         if (!file.exists())
             throw new RuntimeException("Default course logo wasn't found.");
         return file;
+    }
+
+    public static void writeCourseLogo(InputStream fileInputStream, String filename){
+        try {
+            OutputStream outpuStream = new FileOutputStream(new File(storagePath + "img\\CourseLogo\\" + filename));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = fileInputStream.read(bytes)) != -1) {
+                outpuStream.write(bytes, 0, read);
+            }
+            outpuStream.flush();
+            outpuStream.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
     }
 
     FileSystemUtil(){}

@@ -20,7 +20,7 @@ $.ajax({
                 '</div>';
         }
         for (var i = 0; i < data.length; i++) {
-            $("#courseMainImage"+i).attr('src','http://localhost:8080/rest/course/getLogoImage/'+(i+1));
+            $("#courseMainImage"+i).attr('src','http://localhost:8080/rest/course/getLogoImage/'+(data[i].idCourse));
         }
     }
 });

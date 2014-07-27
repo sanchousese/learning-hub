@@ -1,5 +1,8 @@
 package ua.com.learninghub.controller;
 
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.FileSystemUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
@@ -38,6 +41,7 @@ public class CourseResource {
     private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
+    private SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
 
     //@RolesAllowed({"Moderator", "Teacher"})
     @POST
@@ -70,21 +74,6 @@ public class CourseResource {
         }else return Response.ok(subjects).build();
     }
 
-    //@RolesAllowed({"Moderator", "Teacher"})
-    @POST
-    @Path("/create") // // ...8080/rest/courses/course
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createCourse(Course course) {
-            course.setSubject(subjectDao.selectById(1));
-            System.out.println("createCourse");
-            if (courseDao.insert(course)) {
-            System.out.println("Ok");
-            return Response.ok().build();
-        } else {
-            System.out.println("Bad");
-            return Response.status(401).build();
-        }
-    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/info/{courseId}") // ...8080/rest/courses/1234
@@ -111,11 +100,37 @@ public class CourseResource {
     @Path("getLogoImage/{courseId}")
     @Produces("image/*")
     public Response getImage(@PathParam("courseId") int courseId) throws FileNotFoundException {
-        String filename = courseDao.selectById(courseId).getMainImagePath();
+        Course course = courseDao.selectById(courseId);
+        String filename  = null;
+        if(course != null) filename= course.getMainImagePath();
         File f = FileSystemUtil.getCourseLogoByFilename(filename);
         String mt = new MimetypesFileTypeMap().getContentType(f);
         return Response.ok(f, mt).build();
     }
+
+    //@RolesAllowed({"Moderator", "Teacher"})
+    @POST
+    @Path("/create")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response create(
+            @FormDataParam("name") String name,
+            @FormDataParam("description") String description,
+            @FormDataParam("price") int price,
+            @FormDataParam("file") InputStream fileInputStream,
+            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+
+        String filename = contentDispositionHeader.getFileName();
+        String extension = filename.substring(filename.lastIndexOf('.') + 1);
+        filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+
+        Course course = new Course(name, description, price, filename);
+        course.setSubject(subjectDao.selectById(1));
+        if(courseDao.insert(course)) {
+            FileSystemUtil.writeCourseLogo(fileInputStream, filename);
+            return Response.status(200).build();
+        } else return Response.status(401).build();
+    }
+
 /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)

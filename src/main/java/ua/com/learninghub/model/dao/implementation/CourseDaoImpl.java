@@ -7,6 +7,7 @@ import ua.com.learninghub.model.entities.Course;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -59,10 +60,15 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("SELECT crs FROM Course crs WHERE crs.idCourse = :u_id");
         query.setParameter("u_id",id);
-        Course course = (Course)query.getSingleResult();
-        entityManager.close();
-        return course;
-    }
+        try {
+            Course course = (Course) query.getSingleResult();
+            return course;
+        } catch (NoResultException e){
+            return null;
+        } finally {
+            entityManager.close();
+        }
+}
 
     @Override
     public Course update(Course course) {

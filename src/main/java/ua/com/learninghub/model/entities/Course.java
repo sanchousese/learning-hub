@@ -45,6 +45,14 @@ public class Course implements HibernateL2Cache {
     @JoinColumn(name = "idSubject")
     private Subject subject;
 
+    public Course(){}
+
+    public Course(String name, String description, int price, String mainImagePath) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.mainImagePath = mainImagePath;
+    }
 
     public int getIdCourse() {
         return idCourse;
