@@ -8,7 +8,7 @@ if (query.substring(0, 1) == '?') {
 $.ajax({
     //data: str,
     type: "GET",
-    url: "http://localhost:8080/rest/course/" + query,
+    url: "http://localhost:8080/rest/course/info/" + query,
     datatype: "json",
     contentType: "application/json",
     success: function(data) {
@@ -29,7 +29,7 @@ function getNumberOfStudent() {
     $.ajax({
         //data: str,
         type: "GET",
-        url: "http://localhost:8080/rest/course/" + query + "/numberOfPeople",
+        url: "http://localhost:8080/rest/course/info/" + query + "/numberOfPeople",
         datatype: String,
         contentType: "text/plain",
         success: function(data) {

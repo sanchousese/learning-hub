@@ -1,5 +1,6 @@
 package ua.com.learninghub.controller;
 
+import ua.com.learninghub.model.dao.FileSystemUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
@@ -13,15 +14,19 @@ import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Specialty;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.io.*;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Max on 18.07.2014.
@@ -34,7 +39,7 @@ public class CourseResource {
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
 
-    @RolesAllowed({"Moderator", "Teacher"})
+    //@RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/getSpecialty")
     @Produces(MediaType.APPLICATION_JSON)
@@ -70,9 +75,9 @@ public class CourseResource {
     @Path("/create") // // ...8080/rest/courses/course
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCourse(Course course) {
-        course.setSubject(subjectDao.selectById(1));
-        System.out.println("createCourse");
-        if (courseDao.insert(course)) {
+            course.setSubject(subjectDao.selectById(1));
+            System.out.println("createCourse");
+            if (courseDao.insert(course)) {
             System.out.println("Ok");
             return Response.ok().build();
         } else {
@@ -82,7 +87,7 @@ public class CourseResource {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{courseId}") // ...8080/rest/courses/1234
+    @Path("/info/{courseId}") // ...8080/rest/courses/1234
     public Course getCourse(@PathParam("courseId") String courseId) {
         //courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size();
         return courseDao.selectById((new Integer(courseId)).intValue());
@@ -90,7 +95,7 @@ public class CourseResource {
 
     @GET
     @Produces("text/plain")
-    @Path("{courseId}/numberOfPeople") // ...8080/rest/courses/1234
+    @Path("/info/{courseId}/numberOfPeople") // ...8080/rest/courses/1234
     public String getNumberOfPeopleCourse(@PathParam("courseId") String courseId) {
         return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
     }
@@ -102,6 +107,15 @@ public class CourseResource {
         return courseDao.selectAll();
     }
 
+    @GET
+    @Path("getLogoImage/{courseId}")
+    @Produces("image/*")
+    public Response getImage(@PathParam("courseId") int courseId) throws FileNotFoundException {
+        String filename = courseDao.selectById(courseId).getMainImagePath();
+        File f = FileSystemUtil.getCourseLogoByFilename(filename);
+        String mt = new MimetypesFileTypeMap().getContentType(f);
+        return Response.ok(f, mt).build();
+    }
 /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)

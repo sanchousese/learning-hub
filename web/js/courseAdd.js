@@ -91,7 +91,7 @@ category.getSubject();
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
-        alert($("#courseNameD").val());
+        //alert($("#courseNameD").val());
         var course = {
             name: $("#courseNameD").val(),
             description: $("#courseDescD").val(),
@@ -104,7 +104,8 @@ function AddCourseInfo() {
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
-                alert("Course added");
+                //alert("Course added");
+                window.location.href = "index.html";
 
             },
             statusCode: {
@@ -113,7 +114,5 @@ function AddCourseInfo() {
                 }
             }
         });
-        window.location.href = "index.html";
-
     }
 }
