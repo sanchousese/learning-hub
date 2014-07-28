@@ -11,9 +11,11 @@ import java.util.Scanner;
  */
 public class FileSystemUtil {
     private static String storagePath;
+    private static char separator = File.separatorChar;
 
     static {
-        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("META-INF\\storage.info");
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                "META-INF"+separator+"storage.info");
         if(stream == null)
             throw new RuntimeException("Configuration file storage.info is not found.");
         Scanner scanner = new Scanner(stream, "UTF-8");
@@ -25,14 +27,14 @@ public class FileSystemUtil {
     }
 
     public static File getCourseLogoByFilename(String filename){
-        File file = new File(storagePath + "img\\CourseLogo\\" + filename);
+        File file = new File(storagePath + "img" + separator + "CourseLogo" +separator + filename);
         if (!file.exists())
             file = getDefaultLogo();
         return file;
     }
 
     private static File getDefaultLogo(){
-        File file = new File(storagePath + "img\\CourseLogo\\default.jpg");
+        File file = new File(storagePath + "img" + separator + "CourseLogo" + separator + "default.jpg");
         if (!file.exists())
             throw new RuntimeException("Default course logo wasn't found.");
         return file;
@@ -40,7 +42,8 @@ public class FileSystemUtil {
 
     public static void writeCourseLogo(InputStream fileInputStream, String filename){
         try {
-            OutputStream outpuStream = new FileOutputStream(new File(storagePath + "img\\CourseLogo\\" + filename));
+            OutputStream outpuStream = new FileOutputStream(
+                    new File(storagePath + "img"+separator+"CourseLogo" +separator + filename));
             int read = 0;
             byte[] bytes = new byte[1024];
 

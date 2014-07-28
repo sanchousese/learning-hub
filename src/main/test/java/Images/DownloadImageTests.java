@@ -15,7 +15,8 @@ public class DownloadImageTests {
     @Test
     public void checkPath(){
         try {
-            InputStream stream = new FileInputStream("src\\main\\resources\\META-INF\\storage.info");
+            InputStream stream = new FileInputStream(
+                    "/home/vasax32/IdeaProjects/learning-hub/storage/img/CourseLogo/default.jpg");
             System.out.println(stream.available());
         } catch (FileNotFoundException e) {
             e.printStackTrace();

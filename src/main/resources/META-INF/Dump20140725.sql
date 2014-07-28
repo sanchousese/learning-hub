@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `learningdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `learningdb`;
+CREATE DATABASE  IF NOT EXISTS `Learningdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `Learningdb`
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
 -- Host: localhost    Database: learningdb
