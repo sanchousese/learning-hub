@@ -4,6 +4,7 @@ import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 import ua.com.learninghub.model.entities.Course;
+import ua.com.learninghub.model.entities.Subject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,14 +18,31 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
+    public List<Course> selectBySubject(Subject subj) {
+    return null;
+    }
+    /*@Override
+    public List<Course> selectBySubject(Subject subj) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //SELECT DISTINCT * FROM learningdb.course
+        // where learningdb.course.name like "%ver%" or learningdb.course.description like "%ver%";
+
+
+        Query query = entityManager.createQuery("SELECT courses FROM Course courses " +
+                "WHERE courses.subject = :subjParam");
+        query.setParameter("subjParam", subj);
+        List<Course> courses = query.getResultList();
+        entityManager.close();
+        return courses;
+    }
+*/
     //select courses from idFrom to idTo
     @Override
     public List<Course> selectById(int idFrom, int idTo) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT courses FROM Course courses WHERE courses.idCourse >= :idF " +
-                "AND courses.idCourse < :idT");
-        query.setParameter("idF", idFrom);
-        query.setParameter("idT", idTo);
+        Query query = entityManager.createQuery("SELECT courses FROM Course courses");
+        query.setFirstResult(idFrom);
+        query.setMaxResults(idTo);
         List<Course> courses = query.getResultList();
         entityManager.close();
         return courses;
