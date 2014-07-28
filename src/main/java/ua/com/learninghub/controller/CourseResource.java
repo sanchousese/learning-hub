@@ -1,5 +1,9 @@
 package ua.com.learninghub.controller;
 
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
+import ua.com.learninghub.model.dao.FileSystemUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
@@ -13,15 +17,19 @@ import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Specialty;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.io.*;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Max on 18.07.2014.
@@ -33,8 +41,9 @@ public class CourseResource {
     private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
+    private SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
 
-    @RolesAllowed({"Moderator", "Teacher"})
+    //@RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/getSpecialty")
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,24 +74,9 @@ public class CourseResource {
         }else return Response.ok(subjects).build();
     }
 
-    //@RolesAllowed({"Moderator", "Teacher"})
-    @POST
-    @Path("/create") // // ...8080/rest/courses/course
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createCourse(Course course) {
-        course.setSubject(subjectDao.selectById(1));
-        System.out.println("createCourse");
-        if (courseDao.insert(course)) {
-            System.out.println("Ok");
-            return Response.ok().build();
-        } else {
-            System.out.println("Bad");
-            return Response.status(401).build();
-        }
-    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{courseId}") // ...8080/rest/courses/1234
+    @Path("/info/{courseId}") // ...8080/rest/courses/1234
     public Course getCourse(@PathParam("courseId") String courseId) {
         //courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size();
         return courseDao.selectById((new Integer(courseId)).intValue());
@@ -90,7 +84,7 @@ public class CourseResource {
 
     @GET
     @Produces("text/plain")
-    @Path("{courseId}/numberOfPeople") // ...8080/rest/courses/1234
+    @Path("/info/{courseId}/numberOfPeople") // ...8080/rest/courses/1234
     public String getNumberOfPeopleCourse(@PathParam("courseId") String courseId) {
         return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
     }
@@ -100,6 +94,45 @@ public class CourseResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Course> getAllCourses() {
         return courseDao.selectAll();
+    }
+
+    @GET
+    @Path("getLogoImage/{courseId}")
+    @Produces("image/*")
+    public Response getImage(@PathParam("courseId") int courseId) throws FileNotFoundException {
+        Course course = courseDao.selectById(courseId);
+        String filename  = null;
+        if(course != null) filename= course.getMainImagePath();
+        File f = FileSystemUtil.getCourseLogoByFilename(filename);
+        String mt = new MimetypesFileTypeMap().getContentType(f);
+        return Response.ok(f, mt).build();
+    }
+
+    //@RolesAllowed({"Moderator", "Teacher"})
+    @POST
+    @Path("/create")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response create(
+            @FormDataParam("name") String name,
+            @FormDataParam("description") String description,
+            @FormDataParam("price") int price,
+            @FormDataParam("file") InputStream fileInputStream,
+            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+
+        String filename = contentDispositionHeader.getFileName();
+        if(filename != null) {
+            String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+        }
+
+        System.out.println(filename);
+
+        Course course = new Course(name, description, price, filename);
+        course.setSubject(subjectDao.selectById(1));
+        if(courseDao.insert(course)) {
+            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename);
+            return Response.status(200).build();
+        } else return Response.status(401).build();
     }
 
 /*

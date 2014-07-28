@@ -69,7 +69,7 @@ public class SecurityContextFilter implements ResourceFilter, ContainerRequestFi
                         user = session.getUser();
                     }
                 }
-            } else System.out.println("Session cookie null");
+            }
         }
 
         // Set security context

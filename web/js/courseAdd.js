@@ -91,29 +91,17 @@ category.getSubject();
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
-        alert($("#courseNameD").val());
-        var course = {
-            name: $("#courseNameD").val(),
-            description: $("#courseDescD").val(),
-            price: $("#coursePriceD").val()
-        };
-        $.ajax({
-            data: JSON.stringify(course),
-            type: "POST",
-            url: "http://localhost:8080/rest/course/create",
-            datatype: "json",
-            contentType: "application/json",
-            success: function(data) {
-                alert("Course added");
-
-            },
-            statusCode: {
-                401: function() {
-                    alert("Internal error");
-                }
-            }
-        });
-        window.location.href = "index.html";
-
+        var ajax = new XMLHttpRequest();
+        //ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.open("POST", "http://localhost:8080/rest/course/create");
+        var file_data = $("#uploadImageFile").prop("files")[0];
+        var form_data = new FormData();
+        form_data.append("file", file_data);
+        form_data.append("name", $("#courseNameD").val());
+        form_data.append("description", $("#courseDescD").val());
+        form_data.append("price", $("#coursePriceD").val());
+        ajax.addEventListener("load", function() { window.location.href = "index.html";}, false);
+        ajax.addEventListener("error", function() { alert("Internal error");}, false);
+        ajax.send(form_data);
     }
 }
