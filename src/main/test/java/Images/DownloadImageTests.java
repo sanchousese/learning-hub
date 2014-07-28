@@ -2,10 +2,7 @@ package Images;
 
 import org.junit.Test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Created by Валентин on 27.07.2014.
@@ -23,5 +20,7 @@ public class DownloadImageTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(File.separator);
+        System.out.println(File.separatorChar);
     }
 }
