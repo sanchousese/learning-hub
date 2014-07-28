@@ -45,7 +45,7 @@ public class FileSystemUtil {
     public static void writeCourseLogo(InputStream fileInputStream, String filename){
         try {
             OutputStream outpuStream = new FileOutputStream(
-                    new File(storagePath + "img"+separator+"CourseLogo" +separator + filename));
+                    new File(storagePath + "img" + separator + "CourseLogo" + separator + filename));
             int read = 0;
             byte[] bytes = new byte[1024];
 
@@ -58,6 +58,13 @@ public class FileSystemUtil {
 
             e.printStackTrace();
         }
+    }
+
+    public static File getVideo(){
+        File file = new File(storagePath + "videos/courses/1.mp4");
+        if (!file.exists())
+            throw new RuntimeException("video wasn't found.");
+        return file;
     }
 
     FileSystemUtil(){}

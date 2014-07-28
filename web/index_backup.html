@@ -28,15 +28,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html" class="navbar-brand">Learning <span>Hub</span></a>
+                <a class="navbar-brand" href="#">Learning <span>Hub</span></a>
             <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
             </button>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="Catalog.html">Курсы</a></li>
+                  <li><a href="#">Курсы</a></li>
                   <li><a href="#">Специализация</a></li>
-                  <li><a href="Adminka.html">О нас</a></li>
+                  <li><a href="#">О нас</a></li>
                   <li>                  
                   <a id="user-info" href="http://google.com" class="hover-fix">Link</a>
                   </li>
@@ -57,16 +57,21 @@
               
                   <li>               
 <!--                      Button trigger modal -->
-                  <button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal" >
+                  <button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal">
                       Регистрация
                   </button>
-                  </li>
-                  <!-- Button trigger modal end -->
+                  <!-- Button trigger modal end --></li>
                   <li>
                      <button class="btn btn-danger margin_8" id="logout" onclick="logoutButton()">
                       Выйти
                   </button>
                   </li>
+<!--                 <div class="btn-group">-->
+<!--                  <button type="button" class="btn btn-link" id="user-info">Link</button>-->
+             
+
+
+<!--                  </div>-->
                   </ul>
             </div> 
               <div class="search-collapse">              
@@ -78,7 +83,7 @@
 <!--   sleder -->
 		<div class="container-fluid">
 		    <div class="row ">
-			<div class="col-md-10 col-md-offset-1" id = "coursesD">
+			<div class="col-md-10 col-md-offset-1">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ol class="carousel-indicators">
@@ -137,8 +142,17 @@
           <hr>
            <h3 class="text-center">Популярные курсы</h3>
 
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="col-md-10 col-md-offset-1" id = "coursesD">
+                            <!--renderings of the courses-->
+                        </div>
+                    </div>
+                </div>
+
 			</div>
 			</div>
+
     </div>
 <!--               </div>-->
         <a href="#" class="btn btn-default btn-lg more" id="more_courses" role="button">Загрузить еще ...</a>
@@ -157,14 +171,14 @@
                                 <div class="form-group margin-vertical-fix">
                                    <div class="col-sm-12">
                                     <label for="inputName" class="control-label">Имя</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Вася Пупкин" onemptied="regButton()"  onchange="regButton()" required> 
+                                    <input type="text" class="form-control" id="inputName" placeholder="Вася Пупкин" required>
                                     </div>
                                   </div>
                                 <!-- Password input-->
-                                   <div class="form-group margin-vertical-fix">
+                                   <div class="form-group margin-vertical-fix" on>
                                    <div class="col-sm-12">
                                     <label for="inputEmail" class="control-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Недействительный Email"  onchange="regButton()" required>  <!--required-->
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -172,16 +186,16 @@
                                <div class="form-group">
                                 <div class="col-sm-12">
                                   <label for="inputPassword" class="control-label">Введите  пароль</label>
-                                  <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Пароль" > <!--required-->
+                                  <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Пароль" required>
                                 </div>
                                 <div class="col-sm-12">
                                   <label for="inputPassword" class="control-label">Повторите пароль</label>
-                                  <input type="password" class="form-control " id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Пароли не совпадают" placeholder="Повторите пароль"  onchange="regButton()" required> <!--required-->
+                                  <input type="password" class="form-control " id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Повторите пароль" required>
                                   <div class="help-block with-errors"></div>
                                 </div>
                                 </div>
                                 <!-- Button -->
-                                    <button id="reg-btn" type="button" class="btn btn-success btn-block" onclick="registerButton()" disabled="disabled">Регистрация</button>
+                                    <button type="button" class="btn btn-success btn-block" onclick="registerButton()">Регистрация</button>
 <!--                                </div>-->
 <!--                                </fieldset>-->
                                 </form>
@@ -201,7 +215,8 @@
 			</div>
 		</div>
             
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
      <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
@@ -209,8 +224,7 @@
     <script src="js/login.js"></script>
     <script src="js/autorization.js"></script>
     <script src="js/validator.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/btnHide.js"></script>
     <script src="js/renderCourse.js"></script>
+    <script src="js/register.js"></script>
   </body>
 </html>

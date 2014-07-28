@@ -113,6 +113,14 @@ public class CourseResource {
         } else return Response.status(401).build();
     }
 
+
+    @GET
+    @Path("/getVideoStream")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getVideoStream(){
+        File file = FileSystemUtil.getVideo();
+        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
+    }
 /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)

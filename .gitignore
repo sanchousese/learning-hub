@@ -1,3 +1,5 @@
 Learning-hub.iml
 .idea
 ServerTomCat
+src/main/resources/META-INF/storage.info
+web/-Artem.git-ignored

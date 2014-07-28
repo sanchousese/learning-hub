@@ -6,7 +6,7 @@ body{
 }
 /*Задаем цвет меню*/
 .navbar{
-    background: #f8f8f8; 
+    background: #f0f0f0; 
 }
 .navbar-default a.navbar-brand {
 	color: #3c3f41; /* цвет слогана */
@@ -49,7 +49,7 @@ body{
 	 display: block;
 	 float: left;
 	 content: '';
-	 background: url(logo2.png) no-repeat;
+	 background: url(../img/logo2.png) no-repeat;
 	 width: 3em;
 	 height: 3em;
 	 margin-right: .25em;
@@ -93,31 +93,33 @@ body{
 /*Задаем разделительную линию */
 hr {
     border: none; /* Убираем границу */
-    background-color: #f8f8f8; /* Цвет линии */
+    background-color: #f0f0f0; /* Цвет линии */
     color: red; /* Цвет линии для IE6-7 */
     height: 2px; /* Толщина линии */
    }
 
 /*<Блоки курсов */
 
- /*.course_big{*/
-     /*padding: 0 10px;*/
-    /*border-radius: 20px;*/
-     /*background: #f8f8f8;*/
-     /*box-shadow: 0 1px 1px #666;*/
- /*}*/
-.course_big{
-    padding: 0 10px;
-    /*    border-radius: 20px;*/
-    /*     background: #f8f8f8;*/
-    /*     box-shadow: 0 1px 1px #666;*/
+ .course_big{
+    padding: 0 10px; 
     height: 330px;
     overflow:hidden;
     border-radius: 20px;
-    background: #f8f8f8;
+    background: #f0f0f0;
     box-shadow: 0 1px 1px #666;
+ }
+.course_medium {
+  background: #f0f0f0;
+  border-radius: 20px;
+  box-shadow: 0 1px 1px #666;
+  max-height: 255px;
+  overflow:hidden;
+  margin-bottom: 10px;
+  margin-top: none;
 }
-
+.course_medium_content{
+    margin: 15px 25px 0 15px;
+}
 .padding_5{
     padding: 0 5px;
     margin-top: 10px;
@@ -129,12 +131,30 @@ hr {
 	left: 0;
 	top:15px;    
 }
+
 .news_cover img {
     width:100%;
 }
 .news_content {
 	padding: .5em;
 }
+.news_cover_medium {
+/*	width:100%;*/
+	border-radius: .25em .25em 0 0;
+	position: relative;
+	left: 0;
+	top:5px;    
+}
+.news_cover_medium img {
+    margin: 0 25px 30px 15px;
+    width: 250px;
+    height: 200px;
+    float: left;
+}
+/*
+.news_content_medium{
+}
+*/
 
 /*Конец блока курсы*/
 
@@ -226,11 +246,17 @@ hr {
 .mardgin_bottom_5 {
     margin-bottom: 5px;
 }
+.mardgin_bottom_20 {
+    margin-bottom: 20px;
+}
 .margin_top_15 {
     margin-top: 15px;
 }
 .margin_top_10 {
     margin-top: 10px;
+}
+.margin_top_6 {
+    margin-top: 6px;
 }
 .margin_top_30{
     margin-top: 30px;
@@ -238,8 +264,19 @@ hr {
 .margin_top_70 {
     margin-top: 70px;
 }
+.margin_vertical_10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.margin_gorizontal_15{
+    margin-left: 15px;
+    margin-right: 15px;
+}
 .float-right{
     float: right;
+}
+.float-left{
+    float: left;
 }
 .margin-vertical-fix{
     margin-top:0;
@@ -251,35 +288,41 @@ hr {
 .margin-fix {
     margin: 0;
 }
+.margin-top-fix {
+ margin-top: 0;
+}
 .navbar-nav.navbar-right:last-child{
     margin-right: 0;
 }
-/*#hideRegisterForm,*/
-/*#register-btn,*/
-/*#user-info,*/
-/*#logout{*/
-    /*display: none;*/
-/*}*/
+#hideRegisterForm,
+#register-btn,
+#user-info,
+#logout{
+/*    display: none;*/
+}
 #user-info{
     text-decoration: underline;
 }
-/*
-.navbar-nav li:hover {
-    background: none;
-}*/
+
 .margin_8 {
     margin: 8px 5px;
 }
-/*
-.hover-fix:hover{
-    color:inherit;
-}
-*/
 .nav.navbar-nav li:hover .hover-fix:hover {
  color: #428bca;
 }
 .padding-fix{
     padding: 0;
+}
+.padding-gorizontal-fix{
+    padding-left: 0;
+    padding-right: 0;
+}
+.padding-vertical-5{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.padding-top-1{
+    padding-top: 1px;
 }
 .panel-dropdown{
     display: block;
@@ -294,4 +337,26 @@ hr {
 .buy-btn{
     margin: 10px auto;
     min-width: 200px;
+}
+.background_grey {
+background: #f0f0f0;
+}
+.materials_download {
+    display: block;
+    margin: 15px 0 15px 0;
+}
+.sidebar-btn{
+    display: block;
+    text-align: left;
+}
+.sidebar-btn:hover {
+    background:#e6e6e6;
+}
+.course-process-bg{
+    background: #303d3e;
+    color: #a7b1b4;
+}
+.panel-default>.course-process-header-bg{
+    background: #212b2e;
+    color: #d0dadd;
 }
