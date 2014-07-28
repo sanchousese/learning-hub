@@ -2,7 +2,7 @@ package EntitiesTests;
 
 import junit.framework.Assert;
 import org.junit.Test;
-import ua.com.learninghub.businessLogic.UserLogic;
+import ua.com.learninghub.util.UserLogic;
 import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.UserDao;

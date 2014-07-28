@@ -3,13 +3,13 @@ package ua.com.learninghub.model.dao.implementation;
 import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
-import ua.com.learninghub.model.entities.Course;
-import ua.com.learninghub.model.entities.Subject;
+import ua.com.learninghub.model.entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,24 +18,79 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
-    public List<Course> selectBySubject(Subject subj) {
-    return null;
+//============================SEARCH METHODS=============================
+
+
+    @Override
+    public List<Course> findByConstraints(CourseSearch search) {
+
+        CourseSearchType searchType = search.getSearchType();
+        switch (searchType) {
+            case SEARCH_BY_RANGES:
+                return selectById(search.getIdFrom(), search.getIdTo());
+
+            case SEARCH_BY_KEYWORDS:
+                return selectByName(search.getKeywords());
+
+            case SEARCH_BY_SPECIALITY:
+                return selectBySpeciality(search.getIdSpeciality());
+            case SEARCH_BY_DISCIPLINE:
+                return selectByDiscipline(search.getIdDiscipline());
+            case SEARCH_BY_SUBJECT:
+                return selectBySubject(search.getIdSubject());
+        }
+
+        return null;
     }
-    /*@Override
-    public List<Course> selectBySubject(Subject subj) {
+
+    @Override
+    public List<Course> selectByDiscipline(int disID) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        //SELECT DISTINCT * FROM learningdb.course
-        // where learningdb.course.name like "%ver%" or learningdb.course.description like "%ver%";
 
+        Discipline discipline = (new DisciplineDaoImpl()).selectById(disID);
 
+        List<Subject> subjectList = discipline.getSubjects();
+
+        List<Course> courses = new ArrayList<Course>();
+        for (Subject s : subjectList) {
+            courses.addAll(selectBySubject(s.getIdSubject()));
+        }
+        return courses;
+    }
+
+    @Override
+    public List<Course> selectBySpeciality(int specID) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Specialty speciality = (new SpecialtyDaoImpl()).selectById(specID);
+        List<Discipline> disciplineList  = speciality.getDisciplines();
+
+        List<Subject> subjectList = new ArrayList<Subject>();
+        for (Discipline d : disciplineList) {
+            subjectList.addAll(d.getSubjects());
+        }
+
+        List<Course> courses = new ArrayList<Course>();
+        for (Subject s : subjectList) {
+            courses.addAll(selectBySubject(s.getIdSubject()));
+        }
+        return courses;
+    }
+
+    // select courses by subject
+    @Override
+    public List<Course> selectBySubject(int subjID) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        // SELECT * FROM learningdb.course WHERE course.idSubject = 1;
         Query query = entityManager.createQuery("SELECT courses FROM Course courses " +
-                "WHERE courses.subject = :subjParam");
-        query.setParameter("subjParam", subj);
+                "WHERE courses.subject.idSubject = :subjId");
+        query.setParameter("subjId", subjID);
         List<Course> courses = query.getResultList();
         entityManager.close();
         return courses;
     }
-*/
+
     //select courses from idFrom to idTo
     @Override
     public List<Course> selectById(int idFrom, int idTo) {
@@ -63,6 +118,9 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         entityManager.close();
         return courses;
     }
+
+    //=====================================================================
+
 
     @Override
     public List<Course> selectAll() {

@@ -1,4 +1,4 @@
-package ua.com.learninghub.businessLogic;
+package ua.com.learninghub.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

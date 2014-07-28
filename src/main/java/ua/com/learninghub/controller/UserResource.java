@@ -2,9 +2,8 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import ua.com.learninghub.businessLogic.UserLogic;
+import ua.com.learninghub.util.UserLogic;
 import ua.com.learninghub.controller.auth.CookieUtil;
-import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserCategoryDaoImpl;
 import ua.com.learninghub.model.dao.implementation.UserDaoImpl;

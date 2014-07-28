@@ -21,6 +21,7 @@ import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -35,7 +36,7 @@ import java.util.Scanner;
  * Created by Max on 18.07.2014.
  */
 @PermitAll
-@Path("/course") // ...8080/rest/courses/
+@Path("/courses") // ...8080/rest/courses/
 public class CourseResource {
     private CourseDao courseDao = new CourseDaoImpl();
     private SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
@@ -44,34 +45,17 @@ public class CourseResource {
     private SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
 
     //@RolesAllowed({"Moderator", "Teacher"})
-    @POST
-    @Path("/getSpecialty")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecialty(){
-        ArrayList<Specialty> specialties = new ArrayList<Specialty>(specialtyDao.selectAll());
-        if(specialties == null){
-            return Response.status(Response.Status.GONE).build();
-        }else return Response.ok(specialties).build();
-    }
+    public Response getAllCourses(){
+        List<Course> courses = courseDao.selectAll();
 
-    @POST
-    @Path("/getDiscipline")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getDiscipline(){
-        ArrayList<Discipline> disciplines = new ArrayList<Discipline>(disciplineDao.selectAll());
-        if(disciplines == null){
-            return Response.status(Response.Status.GONE).build();
-        }else return Response.ok(disciplines).build();
-    }
+        if (courses == null || courses.size() <= 0) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
 
-    @POST
-    @Path("/getSubject")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getSubject(){
-        ArrayList<Subject> subjects = new ArrayList<Subject>(subjectDao.selectAll());
-        if(subjects == null){
-            return Response.status(Response.Status.GONE).build();
-        }else return Response.ok(subjects).build();
+        return Response.ok().entity(new GenericEntity<List<Course>>(courses) {
+        }).build();
     }
 
     @GET
@@ -89,12 +73,6 @@ public class CourseResource {
         return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
     }
 
-    @GET
-    @Path("getAll")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Course> getAllCourses() {
-        return courseDao.selectAll();
-    }
 
     @GET
     @Path("getLogoImage/{courseId}")
