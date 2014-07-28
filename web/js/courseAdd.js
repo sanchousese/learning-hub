@@ -5,15 +5,16 @@ function CCategory(){
     this.getSpecialty = function(){
         $.ajax({
             //data: str,
-            type: "POST",
+            type: "GET",
             url: "http://localhost:8080/rest/course/getSpecialty",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
-                var div = document.getElementById("SpecialtyD");
+                var div = document.getElementById("collapseOne");
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<a href="#"  class="list-group-item padding-fix border-fix panel-dropdown" onclick="category.update(0, '+ i +')">'+ data[i].name+ '</a>'
+                            '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 //debugger;
             },
@@ -27,7 +28,7 @@ function CCategory(){
     this.getDiscipline = function(){
         $.ajax({
             //data: str,
-            type: "POST",
+            type: "GET",
             url: "http://localhost:8080/rest/course/getDiscipline",
             datatype: "json",
             contentType: "application/json",
@@ -35,7 +36,8 @@ function CCategory(){
                 var div = document.getElementById("DisciplineD");
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<a href="#"  class="list-group-item padding-fix border-fix panel-dropdown" onclick="category.update(1, '+ i +')">'+ data[i].name+ '</a>'
+                    '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
+                    '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
             },
             statusCode: {
@@ -48,15 +50,16 @@ function CCategory(){
     this.getSubject = function(){
         $.ajax({
             //data: str,
-            type: "POST",
+            type: "GET",
             url: "http://localhost:8080/rest/course/getSubject",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
-                var div = document.getElementById("SubjectD");
+                var div = document.getElementById("collapseThree");
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<a href="#"  class="list-group-item padding-fix border-fix panel-dropdown" onclick="category.update(2, '+ i +')">'+ data[i].name+ '</a>'
+                    '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
+                    '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
             },
             statusCode: {
@@ -70,12 +73,15 @@ function CCategory(){
         if(type == 0){
             //alert("update " + index);
             category.spec = index;
-            $("#discipDHide").click();
+            $("#discipline").removeAttr("disabled");
+            $("#discipline").click();
         }
         if(type == 1){
             //alert("update 1" + index);
             category.desc = index;
-            $("#subjDHide").click();
+            //$("#subjDHide").click();
+            $("#subject").removeAttr("disabled");
+            $("#subject").click();
         }
         if(type == 2){
             //alert("update " + index);
@@ -100,6 +106,9 @@ function AddCourseInfo() {
         form_data.append("name", $("#courseNameD").val());
         form_data.append("description", $("#courseDescD").val());
         form_data.append("price", $("#coursePriceD").val());
+        form_data.append("specialty", category.spec);
+        form_data.append("discipline", category.desc);
+        form_data.append("subject", category.subj);
         ajax.addEventListener("load", function() { window.location.href = "index.html";}, false);
         ajax.addEventListener("error", function() { alert("Internal error");}, false);
         ajax.send(form_data);

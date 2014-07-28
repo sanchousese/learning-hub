@@ -66,12 +66,6 @@
                       Выйти
                   </button>
                   </li>
-<!--                 <div class="btn-group">-->
-<!--                  <button type="button" class="btn btn-link" id="user-info">Link</button>-->
-             
-
-
-<!--                  </div>-->
                   </ul>
             </div> 
               <div class="search-collapse">              
@@ -93,58 +87,49 @@
   </div>
   <div class="form-group">
   <label for="" class="col-sm-2 control-label">Выберите категорию</label>
-  <div class="col-md-10 sidebar-offcanvas" id="sidebar" role="navigation">
-        <div class="panel panel-default">
-<!--          <div class="panel-heading">Panel heading without title</div>-->
-          <div class="panel-body">  
-        <div class="col-xs-12 col-sm-12 sidebar-offcanvas" id="sidebar">
+  <div class="col-md-10 sidebar-offcanvas" >
+<div class="col-xs-12 col-sm-12 padding-fix" >
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading padding-fix">
       <h4 class="panel-title">
         <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-            Специальности
+           Специальности
         </a>
       </h4>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body" id = "SpecialtyD">
-          <!--Here will be rendering specialties-->
-      </div>
+    <div id="collapseOne" data-toggle="buttons" class="panel-collapse collapse in">
+      <!--Here rendering specilties-->
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading padding-fix">
       <h4 class="panel-title">
-        <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id = "discipDHide">
+        <button id="discipline" class="panel-dropdown border-fix btn-block text-left background_grey outline-fix" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" disabled="disabled">
          Дисциплины
-        </a>
+        </button>
       </h4>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body" id = "DisciplineD">
-        <!--Here will be rendering disciplines-->
+  <div class="panel-body" data-toggle="buttons" id = "DisciplineD">
+     <!--Here rendering disciplines-->
       </div>
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading padding-fix">
       <h4 class="panel-title">
-        <a class="panel-dropdown" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id = "subjDHide">
+        <button id = "subject" class="panel-dropdown border-fix btn-block text-left background_grey outline-fix" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" disabled="disabled">
            Тематики
-        </a>
+        </button>
       </h4>
     </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body" id = "SubjectD">
-          <!--Here will be rendering subjects-->
-      </div>
+    <div id="collapseThree" data-toggle="buttons" class="panel-collapse collapse">
+       <!--Here rendering subjects-->
     </div>
   </div>
 </div>
           </div>
-          </div>
-        </div><!--/span-->
            </div>
            </div>
   <div class="form-group">
@@ -171,7 +156,7 @@
    <div class="form-group">
        <label for="inputEmail3" class="col-sm-2 control-label">Изображение курса</label>
            <div class="col-sm-10">
-        <input id = "uploadImageFile" type="file" >
+        <input id = "uploadImageFile" type="file">
     <p class="help-block">Example block-level help text here.</p>
     </div>
   </div>

@@ -360,3 +360,6 @@ background: #f0f0f0;
     background: #212b2e;
     color: #d0dadd;
 }
+.outline-fix {
+    outline: none;
+}
