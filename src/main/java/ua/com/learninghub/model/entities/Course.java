@@ -2,6 +2,7 @@ package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.*;
+import org.hibernate.annotations.Table;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;

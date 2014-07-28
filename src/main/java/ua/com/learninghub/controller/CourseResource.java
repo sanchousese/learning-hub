@@ -120,13 +120,17 @@ public class CourseResource {
             @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 
         String filename = contentDispositionHeader.getFileName();
-        String extension = filename.substring(filename.lastIndexOf('.') + 1);
-        filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+        if(filename != null) {
+            String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+        }
+
+        System.out.println(filename);
 
         Course course = new Course(name, description, price, filename);
         course.setSubject(subjectDao.selectById(1));
         if(courseDao.insert(course)) {
-            FileSystemUtil.writeCourseLogo(fileInputStream, filename);
+            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename);
             return Response.status(200).build();
         } else return Response.status(401).build();
     }

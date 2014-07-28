@@ -27,7 +27,9 @@ public class FileSystemUtil {
     }
 
     public static File getCourseLogoByFilename(String filename){
-        File file = new File(storagePath + "img" + separator + "CourseLogo" +separator + filename);
+        File file = null;
+        if(filename == null) file = getDefaultLogo();
+        else file = new File(storagePath + "img" + separator + "CourseLogo" +separator + filename);
         if (!file.exists())
             file = getDefaultLogo();
         return file;
