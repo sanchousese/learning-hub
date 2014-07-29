@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,26 +33,40 @@ public class CourseSearchResource {
         courseSearch.setIdSpeciality(3);
         courseSearch.setIdFrom(2);
         courseSearch.setIdTo(4);
-        courseSearch.setKeywords("ababagalamaga");
+        
+        List<String> searchParams = new ArrayList<String>();
+        searchParams.add("SQL");
+        searchParams.add("PHP");
+        searchParams.add("HTML");
+        searchParams.add("desc");
+       
+        courseSearch.setKeywords(searchParams);
+        
         courseSearch.setSearchType("SEARCH_BY_RANGES");
 
         return courseSearch;
     }
 
-    @POST
+    //================TEST VERSION===============
+    @GET     //must be POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchForCourses(CourseSearch search) {
-        /*CourseSearch courseSearch = new CourseSearch();
-        courseSearch.setIdSubject(1);
-        courseSearch.setIdDiscipline(2);
-        courseSearch.setIdSpeciality(3);
-        courseSearch.setIdFrom(1);
-        courseSearch.setIdTo(3);
-        courseSearch.setKeywords("ababagalamaga");
-        courseSearch.setSearchType(CourseSearchType.SEARCH_BY_RANGES);
-        CourseSearch search = courseSearch;
-*/
+    public Response searchForCourses() {     // formal parameter must be of CourseSearch type
+        //=============just stub====================
+        CourseSearch search = new CourseSearch();
+        search.setIdSubject(1);
+        search.setIdDiscipline(2);
+        search.setIdSpeciality(3);
+        search.setIdFrom(2);
+        search.setIdTo(4);
+
+        List<String> searchParams = new ArrayList<String>();
+        searchParams.add("PHP");
+
+        search.setKeywords(searchParams);
+
+        search.setSearchType("SEARCH_BY_KEYWORDS");
+//======================================================================
 
         List<Course> courses = courseDao.findByConstraints(search);
 
@@ -112,14 +127,12 @@ public class CourseSearchResource {
 
 
     // for global search field
-    // TODO: improve to list of keyword (we ce only search by one string now, it's bad)
     @GET
     @Path("/byKeywords")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchByName(@QueryParam(value="keywords") String keywords) {
-        System.out.println();
+    public Response searchByName(@QueryParam(value="keywords") List<String> keywords) {
 
-        List<Course> courses = courseDao.selectByName(keywords);
+        List<Course> courses = courseDao.selectByKeywords(keywords);
 
         if (courses == null || courses.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();

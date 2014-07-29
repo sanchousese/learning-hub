@@ -1,5 +1,7 @@
 package ua.com.learninghub.model.entities;
 
+import java.util.List;
+
 /**
  * Created by Max on 28.07.2014.
  */
@@ -8,7 +10,7 @@ public class CourseSearch {
     private int idFrom;
     private int idTo;
 
-    private String keywords;
+    private List<String> keywords;
 
     private int idSpeciality;
     private int idDiscipline;
@@ -40,11 +42,11 @@ public class CourseSearch {
         this.idTo = idTo;
     }
 
-    public String getKeywords() {
+    public List<String> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String keywords) {
+    public void setKeywords(List<String> keywords) {
         this.keywords = keywords;
     }
 

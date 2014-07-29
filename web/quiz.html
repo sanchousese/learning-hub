@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru"> 
+	<head>
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Learning Hub</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/quiz.css" rel="stylesheet"><!-- здесь мы будем перезаписывать стандартные классы бутстрапа -->
+		<link href="css/style.css" rel="stylesheet"> 
+
+		<style type="text/css">
+
+			.col-sm-8 {
+				background-color: rgba(10,10,10,.05);
+				float: left;
+			}
+
+			body {
+				margin: 10px;
+			}
+			
+			.quiz_sidebar.col-sm-4.col-md-3.col-md-offset-1 {
+				float: right;
+			}
+
+			.quiz_details {
+				padding: 0;
+			}
+
+			/* минимал стили таймера при маленьком размере окна */
+			@media screen and (max-width: 767px) {
+				.quiz_details {
+					padding: 0;
+					width: 200px;
+					margin: 0 auto 10px;
+				}
+
+				.quiz_sidebar.col-sm-4.col-md-3.col-md-offset-1 {
+					float: none;
+				}				
+
+				.quiz_timer {
+					height: 70px;
+				}
+
+				.countdown {
+					top: 0;
+				}
+
+				.countdown + span {
+					top: 0;
+				}
+
+				.countdown+span+span {
+					bottom: 0;
+				}
+
+				.quiz_timeline {
+					display: none;
+				}
+
+
+			}
+
+		</style>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+			
+		<div class="container">
+			<div class="row">
+
+				<!-- сайдбар теста (строка 129)-->
+				<div class="col-sm-4 col-md-3 col-md-offset-1 col-lg-3 quiz_sidebar"> 
+					<div class="quiz_details">
+						<div class="quiz_timer">
+							<span class="countdown">5:00</span>
+							<span>Time Remaining</span>
+							<span><strong>Mins</strong> Secs</span>
+						</div> <!-- end .quiz_timer -->
+						<div class="quiz_timeline">
+							<div class="timeline_wrapper">
+								<ul>
+									<li id="ques1181" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">QUESTION 1<span>5</span></a></li>
+									<li id="ques1193" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1193" class="">QUESTION 2<span>5</span></a></li>
+									<li id="ques1185" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1185" class="">QUESTION 3<span>5</span></a></li>
+									<li id="ques1183" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1183" class="">QUESTION 4<span>5</span></a></li>
+									<li id="ques1181" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">QUESTION 5<span>5</span></a></li>
+									<li id="0001"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 01</span></a></li>
+									<li id="0002"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 02</span></a></li>
+									<li id="0003"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 03</span></a></li>
+									<li id="0004"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 04</span></a></li>
+									<li id="0005"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 05</span></a></li>
+									<li id="0006"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 06</span></a></li>
+									<li id="0007"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 07</span></a></li>
+									<li id="0008"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 08</span></a></li>
+									<li id="0009"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 09</span></a></li>
+									<li id="00010"><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 10</span></a></li>
+								</ul>
+							</div> <!-- end .timeline_wrapper -->
+						</div> <!-- end .quiz_timeline -->
+					</div> <!-- end .quiz_details -->
+				</div> <!-- end .col-sm-3 col-sm-offset-1 quiz_sidebar -->
+				<!-- END сайдбар теста -->
+
+				<div class="col-sm-8 col-lg-7 col-lg-offset-1"> <!-- колонка теста -->
+					<div class="quiz-content"> <!-- вопрос и варианты ответов  -->
+						<h2>Вопрос</h2>
+						<p>В чем смысл жизни вселенной и всего такого прочего?</p>
+						<h2>Варианты ответов</h2>
+
+						<div class="row"> <!-- разбивка окна ответов на две части -->
+							<div class="col-sm-6"> <!-- часть #1 -->
+
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="question#0000" id="answer1" value="option1">
+								    	Любовь
+								  </label>
+								</div>
+
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="question#0000" id="answer2" value="option2">
+								    	Деньги
+								  </label>
+								</div>
+
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="question#0000" id="answer3" value="option3">
+											Власть
+								  </label>
+								</div>
+
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="question#0000" id="answer4" value="option4">
+								    	42
+								  </label>
+								</div>
+							</div> <!-- end col-sm-6 (часть #1) -->
+
+							<div class="col-sm-6"> <!-- часть #2 -->
+
+								<div class="checkbox">
+								  <label>
+								    <input type="checkbox" value="">
+								    Множественный выбор 1
+								  </label>
+								</div>
+
+								<div class="checkbox disabled">
+								  <label>
+								    <input type="checkbox" value="" disabled>
+								    Множественный выбор 2
+								  </label>
+								</div>
+
+								<div class="checkbox">
+								  <label>
+								    <input type="checkbox" value="">
+								    Множественный выбор 3
+								  </label>
+								</div>
+
+								<div class="checkbox">
+								  <label>
+								    <input type="checkbox" value="">
+								    Множественный выбор 4
+								  </label>
+								</div>		
+
+							</div> <!-- end col-sm-6 (часть #2) -->
+						</div> <!-- end .row (разбивка окна ответов на две части)  -->
+
+						<hr>
+
+						<!-- контролы для ответов на вопросы: вариант BUTTON  -->
+						<ul class="pager"> 
+						  <li><a href="#"> ← Пред. </a></li>
+						  <li><button type="button" class="btn btn-info">Ответить</button></li>
+						  <li><a href="#"> След. → </a></li>
+						</ul>
+						<p class="text-center">контролы для ответов на вопросы: вариант BUTTON</p> <!-- END контролы для ответов на вопросы: вариант BUTTON  -->
+
+
+						<hr>
+
+						<!-- контролы для ответов на вопросы: вариант INPUT  -->
+						<ul class="pager"> 
+						  <li><a href="#"> ← Пред.  </a></li>
+						  <li><input type="submit" value="Ответить"></li>
+						  <li><a href="#"> След. → </a></li>
+						</ul> <!-- END контролы для ответов на вопросы: вариант INPUT  -->
+						<p class="text-center">контролы для ответов на вопросы: вариант INPUT</p>
+
+					</div> <!-- end .quiz-content (вопрос и варианты ответов) -->
+
+					<hr>						
+
+					<div class="quiz-notes"> <!-- заметки и подсказки к вопросу  -->
+						<ul>Требования к модулю тестов:
+							<li>Вопросы и варианты ответов: перемешиваются для каждого студента </li>
+							<li>Учет времени: не зависит от клиента</li>
+							<li>При закрытии вкладки/браузера сохранять возможность возобновить тест</li>
+							<li>Помечать вопросы, чтобы можно было пропустить и вернуться позже</li>
+							<li>Навигация по вопросам</li>
+							<li>Возможность подсказки и ее стоимость? Выпадающий текст или свойство <mark>Disabled</mark> для одного input'a</li>
+						</ul>
+
+						<p class="text-center lead">Нужно не забыть удалить тег style из head'a документа.<br>
+						EMMET <mark> ! Ctrl + Alt + Enter ! </mark>
+						</p>
+					</div> <!-- end .quiz-notes (заметки и подсказки к вопросу) -->
+
+				</div> <!-- END .col-sm-8 (контент теста) -->
+
+
+			</div> <!-- end .row -->
+		</div> <!-- end .container -->
+
+		<div class="container">		
+			<div class="row">
+				<div class="col-sm-3 padding_5">
+					<div class="panel panel-default">
+						<div class="panel-heading course-process-header-bg">Модуль 1</div>
+						<div class="panel-body course-process-bg">
+							<li class="list-group-item border-fix course-process-bg"><span class="glyphicon glyphicon-ok-sign"></span> Урок 1</li>
+							<li class="list-group-item border-fix course-process-bg"><span class="glyphicon glyphicon-ok-sign"></span> Урок 2</li>
+							<li class="list-group-item border-fix course-process-bg"><span class="glyphicon glyphicon-record"></span> Урок 3</li>
+							<li></li>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>

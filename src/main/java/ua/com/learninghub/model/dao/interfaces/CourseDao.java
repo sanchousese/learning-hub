@@ -23,7 +23,7 @@ public interface CourseDao {
 
     void delete(int courseId);
 
-    List<Course> selectByName(String name);
+    List<Course> selectByKeywords(List<String> keywords);
 
     List<Course> selectById(int idFrom, int idTo);
 
