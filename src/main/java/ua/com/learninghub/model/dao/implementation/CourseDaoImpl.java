@@ -30,7 +30,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
                 return selectById(search.getIdFrom(), search.getIdTo());
 
             case SEARCH_BY_KEYWORDS:
-                return selectByName(search.getKeywords());
+                return selectByKeywords(search.getKeywords());
 
             case SEARCH_BY_SPECIALITY:
                 return selectBySpeciality(search.getIdSpeciality());
@@ -102,21 +102,54 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         entityManager.close();
         return courses;
     }
+/*
+    class KeywordsList<String> extends ArrayList<String> {
+        ArrayList<String> keywords;
+        KeywordsList(List<String> kWords) {
+            keywords = new ArrayList<String>(kWords);
+        }
 
-    //select courses started with "cName" string
+        @Override
+        public java.lang.String toString() {
+            StringBuilder sb = new StringBuilder();
+            for (String keyword: keywords) {
+
+            }
+        }
+    }*/
+    //select courses started with sequence of keywords
     @Override
-    public List<Course> selectByName(String cName) {
-        String nameParam = "%" + cName + "%";
+    public List<Course> selectByKeywords(List <String> keywords) {
+
+        StringBuilder wordsParam = new StringBuilder();
+        formWordsParam(keywords, wordsParam);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         //SELECT DISTINCT * FROM learningdb.course
         // where learningdb.course.name like "%ver%" or learningdb.course.description like "%ver%";
 
-        Query query = entityManager.createQuery("SELECT DISTINCT courses FROM Course courses " +
-                "WHERE courses.name  LIKE :namePar OR courses.description LIKE :namePar");
-        query.setParameter("namePar",nameParam);
+        Query query = entityManager.createQuery("SELECT DISTINCT courses FROM Course courses WHERE " + wordsParam);
+        //query.setParameter("keywordsParam",wordsParam.toString());
         List<Course> courses = query.getResultList();
         entityManager.close();
         return courses;
+    }
+
+    private void formWordsParam(List<String> keywords, StringBuilder wordsParam) {
+        int i = 0;
+        int stop = keywords.size() - 1;
+        for (String keyword: keywords) {
+            keyword = "%" + keyword + "%";
+
+            String nextPartOfQuery;
+            if (i != stop) {
+                nextPartOfQuery = String.format("courses.name LIKE '%s' OR courses.description LIKE '%s' OR ", keyword, keyword);
+            }
+            else {
+                nextPartOfQuery = String.format("courses.name LIKE '%s' OR courses.description LIKE '%s'", keyword, keyword);
+            }
+            wordsParam.append(nextPartOfQuery);
+            i++;
+        }
     }
 
     //=====================================================================
@@ -161,6 +194,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         course1Upd.setPrice(course.getPrice());
         course1Upd.setRate(course.getPrice());
         course1Upd.setMainImagePath(course.getMainImagePath());
+        course1Upd.setMainVideoPath(course.getMainVideoPath());
         course1Upd.setSubject(course.getSubject());
         entityManager.getTransaction().commit();
         entityManager.close();

@@ -24,16 +24,15 @@ public class Course implements HibernateL2Cache {
     int idCourse;
 
     String name;
-    //@XmlJavaTypeAdapter(SqlDateAdapter.class)
     @XmlTransient
     Date beginDate;
-    //@XmlJavaTypeAdapter(SqlDateAdapter.class)
     @XmlTransient
     Date endDate;
     String description;
     int price;
     int rate;
     String mainImagePath;
+    String mainVideoPath;
 
     @JsonIgnore
     @ManyToMany
@@ -138,6 +137,14 @@ public class Course implements HibernateL2Cache {
 
     public void setMainImagePath(String mainImagePath) {
         this.mainImagePath = mainImagePath;
+    }
+
+    public String getMainVideoPath() {
+        return mainVideoPath;
+    }
+
+    public void setMainVideoPath(String mainVideoPath) {
+        this.mainVideoPath = mainVideoPath;
     }
 
     @Override
