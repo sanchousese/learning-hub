@@ -28,7 +28,6 @@
                           contentType: "application/json",
                           success: function(data) {
                               document.getElementById("user-info").innerHTML = data.login;
-
                           },
                           statusCode: {
                               403: function() {

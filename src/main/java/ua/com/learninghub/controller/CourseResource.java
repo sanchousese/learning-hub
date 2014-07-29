@@ -115,7 +115,7 @@ public class CourseResource {
         Course course = courseDao.selectById(courseId);
         String filename  = null;
         if(course != null) filename= course.getMainImagePath();
-        File f = FileSystemUtil.getCourseLogoByFilename(filename);
+        File f = FileSystemUtil.getCourseLogoByFilename(courseId, filename);
         String mt = new MimetypesFileTypeMap().getContentType(f);
         return Response.ok(f, mt).build();
     }

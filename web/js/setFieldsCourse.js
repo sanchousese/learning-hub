@@ -22,7 +22,7 @@ $.ajax({
 
         if(data.mainVideoPath != null) {
             jwplayer('IntroVideo').setup({
-                file: "http://localhost:8080/rest/course/getVideoStream",
+                file: "http://localhost:8080/rest/course/getVideoCourse/" + query,
                 title: 'Intro',
                 width: '100%',
                 aspectratio: '16:9',
