@@ -12,18 +12,25 @@ $.ajax({
     datatype: "json",
     contentType: "application/json",
     success: function(data) {
+        if(data.mainImagePath != null){
+            document.getElementById("courseLogo").src = 'http://localhost:8080/rest/course/getLogoImage/'+ query;
+        }
+
         document.getElementById("titleCourse").innerHTML = data.name;
         document.getElementById("priceCourse").innerHTML += data.price + " $";
         document.getElementById("descriptionCourse").innerHTML += data.description;
 
-        jwplayer('IntroVideo').setup({
-                file: 'http://localhost:8080/rest/course/getVideoStream',
+        if(data.mainVideoPath != null) {
+            jwplayer('IntroVideo').setup({
+                file: "http://localhost:8080/rest/course/getVideoCourse/" + query,
                 title: 'Intro',
                 width: '100%',
                 aspectratio: '16:9',
-                type:"mp4"
-         });
-
+                type: "mp4"
+            });
+        }else if(data.mainImagePath != null){
+            document.getElementById("IntroImage").src = 'http://localhost:8080/rest/course/getLogoImage/'+ query;
+        }
 //        document.getElementById("IntroVideo").innerHTML = ;
 
         for(i = 0; i < data.rate; i++)
@@ -33,7 +40,6 @@ $.ajax({
         getNumberOfStudent();
     }
 });
-
 
 function getNumberOfStudent() {
     $.ajax({

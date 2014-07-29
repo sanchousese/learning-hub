@@ -29,10 +29,10 @@ public class FileSystemUtil {
             throw new RuntimeException("Configuration file storage.info specify unavailable path.");
     }
 
-    public static File getCourseLogoByFilename(String filename){
+    public static File getCourseLogoByFilename(int courseId, String filename){
         File file = null;
         if(filename == null) file = getDefaultLogo();
-        else file = new File(storagePath + "img" + separator + "CourseLogo" +separator + filename);
+        else file = new File(storagePath + "courses"+ separator +courseId + separator + "img"  + separator + filename);
         if (!file.exists())
             file = getDefaultLogo();
         return file;
@@ -64,12 +64,15 @@ public class FileSystemUtil {
     }
 
 
-    public static File getVideoCourse(int courseId) {
-        return new File(new CourseDaoImpl().selectById(courseId).getMainVideoPath());
+    public static File getVideoCourse(int courseId) throws Exception {
+        File file = new File(storagePath + "courses"+ separator +courseId + separator + "video" + separator + new CourseDaoImpl().selectById(courseId).getMainVideoPath());
+        if (!file.exists())
+            throw new Exception();
+        return file;
     }
 
     public static File getVideo(){
-        File file = new File(storagePath + "courses/video/1.mp4");
+        File file = new File(storagePath + "courses" + separator + "video" + separator +"1.mp4");
         if (!file.exists())
             throw new RuntimeException("video wasn't found.");
         return file;
