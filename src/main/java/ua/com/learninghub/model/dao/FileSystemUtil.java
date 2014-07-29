@@ -1,6 +1,9 @@
 package ua.com.learninghub.model.dao;
 
 import com.sun.corba.se.spi.orbutil.fsm.Input;
+import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.CourseDao;
+import ua.com.learninghub.model.entities.Course;
 
 import javax.ws.rs.WebApplicationException;
 import java.io.*;
@@ -60,8 +63,13 @@ public class FileSystemUtil {
         }
     }
 
+
+    public static File getVideoCourse(int courseId) {
+        return new File(new CourseDaoImpl().selectById(courseId).getMainVideoPath());
+    }
+
     public static File getVideo(){
-        File file = new File(storagePath + "videos/courses/1.mp4");
+        File file = new File(storagePath + "courses/video/1.mp4");
         if (!file.exists())
             throw new RuntimeException("video wasn't found.");
         return file;

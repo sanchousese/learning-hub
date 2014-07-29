@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru"> 
   <head>
+      <script src="http://jwpsrv.com/library/GqOiVBZUEeScbiIACyaB8g.js"></script>
     <meta charset="utf-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,10 +155,16 @@ daughter (дотэр)- дочь
 brother (бразер) - брат
 sister (систер) - сестра
 grandfather (грэндфазер) - дедушка</p>
-           
-<video width="100%" height="100%" controls>
-  <source src="http://localhost:8080/rest/course/getVideoStream" type="video/mp4">
-</video>
+
+           <div id='playerclRcapJSeGbW'></div>
+           <script type='text/javascript'>
+               jwplayer('playerclRcapJSeGbW').setup({
+                   file: '//www.youtube.com/watch?v=hweCy5vJ1yk',
+                   title: 'Official DSA car practical test - Are you ready?',
+                   width: '100%',
+                   aspectratio: '16:9'
+               });
+           </script>
                      <p class="margin_top_15">please (плиз) - пожалуйста, прошу.  sorry (сори) - извините
 you are welcome (ю а вэлкам) - пожалуйста, не за что
 hello (хэллоу) - здравствуйте.   hi (хай) - привет

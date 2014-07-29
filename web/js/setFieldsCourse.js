@@ -16,6 +16,16 @@ $.ajax({
         document.getElementById("priceCourse").innerHTML += data.price + " $";
         document.getElementById("descriptionCourse").innerHTML += data.description;
 
+        jwplayer('IntroVideo').setup({
+                file: 'http://localhost:8080/rest/course/getVideoStream',
+                title: 'Intro',
+                width: '100%',
+                aspectratio: '16:9',
+                type:"mp4"
+         });
+
+//        document.getElementById("IntroVideo").innerHTML = ;
+
         for(i = 0; i < data.rate; i++)
             document.getElementById("ratingCourse").innerHTML += '<span class="glyphicon glyphicon-star"></span>';
         for(j = 0; j < 5 - data.rate; j++)
