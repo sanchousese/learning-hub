@@ -2,6 +2,8 @@ package ua.com.learninghub.controller;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.FileSystemUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
@@ -121,37 +123,48 @@ public class CourseResource {
     }
 
     //@RolesAllowed({"Moderator", "Teacher"})
+//    @POST
+//    @Path("/create")
+//    @Consumes(MediaType.MULTIPART_FORM_DATA)
+//    public Response create(
+//            @FormDataParam("name") String name,
+//            @FormDataParam("description") String description,
+//            @FormDataParam("price") int price,
+//            @FormDataParam("specialty") int specialty,
+//            @FormDataParam("discipline") int discipline,
+//            @FormDataParam("subject") int subject,
+//            @FormDataParam("file") InputStream fileInputStream,
+//            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+//
+//        String filename = contentDispositionHeader.getFileName();
+//        if(filename != null) {
+//            String extension = filename.substring(filename.lastIndexOf('.') + 1);
+//            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+//        }
+//
+//        System.out.println(specialty);
+//        System.out.println(discipline);
+//        System.out.println(subject);
+//
+//        Course course = new Course(name, description, price, filename);
+//        course.setSubject(subjectDao.selectById(1));
+//        if(courseDao.insert(course)) {
+//            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename);
+//            return Response.status(200).build();
+//        } else return Response.status(401).build();
+//    }
+
     @POST
     @Path("/create")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response create(
-            @FormDataParam("name") String name,
-            @FormDataParam("description") String description,
-            @FormDataParam("price") int price,
-            @FormDataParam("specialty") int specialty,
-            @FormDataParam("discipline") int discipline,
-            @FormDataParam("subject") int subject,
-            @FormDataParam("file") InputStream fileInputStream,
-            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader,
-            @FormDataParam("file2") InputStream file2InputStream,
-            @FormDataParam("file2") FormDataContentDisposition content2DispositionHeader) {
-
-        String filename = contentDispositionHeader.getFileName();
-        if(filename != null) {
-            String extension = filename.substring(filename.lastIndexOf('.') + 1);
-            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
-        }
-
-        System.out.println(specialty);
-        System.out.println(discipline);
-        System.out.println(subject);
-        System.out.println(content2DispositionHeader.getFileName());
-
-        Course course = new Course(name, description, price, filename);
-        course.setSubject(subjectDao.selectById(1));
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response create(JSONObject json) throws JSONException {
+        Course course = new Course();
+        course.setName((String)json.get("name"));
+        course.setDescription((String)json.get("description"));
+        course.setPrice((Integer)json.get("price"));
+        course.setSubject(subjectDao.selectById((Integer)json.get("subject")));
         if(courseDao.insert(course)) {
-            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename);
-            return Response.status(200).build();
+            return Response.ok(course.getIdCourse()).build();
         } else return Response.status(401).build();
     }
 

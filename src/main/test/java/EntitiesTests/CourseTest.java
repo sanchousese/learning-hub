@@ -24,7 +24,7 @@ public class CourseTest {
     @Test
     public void insertCourse(){
         Course course = new Course();
-        course.setName("PHP");
+        course.setName("PHP2");
         //course.setBeginDate(new Date(2014, 5, 28));
         course.setDescription("Some very good description");
         //course.setEndDate(new Date(2014, 7, 28));
@@ -33,6 +33,7 @@ public class CourseTest {
         course.setMainImagePath("img\\1.jpg");
         course.setSubject((new SubjectDaoImpl()).selectById(1));
         courseDao.insert(course);
+        System.out.println(course.getIdCourse());
     }
 
     @Test

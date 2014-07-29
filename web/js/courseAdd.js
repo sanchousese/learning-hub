@@ -97,23 +97,39 @@ category.getSubject();
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
-        var ajax = new XMLHttpRequest();
-        //ajax.upload.addEventListener("progress", progressHandler, false);
-        ajax.open("POST", "http://localhost:8080/rest/course/create");
-        var file_data = $("#uploadImageFile").prop("files")[0];
-        var form_data = new FormData();
-        form_data.append("file", file_data);
-        var file2_data = $("#uploadVideoFile").prop("files")[0];
-        var form2_data = new FormData();
-        form_data.append("file2", file2_data);
-        form_data.append("name", $("#courseNameD").val());
-        form_data.append("description", $("#courseDescD").val());
-        form_data.append("price", $("#coursePriceD").val());
-        form_data.append("specialty", category.spec);
-        form_data.append("discipline", category.desc);
-        form_data.append("subject", category.subj);
-        ajax.addEventListener("load", function() { window.location.href = "index.html";}, false);
-        ajax.addEventListener("error", function() { alert("Internal error");}, false);
-        ajax.send(form_data);
+        var cour = {
+            name: $("#courseNameD").val(),
+            description: $("#courseDescD").val(),
+            price : $("#coursePriceD").val(),
+            subject: category.subj
+        };
+        $.ajax({
+            data: JSON.stringify(cour),
+            type: "POST",
+            url: "http://localhost:8080/rest/course/create",
+            datatype: "json",
+            contentType: "application/json",
+            success: function(data) {
+                alert(data);
+            }
+        });
     }
 }
+//var ajax = new XMLHttpRequest();
+////ajax.upload.addEventListener("progress", progressHandler, false);
+//ajax.open("POST", "http://localhost:8080/rest/course/create");
+//var file_data = $("#uploadImageFile").prop("files")[0];
+//var form_data = new FormData();
+//form_data.append("file", file_data);
+////        var file2_data = $("#uploadVideoFile").prop("files")[0];
+////        var form2_data = new FormData();
+////        form_data.append("file", file2_data);
+//form_data.append("name", $("#courseNameD").val());
+//form_data.append("description", $("#courseDescD").val());
+//form_data.append("price", $("#coursePriceD").val());
+//form_data.append("specialty", category.spec);
+//form_data.append("discipline", category.desc);
+//form_data.append("subject", category.subj);
+//ajax.addEventListener("load", function() { window.location.href = "index.html";}, false);
+//ajax.addEventListener("error", function() { alert("Internal error");}, false);
+//ajax.send(form_data);
