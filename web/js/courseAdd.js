@@ -113,7 +113,7 @@ function AddCourseInfo() {
                var courseId = data;
                 uploadCourseLogo(courseId);
                 uploadCourseIntro(courseId);
-                window.location.href = "index.html"; //redirect? need to uncomment
+                //window.location.href = "index.html"; //redirect? need to uncomment
             }
         });
     }
@@ -148,8 +148,8 @@ function uploadCourseIntro(courseId){
         ajax.open("POST", "http://localhost:8080/rest/course/uploadMainIntro");
         form_data.append("file", file_data);
         form_data.append("courseId", courseId);
-        ajax.addEventListener("success", function () {
-            //window.location.href = "index.html";
+        ajax.addEventListener("load", function () {
+            window.location.href = "index.html";
         }, false);
         ajax.addEventListener("error", function () {
             alert("Internal error");
