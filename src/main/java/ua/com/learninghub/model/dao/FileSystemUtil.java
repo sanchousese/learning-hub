@@ -64,8 +64,11 @@ public class FileSystemUtil {
     }
 
 
-    public static File getVideoCourse(int courseId) {
-        return new File(new CourseDaoImpl().selectById(courseId).getMainVideoPath());
+    public static File getVideoCourse(int courseId) throws Exception {
+        File file = new File(new CourseDaoImpl().selectById(courseId).getMainVideoPath());
+        if (!file.exists())
+            throw new Exception();
+        return file;
     }
 
     public static File getVideo(){

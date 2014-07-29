@@ -85,7 +85,12 @@ public class CourseResource {
     @Path("/getVideoCourse/{courseId}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response getVideoCourse(@PathParam("courseId") int courseId){
-        File file = FileSystemUtil.getVideoCourse(courseId);
+        File file = null;
+        try {
+            file = FileSystemUtil.getVideoCourse(courseId);
+        } catch (Exception e) {
+            Response.status(401).build();
+        }
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
