@@ -17,10 +17,11 @@ $.ajax({
         document.getElementById("descriptionCourse").innerHTML += data.description;
 
         jwplayer('IntroVideo').setup({
-                file: '//www.youtube.com/watch?v=hweCy5vJ1yk',
-                title: 'Official DSA car practical test - Are you ready?',
+                file: 'http://localhost:8080/rest/course/getVideoStream',
+                title: 'Intro',
                 width: '100%',
-                aspectratio: '16:9'
+                aspectratio: '16:9',
+                type:"mp4"
          });
 
 //        document.getElementById("IntroVideo").innerHTML = ;
