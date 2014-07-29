@@ -291,6 +291,9 @@ hr {
 .margin-top-fix {
  margin-top: 0;
 }
+.margin-bottom-fix {
+ margin-top: 0;
+}
 .navbar-nav.navbar-right:last-child{
     margin-right: 0;
 }
@@ -362,4 +365,8 @@ background: #f0f0f0;
 }
 .outline-fix {
     outline: none;
+}
+.progress_fix{
+    margin-top: 10px;
+    margin-bottom: 0;
 }
