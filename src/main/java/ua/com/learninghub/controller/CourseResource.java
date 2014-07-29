@@ -77,16 +77,23 @@ public class CourseResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/info/{courseId}") // ...8080/rest/courses/1234
-    public Course getCourse(@PathParam("courseId") String courseId) {
-        //courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size();
-        return courseDao.selectById((new Integer(courseId)).intValue());
+    public Course getCourse(@PathParam("courseId") int courseId) {
+        return courseDao.selectById(courseId);
+    }
+
+    @GET
+    @Path("/getVideoCourse/{courseId}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getVideoCourse(@PathParam("courseId") int courseId){
+        File file = FileSystemUtil.getVideoCourse(courseId);
+        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
     @GET
     @Produces("text/plain")
     @Path("/info/{courseId}/numberOfPeople") // ...8080/rest/courses/1234
-    public String getNumberOfPeopleCourse(@PathParam("courseId") String courseId) {
-        return String.valueOf(courseDao.selectById((new Integer(courseId)).intValue()).getUsers().size());
+    public String getNumberOfPeopleCourse(@PathParam("courseId") int courseId) {
+        return String.valueOf(courseDao.selectById(courseId).getUsers().size());
     }
 
     @GET

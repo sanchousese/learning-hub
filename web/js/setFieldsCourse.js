@@ -16,6 +16,15 @@ $.ajax({
         document.getElementById("priceCourse").innerHTML += data.price + " $";
         document.getElementById("descriptionCourse").innerHTML += data.description;
 
+        jwplayer('IntroVideo').setup({
+                file: '//www.youtube.com/watch?v=hweCy5vJ1yk',
+                title: 'Official DSA car practical test - Are you ready?',
+                width: '100%',
+                aspectratio: '16:9'
+         });
+
+//        document.getElementById("IntroVideo").innerHTML = ;
+
         for(i = 0; i < data.rate; i++)
             document.getElementById("ratingCourse").innerHTML += '<span class="glyphicon glyphicon-star"></span>';
         for(j = 0; j < 5 - data.rate; j++)
