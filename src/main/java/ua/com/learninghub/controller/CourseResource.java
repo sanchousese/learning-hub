@@ -132,7 +132,9 @@ public class CourseResource {
             @FormDataParam("discipline") int discipline,
             @FormDataParam("subject") int subject,
             @FormDataParam("file") InputStream fileInputStream,
-            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader,
+            @FormDataParam("file2") InputStream file2InputStream,
+            @FormDataParam("file2") FormDataContentDisposition content2DispositionHeader) {
 
         String filename = contentDispositionHeader.getFileName();
         if(filename != null) {
@@ -143,6 +145,7 @@ public class CourseResource {
         System.out.println(specialty);
         System.out.println(discipline);
         System.out.println(subject);
+        System.out.println(content2DispositionHeader.getFileName());
 
         Course course = new Course(name, description, price, filename);
         course.setSubject(subjectDao.selectById(1));

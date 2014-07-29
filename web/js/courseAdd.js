@@ -103,6 +103,9 @@ function AddCourseInfo() {
         var file_data = $("#uploadImageFile").prop("files")[0];
         var form_data = new FormData();
         form_data.append("file", file_data);
+        var file2_data = $("#uploadVideoFile").prop("files")[0];
+        var form2_data = new FormData();
+        form_data.append("file2", file2_data);
         form_data.append("name", $("#courseNameD").val());
         form_data.append("description", $("#courseDescD").val());
         form_data.append("price", $("#coursePriceD").val());
