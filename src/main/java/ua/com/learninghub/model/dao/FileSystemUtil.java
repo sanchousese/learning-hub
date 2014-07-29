@@ -7,6 +7,7 @@ import ua.com.learninghub.model.entities.Course;
 
 import javax.ws.rs.WebApplicationException;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 /**
@@ -39,30 +40,55 @@ public class FileSystemUtil {
     }
 
     private static File getDefaultLogo(){
-        File file = new File(storagePath + "img" + separator + "CourseLogo" + separator + "default.jpg");
+        File file = new File(storagePath + "courses" + separator + "default.jpg");
         if (!file.exists())
             throw new RuntimeException("Default course logo wasn't found.");
         return file;
     }
 
-    public static void writeCourseLogo(InputStream fileInputStream, String filename){
+    public static void writeCourseLogo(InputStream fileInputStream, String filename, int courseId){
         try {
-            OutputStream outpuStream = new FileOutputStream(
-                    new File(storagePath + "img" + separator + "CourseLogo" + separator + filename));
+            File out = new File(storagePath + "courses" + separator + courseId + separator + "img" + separator + filename);
+            if(!out.exists()){
+                out.getParentFile().mkdirs();
+                //out.createNewFile();
+            }
+            OutputStream outputStream = new FileOutputStream(out);
             int read = 0;
             byte[] bytes = new byte[1024];
 
             while ((read = fileInputStream.read(bytes)) != -1) {
-                outpuStream.write(bytes, 0, read);
+                outputStream.write(bytes, 0, read);
             }
-            outpuStream.flush();
-            outpuStream.close();
+            outputStream.flush();
+            outputStream.close();
         } catch (IOException e) {
 
             e.printStackTrace();
         }
     }
 
+    public static void writeMainIntro(InputStream fileInputStream, String filename, int courseId) {
+        try {
+            File out = new File(storagePath + "courses" + separator + courseId + separator + "video" + separator + filename);
+            if(!out.exists()){
+                out.getParentFile().mkdirs();
+                //out.createNewFile();
+            }
+            OutputStream outputStream = new FileOutputStream(out);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = fileInputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
 
     public static File getVideoCourse(int courseId) throws Exception {
         File file = new File(storagePath + "courses"+ separator +courseId + separator + "video" + separator + new CourseDaoImpl().selectById(courseId).getMainVideoPath());

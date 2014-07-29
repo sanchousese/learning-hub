@@ -180,25 +180,31 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
 }
 
     @Override
-    public Course update(Course course) {
+    public boolean update(Course course) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Course course1Upd = (Course) entityManager.find(Course.class, course.getIdCourse());
 
-        if (course1Upd == null) return null;
+        if (course1Upd == null) return false;
 
-        entityManager.getTransaction().begin();
-        course1Upd.setName(course.getName());
-        //course1Upd.setBeginDate(course.getBeginDate());
-        course1Upd.setDescription(course.getDescription());
-        //course1Upd.setEndDate(course.getEndDate());
-        course1Upd.setPrice(course.getPrice());
-        course1Upd.setRate(course.getPrice());
-        course1Upd.setMainImagePath(course.getMainImagePath());
-        course1Upd.setMainVideoPath(course.getMainVideoPath());
-        course1Upd.setSubject(course.getSubject());
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return course1Upd;
+        try {
+            entityManager.getTransaction().begin();
+            course1Upd.setName(course.getName());
+            //course1Upd.setBeginDate(course.getBeginDate());
+            course1Upd.setDescription(course.getDescription());
+            //course1Upd.setEndDate(course.getEndDate());
+            course1Upd.setPrice(course.getPrice());
+            course1Upd.setRate(course.getPrice());
+            course1Upd.setMainImagePath(course.getMainImagePath());
+            course1Upd.setMainVideoPath(course.getMainVideoPath());
+            course1Upd.setSubject(course.getSubject());
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+        finally {
+            entityManager.close();
+        }
     }
 
     @Override

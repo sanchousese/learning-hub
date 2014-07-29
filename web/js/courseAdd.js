@@ -110,26 +110,57 @@ function AddCourseInfo() {
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
-                alert(data);
+               var courseId = data;
+                uploadCourseLogo(courseId);
+                uploadCourseIntro(courseId);
+                window.location.href = "index.html"; //redirect? need to uncomment
             }
         });
     }
 }
-//var ajax = new XMLHttpRequest();
-////ajax.upload.addEventListener("progress", progressHandler, false);
-//ajax.open("POST", "http://localhost:8080/rest/course/create");
-//var file_data = $("#uploadImageFile").prop("files")[0];
-//var form_data = new FormData();
-//form_data.append("file", file_data);
-////        var file2_data = $("#uploadVideoFile").prop("files")[0];
-////        var form2_data = new FormData();
-////        form_data.append("file", file2_data);
-//form_data.append("name", $("#courseNameD").val());
-//form_data.append("description", $("#courseDescD").val());
-//form_data.append("price", $("#coursePriceD").val());
-//form_data.append("specialty", category.spec);
-//form_data.append("discipline", category.desc);
-//form_data.append("subject", category.subj);
-//ajax.addEventListener("load", function() { window.location.href = "index.html";}, false);
-//ajax.addEventListener("error", function() { alert("Internal error");}, false);
-//ajax.send(form_data);
+
+function uploadCourseLogo(courseId) {
+    var file_data = $("#uploadImageFile").prop("files")[0];
+    if (file_data != null) {
+        alert("image found");
+        var form_data = new FormData();
+        var ajax = new XMLHttpRequest();
+        //ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.open("POST", "http://localhost:8080/rest/course/uploadMainLogo");
+        form_data.append("file", file_data);
+        form_data.append("courseId", courseId);
+        ajax.addEventListener("success", function () {
+            //alert("upload ok.")
+        }, false);
+        ajax.addEventListener("error", function () {
+            alert("Internal error");
+        }, false);
+        ajax.send(form_data);
+    }
+}
+
+function uploadCourseIntro(courseId){
+    var file_data = $("#uploadVideoFile").prop("files")[0];
+    if (file_data != null) {
+        var form_data = new FormData();
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.open("POST", "http://localhost:8080/rest/course/uploadMainIntro");
+        form_data.append("file", file_data);
+        form_data.append("courseId", courseId);
+        ajax.addEventListener("success", function () {
+            //window.location.href = "index.html";
+        }, false);
+        ajax.addEventListener("error", function () {
+            alert("Internal error");
+        }, false);
+        ajax.send(form_data);
+    }
+}
+
+function progressHandler(event){
+    var valeur = Math.round((event.loaded / event.total) * 100);
+    //alert(valeur);
+    $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);
+
+}

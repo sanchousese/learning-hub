@@ -123,48 +123,67 @@ public class CourseResource {
     }
 
     //@RolesAllowed({"Moderator", "Teacher"})
-//    @POST
-//    @Path("/create")
-//    @Consumes(MediaType.MULTIPART_FORM_DATA)
-//    public Response create(
-//            @FormDataParam("name") String name,
-//            @FormDataParam("description") String description,
-//            @FormDataParam("price") int price,
-//            @FormDataParam("specialty") int specialty,
-//            @FormDataParam("discipline") int discipline,
-//            @FormDataParam("subject") int subject,
-//            @FormDataParam("file") InputStream fileInputStream,
-//            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
-//
-//        String filename = contentDispositionHeader.getFileName();
-//        if(filename != null) {
-//            String extension = filename.substring(filename.lastIndexOf('.') + 1);
-//            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
-//        }
-//
-//        System.out.println(specialty);
-//        System.out.println(discipline);
-//        System.out.println(subject);
-//
-//        Course course = new Course(name, description, price, filename);
-//        course.setSubject(subjectDao.selectById(1));
-//        if(courseDao.insert(course)) {
-//            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename);
-//            return Response.status(200).build();
-//        } else return Response.status(401).build();
-//    }
-
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response create(JSONObject json) throws JSONException {
+        //need to manage this code
         Course course = new Course();
         course.setName((String)json.get("name"));
         course.setDescription((String)json.get("description"));
-        course.setPrice((Integer)json.get("price"));
+        course.setPrice(new Integer((String)json.get("price")));
         course.setSubject(subjectDao.selectById((Integer)json.get("subject")));
         if(courseDao.insert(course)) {
-            return Response.ok(course.getIdCourse()).build();
+            return Response.ok(new String(Integer.toString(course.getIdCourse()))).build();
+        } else return Response.status(401).build();
+    }
+
+    //@RolesAllowed({"Moderator", "Teacher"})
+    @POST
+    @Path("/uploadMainLogo")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response uploadMainLogo(
+            @FormDataParam("courseId") String courseId,
+            @FormDataParam("file") InputStream fileInputStream,
+            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+
+        String filename = contentDispositionHeader.getFileName();
+        if(filename != null) {
+            String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+        }
+
+        Course course = courseDao.selectById(new Integer(courseId));
+        //if not null
+        course.setMainImagePath(filename);
+        if(courseDao.update(course)) {
+            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename, new Integer(courseId));
+            return Response.status(200).build();
+        } else return Response.status(401).build();
+    }
+
+    //@RolesAllowed({"Moderator", "Teacher"})
+    @POST
+    @Path("/uploadMainIntro")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response uploadMainIntro(
+            @FormDataParam("courseId") String courseId,
+            @FormDataParam("file") InputStream fileInputStream,
+            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+
+        String filename = contentDispositionHeader.getFileName();
+        if(filename != null) {
+            String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
+        }
+
+        Course course = courseDao.selectById(new Integer(courseId));
+        //if not null
+        course.setMainVideoPath(filename);
+        if(courseDao.update(course)) {
+            if(filename != null ) FileSystemUtil.writeMainIntro(fileInputStream, filename, new Integer(courseId));
+            return Response.status(200).build();
         } else return Response.status(401).build();
     }
 

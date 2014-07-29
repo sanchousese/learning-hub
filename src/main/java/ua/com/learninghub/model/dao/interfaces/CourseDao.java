@@ -17,7 +17,7 @@ public interface CourseDao {
 
     Course selectById(int id);
 
-    Course update(Course course);
+    boolean update(Course course);
 
     boolean insert(Course course);
 
