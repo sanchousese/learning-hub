@@ -9,7 +9,7 @@ $.ajax({
     //data: str,
     type: "GET",
 //    url: "http://localhost:8080/rest/course/getAll",
-    url: "http://localhost:8080/rest/search/courses/byKeywords?keywords="+keyWords,
+    url: "rest/search/courses/byKeywords?keywords="+keyWords,
     datatype: "json",
     contentType: "application/json",
     success: function(data) {
@@ -28,7 +28,7 @@ $.ajax({
                 '</div>';
             }
         for (var i = 0; i < data.length; i++) {
-            $("#courseMainImage"+i).attr('src','http://localhost:8080/rest/course/getLogoImage/'+(data[i].idCourse));
+            $("#courseMainImage"+i).attr('src','rest/course/getLogoImage/'+(data[i].idCourse));
         }
         }
     });

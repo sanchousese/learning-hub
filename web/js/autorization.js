@@ -9,7 +9,7 @@
       function addData(data) {// pass your data in method
           $.ajax({
               type: "POST",
-              url: "http://localhost:8080/rest/user/login",
+              url: "rest/user/login",
               data: JSON.stringify(data),
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -23,7 +23,7 @@
                       $.ajax({
                           //data: str,
                           type: "POST",
-                          url: "http://localhost:8080/rest/user/userInfo",
+                          url: "rest/user/userInfo",
                           datatype: "json",
                           contentType: "application/json",
                           success: function(data) {
@@ -46,7 +46,7 @@
       function logoutButton() {
           $.ajax({
               type: "POST",
-              url: "http://localhost:8080/rest/user/logout",
+              url: "rest/user/logout",
               contentType: "application/json; charset=utf-8",
               statusCode: {
                   200: function () {
@@ -65,7 +65,7 @@
       $.ajax({
           //data: str,
           type: "POST",
-          url: "http://localhost:8080/rest/user/userInfo",
+          url: "rest/user/userInfo",
           datatype: "json",
           contentType: "application/json",
           success: function(data) {

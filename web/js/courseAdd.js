@@ -6,7 +6,7 @@ function CCategory(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "http://localhost:8080/rest/course/getSpecialty",
+            url: "rest/course/getSpecialty",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -29,7 +29,7 @@ function CCategory(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "http://localhost:8080/rest/course/getDiscipline",
+            url: "rest/course/getDiscipline",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -51,7 +51,7 @@ function CCategory(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "http://localhost:8080/rest/course/getSubject",
+            url: "rest/course/getSubject",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -106,7 +106,7 @@ function AddCourseInfo() {
         $.ajax({
             data: JSON.stringify(cour),
             type: "POST",
-            url: "http://localhost:8080/rest/course/create",
+            url: "rest/course/create",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -126,7 +126,7 @@ function uploadCourseLogo(courseId) {
         var form_data = new FormData();
         var ajax = new XMLHttpRequest();
         //ajax.upload.addEventListener("progress", progressHandler, false);
-        ajax.open("POST", "http://localhost:8080/rest/course/uploadMainLogo");
+        ajax.open("POST", "rest/course/uploadMainLogo");
         form_data.append("file", file_data);
         form_data.append("courseId", courseId);
         ajax.addEventListener("success", function () {
@@ -145,7 +145,7 @@ function uploadCourseIntro(courseId){
         var form_data = new FormData();
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
-        ajax.open("POST", "http://localhost:8080/rest/course/uploadMainIntro");
+        ajax.open("POST", "rest/course/uploadMainIntro");
         form_data.append("file", file_data);
         form_data.append("courseId", courseId);
         ajax.addEventListener("load", function () {

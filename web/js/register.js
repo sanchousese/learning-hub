@@ -14,7 +14,7 @@
         function addUser(data) {// pass your data in method
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/rest/user/addUser",
+                url: "rest/user/addUser",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
