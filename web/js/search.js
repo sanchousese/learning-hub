@@ -1,5 +1,5 @@
-  function search_btn(){
-          var keyWords = $('#searchField').val();
+  function searchByKeywords(){
+        var keyWords = $('#searchField').val();
         alert(keyWords);
         catalogCourses(keyWords);
     }              
@@ -33,3 +33,5 @@ $.ajax({
         }
     });
 }
+
+
