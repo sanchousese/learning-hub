@@ -37,6 +37,9 @@ public class CriteriaFilterResource {
     public Response getSubjects(@QueryParam(value = "idDiscipline") int idDiscipline){
         Discipline discipline = disciplineDao.selectById(idDiscipline);
 
+        if(discipline == null)
+            return Response.status(Response.Status.NOT_FOUND).build();
+
         List<Subject> subjects = discipline.getSubjects();
 
 
@@ -80,5 +83,4 @@ public class CriteriaFilterResource {
         }).build();
     }
 }
-
 

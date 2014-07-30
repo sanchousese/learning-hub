@@ -153,6 +153,13 @@
          
           <div class="panel-heading">
              <div class="form-inline" role="form">
+             <select class="form-control"><!--selectpicker btn btn-default-->
+            <option>По популярности</option>
+            <option>По дате добавления</option>
+            <option>О  дешевым к дорогим</option>
+            <option>От дорогих к дешевым</option>
+            </select>
+<!--
               <div class="form-group">
               <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -160,17 +167,18 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1">По популярности</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1">По дате добавления</a></li>
     <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По возростанию цены</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По убыванию цены</a></li>
     </ul>
     </div>
         </div>
+-->
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search" id="searchField">
-      <a class="btn btn-default" onclick="search_btn()" >Submit</a>
+      <a class="btn btn-default" onclick="searchByKeywords()" >Search</a>
   </div>
          <div class="form-group">    
         <div class="btn-group" data-toggle="buttons">
@@ -277,7 +285,7 @@
           </div><!--/row-->
         </div>
                        <div class="panel-footer">
-                           <ul class="pagination">
+                           <ul class="col-md-offset-4 pagination">
                               <li class="disabled"><span>&laquo;</span></li>
                               <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
                                   <li><a href="#">2</a></li>

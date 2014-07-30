@@ -6,17 +6,35 @@ import java.util.List;
  * Created by Max on 28.07.2014.
  */
 public class CourseSearch {
+    CourseSearchType searchType;
+    CourseSortType sortType;
+    CourseSortDirection sortDirection;
 
     private int idFrom;
     private int idTo;
 
-    private List<String> keywords;
+    private String keywords;
 
     private int idSpeciality;
     private int idDiscipline;
     private int idSubject;
 
-    CourseSearchType searchType;
+
+    public CourseSortType getSortType() {
+        return sortType;
+    }
+
+    public void setSortType(String sortType) {
+        this.sortType = CourseSortType.valueOf(sortType);
+    }
+
+    public CourseSortDirection getSortDirection() {
+        return sortDirection;
+    }
+
+    public void setSortDirection(String sortDirection) {
+        this.sortDirection = CourseSortDirection.valueOf(sortDirection);
+    }
 
     public CourseSearchType getSearchType() {
         return searchType;
@@ -42,11 +60,11 @@ public class CourseSearch {
         this.idTo = idTo;
     }
 
-    public List<String> getKeywords() {
+    public String getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(List<String> keywords) {
+    public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 

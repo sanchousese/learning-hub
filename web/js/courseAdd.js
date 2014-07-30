@@ -11,11 +11,13 @@ function CCategory(){
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("collapseOne");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                            '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
+                category.desc = 0;
                 //debugger;
             },
             statusCode: {
@@ -27,22 +29,25 @@ function CCategory(){
     }
     this.getDiscipline = function(){
         $.ajax({
-            //data: str,
+            //data: category.spec,
             type: "GET",
-            url: "rest/course/getDiscipline",
+            url: "rest/search/filter/disciplines?idSpeciality=" + category.spec,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("DisciplineD");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                    '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
-                    '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
+                category.subj = 0;
             },
             statusCode: {
-                410: function() {
-                    alert("Internal error")
+                404: function() {
+                    var div = document.getElementById("DisciplineD");
+                    div.innerHTML = "";
                 }
             }
         });
@@ -51,20 +56,22 @@ function CCategory(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "rest/course/getSubject",
+            url: "rest/search/filter/subjects?idDiscipline=" + category.desc,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("collapseThree");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                    '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
-                    '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
             },
             statusCode: {
-                410: function() {
-                    alert("Internal error")
+                404: function() {
+                    var div = document.getElementById("collapseThree");
+                    div.innerHTML = "";
                 }
             }
         });
@@ -75,6 +82,9 @@ function CCategory(){
             category.spec = index;
             $("#discipline").removeAttr("disabled");
             $("#discipline").click();
+            category.desc = 0;
+            category.getDiscipline();
+            category.getSubject();
         }
         if(type == 1){
             //alert("update 1" + index);
@@ -82,6 +92,8 @@ function CCategory(){
             //$("#subjDHide").click();
             $("#subject").removeAttr("disabled");
             $("#subject").click();
+            category.subj = 0;
+            category.getSubject();
         }
         if(type == 2){
             //alert("update " + index);
@@ -92,8 +104,8 @@ function CCategory(){
 
 var category = new CCategory();
 category.getSpecialty();
-category.getDiscipline();
-category.getSubject();
+//category.getDiscipline();
+//category.getSubject();
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
@@ -110,7 +122,7 @@ function AddCourseInfo() {
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
-               var courseId = data;
+                var courseId = data;
                 uploadCourseLogo(courseId);
                 uploadCourseIntro(courseId);
                 //window.location.href = "index.html"; //redirect? need to uncomment
