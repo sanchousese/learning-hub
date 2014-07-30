@@ -153,11 +153,11 @@
          
           <div class="panel-heading">
              <div class="form-inline" role="form">
-             <select class="form-control"><!--selectpicker btn btn-default-->
-            <option>По популярности</option>
-            <option>По дате добавления</option>
-            <option>О  дешевым к дорогим</option>
-            <option>От дорогих к дешевым</option>
+             <select class="form-control" id="sortDropdown" onclick="searchByKeywords()"><!--selectpicker btn btn-default-->
+                <option value="SORT_BY_POPULARITY">По популярности</option>
+                <option value="SORT_BY_DATE">По дате добавления</option>
+                <option value="SORT_BY_PRICE">О  дешевым к дорогим</option>
+                <option value="SORT_BY_PRICE_DESC">От дорогих к дешевым</option>
             </select>
 <!--
               <div class="form-group">

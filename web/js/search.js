@@ -7,8 +7,12 @@ var searchObject = {
 
 function searchByKeywords(){
     var keyWords = $('#searchField').val();
-    //var searchType = ()())(()()()90
+
+    var selcetedOption = document.getElementById("sortDropdown");
+    var sortType = selcetedOption.options[selcetedOption.selectedIndex].value;
+
     searchObject.keywords = keyWords;
+    searchObject.sortType = sortType;
 
     getCoursesCatalog(searchObject);
 }
@@ -37,6 +41,8 @@ function getCoursesCatalog(searchObj) {
         contentType: "application/json",
         dataType: "json",
         success: function(data) {
+
+            document.getElementById("courseContainer").innerHTML = "";
             var div = document.getElementById("courseContainer");
 
             for (var i = 0; i < data.length; i++) {
