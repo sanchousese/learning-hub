@@ -13,6 +13,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,12 +35,8 @@ public class CourseSearchResource {
         courseSearch.setIdFrom(2);
         courseSearch.setIdTo(4);
         
-        List<String> searchParams = new ArrayList<String>();
-        searchParams.add("SQL");
-        searchParams.add("PHP");
-        searchParams.add("HTML");
-        searchParams.add("desc");
-       
+        String searchParams = "SQL";
+
         courseSearch.setKeywords(searchParams);
         
         courseSearch.setSearchType("SEARCH_BY_RANGES");
@@ -48,12 +45,12 @@ public class CourseSearchResource {
     }
 
     //================TEST VERSION===============
-    @GET     //must be POST
+    @POST     //must be POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchForCourses() {     // formal parameter must be of CourseSearch type
+    public Response searchForCourses(CourseSearch search) {     // formal parameter must be of CourseSearch type
         //=============just stub====================
-        CourseSearch search = new CourseSearch();
+        /*CourseSearch search = new CourseSearch();
         search.setIdSubject(1);
         search.setIdDiscipline(2);
         search.setIdSpeciality(3);
@@ -65,7 +62,7 @@ public class CourseSearchResource {
 
         search.setKeywords(searchParams);
 
-        search.setSearchType("SEARCH_BY_KEYWORDS");
+        search.setSearchType("SEARCH_BY_KEYWORDS");*/
 //======================================================================
 
         List<Course> courses = courseDao.findByConstraints(search);
@@ -130,9 +127,9 @@ public class CourseSearchResource {
     @GET
     @Path("/byKeywords")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchByName(@QueryParam(value="keywords") List<String> keywords) {
+    public Response searchByName(@QueryParam(value="keywords") String keywordsStr) {
 
-        List<Course> courses = courseDao.selectByKeywords(keywords);
+        List<Course> courses = courseDao.selectByKeywords(keywordsStr);
 
         if (courses == null || courses.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();

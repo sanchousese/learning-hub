@@ -9,8 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by vasax32 on 17.07.14.
@@ -30,7 +29,17 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
                 return selectById(search.getIdFrom(), search.getIdTo());
 
             case SEARCH_BY_KEYWORDS:
-                return selectByKeywords(search.getKeywords());
+                List<Course> courses = selectByKeywords(search.getKeywords());
+                if (search.getSortType() == CourseSortType.SORT_BY_PRICE) {
+                    Collections.sort(courses, new CoursePriceComparator());
+                }
+
+                else if (search.getSortType() == CourseSortType.SORT_BY_POPULARITY) {
+                    Collections.sort(courses, new CourseRateComparator());
+                }
+
+                return courses;
+
 
             case SEARCH_BY_SPECIALITY:
                 return selectBySpeciality(search.getIdSpeciality());
@@ -119,7 +128,10 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     }*/
     //select courses started with sequence of keywords
     @Override
-    public List<Course> selectByKeywords(List <String> keywords) {
+    public List<Course> selectByKeywords(String keywordsStr) {
+
+        String[] keywordsArray = keywordsStr.split(" ");
+        List<String> keywords = Arrays.asList(keywordsArray);
 
         StringBuilder wordsParam = new StringBuilder();
         formWordsParam(keywords, wordsParam);
@@ -229,4 +241,15 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         //delete from course where courseid = ?
     }
 
+}
+
+class CoursePriceComparator implements Comparator<Course> {
+    public int compare(Course Course1, Course Course2) {
+        return Course1.getPrice() - Course2.getPrice();
+    }
+}
+class CourseRateComparator implements Comparator<Course> {
+    public int compare(Course Course1, Course Course2) {
+        return Course1.getRate() - Course2.getRate();
+    }
 }
