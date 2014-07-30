@@ -27,9 +27,9 @@ function CCategory(){
     }
     this.getDiscipline = function(){
         $.ajax({
-            //data: str,
+            //data: category.spec,
             type: "GET",
-            url: "rest/course/getDiscipline",
+            url: "rest/search/filter/disciplines?idSpeciality=" + category.spec,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -41,8 +41,9 @@ function CCategory(){
                 }
             },
             statusCode: {
-                410: function() {
-                    alert("Internal error")
+                404: function() {
+                    var div = document.getElementById("DisciplineD");
+                    div.innerHTML = "";
                 }
             }
         });
@@ -51,7 +52,7 @@ function CCategory(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "rest/course/getSubject",
+            url: "rest/search/filter/subjects?idDiscipline=" + category.desc,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -63,8 +64,9 @@ function CCategory(){
                 }
             },
             statusCode: {
-                410: function() {
-                    alert("Internal error")
+                404: function() {
+                    var div = document.getElementById("collapseThree");
+                    div.innerHTML = "";
                 }
             }
         });
@@ -75,6 +77,7 @@ function CCategory(){
             category.spec = index;
             $("#discipline").removeAttr("disabled");
             $("#discipline").click();
+            category.getDiscipline();
         }
         if(type == 1){
             //alert("update 1" + index);
@@ -82,6 +85,7 @@ function CCategory(){
             //$("#subjDHide").click();
             $("#subject").removeAttr("disabled");
             $("#subject").click();
+            category.getSubject();
         }
         if(type == 2){
             //alert("update " + index);
@@ -92,8 +96,8 @@ function CCategory(){
 
 var category = new CCategory();
 category.getSpecialty();
-category.getDiscipline();
-category.getSubject();
+//category.getDiscipline();
+//category.getSubject();
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
