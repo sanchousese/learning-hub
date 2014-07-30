@@ -11,11 +11,13 @@ function CCategory(){
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("collapseOne");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
                             '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
+                category.desc = 0;
                 //debugger;
             },
             statusCode: {
@@ -34,11 +36,13 @@ function CCategory(){
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("DisciplineD");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
                     '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
                     '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
+                category.subj = 0;
             },
             statusCode: {
                 404: function() {
@@ -57,6 +61,7 @@ function CCategory(){
             contentType: "application/json",
             success: function(data) {
                 var div = document.getElementById("collapseThree");
+                div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
                     '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
@@ -77,7 +82,9 @@ function CCategory(){
             category.spec = index;
             $("#discipline").removeAttr("disabled");
             $("#discipline").click();
+            category.desc = 0;
             category.getDiscipline();
+            category.getSubject();
         }
         if(type == 1){
             //alert("update 1" + index);
@@ -85,6 +92,7 @@ function CCategory(){
             //$("#subjDHide").click();
             $("#subject").removeAttr("disabled");
             $("#subject").click();
+            category.subj = 0;
             category.getSubject();
         }
         if(type == 2){
