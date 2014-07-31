@@ -28,10 +28,18 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         if (searchType == CourseSearchType.SEARCH_WITHOUT_FILTER) {
             courses = selectByKeywords(search.getKeywords());
         }
-        else if (searchType == CourseSearchType.SEARCH_BY_SPECIALITY) {
+        else if (searchType == CourseSearchType.SEARCH_BY_SPECIALTY) {
+
             courses = selectByKeywords(search.getKeywords());
-            List<Course> filterCourses = selectBySpeciality(search.getIdSpeciality());
+            if (search.getIdSpecialty() == 1) {
+            }
+            List<Course> filterCourses = selectBySpeciality(search.getIdSpecialty());
+            System.out.println("GOOOOOOOOOOOOOOOOD");
+            System.out.println(courses);
+            System.out.println(filterCourses);
             courses.retainAll(filterCourses);
+
+
         }
         else if (searchType == CourseSearchType.SEARCH_BY_DISCIPLINE) {
             courses = selectByKeywords(search.getKeywords());
@@ -54,7 +62,8 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         }
 
         else if (sortType == CourseSortType.SORT_BY_DATE) {
-
+            Collections.sort(courses, new CourseDateComparator());
+            Collections.reverse(courses);
         }
         else if (sortType == CourseSortType.SORT_BY_PRICE_DESC) {
             Collections.sort(courses, new CoursePriceComparator());
@@ -266,5 +275,10 @@ class CoursePriceComparator implements Comparator<Course> {
 class CourseRateComparator implements Comparator<Course> {
     public int compare(Course Course1, Course Course2) {
         return Course1.getRate() - Course2.getRate();
+    }
+}
+class CourseDateComparator implements Comparator<Course> {
+    public int compare(Course Course1, Course Course2) {
+        return Course1.getBeginDate().compareTo(Course2.getBeginDate());
     }
 }

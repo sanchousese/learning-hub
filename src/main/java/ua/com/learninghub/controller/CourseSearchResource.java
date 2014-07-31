@@ -24,7 +24,7 @@ public class CourseSearchResource {
 
     private CourseDao courseDao = new CourseDaoImpl();
 
-    @GET
+   /* @GET
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     public CourseSearch test() {
@@ -43,7 +43,7 @@ public class CourseSearchResource {
 
         return courseSearch;
     }
-
+*/
     //================TEST VERSION===============
     @POST     //must be POST
     @Consumes(MediaType.APPLICATION_JSON)

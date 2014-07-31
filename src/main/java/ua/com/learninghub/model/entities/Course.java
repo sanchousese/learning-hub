@@ -170,9 +170,9 @@ public class Course implements HibernateL2Cache {
         if (idCourse != course.idCourse) return false;
         if (price != course.price) return false;
         if (rate != course.rate) return false;
-        if (!beginDate.equals(course.beginDate)) return false;
+//        if (!beginDate.equals(course.beginDate)) return false;
         if (!description.equals(course.description)) return false;
-        if (!endDate.equals(course.endDate)) return false;
+//        if (!endDate.equals(course.endDate)) return false;
         if (!name.equals(course.name)) return false;
 
         return true;

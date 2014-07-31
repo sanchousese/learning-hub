@@ -14,7 +14,7 @@ public class CourseSearch {
 
     private String keywords;
 
-    private int idSpeciality;
+    private int idSpecialty;
     private int idDiscipline;
     private int idSubject;
 
@@ -59,12 +59,12 @@ public class CourseSearch {
         this.keywords = keywords;
     }
 
-    public int getIdSpeciality() {
-        return idSpeciality;
+    public int getIdSpecialty() {
+        return idSpecialty;
     }
 
-    public void setIdSpeciality(int idSpeciality) {
-        this.idSpeciality = idSpeciality;
+    public void setIdSpecialty(int idSpecialty) {
+        this.idSpecialty = idSpecialty;
     }
 
     public int getIdDiscipline() {
@@ -89,7 +89,7 @@ public class CourseSearch {
                 "idFrom=" + idFrom +
                 ", idTo=" + idTo +
                 ", keywords='" + keywords + '\'' +
-                ", idSpeciality=" + idSpeciality +
+                ", idSpeciality=" + idSpecialty +
                 ", idDiscipline=" + idDiscipline +
                 ", idSubject=" + idSubject +
                 ", searchType=" + searchType +
