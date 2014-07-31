@@ -26,6 +26,7 @@ $.ajax({
                 title: 'Intro',
                 width: '100%',
                 aspectratio: '16:9',
+                autostart: false,
                 type: "mp4"
             });
         }else if(data.mainImagePath != null){
