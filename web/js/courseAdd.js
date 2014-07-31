@@ -1,3 +1,4 @@
+
 function CCategory(){
     var spec = 0
     var desc = 0
@@ -99,13 +100,26 @@ function CCategory(){
             //alert("update " + index);
             category.subj = index;
         }
+
+        changeVisibilityButton();
     }
 }
+
 
 var category = new CCategory();
 category.getSpecialty();
 //category.getDiscipline();
 //category.getSubject();
+
+function changeVisibilityButton() {
+    if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "" && document.getElementById("inputAgreement").checked == true &&(category.spec != 0 && category.desc != 0
+    && category.subj != 0)) {
+        document.getElementById("addCourseButton").classList.remove('disabled') ;
+    }
+    else{
+        document.getElementById("addCourseButton").classList.add('disabled') ;
+    }
+}
 
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
@@ -175,4 +189,16 @@ function progressHandler(event){
     //alert(valeur);
     $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);
 
+}
+
+
+var freeCheckedPrice;
+function setItFree(){
+    if( document.getElementById("FreeCourse").checked == true){
+        freeCheckedPrice = document.getElementById("coursePriceD").value;
+        document.getElementById("coursePriceD").value = 0;
+    }
+    else{
+        document.getElementById("coursePriceD").value = freeCheckedPrice;
+    }
 }
