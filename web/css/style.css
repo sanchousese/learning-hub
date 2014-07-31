@@ -272,6 +272,9 @@ hr {
     margin-left: 15px;
     margin-right: 15px;
 }
+.margin_left_50{
+    margin-left: 50px;
+}
 .float-right{
     float: right;
 }
@@ -344,6 +347,9 @@ hr {
 .background_grey {
 background: #f0f0f0;
 }
+.text_grey {
+    color:#bbbbbb ;
+}
 .materials_download {
     display: block;
     margin: 15px 0 15px 0;
@@ -372,4 +378,24 @@ background: #f0f0f0;
 }
 .thumbnail>img {
     min-height: 180px;
+}
+.about_bg{
+    height: 300px;
+    width: 100%;
+}
+/*
+.social_link:hover {
+    background:red;
+}
+*/
+.mision_size{
+    max-height: 400px;
+    width: 100%;
+}
+.mision_text{
+    font-size: 18px;
+}
+.teacher_photo{
+    max-height: 200px;
+    max-width: 200px;
 }
