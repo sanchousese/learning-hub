@@ -34,11 +34,11 @@ public class CourseSearchResource {
         courseSearch.setIdSpeciality(3);
         courseSearch.setIdFrom(2);
         courseSearch.setIdTo(4);
-        
+
         String searchParams = "SQL";
 
         courseSearch.setKeywords(searchParams);
-        
+
         courseSearch.setSearchType("SEARCH_BY_RANGES");
 
         return courseSearch;
@@ -144,7 +144,7 @@ public class CourseSearchResource {
     @Path("/byId")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchByRange(@QueryParam(value= "idFrom") int idFrom,
-                                     @QueryParam(value = "idTo") int idTo) {
+                                  @QueryParam(value = "idTo") int idTo) {
         System.out.println();
 
         List<Course> courses = courseDao.selectById(idFrom, idTo);

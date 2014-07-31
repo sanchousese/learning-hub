@@ -111,21 +111,21 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         entityManager.close();
         return courses;
     }
-/*
-    class KeywordsList<String> extends ArrayList<String> {
-        ArrayList<String> keywords;
-        KeywordsList(List<String> kWords) {
-            keywords = new ArrayList<String>(kWords);
-        }
-
-        @Override
-        public java.lang.String toString() {
-            StringBuilder sb = new StringBuilder();
-            for (String keyword: keywords) {
-
+    /*
+        class KeywordsList<String> extends ArrayList<String> {
+            ArrayList<String> keywords;
+            KeywordsList(List<String> kWords) {
+                keywords = new ArrayList<String>(kWords);
             }
-        }
-    }*/
+
+            @Override
+            public java.lang.String toString() {
+                StringBuilder sb = new StringBuilder();
+                for (String keyword: keywords) {
+
+                }
+            }
+        }*/
     //select courses started with sequence of keywords
     @Override
     public List<Course> selectByKeywords(String keywordsStr) {
@@ -189,7 +189,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         } finally {
             entityManager.close();
         }
-}
+    }
 
     @Override
     public boolean update(Course course) {
