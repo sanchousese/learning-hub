@@ -2,7 +2,10 @@ var searchObject = {
     // keywords: ["Json", "php"],
     keywords: "",
     searchType: "SEARCH_BY_KEYWORDS",
-    sortType: "SORT_BY_POPULARITY"
+    sortType: "SORT_BY_POPULARITY",
+    idSpecialty: 0,
+    idDiscipline: 0,
+    idSubject: 0
 };
 
 function searchByKeywords(){
@@ -64,3 +67,116 @@ function getCoursesCatalog(searchObj) {
         }
     });
 }
+
+function CCategory(){
+    var spec = 0
+    var desc = 0
+    var subj = 0
+    this.getSpecialty = function(){
+        $.ajax({
+            //data: str,
+            type: "GET",
+            url: "rest/course/getSpecialty",
+            datatype: "json",
+            contentType: "application/json",
+            success: function(data) {
+                var div = document.getElementById("collapseOne");
+                div.innerHTML = "";
+                for(var i = 0; i < data.length; i++){
+                    div.innerHTML +=
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
+                }
+                category.desc = 0;
+                //debugger;
+            },
+            statusCode: {
+                410: function() {
+                    alert("Internal error")
+                }
+            }
+        });
+    }
+    this.getDiscipline = function(){
+        $.ajax({
+            //data: category.spec,
+            type: "GET",
+            url: "rest/search/filter/disciplines?idSpeciality=" + category.spec,
+            datatype: "json",
+            contentType: "application/json",
+            success: function(data) {
+                var div = document.getElementById("collapseTwo");//DisciplineD
+                div.innerHTML = "";
+                for(var i = 0; i < data.length; i++){
+                    div.innerHTML +=
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
+                }
+                category.subj = 0;
+            },
+            statusCode: {
+                404: function() {
+                    var div = document.getElementById("collapseTwo");
+                    div.innerHTML = "";
+                }
+            }
+        });
+    }
+    this.getSubject = function(){
+        $.ajax({
+            //data: str,
+            type: "GET",
+            url: "rest/search/filter/subjects?idDiscipline=" + category.desc,
+            datatype: "json",
+            contentType: "application/json",
+            success: function(data) {
+                var div = document.getElementById("collapseThree");//collapseThree
+                div.innerHTML = "";
+                for(var i = 0; i < data.length; i++){
+                    div.innerHTML +=
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
+                        '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
+                }
+            },
+            statusCode: {
+                404: function() {
+                    var div = document.getElementById("collapseThree");
+                    div.innerHTML = "";
+                }
+            }
+        });
+    }
+    this.update = function(type, index){
+        if(type == 0){
+            searchObject.searchType = "SEARCH_BY_SPECIALTY";
+            searchObject.idSpecialty = index;
+            //alert("update " + index);
+            category.spec = index;
+            $("#discipline").removeAttr("disabled");
+            $("#discipline").click();
+            category.desc = 0;
+            category.getDiscipline();
+            category.getSubject();
+        }
+        if(type == 1){
+            searchObject.searchType = "SEARCH_BY_DISCIPLINE";
+            searchObject.idDiscipline = index;
+            //alert("update 1" + index);
+            category.desc = index;
+            //$("#subjDHide").click();
+            $("#subject").removeAttr("disabled");
+            $("#subject").click();
+            category.subj = 0;
+            category.getSubject();
+        }
+        if(type == 2){
+            searchObject.searchType = "SEARCH_BY_SUBJECT";
+            searchObject.idSubject = index;
+            //alert("update " + index);
+            category.subj = index;
+        }
+    }
+}
+
+var category = new CCategory();
+category.getSpecialty();
