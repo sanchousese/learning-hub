@@ -8,7 +8,6 @@ import java.util.List;
 public class CourseSearch {
     CourseSearchType searchType;
     CourseSortType sortType;
-    CourseSortDirection sortDirection;
 
     private int idFrom;
     private int idTo;
@@ -26,14 +25,6 @@ public class CourseSearch {
 
     public void setSortType(String sortType) {
         this.sortType = CourseSortType.valueOf(sortType);
-    }
-
-    public CourseSortDirection getSortDirection() {
-        return sortDirection;
-    }
-
-    public void setSortDirection(String sortDirection) {
-        this.sortDirection = CourseSortDirection.valueOf(sortDirection);
     }
 
     public CourseSearchType getSearchType() {

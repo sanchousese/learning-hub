@@ -22,34 +22,49 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
 
     @Override
     public List<Course> findByConstraints(CourseSearch search) {
+        List<Course> courses = null;
 
         CourseSearchType searchType = search.getSearchType();
-        switch (searchType) {
-            case SEARCH_BY_RANGES:
-                return selectById(search.getIdFrom(), search.getIdTo());
-
-            case SEARCH_BY_KEYWORDS:
-                List<Course> courses = selectByKeywords(search.getKeywords());
-                if (search.getSortType() == CourseSortType.SORT_BY_PRICE) {
-                    Collections.sort(courses, new CoursePriceComparator());
-                }
-
-                else if (search.getSortType() == CourseSortType.SORT_BY_POPULARITY) {
-                    Collections.sort(courses, new CourseRateComparator());
-                }
-
-                return courses;
-
-
-            case SEARCH_BY_SPECIALITY:
-                return selectBySpeciality(search.getIdSpeciality());
-            case SEARCH_BY_DISCIPLINE:
-                return selectByDiscipline(search.getIdDiscipline());
-            case SEARCH_BY_SUBJECT:
-                return selectBySubject(search.getIdSubject());
+        if (searchType == CourseSearchType.SEARCH_WITHOUT_FILTER) {
+            courses = selectByKeywords(search.getKeywords());
+        }
+        else if (searchType == CourseSearchType.SEARCH_BY_SPECIALITY) {
+            courses = selectByKeywords(search.getKeywords());
+            List<Course> filterCourses = selectBySpeciality(search.getIdSpeciality());
+            courses.retainAll(filterCourses);
+        }
+        else if (searchType == CourseSearchType.SEARCH_BY_DISCIPLINE) {
+            courses = selectByKeywords(search.getKeywords());
+            List<Course> filterCourses = selectByDiscipline(search.getIdDiscipline());
+            courses.retainAll(filterCourses);
+        }
+        else if (searchType == CourseSearchType.SEARCH_BY_SUBJECT) {
+            courses = selectByKeywords(search.getKeywords());
+            List<Course> filterCourses = selectBySubject(search.getIdSubject());
+            courses.retainAll(filterCourses);
         }
 
-        return null;
+        CourseSortType sortType = search.getSortType();
+        if (sortType == CourseSortType.SORT_BY_PRICE_ASC) {
+            Collections.sort(courses, new CoursePriceComparator());
+        }
+
+        else if (sortType == CourseSortType.SORT_BY_POPULARITY) {
+            Collections.sort(courses, new CourseRateComparator());
+        }
+
+        else if (sortType == CourseSortType.SORT_BY_DATE) {
+
+        }
+        else if (sortType == CourseSortType.SORT_BY_PRICE_DESC) {
+            Collections.sort(courses, new CoursePriceComparator());
+            Collections.reverse(courses);
+        }
+
+        return courses;
+
+
+
     }
 
     @Override
