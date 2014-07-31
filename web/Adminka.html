@@ -115,17 +115,49 @@
        <div class="col-md-9 padding_5">
        <div class="panel panel-default">
        <div class="panel-heading">
+<!--
             <button type="button" class="btn btn-primary margin_gorizontal_15">Модератор</button>
             <button type="button" class="btn btn-primary margin_gorizontal_15">Учитель</button>
             <button type="button" class="btn btn-primary margin_gorizontal_15">Новости</button>
             <button type="button" class="btn btn-primary margin_gorizontal_15">Курсы</button>
+            
+-->
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+  <li class="active"><a href="#home" role="tab" data-toggle="tab">Модератор</a></li>
+  <li><a href="#profile" role="tab" data-toggle="tab">Учитель</a></li>
+  <li><a href="#messages" role="tab" data-toggle="tab">Новости</a></li>
+  <li><a href="#settings" role="tab" data-toggle="tab">Курсы</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="home">
+      <div class="panel-heading">
+           <button type="button" class="btn btn-link margin_gorizontal_15">Ожидают проверку</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Возвращены</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Опубликованы</button>
+           
        </div>
-       <div class="panel-heading">
+  </div>
+  <div class="tab-pane" id="profile">
+            <div class="panel-heading">
+           <button type="button" class="btn btn-link margin_gorizontal_15">Опубликованы</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Возвращены</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Ожидают проверки</button>
+           <button type="button" class="btn btn-link margin_gorizontal_15">Черновики</button>
+           <button type="button" class="btn btn-success pull-right">Добавить курс</button>
+       </div>
+  </div>
+  <div class="tab-pane" id="messages">3</div>
+  <div class="tab-pane" id="settings">
+            <div class="panel-heading">
            <button type="button" class="btn btn-link margin_gorizontal_15">Текущие</button>
            <button type="button" class="btn btn-link margin_gorizontal_15">Новые</button>
            <button type="button" class="btn btn-link margin_gorizontal_15">Завершенные</button>
            <button type="button" class="btn btn-link margin_gorizontal_15">Отобраные</button>
        </div>
+  </div>
+</div>
+ </div>
+ 
   <div class="panel-body">
 <!--
      <div class="col-xs-12 col-sm-12 col-md-12  padding_5">

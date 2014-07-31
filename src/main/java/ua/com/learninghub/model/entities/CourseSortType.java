@@ -5,5 +5,5 @@ package ua.com.learninghub.model.entities;
  */
 public enum CourseSortType {
 
-    SORT_BY_DATE, SORT_BY_POPULARITY, SORT_BY_PRICE;
+    SORT_BY_DATE, SORT_BY_POPULARITY, SORT_BY_PRICE_ASC, SORT_BY_PRICE_DESC;
 }
