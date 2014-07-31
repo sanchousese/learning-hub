@@ -2,8 +2,8 @@ var searchObject = {
     // keywords: ["Json", "php"],
     keywords: "",
     searchType: "SEARCH_BY_KEYWORDS",
-    sortType: "SORT_BY_POPULARITY",
-//    idSpecialty: 0,
+    sortType: "SORT_BY_POPULARITY"
+//    idSpeciality: 0,
 //    idDiscipline: 0,
 //    idSubject: 0
 };
@@ -72,11 +72,11 @@ function CCategory(){
     var spec = 0
     var desc = 0
     var subj = 0
-    this.getSpecialty = function(){
+    this.getSpeciality = function(){
         $.ajax({
             //data: str,
             type: "GET",
-            url: "rest/course/getSpecialty",
+            url: "rest/course/getSpeciality",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -84,7 +84,7 @@ function CCategory(){
                 div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpeciality +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 category.desc = 0;
@@ -148,8 +148,8 @@ function CCategory(){
     }
     this.update = function(type, index){
         if(type == 0){
-  //          searchObject.searchType = "SEARCH_BY_SPECIALTY";
-  //          searchObject.idSpecialty = index;
+  //          searchObject.searchType = "SEARCH_BY_SPECIALITY";
+  //          searchObject.idSpeciality = index;
             //alert("update " + index);
             category.spec = index;
             $("#discipline").removeAttr("disabled");
@@ -179,4 +179,4 @@ function CCategory(){
 }
 
 var category = new CCategory();
-category.getSpecialty();
+category.getSpeciality();
