@@ -3,9 +3,9 @@ var searchObject = {
     keywords: "",
     searchType: "SEARCH_BY_KEYWORDS",
     sortType: "SORT_BY_POPULARITY",
-    idSpecialty: 0,
-    idDiscipline: 0,
-    idSubject: 0
+//    idSpecialty: 0,
+//    idDiscipline: 0,
+//    idSubject: 0
 };
 
 function searchByKeywords(){
@@ -148,8 +148,8 @@ function CCategory(){
     }
     this.update = function(type, index){
         if(type == 0){
-            searchObject.searchType = "SEARCH_BY_SPECIALTY";
-            searchObject.idSpecialty = index;
+  //          searchObject.searchType = "SEARCH_BY_SPECIALTY";
+  //          searchObject.idSpecialty = index;
             //alert("update " + index);
             category.spec = index;
             $("#discipline").removeAttr("disabled");
@@ -159,8 +159,8 @@ function CCategory(){
             category.getSubject();
         }
         if(type == 1){
-            searchObject.searchType = "SEARCH_BY_DISCIPLINE";
-            searchObject.idDiscipline = index;
+    //        searchObject.searchType = "SEARCH_BY_DISCIPLINE";
+      //      searchObject.idDiscipline = index;
             //alert("update 1" + index);
             category.desc = index;
             //$("#subjDHide").click();
@@ -170,8 +170,8 @@ function CCategory(){
             category.getSubject();
         }
         if(type == 2){
-            searchObject.searchType = "SEARCH_BY_SUBJECT";
-            searchObject.idSubject = index;
+    //        searchObject.searchType = "SEARCH_BY_SUBJECT";
+    //        searchObject.idSubject = index;
             //alert("update " + index);
             category.subj = index;
         }
