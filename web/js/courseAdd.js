@@ -112,9 +112,11 @@ category.getSpecialty();
 //category.getSubject();
 
 function changeVisibilityButton() {
-    if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "" && document.getElementById("inputAgreement").checked == true &&(category.spec != 0 && category.desc != 0
-    && category.subj != 0)) {
-        document.getElementById("addCourseButton").classList.remove('disabled') ;
+    if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "" &&
+        document.getElementById("inputAgreement").checked == true
+        &&(category.spec != 0 && category.desc != 0
+        && category.subj != 0)) {
+            document.getElementById("addCourseButton").classList.remove('disabled') ;
     }
     else{
         document.getElementById("addCourseButton").classList.add('disabled') ;
@@ -181,6 +183,7 @@ function uploadCourseIntro(courseId){
             alert("Internal error");
         }, false);
         ajax.send(form_data);
+//        window.location.href = "index.html";
     }
 }
 
