@@ -370,3 +370,6 @@ background: #f0f0f0;
     margin-top: 10px;
     margin-bottom: 0;
 }
+.thumbnail>img {
+    min-height: 180px;
+}
