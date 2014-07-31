@@ -395,3 +395,7 @@ background: #f0f0f0;
 .mision_text{
     font-size: 18px;
 }
+.teacher_photo{
+    max-height: 200px;
+    max-width: 200px;
+}

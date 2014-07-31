@@ -18,7 +18,7 @@
     <![endif]-->
   </head>
   <body>
-     <div class="navbar navbar-default navbar-fixed-top "> 
+     <div class="navbar navbar-default navbar-fixed-top"> 
          <div class="col-md-11">
            <div class="col-md-1"></div>
             <div class="navbar-header">
@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="index.html" class="navbar-brand">Learning <span>Hub</span></a>
-            <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
+                <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
             </button>
             </div>
             <div class="navbar-collapse collapse">
@@ -60,8 +60,7 @@
                   <button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal" >
                       Регистрация
                   </button>
-                  </li>
-                  <!-- Button trigger modal end -->
+                  <!-- Button trigger modal end --></li>
                   <li>
                      <button class="btn btn-danger margin_8" id="logout" onclick="logoutButton()">
                       Выйти
@@ -75,73 +74,114 @@
             </div>  
             </div>      
          </div>
-<!--   sleder -->
+<!--   End nav -->
 		<div class="container-fluid">
 		    <div class="row ">
-			<div class="col-md-10 col-md-offset-1" id = "coursesD">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-				  <!-- Indicators -->
-				  <ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-				  </ol>
-				  <!-- Wrapper for slides -->
-				  <div class="carousel-inner">
-					<div class="item active">
-					  <img src="img/slider/1.jpg" alt="...">
-					  <div class="carousel-caption">
-					  </div>
-					</div>
-					<div class="item">
-					  <img src="img/slider/2.jpg" alt="...">
-					  <div class="carousel-caption">
-					  </div>
-					</div>
-					<div class="item">
-					  <img src="img/slider/3.jpg" alt="...">
-					  <div class="carousel-caption">
-					  </div>
-					</div>
-				  </div>
-				  <!-- Controls -->
-				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-				  </a>
-				  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
-				  </a>
-				</div>
-                <div class="row placeholders">
-              <div class="col-xs-6 col-sm-3 placeholder">
-                   <div class="pr-wrapper"><img src="img/4.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
-                   <p class="text-center">Преимущества студентов</p>
-                    <p class="text-center"><a href="" >Подробнее...</a></p>
-               </div>
-                <div class="col-xs-6 col-sm-3 placeholder ">
-                  <div class="pr-wrapper"> <img src="img/1.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
-                  <p class="text-center">Преимущества студентов</p>
-                    <p class="text-center"><a href="">Подробнее...</a></p>
-               </div>
-                 <div class="col-xs-6 col-sm-3 placeholder">
-                   <div class="pr-wrapper"><img src="img/2.png" alt="teach" data-src="holder.js/200x200/auto/sky" class="img-responsive"></div>
-                   <p class="text-center">Преимущества студентов</p>
-                    <p class="text-center"><a href="">Подробнее...</a></p>
-               </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                   <div class="pr-wrapper"><img src="img/3.png" alt="class" data-src="holder.js/200x200/auto/sky" class="img-responsive" ></div>
-                  <p class="text-center">Преимущества студентов</p>
-                    <p class="text-center"><a href="">Подробнее...</a></p>
-               </div>
-               </div>
-          <hr>
-           <h3 class="text-center">Популярные курсы</h3>
+			<div class="col-md-10 col-md-offset-1 margin_top_30" id = "categories">
+			<div class="panel panel-default">
+  <div class="panel-body">
+			    <img src="img/Teacher.jpg" alt="..." class="img-circle teacher_photo">
+<address>
+  <strong>Twitter, Inc.</strong><br>
+  795 Folsom Ave, Suite 600<br>
+  San Francisco, CA 94107<br>
+  <abbr title="Phone">P:</abbr> (123) 456-7890
+</address>
 
-			</div>
-			</div>
-    </div>
-<!--               </div>-->
-        <a href="#" class="btn btn-default btn-lg more" id="more_courses" role="button">Загрузить еще ...</a>
+<address>
+  <strong>Full Name</strong><br>
+  <a href="mailto:#">first.last@example.com</a>
+</address>
+  </div>
+</div>
+		
+<h3 class="text-center">Опубликованые курсы</h3>
+ <div class="row">
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  
+   <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  
+   <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <a class="thumbnail">
+      <img src="img/image.jpg" data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+ </a>
+  </div>
+    
+                   
+                    
+                          
+                                
+                 </div>
+           </div>
+           </div>
         <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
@@ -189,6 +229,7 @@
                         </div>
                       </div>
                     </div>
+                </div>
         <div class="footer">
 			<div class="container">
 			<div class="social-bl">
@@ -200,11 +241,14 @@
 			</div>
 			</div>
 		</div>
-            
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+         
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
      <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/hide.js"></script>
     <script src="js/login.js"></script>
     <script src="js/autorization.js"></script>
     <script src="js/validator.js"></script>
