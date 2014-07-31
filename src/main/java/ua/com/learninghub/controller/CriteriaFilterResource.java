@@ -54,8 +54,8 @@ public class CriteriaFilterResource {
     @GET
     @Path("/disciplines")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDisciplines(@QueryParam(value = "idSpeciality") int idSpeciality){
-        Specialty specialty = specialtyDao.selectById(idSpeciality);
+    public Response getDisciplines(@QueryParam(value = "idSpecialty") int idSpecialty){
+        Specialty specialty = specialtyDao.selectById(idSpecialty);
 
         List<Discipline> disciplines = specialty.getDisciplines();
 

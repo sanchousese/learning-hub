@@ -1,9 +1,11 @@
+//searchByKeywords();
+
 var searchObject = {
     // keywords: ["Json", "php"],
     keywords: "",
     sortType: "SORT_BY_POPULARITY",
     searchType: "SEARCH_WITHOUT_FILTER",
-    idSpeciality: 0,
+    idSpecialty: 0,
     idDiscipline: 0,
     idSubject: 0
 };
@@ -101,7 +103,7 @@ function CCategory(){
         $.ajax({
             //data: category.spec,
             type: "GET",
-            url: "rest/search/filter/disciplines?idSpeciality=" + category.spec,
+            url: "rest/search/filter/disciplines?idSpecialty=" + category.spec,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
@@ -150,8 +152,8 @@ function CCategory(){
         document.getElementById("courseContainer").innerHTML = "";
 
         if(type == 0){
-            searchObject.searchType = "SEARCH_BY_SPECIALITY";
-            searchObject.idSpeciality = index;
+            searchObject.searchType = "SEARCH_BY_SPECIALTY";
+            searchObject.idSpecialty = index;
             //alert("update " + index);
             category.spec = index;
             $("#discipline").removeAttr("disabled");
@@ -184,6 +186,11 @@ function CCategory(){
 
     }
 }
+
+function openCourse( indexOfCourse ){
+    window.location = "/Course.html?" + indexOfCourse;
+}
+
 
 var category = new CCategory();
 category.getSpecialty();
