@@ -40,6 +40,26 @@ $.ajax({
     }
 });
 
+var but =  document.getElementById("buyCourseButton");
+
+$.ajax({
+    //data: str,
+    type: "GET",
+    url: "rest/user/verifyCourse/" + query,
+    datatype: String,
+    contentType: "text/plain",
+    success: function() {
+        but.innerHTML = "Course is bought already";
+        but.classList.add('btn-danger');
+        but.classList.add('disabled');
+    },
+    statusCode: {
+        403: function() {
+        }
+
+    }
+});
+
 function getNumberOfStudent() {
     $.ajax({
         //data: str,

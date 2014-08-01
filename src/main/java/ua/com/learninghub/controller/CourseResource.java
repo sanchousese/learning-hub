@@ -4,25 +4,22 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.FileSystemUtil;
-import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
-import ua.com.learninghub.model.dao.implementation.DisciplineDaoImpl;
-import ua.com.learninghub.model.dao.implementation.SpecialtyDaoImpl;
-import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
+import ua.com.learninghub.model.dao.implementation.*;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.dao.interfaces.DisciplineDao;
 import ua.com.learninghub.model.dao.interfaces.SpecialtyDao;
 import ua.com.learninghub.model.dao.interfaces.SubjectDao;
-import ua.com.learninghub.model.entities.Course;
-import ua.com.learninghub.model.entities.Discipline;
-import ua.com.learninghub.model.entities.Specialty;
-import ua.com.learninghub.model.entities.Subject;
+import ua.com.learninghub.model.entities.*;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -44,6 +41,8 @@ public class CourseResource {
     private DisciplineDao disciplineDao = new DisciplineDaoImpl();
     private SubjectDao subjectDao = new SubjectDaoImpl();
     private SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
+    private SessionDaoImpl sessionDaoImpl = new SessionDaoImpl();
+    private CookieUtil cookieUtil = new CookieUtil();
 
     //@RolesAllowed({"Moderator", "Teacher"})
     @GET
@@ -195,6 +194,7 @@ public class CourseResource {
         File file = FileSystemUtil.getVideo();
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
+
 /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
