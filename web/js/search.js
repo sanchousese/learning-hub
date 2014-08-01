@@ -1,5 +1,3 @@
-//searchByKeywords();
-
 var searchObject = {
     // keywords: ["Json", "php"],
     keywords: "",
@@ -10,17 +8,29 @@ var searchObject = {
     idSubject: 0
 };
 
+searchByKeywords();
+
 function searchByKeywords(){
     var keyWords = $('#searchField').val();
 
     var selcetedOption = document.getElementById("sortDropdown");
     var sortType = selcetedOption.options[selcetedOption.selectedIndex].value;
 
+
     searchObject.keywords = keyWords;
     searchObject.sortType = sortType;
+    searchObject.idFrom = 1;
+    searchObject.idTo = 5;
 
-    getCoursesCatalog(searchObject);
+
+    getCoursesCatalog(searchObject, 1);
 }
+function getNextPackOfCourses() {
+    var COUNT_OF_LOADED_COURSES = 4;
+    searchObject.idFrom += COUNT_OF_LOADED_COURSES;
+    searchObject.idTo += COUNT_OF_LOADED_COURSES;
+}
+
 
 function sortByPrice() {
 
@@ -36,7 +46,7 @@ function sortByDate() {
 
 
 
-function getCoursesCatalog(searchObj) {
+function getCoursesCatalog(searchObj, rewrite) {
     $.ajax({
         //data: str,
         type: "POST",
@@ -46,8 +56,13 @@ function getCoursesCatalog(searchObj) {
         contentType: "application/json",
         dataType: "json",
         success: function(data) {
+            if (rewrite > 0) {
+                document.getElementById("courseContainer").innerHTML = "";
+            }
+            else {
+                // pass
+            }
 
-            document.getElementById("courseContainer").innerHTML = "";
             var div = document.getElementById("courseContainer");
 
             for (var i = 0; i < data.length; i++) {
@@ -66,6 +81,12 @@ function getCoursesCatalog(searchObj) {
             for (var i = 0; i < data.length; i++) {
                 $("#courseMainImage"+i).attr('src','rest/course/getLogoImage/'+(data[i].idCourse));
             }
+        },
+        statusCode: {
+            404: function() {
+                document.getElementById("courseContainer").innerHTML = "";
+            }
+
         }
     });
 }
