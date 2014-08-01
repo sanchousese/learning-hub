@@ -70,8 +70,12 @@
                   </ul>
             </div> 
               <div class="search-collapse">              
-              <input type="text" class="search-text" value="Enter text here">
-              <input type="submit" class="search-btn" value="ok">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search" id="searchField">
+      <span class="input-group-btn">
+        <a class="btn btn-default" onclick="searchByKeywords()" ><span class="glyphicon glyphicon-search"></span></a>
+      </span>
+    </div><!-- /input-group -->
             </div>  
             </div>      
          </div>
