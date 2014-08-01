@@ -52,7 +52,7 @@ public class CourseTest {
     }
 
     @Test
-    public void addUser(){
+    public void addUserOld(){
         User user = (new UserDaoImpl()).selectById(1);
         Course course = courseDao.selectById(4);
         List<User> users = course.getUsers();

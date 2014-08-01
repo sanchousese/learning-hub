@@ -2,6 +2,8 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.util.UserLogic;
 import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
@@ -88,12 +90,14 @@ public class UserResource {
     }
 
     @GET
-    @Path("addCourse")
-    public Response addCourseToUser(@Context HttpServletRequest hsr) {
+    @Path("addCourse/{courseId}")
+    public Response addCourseToUser(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
         String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
-        User user;
-        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null){
-
+        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+        System.out.println(user);
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.selectById(courseId);
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.addUser(course, user)){
             return Response.ok().build();
         }
         else

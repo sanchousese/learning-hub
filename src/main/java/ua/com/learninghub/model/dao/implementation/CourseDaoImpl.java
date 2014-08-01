@@ -269,7 +269,9 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         entityManager.getTransaction().begin();
         try {
             course.getUsers().add(user);
+            //user.getCourses().add(course);
             entityManager.merge(course);
+            //entityManager.persist(course);
             entityManager.getTransaction().commit();
         }
         catch (Exception e) {

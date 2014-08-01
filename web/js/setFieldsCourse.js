@@ -55,3 +55,16 @@ function getNumberOfStudent() {
     });
 
 }
+
+document.getElementById("buyCourseButton").onclick = function (){
+    $.ajax({
+        //data: str,
+        type: "GET",
+        url: "rest/user/addCourse/" + query,
+        datatype: String,
+        contentType: "text/plain",
+        success: function() {
+            window.location = "index.html";
+        }
+    });
+}
