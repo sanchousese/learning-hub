@@ -1,6 +1,4 @@
 var query = window.location.search;
-// Skip the leading ?, which should always be there,
-// but be careful anyway
 if (query.substring(0, 1) == '?') {
     query = query.substring(1);
 }
