@@ -35,7 +35,7 @@ public class User  implements Principal, HibernateL2Cache, Serializable {
     private UserCategory category;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.MERGE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Course> courses;
 

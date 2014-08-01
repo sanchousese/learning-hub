@@ -23,7 +23,8 @@ public class CourseTest {
     @Test
     public void selectAll(){
         List<Course> courses = courseDao.selectAll();
-        System.out.println(courses);
+        for (Course course : courses)
+            System.out.println(course.getUsers());
     }
 
     @Test
@@ -64,11 +65,10 @@ public class CourseTest {
 
     @Test
     public void addUser(){
-        User user = (new UserDaoImpl()).selectById(2);
+        User user = (new UserDaoImpl()).selectById(3); // user - 3
         EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Course course = (Course) entityManager.find(Course.class, 1);
-
+        Course course = (Course) entityManager.find(Course.class, 4); //course - 4
         courseDao.addUser(course, user);
     }
 

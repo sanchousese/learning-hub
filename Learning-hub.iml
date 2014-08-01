@@ -20,7 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="MySqlManager" value="2a1fb5ac-ba7c-4dff-9ea4-5c3e972a707b" />
+          <factory-entry name="MySqlManager" value="ced8fd91-3036-4949-aa41-8ff747636e29" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

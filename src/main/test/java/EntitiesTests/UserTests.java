@@ -20,8 +20,8 @@ public class UserTests {
     public void selectAll(){
         List<User> list = userDao.selectAll();
         for (User usr: list){
-            usr.setPass(UserLogic.encryptPass(usr.getPass()));
-            userDao.update(usr);
+            if(usr.getCourses() != null)
+                System.out.println(usr.getCourses());
         }
     }
 
