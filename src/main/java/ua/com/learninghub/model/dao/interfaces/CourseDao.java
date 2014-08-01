@@ -3,6 +3,7 @@ package ua.com.learninghub.model.dao.interfaces;
 import ua.com.learninghub.model.entities.Course;
 import ua.com.learninghub.model.entities.CourseSearch;
 import ua.com.learninghub.model.entities.Subject;
+import ua.com.learninghub.model.entities.User;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface CourseDao {
     List<Course> selectByDiscipline(int disID);
 
     List<Course> findByConstraints(CourseSearch search);
+
+    public boolean addUser(Course course, User user);
 }
