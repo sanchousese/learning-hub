@@ -272,6 +272,9 @@ hr {
     margin-left: 15px;
     margin-right: 15px;
 }
+.margin_left_15{
+    margin-left: 15px;
+}
 .margin_left_50{
     margin-left: 50px;
 }
@@ -318,6 +321,9 @@ hr {
 }
 .padding-fix{
     padding: 0;
+}
+.padding_12{
+    padding: 12px
 }
 .padding-gorizontal-fix{
     padding-left: 0;
@@ -392,10 +398,14 @@ background: #f0f0f0;
     max-height: 400px;
     width: 100%;
 }
-.mision_text{
+.font_size_18{
     font-size: 18px;
 }
 .teacher_photo{
     max-height: 200px;
     max-width: 200px;
 }
+.inline_block{
+    display: inline-block;
+}
+/*mision_text*/
