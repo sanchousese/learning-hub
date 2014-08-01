@@ -284,6 +284,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     }
 
     public boolean checkUser(Course course, User user){
+        if(course == null) return false;
         return course.getUsers().contains(user);
     }
 
