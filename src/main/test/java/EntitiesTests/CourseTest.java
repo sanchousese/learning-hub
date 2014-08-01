@@ -72,4 +72,13 @@ public class CourseTest {
         courseDao.addUser(course, user);
     }
 
+    @Test
+    public void contains(){
+        User user = (new UserDaoImpl()).selectById(3); // user - 3
+        EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Course course = (Course) entityManager.find(Course.class, 4); //course - 4
+        System.out.println(courseDao.checkUser(course, user));
+    }
+
 }

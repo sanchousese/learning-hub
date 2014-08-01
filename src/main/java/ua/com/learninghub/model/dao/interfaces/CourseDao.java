@@ -36,4 +36,6 @@ public interface CourseDao {
     List<Course> findByConstraints(CourseSearch search);
 
     public boolean addUser(Course course, User user);
+
+    public boolean checkUser(Course course, User user);
 }

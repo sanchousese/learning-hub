@@ -283,6 +283,10 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         return true;
     }
 
+    public boolean checkUser(Course course, User user){
+        return course.getUsers().contains(user);
+    }
+
 }
 
 class CoursePriceComparator implements Comparator<Course> {
