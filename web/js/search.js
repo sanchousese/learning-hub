@@ -19,32 +19,24 @@ function searchByKeywords(){
 
     searchObject.keywords = keyWords;
     searchObject.sortType = sortType;
+
+// TODO: mouse scroll event
+/*
     searchObject.idFrom = 1;
     searchObject.idTo = 5;
+*/
 
 
     getCoursesCatalog(searchObject, 1);
 }
+
+// TODO: mouse scroll event
+/*
 function getNextPackOfCourses() {
     var COUNT_OF_LOADED_COURSES = 4;
     searchObject.idFrom += COUNT_OF_LOADED_COURSES;
     searchObject.idTo += COUNT_OF_LOADED_COURSES;
-}
-
-
-function sortByPrice() {
-
-}
-
-function sortByPopularity() {
-
-}
-
-function sortByDate() {
-
-}
-
-
+}*/
 
 function getCoursesCatalog(searchObj, rewrite) {
     $.ajax({
