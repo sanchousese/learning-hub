@@ -1,11 +1,16 @@
 package EntitiesTests;
 
 import org.junit.Test;
+import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.implementation.SubjectDaoImpl;
+import ua.com.learninghub.model.dao.implementation.UserDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.entities.Course;
+import ua.com.learninghub.model.entities.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.sql.Date;
 import java.util.List;
 
@@ -46,5 +51,15 @@ public class CourseTest {
         System.out.println(courses);
     }
 
+
+    @Test
+    public void addUser(){
+        User user = (new UserDaoImpl()).selectById(2);
+        EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Course course = (Course) entityManager.find(Course.class, 1);
+
+        courseDao.addUser(course, user);
+    }
 
 }

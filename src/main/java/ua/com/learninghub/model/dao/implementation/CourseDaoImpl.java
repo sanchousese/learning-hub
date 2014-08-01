@@ -233,6 +233,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
             course1Upd.setMainImagePath(course.getMainImagePath());
             course1Upd.setMainVideoPath(course.getMainVideoPath());
             course1Upd.setSubject(course.getSubject());
+            //course1Upd.setUsers(course.getUsers());/////
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e){
@@ -263,6 +264,23 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     @Override
     public void delete(int courseId) {
         //delete from course where courseid = ?
+    }
+
+    public boolean addUser(Course course, User user){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        try {
+            course.getUsers().add(user);
+            entityManager.merge(course);
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e) {
+            return false;
+        }
+        finally{
+            entityManager.close();
+        }
+        return true;
     }
 
 }
