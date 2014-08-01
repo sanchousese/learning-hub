@@ -87,14 +87,33 @@ public class UserResource {
         return anUser;
     }
 
+    @GET
+    @Path("addCourse")
+    public Response addCourseToUser(@Context HttpServletRequest hsr) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user;
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null){
+
+            return Response.ok().build();
+        }
+        else
+            return Response.status(403).build();
+    }
+
     @RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{userId}/courses")
-    public List<Course> getUserCourses(@PathParam("userId") String userId) {
-        User anUser = userDao.selectById(new Integer(userId));
-        List<Course> userCourses = anUser.getCourses();
-        return userCourses;
+    @Path("courses")
+    public Response getUserCourses(@Context HttpServletRequest hsr) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user;
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null){
+            List<Course> userCourses = user.getCourses();
+            return Response.ok(userCourses).build();
+        }
+
+        else
+            return Response.status(403).build();
     }
 
     @RolesAllowed({"Moderator", "Teacher"})

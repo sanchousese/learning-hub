@@ -51,6 +51,16 @@ public class CourseTest {
         System.out.println(courses);
     }
 
+    @Test
+    public void addUser(){
+        User user = (new UserDaoImpl()).selectById(1);
+        Course course = courseDao.selectById(4);
+        List<User> users = course.getUsers();
+        users.add(user);
+        course.setUsers(users);
+        courseDao.update(course);
+    }
+
 
     @Test
     public void addUser(){
