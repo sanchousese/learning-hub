@@ -6,6 +6,7 @@ import org.hibernate.annotations.Table;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
@@ -35,7 +36,7 @@ public class Course implements HibernateL2Cache {
     String mainVideoPath;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idUser")}, inverseJoinColumns = {@JoinColumn(name = "idCourse")})
     private List<User> users;
@@ -44,6 +45,11 @@ public class Course implements HibernateL2Cache {
     @ManyToOne
     @JoinColumn(name = "idSubject")
     private Subject subject;
+
+    @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "course")
+    private List<Module> modules;
 
     public Course(){}
 
@@ -145,6 +151,15 @@ public class Course implements HibernateL2Cache {
 
     public void setMainVideoPath(String mainVideoPath) {
         this.mainVideoPath = mainVideoPath;
+    }
+
+    @JsonIgnore
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
     }
 
     @Override

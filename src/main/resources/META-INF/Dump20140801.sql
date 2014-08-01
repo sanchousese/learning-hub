@@ -97,7 +97,7 @@ CREATE TABLE `Course` (
   UNIQUE KEY `idCourse_UNIQUE` (`idCourse`),
   KEY `idSubject_idx` (`idSubject`),
   CONSTRAINT `idSubject` FOREIGN KEY (`idSubject`) REFERENCES `Subject` (`idSubject`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `Course` (
 
 LOCK TABLES `Course` WRITE;
 /*!40000 ALTER TABLE `Course` DISABLE KEYS */;
-INSERT INTO `Course` VALUES (1,'Jersey','2005-12-20','2015-01-25','Some greate description',100,5,1,'1.jpg',NULL),(2,'Json','2014-06-28','2014-08-28','Some very good description',50,2,1,NULL,NULL),(3,'Transactions in MySQL','2014-09-04','2014-10-24','Transactions in MySQL',45,3,3,NULL,NULL),(4,'MySQL Stored Procedures and Functions','2014-10-26','2014-12-12','MySQL Stored Procedures and Functions',65,4,3,NULL,NULL),(5,'MySQL for beginners','2015-01-30','2015-04-12','Mysql for beginners',75,4,3,NULL,NULL),(6,'Oracle on the Web','2015-03-22','2015-05-18','Oracle on the Web',50,5,4,NULL,NULL),(7,'Object-Oriented PHP Basics','2014-09-16','2014-11-28','Learn the basics of OO coding in PHP',95,4,5,NULL,NULL),(8,'PHP Basics','2014-09-22','2014-12-21','Lets learn PHP!',80,5,5,NULL,NULL),(9,'Enhancing a Simple PHP Application','2014-12-24','2015-04-12','Enhancing a Simple PHP Application',100,3,5,NULL,NULL),(10,'PHP & The Stripe API','2015-03-14','2015-05-25','PHP & The Stripe API',60,4,5,NULL,NULL),(11,'Security in PHP Application','2015-03-20','2015-05-24','Building Security into your PHP Applications',70,4,5,NULL,NULL),(16,'Imageg',NULL,NULL,'hkj',67,0,1,'c405t13cj9o53culg97v547gs9.jpg',NULL),(17,'Boom',NULL,NULL,'Temp',45,0,1,NULL,NULL),(18,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(19,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(20,'yt',NULL,NULL,'io',89,0,1,NULL,NULL),(21,'Thkl',NULL,NULL,'io',56,0,1,NULL,NULL);
+INSERT INTO `Course` VALUES (1,'Jersey','2005-12-20','2015-01-25','Some greate description',100,5,1,'1.jpg','1.mp4'),(2,'Json','2014-06-28','2014-08-28','Some very good description',50,2,1,NULL,''),(3,'Transactions in MySQL','2014-09-04','2014-10-24','Transactions in MySQL',45,3,3,NULL,NULL),(4,'MySQL Stored Procedures and Functions','2014-10-26','2014-12-12','MySQL Stored Procedures and Functions',65,4,3,NULL,NULL),(5,'MySQL for beginners','2015-01-30','2015-04-12','Mysql for beginners',75,4,3,NULL,NULL),(6,'Oracle on the Web','2015-03-22','2015-05-18','Oracle on the Web',50,5,4,NULL,NULL),(7,'Object-Oriented PHP Basics','2014-09-16','2014-11-28','Learn the basics of OO coding in PHP',95,4,5,NULL,NULL),(8,'PHP Basics','2014-09-22','2014-12-21','Lets learn PHP!',80,5,5,NULL,NULL),(9,'Enhancing a Simple PHP Application','2014-12-24','2015-04-12','Enhancing a Simple PHP Application',100,3,5,NULL,NULL),(10,'PHP & The Stripe API','2015-03-14','2015-05-25','PHP & The Stripe API',60,4,5,NULL,NULL),(11,'Security in PHP Application','2015-03-20','2015-05-24','Building Security into your PHP Applications',70,4,5,NULL,NULL),(16,'Imageg',NULL,NULL,'hkj',67,0,1,'c405t13cj9o53culg97v547gs9.jpg',NULL),(17,'Boom',NULL,NULL,'Temp',45,0,1,NULL,NULL),(18,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(19,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(20,'yt',NULL,NULL,'io',89,0,1,NULL,NULL),(21,'Thkl',NULL,NULL,'io',56,0,1,NULL,NULL),(25,'rty',NULL,NULL,'ty',78,0,2,NULL,NULL);
 /*!40000 ALTER TABLE `Course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,6 +164,65 @@ LOCK TABLES `Discipline` WRITE;
 /*!40000 ALTER TABLE `Discipline` DISABLE KEYS */;
 INSERT INTO `Discipline` VALUES (1,'Java','Java is java',1),(2,'C#','C# is VS',1),(3,'PHP','PHP is a server scripting language',1),(4,'HTML','HyperText Markup Language',1),(5,'Database','Organized collection of data',1);
 /*!40000 ALTER TABLE `Discipline` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Lesson`
+--
+
+DROP TABLE IF EXISTS `Lesson`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Lesson` (
+  `idLesson` int(11) NOT NULL AUTO_INCREMENT,
+  `description` text,
+  `lessonVideo` varchar(45) DEFAULT NULL,
+  `idModule` int(11) NOT NULL,
+  PRIMARY KEY (`idLesson`),
+  UNIQUE KEY `idLesson_UNIQUE` (`idLesson`),
+  KEY `fk_Lesson_1_idModule_idx` (`idModule`),
+  CONSTRAINT `fk_Lesson_1_idModule` FOREIGN KEY (`idModule`) REFERENCES `Module` (`idModule`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Lesson`
+--
+
+LOCK TABLES `Lesson` WRITE;
+/*!40000 ALTER TABLE `Lesson` DISABLE KEYS */;
+INSERT INTO `Lesson` VALUES (1,'Post',NULL,1);
+/*!40000 ALTER TABLE `Lesson` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Module`
+--
+
+DROP TABLE IF EXISTS `Module`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Module` (
+  `idModule` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` text,
+  `moduleImage` varchar(45) DEFAULT NULL,
+  `idCourse` int(11) NOT NULL,
+  PRIMARY KEY (`idModule`),
+  UNIQUE KEY `idModule_UNIQUE` (`idModule`),
+  KEY `fk_Module_1_idx` (`idCourse`),
+  CONSTRAINT `fk_Module_1_idCourse` FOREIGN KEY (`idCourse`) REFERENCES `Course` (`idCourse`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Module`
+--
+
+LOCK TABLES `Module` WRITE;
+/*!40000 ALTER TABLE `Module` DISABLE KEYS */;
+INSERT INTO `Module` VALUES (1,'FormData','Some desc',NULL,1),(2,'Insert OK','Bla OK',NULL,1);
+/*!40000 ALTER TABLE `Module` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -432,7 +491,7 @@ CREATE TABLE `UserCourse` (
   KEY `idCourse_idx` (`idCourse`),
   CONSTRAINT `idCourse` FOREIGN KEY (`idCourse`) REFERENCES `Course` (`idCourse`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `idUser` FOREIGN KEY (`idUser`) REFERENCES `User` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,7 +500,7 @@ CREATE TABLE `UserCourse` (
 
 LOCK TABLES `UserCourse` WRITE;
 /*!40000 ALTER TABLE `UserCourse` DISABLE KEYS */;
-INSERT INTO `UserCourse` VALUES (3,1,1);
+INSERT INTO `UserCourse` VALUES (8,1,1),(9,1,2);
 /*!40000 ALTER TABLE `UserCourse` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -454,4 +513,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-29 14:40:15
+-- Dump completed on 2014-08-01 14:14:28
