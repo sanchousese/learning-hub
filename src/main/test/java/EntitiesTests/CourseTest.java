@@ -23,7 +23,8 @@ public class CourseTest {
     @Test
     public void selectAll(){
         List<Course> courses = courseDao.selectAll();
-        System.out.println(courses);
+        for (Course course : courses)
+            System.out.println(course.getUsers());
     }
 
     @Test
@@ -51,15 +52,33 @@ public class CourseTest {
         System.out.println(courses);
     }
 
+    @Test
+    public void addUserOld(){
+        User user = (new UserDaoImpl()).selectById(1);
+        Course course = courseDao.selectById(4);
+        List<User> users = course.getUsers();
+        users.add(user);
+        course.setUsers(users);
+        courseDao.update(course);
+    }
+
 
     @Test
     public void addUser(){
-        User user = (new UserDaoImpl()).selectById(2);
+        User user = (new UserDaoImpl()).selectById(3); // user - 3
         EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Course course = (Course) entityManager.find(Course.class, 1);
-
+        Course course = (Course) entityManager.find(Course.class, 4); //course - 4
         courseDao.addUser(course, user);
+    }
+
+    @Test
+    public void contains(){
+        User user = (new UserDaoImpl()).selectById(3); // user - 3
+        EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Course course = (Course) entityManager.find(Course.class, 4); //course - 4
+        System.out.println(courseDao.checkUser(course, user));
     }
 
 }

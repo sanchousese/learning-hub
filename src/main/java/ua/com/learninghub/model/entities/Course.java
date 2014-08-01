@@ -36,9 +36,10 @@ public class Course implements HibernateL2Cache {
     String mainVideoPath;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany( cascade = CascadeType.MERGE)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idUser")}, inverseJoinColumns = {@JoinColumn(name = "idCourse")})
+    //@JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idUser")}, inverseJoinColumns = {@JoinColumn(name = "idCourse")})
+    @JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idCourse")}, inverseJoinColumns = {@JoinColumn(name = "idUser")})
     private List<User> users;
 
     @JsonIgnore

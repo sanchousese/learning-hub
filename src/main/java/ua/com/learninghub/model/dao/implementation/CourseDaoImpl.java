@@ -24,22 +24,17 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
     public List<Course> findByConstraints(CourseSearch search) {
         List<Course> courses = null;
 
+        // Filtering
         CourseSearchType searchType = search.getSearchType();
         if (searchType == CourseSearchType.SEARCH_WITHOUT_FILTER) {
             courses = selectByKeywords(search.getKeywords());
         }
         else if (searchType == CourseSearchType.SEARCH_BY_SPECIALTY) {
-
             courses = selectByKeywords(search.getKeywords());
             if (search.getIdSpecialty() == 1) {
             }
             List<Course> filterCourses = selectBySpeciality(search.getIdSpecialty());
-            System.out.println("GOOOOOOOOOOOOOOOOD");
-            System.out.println(courses);
-            System.out.println(filterCourses);
             courses.retainAll(filterCourses);
-
-
         }
         else if (searchType == CourseSearchType.SEARCH_BY_DISCIPLINE) {
             courses = selectByKeywords(search.getKeywords());
@@ -52,6 +47,7 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
             courses.retainAll(filterCourses);
         }
 
+        // Searching
         CourseSortType sortType = search.getSortType();
         if (sortType == CourseSortType.SORT_BY_PRICE_ASC) {
             Collections.sort(courses, new CoursePriceComparator());
@@ -70,10 +66,12 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
             Collections.reverse(courses);
         }
 
+        // Cutting
+        if (courses.size() >= search.getIdTo() - search.getIdFrom()) {
+            courses = courses.subList(search.getIdFrom() - 1, search.getIdTo() - 1);
+        }
+
         return courses;
-
-
-
     }
 
     @Override
@@ -271,7 +269,9 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         entityManager.getTransaction().begin();
         try {
             course.getUsers().add(user);
+            //user.getCourses().add(course);
             entityManager.merge(course);
+            //entityManager.persist(course);
             entityManager.getTransaction().commit();
         }
         catch (Exception e) {
@@ -281,6 +281,11 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
             entityManager.close();
         }
         return true;
+    }
+
+    public boolean checkUser(Course course, User user){
+        if(course == null) return false;
+        return course.getUsers().contains(user);
     }
 
 }

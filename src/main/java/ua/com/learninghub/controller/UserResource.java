@@ -2,6 +2,8 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.util.UserLogic;
 import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
@@ -87,14 +89,35 @@ public class UserResource {
         return anUser;
     }
 
+    @GET
+    @Path("addCourse/{courseId}")
+    public Response addCourseToUser(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+        System.out.println(user);
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.selectById(courseId);
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.addUser(course, user)){
+            return Response.ok().build();
+        }
+        else
+            return Response.status(403).build();
+    }
+
     @RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{userId}/courses")
-    public List<Course> getUserCourses(@PathParam("userId") String userId) {
-        User anUser = userDao.selectById(new Integer(userId));
-        List<Course> userCourses = anUser.getCourses();
-        return userCourses;
+    @Path("courses")
+    public Response getUserCourses(@Context HttpServletRequest hsr) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user;
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null){
+            List<Course> userCourses = user.getCourses();
+            return Response.ok(userCourses).build();
+        }
+
+        else
+            return Response.status(403).build();
     }
 
     @RolesAllowed({"Moderator", "Teacher"})
@@ -103,5 +126,20 @@ public class UserResource {
     public List<User> getUsers() {
         List<User> users = userDao.selectAll();
         return users;
+    }
+
+    @GET
+    @Path("verifyCourse/{courseId}")
+    public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+        System.out.println(user);
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.selectById(courseId);
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){
+            return Response.ok().build();
+        }
+        else
+            return Response.status(403).build();
     }
 }

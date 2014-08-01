@@ -1,6 +1,4 @@
 var query = window.location.search;
-// Skip the leading ?, which should always be there,
-// but be careful anyway
 if (query.substring(0, 1) == '?') {
     query = query.substring(1);
 }
@@ -42,6 +40,26 @@ $.ajax({
     }
 });
 
+var but =  document.getElementById("buyCourseButton");
+
+$.ajax({
+    //data: str,
+    type: "GET",
+    url: "rest/user/verifyCourse/" + query,
+    datatype: String,
+    contentType: "text/plain",
+    success: function() {
+        but.innerHTML = "Course is bought already";
+        but.classList.add('btn-danger');
+        but.classList.add('disabled');
+    },
+    statusCode: {
+        403: function() {
+        }
+
+    }
+});
+
 function getNumberOfStudent() {
     $.ajax({
         //data: str,
@@ -54,4 +72,17 @@ function getNumberOfStudent() {
         }
     });
 
+}
+
+document.getElementById("buyCourseButton").onclick = function (){
+    $.ajax({
+        //data: str,
+        type: "GET",
+        url: "rest/user/addCourse/" + query,
+        datatype: String,
+        contentType: "text/plain",
+        success: function() {
+            window.location = "index.html";
+        }
+    });
 }

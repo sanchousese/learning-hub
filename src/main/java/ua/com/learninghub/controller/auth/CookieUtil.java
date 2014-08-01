@@ -21,10 +21,12 @@ public class CookieUtil {
     public String getSessionIdFromRequest(HttpServletRequest hsr) {
         if (hsr == null) return null;
         Cookie[] cookies = hsr.getCookies();
-        for (Cookie c : cookies)
+        for (Cookie c : cookies) {
+            System.out.println(c);
             if (c.getName().equals("sessionUID")) {
                 return c.getValue();
             }
+        }
         return null;
     }
 
