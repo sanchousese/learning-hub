@@ -195,6 +195,22 @@ public class CourseResource {
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
+    @GET
+    @Path("verifyCourse/{courseId}")
+    public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        System.out.println(sessionId);
+        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+        System.out.println(user);
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.selectById(courseId);
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){
+            return Response.ok().build();
+        }
+        else
+            return Response.status(403).build();
+    }
+
 /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
