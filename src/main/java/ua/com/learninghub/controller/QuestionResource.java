@@ -30,7 +30,6 @@ public class QuestionResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuestions(@QueryParam(value = "idLesson") int lessonId) {
 
-
         Lesson lesson = lessonDao.selectById(lessonId);
         Test test = lesson.getTest();
 

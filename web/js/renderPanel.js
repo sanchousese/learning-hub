@@ -33,7 +33,7 @@ function setMainForm(data){
             panel.innerHTML = data.description;
 
             jwplayer('lessonVideo').setup({
-                file: "/rest/lessons/getLessonVideo/" + query,//http://localhost:8080/rest/course/getVideoCourse/
+                file: "/rest/course/getVideoCourse/" + query + "?n=1",//http://localhost:8080/rest/course/getVideoCourse/
                 title: data.name,
                 width: '100%',
                 aspectratio: '16:9',
