@@ -82,14 +82,14 @@
   <div class="form-group">
     <label for="" class="col-sm-2 control-label">Тема урока</label>
     <div class="col-sm-10">
-      <input onkeyup="changeVisibilityButton()" type="text" class="form-control" id="courseNameD" placeholder="Тема урока">
+      <input onkeyup="changeVisibilityButton()" type="text" class="form-control" id="lessonNameD" placeholder="Тема урока">
     </div>
   </div>
 
   <div class="form-group">
     <label for="" class="col-sm-2 control-label">Текст урока</label>
     <div class="col-sm-10">
-   <textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="6" required="required" aria-required="true" placeholder="Текст урока" id = "courseDescD"></textarea>
+   <textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="6" required="required" aria-required="true" placeholder="Текст урока" id = "lessonDescD"></textarea>
     </div>
   </div>
 <!--
@@ -156,7 +156,7 @@
   <div class="well well-sm col-md-11 col-md-offset-1 ">
                      	    <ul class="pager margin_vertical_10 ">
   <li class="previous"><a href="#" class="margin_top_6 margin_gorizontal_15">&larr; Предыдущий вопрос</a></li>
-    <button type="button" class="btn btn-success btn-lg">Добавить урок</button>
+    <button type="button" class="btn btn-success btn-lg" onclick="AddLessonInfo()">Добавить урок</button>
   <li class="next"><a href="#" class="margin_top_6 margin_gorizontal_15">Следующий вопрос &rarr;</a></li>
 </ul>                	    
                      	</div>
@@ -235,6 +235,6 @@
     <script src="js/validator.js"></script>
     <script src="js/register.js"></script>
     <script src="js/btnHide.js"></script>
-    <script src="js/courseAdd.js"></script>
+    <script src="js/lessonAdd.js"></script>
   </body>
 </html>

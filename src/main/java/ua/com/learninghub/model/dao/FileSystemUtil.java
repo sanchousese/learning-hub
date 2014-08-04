@@ -2,6 +2,7 @@ package ua.com.learninghub.model.dao;
 
 import com.sun.corba.se.spi.orbutil.fsm.Input;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
+import ua.com.learninghub.model.dao.implementation.LessonDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.entities.Course;
 
@@ -90,15 +91,48 @@ public class FileSystemUtil {
         }
     }
 
+    public static void writeLessonVideo(InputStream fileInputStream, String filename, int lessonId) {
+        try {
+            System.out.println("Writing started");
+            File out = new File(storagePath + "lessons" + separator + lessonId + separator + "video" + separator + filename);
+            if(!out.exists()){
+                out.getParentFile().mkdirs();
+                //out.createNewFile();
+            }
+            OutputStream outputStream = new FileOutputStream(out);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = fileInputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static File getLessonVideo(int lessonId) throws Exception {
+        File file = new File(storagePath + "lessons"+ separator +lessonId + separator + "video" + separator + new LessonDaoImpl().selectById(lessonId).getLessonVideo());
+        if (!file.exists())
+            //throw new Exception();
+            file = getVideo();
+
+        return file;
+    }
+
     public static File getVideoCourse(int courseId) throws Exception {
         File file = new File(storagePath + "courses"+ separator +courseId + separator + "video" + separator + new CourseDaoImpl().selectById(courseId).getMainVideoPath());
         if (!file.exists())
-            throw new Exception();
+            file = getVideo();
+            //throw new Exception();
         return file;
     }
 
     public static File getVideo(){
-        File file = new File(storagePath + "courses" + separator + "video" + separator +"1.mp4");
+        File file = new File(storagePath + "courses" + separator +"default.mp4");
         if (!file.exists())
             throw new RuntimeException("video wasn't found.");
         return file;
