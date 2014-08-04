@@ -22,15 +22,17 @@ public class QuestionResource {
     QuestionDao questionDao = new QuestionDaoImpl();
     TestDao testDao= new TestDaoImpl();
     AnswerDao answerDao = new AnswerDaoImpl();
+    private LessonDao lessonDao = new LessonDaoImpl();
 
     SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getQuestions(@QueryParam(value = "idTest") int testID) {
+    public Response getQuestions(@QueryParam(value = "idLesson") int lessonId) {
 
-        Test test = testDao.selectById(testID);
 
+        Lesson lesson = lessonDao.selectById(lessonId);
+        Test test = lesson.getTest();
 
         if (test == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

@@ -84,7 +84,7 @@
 		              <div class="search-collapse">              
 		              <input type="text" class="search-text" value="Enter text here">
 		              <input type="submit" class="search-btn" value="ok">
-		            </div>  
+		            </div>
 		            </div>      
 		         </div>
 		<!-- ========== END. ОБЩИЙ БЛОК НАВИГАЦИИ САЙТА ДИМЫ ================ -->
@@ -141,11 +141,11 @@
 						<div class="quiz-main col-sm-8"> <!-- колонка теста -->
 							<div class="quiz-content"> <!-- вопрос и варианты ответов  -->
 								<h2>Вопрос</h2>
-								<p>В чем смысл жизни вселенной и всего такого прочего?</p>
+								<p id="question">В чем смысл жизни вселенной и всего такого прочего?</p>
 								<h2>Варианты ответов</h2>
 
 								<div class="row"> <!-- разбивка окна ответов на две части -->
-									<div class="col-sm-6"> <!-- часть #1 -->
+									<div class="col-sm-6" id="answers"> <!-- часть #1 -->
 
 										<div class="radio">
 										  <label>
@@ -176,37 +176,6 @@
 										</div>
 									</div> <!-- end col-sm-6 (часть #1) -->
 
-									<div class="col-sm-6"> <!-- часть #2 -->
-
-										<div class="checkbox">
-										  <label>
-										    <input type="checkbox" value="">
-										    Множественный выбор 1
-										  </label>
-										</div>
-
-										<div class="checkbox disabled">
-										  <label>
-										    <input type="checkbox" value="" disabled>
-										    Множественный выбор 2
-										  </label>
-										</div>
-
-										<div class="checkbox">
-										  <label>
-										    <input type="checkbox" value="">
-										    Множественный выбор 3
-										  </label>
-										</div>
-
-										<div class="checkbox">
-										  <label>
-										    <input type="checkbox" value="">
-										    Множественный выбор 4
-										  </label>
-										</div>		
-
-									</div> <!-- end col-sm-6 (часть #2) -->
 								</div> <!-- end .row (разбивка окна ответов на две части)  -->
 
 								<hr>
@@ -220,21 +189,7 @@
 
 							</div> <!-- end .quiz-content (вопрос и варианты ответов) -->
 
-							<hr>						
-
-							<div class="quiz-notes"> <!-- заметки и подсказки к вопросу  -->
-								<ul>Требования к модулю тестов:
-									<li>Вопросы и варианты ответов: перемешиваются для каждого студента </li>
-									<li>Учет времени: не зависит от клиента</li>
-									<li>При закрытии вкладки/браузера сохранять возможность возобновить тест</li>
-									<li>Помечать вопросы, чтобы можно было пропустить и вернуться позже</li>
-									<li>Навигация по вопросам</li>
-									<li>Возможность подсказки и ее стоимость? Выпадающий текст или свойство <mark>Disabled</mark> для одного input'a</li>
-								</ul>
-
-								<p class="text-center lead">Нужно не забыть удалить тег style из head'a документа.
-								</p>
-							</div> <!-- end .quiz-notes (заметки и подсказки к вопросу) -->
+							<hr>
 						</div> <!-- END .quiz-main (колонка теста) -->
 
 					</div>
@@ -246,6 +201,8 @@
 
 
 
+
+        <script src="js/renderTest.js"></script>
 
 	</body>
 </html>
