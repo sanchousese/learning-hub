@@ -50,7 +50,7 @@ public class LessonResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/info/{idLesson}") // ...8080/rest/courses/1234
+    @Path("/lesson/{idLesson}") // ...8080/rest/courses/1234
     public Response getCourse(@PathParam("idLesson") int lessonID) {
         Lesson lesson = lessonDao.selectById(lessonID);
 
