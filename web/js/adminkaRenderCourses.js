@@ -35,6 +35,17 @@ document.getElementById("layoutAdminka").onload = function (){
     });
 }
 
+$.ajax({
+    //data: str,
+    type: "POST",
+    url: "rest/userInfo",
+    datatype: "json",
+    contentType: "application/json",
+    success: function(data) {
+        document.getElementById("userNameShowing").innerHTML = data.login;
+    }
+});
+
 function openCoursePage( indexOfCourse ){
     window.location = "/Adminka_couse.html?" + indexOfCourse;
 }
