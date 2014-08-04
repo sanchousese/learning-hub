@@ -2,10 +2,10 @@ package ua.com.learninghub.model.dao.implementation;
 
 import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
-import ua.com.learninghub.model.dao.interfaces.ModuleDao;
 import ua.com.learninghub.model.dao.interfaces.SubjectDao;
-import ua.com.learninghub.model.entities.Module;
+import ua.com.learninghub.model.dao.interfaces.TestDao;
 import ua.com.learninghub.model.entities.Subject;
+import ua.com.learninghub.model.entities.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,69 +15,61 @@ import java.util.List;
 /**
  * Created by vasax32 on 17.07.14.
  */
-public class ModuleDaoImpl implements ModuleDao, HibernateL2Cache {
+public class TestDaoImpl implements TestDao, HibernateL2Cache {
     private static EntityManagerFactory entityManagerFactory = HibernateUtil.buildEntityManagerFactory();
 
 
     @Override
-    public List<Module> selectAll() {
+    public List<Test> selectAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT modul FROM Module modul");
-        List<Module> modules = query.getResultList();
+        Query query = entityManager.createQuery("SELECT tes FROM Test tes");
+        List<Test> tests = query.getResultList();
         entityManager.close();
-        return modules;
+        return tests;
     }
 
     @Override
-    public Module selectById(int id) {
+    public Test selectById(int id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT module FROM Module module WHERE module.idModule = :m_id");
-        query.setParameter("m_id", id);
-        Module module = (Module) query.getSingleResult();
+        Query query = entityManager.createQuery("SELECT tes FROM Test tes WHERE tes.idTest = :t_id");
+        query.setParameter("t_id", id);
+        Test test = (Test) query.getSingleResult();
         entityManager.close();
-        return module;
+        return test;
     }
 
     @Override
-    public boolean update(Module module) {
+    public boolean update(Test test) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Module modelUpd = (Module) entityManager.find(Module.class, module.getIdModule());
+        Test testUpd = (Test) entityManager.find(Test.class, test.getIdTest());
 
-        if (modelUpd == null) return false;
+        if (testUpd == null) return false;
 
         try {
             entityManager.getTransaction().begin();
-            modelUpd.setName(module.getName());
-            modelUpd.setDescription(module.getDescription());
-            modelUpd.setModuleImage(modelUpd.getModuleImage());
-            modelUpd.setCourse(module.getCourse());
+            testUpd.setName(test.getName());
+            testUpd.setLesson(test.getLesson());
             entityManager.getTransaction().commit();
-        }
-        catch (Exception e){
-            return false;
-        }
-        finally {
-            entityManager.close();
             return true;
+        } catch (Exception e){
+            return false;
+        } finally {
+            entityManager.close();
         }
-
     }
 
     @Override
-    public boolean insert(Module module) {
+    public boolean insert(Test test) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(module);
+            entityManager.persist(test);
             entityManager.getTransaction().commit();
-        }
-        catch (Exception e){
-            return false;
-        }
-        finally {
-            entityManager.close();
             return true;
+        }catch (Exception e){
+            return false;
+        }finally {
+            entityManager.close();
         }
-
     }
 }

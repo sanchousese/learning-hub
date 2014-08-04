@@ -50,7 +50,7 @@ public class Course implements HibernateL2Cache {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "course")
-    private List<Module> modules;
+    private List<Lesson> modules;
 
     public Course(){}
 
@@ -155,11 +155,11 @@ public class Course implements HibernateL2Cache {
     }
 
     @JsonIgnore
-    public List<Module> getModules() {
+    public List<Lesson> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(List<Lesson> modules) {
         this.modules = modules;
     }
 

@@ -41,44 +41,6 @@ public class UserResource {
             return Response.status(200).build();
         } else return Response.status(401).build();
     }
-
-    @RolesAllowed({"Moderator", "Teacher", "Student"})
-    @POST
-    @Path("/userInfo")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response userInfo(@Context HttpServletRequest hsr) {
-        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
-        User user;
-        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null)
-            return Response.ok(user).build();
-        else
-            return Response.status(403).build();
-    }
-
-    @POST
-    @Path("/login")
-    @Consumes({ MediaType.APPLICATION_JSON })
-    public Response loginAuth(@Context HttpServletRequest hsr, @Context HttpServletResponse rspn, JSONObject obj)
-            throws JSONException {
-        String md5Pass = UserLogic.encryptPass(obj.getString("password"));
-
-        User user = userDao.findByLoginPass(obj.getString("login"), md5Pass);
-        if(user != null && cookieUtil.insertSessionUID(rspn, user))
-            return Response.status(200).build();
-        else
-            return Response.status(401).build();
-    }
-
-    @RolesAllowed({"Moderator", "Teacher", "Student"})
-    @POST
-    @Path("/logout")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response logoutAuth(@Context HttpServletRequest hsr, @Context HttpServletResponse rspn) {
-        if(cookieUtil.removeSessionUID(hsr, rspn))
-            return Response.ok().build();
-        else
-            return Response.status(404).build();
-    }
     
     //need to manage this
     @GET
@@ -128,18 +90,18 @@ public class UserResource {
         return users;
     }
 
-    @GET
-    @Path("verifyCourse/{courseId}")
-    public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
-        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
-        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
-        System.out.println(user);
-        CourseDao courseDao = new CourseDaoImpl();
-        Course course = courseDao.selectById(courseId);
-        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){
-            return Response.ok().build();
-        }
-        else
-            return Response.status(403).build();
-    }
+//    @GET
+//    @Path("verifyCourse/{courseId}")
+//    public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
+//        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+//        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+//        System.out.println(user);
+//        CourseDao courseDao = new CourseDaoImpl();
+//        Course course = courseDao.selectById(courseId);
+//        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){
+//            return Response.ok().build();
+//        }
+//        else
+//            return Response.status(403).build();
+//    }
 }

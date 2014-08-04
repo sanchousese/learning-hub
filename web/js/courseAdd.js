@@ -29,10 +29,11 @@ function CCategory(){
         });
     }
     this.getDiscipline = function(){
+        //debugger;
         $.ajax({
             //data: category.spec,
             type: "GET",
-            url: "rest/search/filter/disciplines?idSpeciality=" + category.spec,
+            url: "rest/search/filter/disciplines?idSpecialty=" + category.spec,
             datatype: "json",
             contentType: "application/json",
             success: function(data) {

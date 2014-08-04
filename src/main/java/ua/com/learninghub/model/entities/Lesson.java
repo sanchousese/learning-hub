@@ -17,20 +17,49 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idLesson;
 
+    String name;
     String description;
     String lessonVideo;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "idModule")
-    Module module;
+    @JoinColumn(name = "idCourse")
+    Course course;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "lesson")
+    private Test test;
 
     public int getIdLesson() {
         return idLesson;
     }
 
-    public void setIdLesson(int idModule) {
-        this.idLesson = idModule;
+    public void setIdLesson(int idLesson) {
+        this.idLesson = idLesson;
+    }
+
+    public String getLessonVideo() {
+        return lessonVideo;
+    }
+
+    public void setLessonVideo(String lessonVideo) {
+        this.lessonVideo = lessonVideo;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -41,21 +70,13 @@ public class Lesson {
         this.description = description;
     }
 
-    public String getLessonVideo() {
-        return lessonVideo;
-    }
-
-    public void setLessonVideo(String moduleImage) {
-        this.lessonVideo = moduleImage;
-    }
-
     @JsonIgnore
-    public Module getModule() {
-        return module;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setModule(Module module) {
-        this.module = module;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override
@@ -63,12 +84,14 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Lesson module = (Lesson) o;
+        Lesson lesson = (Lesson) o;
 
-        if (idLesson != module.idLesson) return false;
-        if (!module.equals(module.module)) return false;
-        if (description != null ? !description.equals(module.description) : module.description != null) return false;
-        if (lessonVideo != null ? !lessonVideo.equals(module.lessonVideo) : module.lessonVideo != null) return false;
+        if (idLesson != lesson.idLesson) return false;
+        if (course != null ? !course.equals(lesson.course) : lesson.course != null) return false;
+        if (description != null ? !description.equals(lesson.description) : lesson.description != null) return false;
+        if (lessonVideo != null ? !lessonVideo.equals(lesson.lessonVideo) : lesson.lessonVideo != null) return false;
+        if (!name.equals(lesson.name)) return false;
+        if (test != null ? !test.equals(lesson.test) : lesson.test != null) return false;
 
         return true;
     }
@@ -76,19 +99,11 @@ public class Lesson {
     @Override
     public int hashCode() {
         int result = idLesson;
+        result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (lessonVideo != null ? lessonVideo.hashCode() : 0);
-        result = 31 * result + module.hashCode();
+        result = 31 * result + (course != null ? course.hashCode() : 0);
+        result = 31 * result + (test != null ? test.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Module{" +
-                "idLesson=" + idLesson +
-                ", description='" + description + '\'' +
-                ", lessonVideo='" + lessonVideo + '\'' +
-                ", module=" + module +
-                '}';
     }
 }

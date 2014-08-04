@@ -3,9 +3,7 @@ package ua.com.learninghub.model.dao.implementation;
 import ua.com.learninghub.model.dao.HibernateUtil;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 import ua.com.learninghub.model.dao.interfaces.LessonDao;
-import ua.com.learninghub.model.dao.interfaces.ModuleDao;
 import ua.com.learninghub.model.entities.Lesson;
-import ua.com.learninghub.model.entities.Module;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -49,7 +47,7 @@ public class LessonDaoImpl implements LessonDao, HibernateL2Cache {
             entityManager.getTransaction().begin();
             lessonUpd.setDescription(lesson.getDescription());
             lessonUpd.setLessonVideo(lessonUpd.getLessonVideo());
-            lessonUpd.setModule(lesson.getModule());
+            lessonUpd.setTest(lesson.getTest());
             entityManager.getTransaction().commit();
         }
         catch (Exception e){
