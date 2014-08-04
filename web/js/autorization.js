@@ -77,7 +77,7 @@
               //alert(data.login);
               //$('#user-info').childNodes[0].nodeValue  = data.login;
               document.getElementById("user-info").innerHTML = data.login;
-              document.getElementById("userNameShowing").innerHTML = data.login;
+              //document.getElementById("userNameShowing").innerHTML = data.login;
               $('#user-info').css('display', 'block');
 
           },

@@ -67,9 +67,9 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         }
 
         // Cutting
-        if (courses.size() >= search.getIdTo() - search.getIdFrom()) {
-            courses = courses.subList(search.getIdFrom() - 1, search.getIdTo() - 1);
-        }
+//        if (courses.size() >= search.getIdTo() - search.getIdFrom()) {
+//            courses = courses.subList(search.getIdFrom() - 1, search.getIdTo() - 1);
+//        }
 
         return courses;
     }
