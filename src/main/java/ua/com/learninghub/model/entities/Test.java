@@ -1,15 +1,17 @@
 package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by vasax32 on 01.08.14.
  */
 @Entity
 public class Test {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idTest;
@@ -20,6 +22,12 @@ public class Test {
     @OneToOne
     @JoinColumn(name = "idLesson")
     Lesson lesson;
+
+
+    @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "test")
+    private List<Question> questions;
 
     public int getIdTest() {
         return idTest;
