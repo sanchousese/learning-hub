@@ -25,7 +25,6 @@ public class AnswerResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnswers(@QueryParam(value = "idQuestion") int questionId) {
 
-
         Question question = questionDao.selectById(questionId);
 
         if (question == null) {
