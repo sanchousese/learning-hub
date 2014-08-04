@@ -30,6 +30,7 @@ public class Question {
     private List<Answer> answers;
 
 
+    @JsonIgnore
     public List<Answer> getAnswers() {
         return answers;
     }
@@ -54,6 +55,7 @@ public class Question {
         this.que = que;
     }
 
+    @JsonIgnore
     public Test getTest() {
         return test;
     }

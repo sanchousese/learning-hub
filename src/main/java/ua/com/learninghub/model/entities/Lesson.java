@@ -47,6 +47,7 @@ public class Lesson {
         this.lessonVideo = lessonVideo;
     }
 
+    @JsonIgnore
     public Test getTest() {
         return test;
     }
@@ -106,5 +107,17 @@ public class Lesson {
         result = 31 * result + (course != null ? course.hashCode() : 0);
         result = 31 * result + (test != null ? test.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "idLesson=" + idLesson +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", lessonVideo='" + lessonVideo + '\'' +
+                ", course=" + course +
+                ", test=" + test +
+                '}';
     }
 }

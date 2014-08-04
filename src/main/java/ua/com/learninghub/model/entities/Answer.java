@@ -50,6 +50,7 @@ public class Answer {
         this.correct = correct;
     }
 
+    @JsonIgnore
     public Question getQuestion() {
         return question;
     }

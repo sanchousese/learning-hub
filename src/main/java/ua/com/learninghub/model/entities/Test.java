@@ -30,6 +30,7 @@ public class Test {
     private List<Question> questions;
 
 
+    @JsonIgnore
     public List<Question> getQuestions() {
         return questions;
     }

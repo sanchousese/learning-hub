@@ -33,13 +33,21 @@ public class LessonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLessons(@QueryParam(value = "idCourse") int courseID) {
+
+        System.out.println("CID:" + courseID);
+
         Course course = courseDao.selectById(courseID);
+
+        System.out.println("CRS:" + course);
 
         if (course == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         List<Lesson> lessons = course.getLessons();
+
+        for (Lesson l : lessons)
+        System.out.println("ls:" + l);
 
         if (lessons == null || lessons.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();
