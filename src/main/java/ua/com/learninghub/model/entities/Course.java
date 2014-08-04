@@ -2,15 +2,12 @@ package ua.com.learninghub.model.entities;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.*;
-import org.hibernate.annotations.Table;
 import ua.com.learninghub.model.dao.interfaces.HibernateL2Cache;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 import java.util.List;
 
@@ -50,7 +47,7 @@ public class Course implements HibernateL2Cache {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "course")
-    private List<Lesson> modules;
+    private List<Lesson> lessons;
 
     public Course(){}
 
@@ -155,12 +152,12 @@ public class Course implements HibernateL2Cache {
     }
 
     @JsonIgnore
-    public List<Lesson> getModules() {
-        return modules;
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setModules(List<Lesson> modules) {
-        this.modules = modules;
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     @Override

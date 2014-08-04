@@ -6,14 +6,12 @@ import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.dao.interfaces.LessonDao;
 import ua.com.learninghub.model.entities.Course;
 import ua.com.learninghub.model.entities.Lesson;
-import ua.com.learninghub.model.entities.Subject;
 
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 // * Created by Max on 04.08.2014.
 
@@ -32,7 +30,7 @@ public class LessonResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        List<Lesson> lessons = course.getModules();
+        List<Lesson> lessons = course.getLessons();
 
         if (lessons == null || lessons.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();
