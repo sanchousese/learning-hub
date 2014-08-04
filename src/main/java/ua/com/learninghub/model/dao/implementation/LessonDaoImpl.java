@@ -46,7 +46,7 @@ public class LessonDaoImpl implements LessonDao, HibernateL2Cache {
         try {
             entityManager.getTransaction().begin();
             lessonUpd.setDescription(lesson.getDescription());
-            lessonUpd.setLessonVideo(lessonUpd.getLessonVideo());
+            lessonUpd.setLessonVideo(lesson.getLessonVideo());
             lessonUpd.setTest(lesson.getTest());
             entityManager.getTransaction().commit();
         }
