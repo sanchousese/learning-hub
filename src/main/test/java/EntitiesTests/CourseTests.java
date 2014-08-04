@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by vasax32 on 17.07.14.
  */
-public class CourseTest {
+public class CourseTests {
     private CourseDao courseDao = new CourseDaoImpl();
 
     @Test

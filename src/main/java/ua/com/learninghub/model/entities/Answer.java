@@ -25,6 +25,7 @@ public class Answer {
     Question question;
 
 
+
     public int getIdAnswer() {
         return idAnswer;
     }
@@ -41,7 +42,7 @@ public class Answer {
         this.ans = ans;
     }
 
-    public boolean isCorrect() {
+    public boolean getCorrect() {
         return correct;
     }
 

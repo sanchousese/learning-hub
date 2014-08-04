@@ -29,6 +29,7 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
+
     public List<Answer> getAnswers() {
         return answers;
     }
@@ -89,7 +90,6 @@ public class Question {
                 "idQuestion=" + idQuestion +
                 ", que='" + que + '\'' +
                 ", test=" + test +
-                ", answers=" + answers +
                 '}';
     }
 
