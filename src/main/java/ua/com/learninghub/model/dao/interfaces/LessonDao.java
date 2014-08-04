@@ -1,7 +1,6 @@
 package ua.com.learninghub.model.dao.interfaces;
 
 import ua.com.learninghub.model.entities.Lesson;
-import ua.com.learninghub.model.entities.Module;
 
 import java.util.List;
 

@@ -175,14 +175,14 @@ DROP TABLE IF EXISTS `Lesson`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Lesson` (
   `idLesson` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
   `description` text,
   `lessonVideo` varchar(45) DEFAULT NULL,
-  `idModule` int(11) NOT NULL,
+  `idCourse` int(11) NOT NULL,
   PRIMARY KEY (`idLesson`),
-  UNIQUE KEY `idLesson_UNIQUE` (`idLesson`),
-  KEY `fk_Lesson_1_idModule_idx` (`idModule`),
-  CONSTRAINT `fk_Lesson_1_idModule` FOREIGN KEY (`idModule`) REFERENCES `Module` (`idModule`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `idModule_UNIQUE` (`idLesson`),
+  KEY `fk_Module_1_idx` (`idCourse`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,38 +191,8 @@ CREATE TABLE `Lesson` (
 
 LOCK TABLES `Lesson` WRITE;
 /*!40000 ALTER TABLE `Lesson` DISABLE KEYS */;
-INSERT INTO `Lesson` VALUES (1,'Post',NULL,1);
+INSERT INTO `Lesson` VALUES (1,'FormData','Some desc',NULL,1),(2,'Insert OK','Bla OK',NULL,1);
 /*!40000 ALTER TABLE `Lesson` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Module`
---
-
-DROP TABLE IF EXISTS `Module`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Module` (
-  `idModule` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `description` text,
-  `moduleImage` varchar(45) DEFAULT NULL,
-  `idCourse` int(11) NOT NULL,
-  PRIMARY KEY (`idModule`),
-  UNIQUE KEY `idModule_UNIQUE` (`idModule`),
-  KEY `fk_Module_1_idx` (`idCourse`),
-  CONSTRAINT `fk_Module_1_idCourse` FOREIGN KEY (`idCourse`) REFERENCES `Course` (`idCourse`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Module`
---
-
-LOCK TABLES `Module` WRITE;
-/*!40000 ALTER TABLE `Module` DISABLE KEYS */;
-INSERT INTO `Module` VALUES (1,'FormData','Some desc',NULL,1),(2,'Insert OK','Bla OK',NULL,1);
-/*!40000 ALTER TABLE `Module` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -426,11 +396,11 @@ DROP TABLE IF EXISTS `Test`;
 CREATE TABLE `Test` (
   `idTest` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `idModule` int(11) NOT NULL,
+  `idLesson` int(11) NOT NULL,
   PRIMARY KEY (`idTest`),
   UNIQUE KEY `idTest_UNIQUE` (`idTest`),
-  KEY `fk_Test_1_idModule_idx` (`idModule`),
-  CONSTRAINT `fk_Test_1_idModule` FOREIGN KEY (`idModule`) REFERENCES `Module` (`idModule`) ON DELETE NO ACTION ON UPDATE CASCADE
+  KEY `fk_Test_1_idModule_idx` (`idLesson`),
+  CONSTRAINT `fk_Test_1_id_Lesson` FOREIGN KEY (`idLesson`) REFERENCES `Lesson` (`idLesson`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -440,7 +410,6 @@ CREATE TABLE `Test` (
 
 LOCK TABLES `Test` WRITE;
 /*!40000 ALTER TABLE `Test` DISABLE KEYS */;
-INSERT INTO `Test` VALUES (1,'Bols1',1),(2,'Update OK',2);
 /*!40000 ALTER TABLE `Test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,4 +510,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-04 10:49:44
+-- Dump completed on 2014-08-04 12:04:30

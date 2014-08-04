@@ -48,7 +48,7 @@ public class TestDaoImpl implements TestDao, HibernateL2Cache {
         try {
             entityManager.getTransaction().begin();
             testUpd.setName(test.getName());
-            testUpd.setModule(test.getModule());
+            testUpd.setLesson(test.getLesson());
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e){

@@ -1,6 +1,5 @@
 package EntitiesTests;
 
-import ua.com.learninghub.model.dao.implementation.ModuleDaoImpl;
 import ua.com.learninghub.model.dao.implementation.TestDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.TestDao;
 import ua.com.learninghub.model.entities.Test;
@@ -25,7 +24,7 @@ public class TestTests {
     public void insert(){
         Test test = new Test();
         test.setName("Insert OK");
-        test.setModule((new ModuleDaoImpl()).selectById(1));
+        //test.setModule((new ModuleDaoImpl()).selectById(1));
         testDao.insert(test);
     }
 
@@ -33,7 +32,7 @@ public class TestTests {
     public void update(){
         Test test = testDao.selectById(2);
         test.setName("Update OK");
-        test.setModule((new ModuleDaoImpl()).selectById(2));
+        //test.setModule((new ModuleDaoImpl()).selectById(2));
         testDao.update(test);
     }
 }

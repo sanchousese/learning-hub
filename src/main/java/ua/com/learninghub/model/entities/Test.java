@@ -17,9 +17,9 @@ public class Test {
     String name;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "idModule")
-    Module module;
+    @OneToOne
+    @JoinColumn(name = "idLesson")
+    Lesson lesson;
 
     public int getIdTest() {
         return idTest;
@@ -37,12 +37,13 @@ public class Test {
         this.name = name;
     }
 
-    public Module getModule() {
-        return module;
+    @JsonIgnore
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setModule(Module module) {
-        this.module = module;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 
     @Override
@@ -53,7 +54,6 @@ public class Test {
         Test test = (Test) o;
 
         if (idTest != test.idTest) return false;
-        if (!module.equals(test.module)) return false;
         if (name != null ? !name.equals(test.name) : test.name != null) return false;
 
         return true;
@@ -63,7 +63,6 @@ public class Test {
     public int hashCode() {
         int result = idTest;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + module.hashCode();
         return result;
     }
 
@@ -72,7 +71,6 @@ public class Test {
         return "Test{" +
                 "idTest=" + idTest +
                 ", name='" + name + '\'' +
-                ", module=" + module +
                 '}';
     }
 }
