@@ -14,10 +14,10 @@ document.getElementById("layoutAdminka").onload = function (){
             for (var i = 0; i < data.length; i++) {
                 div.innerHTML +=                     '<div class="col-xs-12 col-sm-12 col-md-12 padding_5 course_medium">'+
                     '<div>'+
-                    '<div class="news_cover_medium"><a href="javascript:openCourse(' + data[i].idCourse + ');">' +
+                    '<div class="news_cover_medium"><a href="javascript:openCoursePage(' + data[i].idCourse + ');">' +
                     '<img id = "courseMainImage'+ i +'" src="../img/image.jpg" alt="Course img" class="img-rounded"></a></div>'+
                     '<div class="news_content_medium">' +
-                    '<h3><a href="javascript:openCourse(' + data[i].idCourse + ');">' + data[i].name + '</a></h3>' +
+                    '<h3><a href="javascript:openCoursePage(' + data[i].idCourse + ');">' + data[i].name + '</a></h3>' +
                     '<div class="progress">' +
                     '<div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">'+
                     '<span class="sr-only">45% Complete</span>'+
@@ -35,6 +35,6 @@ document.getElementById("layoutAdminka").onload = function (){
     });
 }
 
-function openCourse( indexOfCourse ){
-    window.location = "/Course.html?" + indexOfCourse;
+function openCoursePage( indexOfCourse ){
+    window.location = "/Adminka_couse.html?" + indexOfCourse;
 }
