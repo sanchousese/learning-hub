@@ -117,19 +117,21 @@ public class FileSystemUtil {
     public static File getLessonVideo(int lessonId) throws Exception {
         File file = new File(storagePath + "lessons"+ separator +lessonId + separator + "video" + separator + new LessonDaoImpl().selectById(lessonId).getLessonVideo());
         if (!file.exists())
-            throw new Exception();
+            //throw new Exception();
+            file = getVideo();
         return file;
     }
 
     public static File getVideoCourse(int courseId) throws Exception {
         File file = new File(storagePath + "courses"+ separator +courseId + separator + "video" + separator + new CourseDaoImpl().selectById(courseId).getMainVideoPath());
         if (!file.exists())
-            throw new Exception();
+            file = getVideo();
+            //throw new Exception();
         return file;
     }
 
     public static File getVideo(){
-        File file = new File(storagePath + "courses" + separator + "video" + separator +"1.mp4");
+        File file = new File(storagePath + "courses" + separator +"default.mp4");
         if (!file.exists())
             throw new RuntimeException("video wasn't found.");
         return file;

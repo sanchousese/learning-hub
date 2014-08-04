@@ -23,7 +23,7 @@ function setMainForm(data){
     $.ajax({
         //data: str,
         type: "GET",
-        url: "rest/lessons/info/"+data,
+        url: "rest/lessons/lesson/"+data,
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
@@ -33,7 +33,7 @@ function setMainForm(data){
             panel.innerHTML = data.description;
 
             jwplayer('lessonVideo').setup({
-                file: "/rest/course/getVideoCourse/" + query + "?n=1",//http://localhost:8080/rest/course/getVideoCourse/
+                file: "/rest/lessons/getLessonVideo/" + query,//http://localhost:8080/rest/course/getVideoCourse/
                 title: data.name,
                 width: '100%',
                 aspectratio: '16:9',

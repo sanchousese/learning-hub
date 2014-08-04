@@ -18,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 // * Created by Max on 04.08.2014.
@@ -99,6 +100,19 @@ public class LessonResource {
             if(filename != null ) FileSystemUtil.writeLessonVideo(fileInputStream, filename, new Integer(lessonId));
             return Response.status(200).build();
         } else return Response.status(401).build();
+    }
+
+    @GET
+    @Path("/getLessonVideo/{lessonId}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getVideoCourse(@PathParam("lessonId") int lessonId){
+        File file = null;
+        try {
+            file = FileSystemUtil.getLessonVideo(lessonId);
+        } catch (Exception e) {
+            Response.status(401).build();
+        }
+        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
 }
