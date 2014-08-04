@@ -30,6 +30,7 @@ public class Lesson {
     @OneToOne(mappedBy = "lesson")
     private Test test;
 
+
     public int getIdLesson() {
         return idLesson;
     }
