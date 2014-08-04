@@ -31,6 +31,11 @@ public class Module {
     @OneToMany(mappedBy = "module")
     private List<Lesson> lessons;
 
+    @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "module")
+    private List<Test> tests;
+
     public int getIdModule() {
         return idModule;
     }
@@ -79,6 +84,15 @@ public class Module {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    @JsonIgnore
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 
     @Override

@@ -57,6 +57,9 @@ public class CriteriaFilterResource {
     public Response getDisciplines(@QueryParam(value = "idSpecialty") int idSpecialty){
         Specialty specialty = specialtyDao.selectById(idSpecialty);
 
+        if(specialty == null)
+            return  Response.status(Response.Status.NOT_FOUND).build();
+
         List<Discipline> disciplines = specialty.getDisciplines();
 
 
