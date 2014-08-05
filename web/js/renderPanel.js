@@ -5,6 +5,7 @@ if (query.substring(0, 1) == '?') {
 
 var idLesson = 0;
 var sizeOfCourse=0;
+var testLesson = 1;
 
 $.ajax({
     //data: str,
@@ -34,6 +35,7 @@ function setMainForm(data){
             document.getElementById('lessonName').innerHTML = data.name;
             var panel =  document.getElementById("lessonDescription");
             panel.innerHTML = data.description;
+            testLesson = data.idLesson;
 
             jwplayer('lessonVideo').setup({
                 file: "/rest/course/getVideoCourse/" + query + "?n=1",
@@ -76,7 +78,7 @@ function setCourseNameInDiv(){
 }
 
 function goToTests() {
-    window.location = "/quiz.html?" + idLesson;
+    window.location = "/quiz.html?" + testLesson;
 }
 
 function goToNextLesson() {

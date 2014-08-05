@@ -226,7 +226,7 @@ body {
 .quiz-main {
 	background-color: rgba(10,10,10,.05);
 	float: left;
-	height: 1700px;
+	/*height: 1700px;*/
 }
 .quiz_sidebar {
 	float: right;
@@ -238,7 +238,7 @@ body {
 			height: 160px;
 		}
 			.countdown {
-				top: 40px;
+				top: 50px;
 			}
 			.countdown + span {
 				top: 30px;
@@ -248,6 +248,8 @@ body {
 			}
 		.quiz_timeline {
 			margin-top: 0;
+            min-height:215px;
+            overflow-y: auto;
 		}
 /*========================================================================*/
 /* END. мои новые стили */

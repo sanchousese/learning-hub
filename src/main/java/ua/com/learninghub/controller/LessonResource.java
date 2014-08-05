@@ -123,6 +123,15 @@ public class LessonResource {
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
+    @GET
+    @Path("/getCourseId/{lessonId}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getCourseId(@PathParam("lessonId") int lessonId){
+        Lesson lesson = lessonDao.selectById(lessonId);
+        int courseId = lesson.getCourse().getIdCourse();
+        return Response.ok(Integer.toString(courseId)).build();
+    }
+
 }
 
 

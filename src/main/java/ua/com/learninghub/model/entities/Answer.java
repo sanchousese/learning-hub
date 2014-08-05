@@ -69,7 +69,6 @@ public class Answer {
         if (correct != answer.correct) return false;
         if (idAnswer != answer.idAnswer) return false;
         if (!ans.equals(answer.ans)) return false;
-        if (!question.equals(answer.question)) return false;
 
         return true;
     }
