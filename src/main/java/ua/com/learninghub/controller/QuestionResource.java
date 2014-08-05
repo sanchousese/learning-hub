@@ -65,10 +65,47 @@ public class QuestionResource {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response create(Question question, List<Answer> answers) {
-        question.setAnswers(answers);
+    public Response create(JSONObject object) throws JSONException {
+        int lessonId = object.getInt("lessonId");
+        JSONObject data = object.getJSONObject("data");
+        Question question = new Question();
+        question.setQue(data.getString("que"));
+        Lesson lesson = lessonDao.selectById(lessonId);
+        Test  test = lesson.getTest();
+        if(test == null){
+            test = new Test();
+            test.setName("Test 1");
+            test.setLesson(lesson);
+            testDao.insert(test);
+        }
+        question.setTest(test);
 
         if(questionDao.insert(question)) {
+
+            Answer answer = new Answer();
+            answer.setAns(data.getString("ans1"));
+            answer.setCorrect(data.getBoolean("ans1b"));
+            answer.setQuestion(question);
+            answerDao.insert(answer);
+
+            answer = new Answer();
+            answer.setAns(data.getString("ans2"));
+            answer.setCorrect(data.getBoolean("ans2b"));
+            answer.setQuestion(question);
+            answerDao.insert(answer);
+
+            answer = new Answer();
+            answer.setAns(data.getString("ans3"));
+            answer.setCorrect(data.getBoolean("ans3b"));
+            answer.setQuestion(question);
+            answerDao.insert(answer);
+
+            answer = new Answer();
+            answer.setAns(data.getString("ans4"));
+            answer.setCorrect(data.getBoolean("ans4b"));
+            answer.setQuestion(question);
+            answerDao.insert(answer);
+
             return Response.ok(new String(Integer.toString(question.getIdQuestion()))).build();
         } else return Response.status(401).build();
     }

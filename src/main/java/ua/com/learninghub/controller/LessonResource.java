@@ -79,7 +79,7 @@ public class LessonResource {
         Lesson lesson = new Lesson();
         lesson.setName((String)json.get("name"));
         lesson.setDescription((String)json.get("description"));
-        lesson.setCourse(courseDao.selectById((Integer) json.get("course")));
+        lesson.setCourse(courseDao.selectById(new Integer((String)json.get("course"))));
         if(lessonDao.insert(lesson)) {
             return Response.ok(new String(Integer.toString(lesson.getIdLesson()))).build();
         } else return Response.status(401).build();

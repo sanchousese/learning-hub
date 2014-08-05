@@ -112,56 +112,56 @@
  </div>
   </div>
       <hr>
-       <h4 class="text-center">Добавление теста</h4>
-    <div class="form-group">
-    <div class="col-md-10 col-md-offset-2">
-    <div class="col-md-12 col-sm-12 thumbnail border-fix">
-    <h4>Вопрос</h4>
-   <textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="100" rows="11" required="required" aria-required="true" placeholder="Введите вопрос" id = "courseDescD"></textarea>
-    </div>
-        <div class="col-md-12 col-sm-12 thumbnail border-fix">
-<!--    <h4>Варинты ответа</h4>-->
-        <div class="panel-collapse collapse in" data-toggle="buttons">
-      <div  class="panel-body padding-fix" data-toggle="buttons">
-        <h4>Варинты ответа</h4>
-<div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
-     <label class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
-   <input type="checkbox" class="btn btn-default btn-group">Привильный ответ
-     </label>
-     <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 1" id = "courseDescD"></textarea></div>
-     </div>
-     <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
-     <label class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
-<input type="checkbox" class="btn btn-default btn-group">Привильный ответ
-         </label>
-     <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 2" id = "courseDescD"></textarea></div>
-     </div>
-     <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
-     <label class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
-   <input type="checkbox" class="btn btn-default btn-group">Привильный ответ
-     </label>
-     <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 3" id = "courseDescD"></textarea></div>
-     </div>
-     <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
-     <label class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
-   <input type="checkbox" class="btn btn-default btn-group">Привильный ответ
-     </label>
-     <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ4" id = "courseDescD"></textarea></div>
-     </div>
-      </div>
-    </div>
-</div>
- </div>
-  </div>
-  <div class="well well-sm col-md-11 col-md-offset-1 ">
-                     	    <ul class="pager margin_vertical_10 ">
-  <li class="previous"><a href="#" class="margin_top_6 margin_gorizontal_15">&larr; Предыдущий вопрос</a></li>
-    <button type="button" class="btn btn-success btn-lg" onclick="AddLessonInfo()">Добавить урок</button>
-  <li class="next"><a href="#" class="margin_top_6 margin_gorizontal_15">Следующий вопрос &rarr;</a></li>
-</ul>                	    
-                     	</div>
-  
-</form>
+        <h4 class="text-center">Добавление теста</h4>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="col-md-12 col-sm-12 thumbnail border-fix">
+                    <h4 id="qNum">Вопрос 1</h4>
+                    <textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="100" rows="11" required="required" aria-required="true" placeholder="Введите вопрос" id = "queD"></textarea>
+                </div>
+                <div class="col-md-12 col-sm-12 thumbnail border-fix">
+                    <!--    <h4>Варинты ответа</h4>-->
+                    <div class="panel-collapse collapse in" data-toggle="buttons">
+                        <div  class="panel-body padding-fix" data-toggle="buttons">
+                            <h4>Варинты ответа</h4>
+                            <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
+                                <label id = "ans1cl" class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
+                                    <input id = "ans1c" type="checkbox" class="btn btn-default btn-group">Привильный ответ
+                                </label>
+                                <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 1" id = "ans1D"></textarea></div>
+                            </div>
+                            <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
+                                <label id = "ans2cl" class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
+                                    <input id = "ans2c" type="checkbox" class="btn btn-default btn-group">Привильный ответ
+                                </label>
+                                <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 2" id = "ans2D"></textarea></div>
+                            </div>
+                            <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
+                                <label id = "ans3cl" class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
+                                    <input id = "ans3c" type="checkbox" class="btn btn-default btn-group">Привильный ответ
+                                </label>
+                                <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ 3" id = "ans3D"></textarea></div>
+                            </div>
+                            <div class="btn-group col-md-12 padding-fix" data-toggle="buttons">
+                                <label id = "ans4cl" class="text-left btn btn-primary  mardgin_bottom_5 padding_12">
+                                    <input id = "ans4c" type="checkbox" class="btn btn-default btn-group">Привильный ответ
+                                </label>
+                                <div class="btn-group"><textarea onkeyup="changeVisibilityButton()" class="large" name="textarea" cols="80" rows="2" required="required" aria-required="true" placeholder="Ответ4" id = "ans4D"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well well-sm col-md-11 col-md-offset-1 ">
+            <ul class="pager margin_vertical_10 ">
+                <li class="previous"><a onclick="prevQue()" class="margin_top_6 margin_gorizontal_15">&larr; Предыдущий вопрос</a></li>
+                <button id = "addLessonButton" type="button" class="btn btn-success btn-lg disabled" onclick="AddLessonInfo()">Добавить урок</button>
+                <li class="next"><a onclick="nextQue()" class="margin_top_6 margin_gorizontal_15">Следующий вопрос &rarr;</a></li>
+            </ul>
+        </div>
+
+    </form>
                  </div>
            </div>
            </div>
