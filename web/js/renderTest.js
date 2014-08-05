@@ -21,7 +21,7 @@ $.ajax({
 
 function update() {
     document.getElementById("question").innerHTML = questArray[curIndex].que;
-    document.getElementById("answers").innerHTML = "";
+    document.getElementById("answers").innerHTML = "";//
 
     $.ajax({
         //data: str,
