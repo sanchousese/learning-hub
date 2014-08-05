@@ -30,7 +30,7 @@ public class Subject implements HibernateL2Cache {
     @OneToMany(mappedBy = "subject")
     private List<Course> courses;
 
-    @JsonIgnore
+    //s@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idDiscipline")
     private Discipline discipline;
@@ -77,7 +77,7 @@ public class Subject implements HibernateL2Cache {
         this.courses = courses;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     public Discipline getDiscipline() {
         return discipline;
     }

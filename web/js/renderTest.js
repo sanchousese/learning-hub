@@ -119,8 +119,8 @@ function redirectTo(){
         url: "rest/lessons/getCourseId/" + query,
         datatype: "json",
         contentType: "application/json",
-        success: function(data) {
-            window.location = "/Adminka_couse.html?" + data;
+        success: function(courseId) {
+            window.location = "/Adminka_couse.html?" + courseId;
         }
     });
 }

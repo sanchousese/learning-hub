@@ -44,7 +44,7 @@ public class Course implements HibernateL2Cache {
     @JoinTable(name = "UserCourse", joinColumns = {@JoinColumn(name = "idCourse")}, inverseJoinColumns = {@JoinColumn(name = "idUser")})
     private List<User> users;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idSubject")
     private Subject subject;
@@ -141,7 +141,7 @@ public class Course implements HibernateL2Cache {
         this.users = users;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     public Subject getSubject() {
         return subject;
     }

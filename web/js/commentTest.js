@@ -9,7 +9,7 @@ function showAllComments() {
     $.ajax({
         //data: str,
         type: "GET",
-        url: "http://localhost:8080/rest/comment/byCourse?idCourse=" + ID_COURSE,
+        url: "rest/comment/byCourse?idCourse=" + ID_COURSE,
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
@@ -43,7 +43,7 @@ function insertComment() {
     $.ajax({
         //data: str,
         type: "POST",
-        url: "http://localhost:8080/rest/comment/create",
+        url: "rest/comment/create",
         data: JSON.stringify(commentVar),
         contentType: "application/json",
         dataType: "json",
