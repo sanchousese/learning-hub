@@ -21,6 +21,11 @@ public class Course implements HibernateL2Cache {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idCourse;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Comment> comments;
+
     String name;
     @XmlTransient
     Date beginDate;
@@ -58,12 +63,22 @@ public class Course implements HibernateL2Cache {
         this.mainImagePath = mainImagePath;
     }
 
+
     public int getIdCourse() {
         return idCourse;
     }
 
     public void setIdCourse(int idCourse) {
         this.idCourse = idCourse;
+    }
+
+    @JsonIgnore
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public String getName() {
