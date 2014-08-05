@@ -6,7 +6,14 @@
  * @license		MIT License
  */
 
+
+
 (function($){
+
+    $( document ).ready(function(){
+        $('#countdown').countdown({  timestamp	: (new Date()).getTime() + 1*1*60*60*1000});
+    });
+
 	
 	// Количество секунд в каждом временном отрезке
 	var days	= 24*60*60,

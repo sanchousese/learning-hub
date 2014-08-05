@@ -109,4 +109,33 @@ public class QuestionResource {
             return Response.ok(new String(Integer.toString(question.getIdQuestion()))).build();
         } else return Response.status(401).build();
     }
+
+    @POST
+    @Path("/validateAnswers")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response validateAnswers(List<Question> ques){
+        double sum = 0;
+        for(Question question : ques){
+            List<Answer> masterAnswers = questionDao.selectById(question.getIdQuestion()).getAnswers();
+            List<Answer> answers = question.getAnswers();
+            double per = ((double)100)/((double)answers.size());
+            double ansSum = 0;
+            boolean allFalse = true;
+            for(int i = 0; i <answers.size(); i++){
+                if(answers.get(i).getCorrect()){
+                    allFalse = false;
+                    break;
+                }
+            }
+            if(!allFalse) {
+                for (int i = 0; i < answers.size(); i++) {
+                    if (answers.get(i).equals(masterAnswers.get(i)))
+                        ansSum += per;
+                }
+                sum += ansSum;
+            }
+        }
+        sum /= ques.size();
+        return Response.ok(sum).build();
+    }
 }

@@ -98,39 +98,32 @@
 
 
 							<!-- ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР  -->
-							<div id="countdown"></div>
-									<p id="note"></p>						        
-							        <!-- JavaScript -->
-									<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-									<script src="assets/countdown/jquery.countdown.js"></script>
-									<script src="assets/js/script.js"></script>
+							<!--<div id="countdown"></div>-->
+									<!--<p id="note"></p>						        -->
+							        <!--&lt;!&ndash; JavaScript &ndash;&gt;-->
+									<!--<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
+									<!--<script src="assets/countdown/jquery.countdown.js"></script>-->
+									<!--<script src="assets/js/script.js"></script>-->
 							<!-- ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР ТАЙМЕР  -->
 
 
 							<div class="quiz_details">
 								<div class="quiz_timer">
-									<span class="countdown">5:00</span>
+									<span class="countdown">
+                                        <!--5:00-->
+                                        <div id="countdown"></div>
+                                        <p id="note"></p>
+                                        <!-- JavaScript -->
+                                        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+                                        <script src="assets/countdown/jquery.countdown.js"></script>
+									</span>
 									<span>Time Remaining</span>
 									<span><strong>Mins</strong> Secs</span>
 								</div> <!-- end .quiz_timer -->
 								<div class="quiz_timeline">
 									<div class="timeline_wrapper">
-										<ul>
-											<li id="ques1181" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">QUESTION 1<span>5</span></a></li>
-											<li id="ques1193" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1193" class="">QUESTION 2<span>5</span></a></li>
-											<li id="ques1185" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1185" class="">QUESTION 3<span>5</span></a></li>
-											<li id="ques1183" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1183" class="">QUESTION 4<span>5</span></a></li>
-											<li id="ques1181" class=""><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">QUESTION 5<span>5</span></a></li>
-											<li id="0001"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 01</span></a></li>
-											<li id="0002"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 02</span></a></li>
-											<li id="0003"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 03</span></a></li>
-											<li id="0004"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 04</span></a></li>
-											<li id="0005"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 05</span></a></li>
-											<li id="0006"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 06</span></a></li>
-											<li id="0007"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 07</span></a></li>
-											<li id="0008"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 08</span></a></li>
-											<li id="0009"> <span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 09</span></a></li>
-											<li id="00010"><span></span> <a href="#" data-quiz="1346" data-qid="1181" class="">Question<span> 10</span></a></li>
+										<ul id = "renderQues">
+											<!--REndering of questions-->
 										</ul>
 									</div> <!-- end .timeline_wrapper -->
 								</div> <!-- end .quiz_timeline -->
@@ -140,7 +133,7 @@
 
 						<div class="quiz-main col-sm-8"> <!-- колонка теста -->
 							<div class="quiz-content"> <!-- вопрос и варианты ответов  -->
-								<h2>Вопрос</h2>
+								<h2 id = "qNum">Вопрос</h2>
 								<p id="question">В чем смысл жизни вселенной и всего такого прочего?</p>
 								<h2>Варианты ответов</h2>
 
@@ -148,30 +141,30 @@
 									<div class="col-sm-6" id="answers"> <!-- часть #1 -->
 
 										<div class="radio">
-										  <label>
-										    <input type="radio" name="question#0000" id="answer1" value="option1">
-										    	Любовь
+										  <label >
+										    <input type="checkbox" name="question#0000" id="answer1" value="option1" >
+										    	<label id = "answer1v">Любовь</label>
 										  </label>
 										</div>
 
 										<div class="radio">
 										  <label>
-										    <input type="radio" name="question#0000" id="answer2" value="option2">
-										    	Деньги
+										    <input type="checkbox" name="question#0000" id="answer2" value="option2">
+                                              <label id = "answer2v">Любовь</label>
 										  </label>
 										</div>
 
 										<div class="radio">
 										  <label>
-										    <input type="radio" name="question#0000" id="answer3" value="option3">
-													Власть
+										    <input type="checkbox" name="question#0000" id="answer3" value="option3">
+                                              <label id = "answer3v">Любовь</label>
 										  </label>
 										</div>
 
 										<div class="radio">
 										  <label>
-										    <input type="radio" name="question#0000" id="answer4" value="option4">
-										    	42
+										    <input type="checkbox" name="question#0000" id="answer4" value="option4">
+                                              <label id = "answer4v">Любовь</label>
 										  </label>
 										</div>
 									</div> <!-- end col-sm-6 (часть #1) -->
@@ -182,9 +175,9 @@
 
 								<!-- контролы для ответов на вопросы: вариант BUTTON  -->
 								<ul class="pager"> 
-								  <li><a id="prevQuestion"> ← Пред. </a></li>
-								  <li><button type="button" class="btn btn-info" id="makeAnswer">Ответить</button></li>
-								  <li><a id="nextQuestion"> След. → </a></li>
+								  <li><a id="prevQuestion" onclick="prevQue()"> ← Пред. </a></li>
+								  <li><button type="button" class="btn btn-info" onclick="finishTest()" id="makeAnswer">Закончить</button></li>
+								  <li><a id="nextQuestion" onclick="nextQue()"> След. → </a></li>
 								</ul> <!-- END контролы для ответов на вопросы: вариант BUTTON  -->
 
 							</div> <!-- end .quiz-content (вопрос и варианты ответов) -->
@@ -199,10 +192,43 @@
 			</div> <!-- end .row -->
 		</div> <!-- end .container -->
 
+        <!--<div>-->
+            <!--<script src="js/jquery.knob.js"></script>-->
+            <!--<input type="text" value="75" class="dial">-->
+
+            <!--<script>-->
+                <!--$(function() {-->
+                    <!--$(".dial").knob({readOnly : true});-->
+                <!--});-->
+                <!--//change-->
+                <!--$('.dial').val(27).trigger('change');-->
+            <!--</script>-->
+
+        <!--</div>-->
+        <!--------------------------------------------------------->
+
+        <!-- Modal -->
+        <div class="modal fade" data-backdrop="static" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:400px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Score</h4>
+                    </div>
+                    <div  class="modal-body center-block" style="width:230px;">
+                        <input type="text" value="75" class="dial">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary text-center" data-dismiss="modal" onclick="redirectTo()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.knob.js"></script>
         <script src="js/renderTest.js"></script>
-
-	</body>
+    </body>
 </html>

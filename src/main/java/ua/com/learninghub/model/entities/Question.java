@@ -24,13 +24,13 @@ public class Question {
     @JoinColumn(name = "idTest")
     Test test;
 
-    @JsonIgnore
+    //@JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
 
-    @JsonIgnore
+    //@JsonIgnore
     public List<Answer> getAnswers() {
         return answers;
     }
@@ -92,6 +92,7 @@ public class Question {
                 "idQuestion=" + idQuestion +
                 ", que='" + que + '\'' +
                 ", test=" + test +
+                ", answers=" + answers +
                 '}';
     }
 
