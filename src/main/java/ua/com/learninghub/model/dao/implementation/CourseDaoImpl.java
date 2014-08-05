@@ -227,9 +227,10 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
             course1Upd.setDescription(course.getDescription());
             //course1Upd.setEndDate(course.getEndDate());
             course1Upd.setPrice(course.getPrice());
-            course1Upd.setRate(course.getPrice());
+            course1Upd.setRate(course.getRate());
             course1Upd.setMainImagePath(course.getMainImagePath());
             course1Upd.setMainVideoPath(course.getMainVideoPath());
+
             course1Upd.setSubject(course.getSubject());
             //course1Upd.setUsers(course.getUsers());/////
             entityManager.getTransaction().commit();

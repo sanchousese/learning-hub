@@ -1,3 +1,14 @@
+var query = window.location.search;
+//debugger;
+if (query.substring(0, 1) == '?') {
+    query = query.substring(1);
+}
+
+
+//var RATE;
+//debugger;
+var ID_COURSE = query;
+//debugger;
 
 function CCategory(){
     var spec = 0
@@ -15,7 +26,8 @@ function CCategory(){
                 div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5" ' +
+                        'id="spID' + (i + 1) +'" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 category.desc = 0;
@@ -41,7 +53,8 @@ function CCategory(){
                 div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
+                        '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5"' +
+                        'id="diID' + (i + 1) + '" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 category.subj = 0;
@@ -66,7 +79,8 @@ function CCategory(){
                 div.innerHTML = "";
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
-                        '<label class="text-left btn btn-default border-fix sidebar-btn mardgin_bottom_5" onclick="category.update(2, '+ data[i].idSubject +')">' +
+                        '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5" ' +
+                        'id="suID' + (i + 1) + '" onclick="category.update(2, '+ data[i].idSubject +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
             },
@@ -116,33 +130,39 @@ function changeVisibilityButton() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "" &&
         document.getElementById("inputAgreement").checked == true
         &&(category.spec != 0 && category.desc != 0
-        && category.subj != 0)) {
-            document.getElementById("addCourseButton").classList.remove('disabled') ;
+            && category.subj != 0)) {
+        document.getElementById("addCourseButton").classList.remove('disabled') ;
     }
     else{
         document.getElementById("addCourseButton").classList.add('disabled') ;
     }
 }
 
+
+// TODO: MUST BE PUT
 function AddCourseInfo() {
     if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
         var cour = {
             name: $("#courseNameD").val(),
             description: $("#courseDescD").val(),
             price : $("#coursePriceD").val(),
-            subject: category.subj
+            subject: category.subj,
+            idCourse: ID_COURSE
+  //          rate: RATE
+
         };
         $.ajax({
             data: JSON.stringify(cour),
-            type: "POST",
-            url: "rest/course/create",
+            type: "PUT",
+            url: "rest/course/put",
             datatype: "json",
             contentType: "application/json",
             success: function(data) {
                 var courseId = data;
                 uploadCourseLogo(courseId);
                 uploadCourseIntro(courseId);
-                window.location.href = "index.html"; //redirect? need to uncomment
+                window.location.href = "Adminka.html";
+                //window.location.href = "index.html"; //redirect? need to uncomment
             }
         });
     }
@@ -178,15 +198,103 @@ function uploadCourseIntro(courseId){
         form_data.append("file", file_data);
         form_data.append("courseId", courseId);
         ajax.addEventListener("load", function () {
-            window.location.href = "index.html";
+            //window.location.href = "index.html";
         }, false);
         ajax.addEventListener("error", function () {
             alert("Internal error");
         }, false);
         ajax.send(form_data);
-//        window.location.href = "index.html";
     }
 }
+
+/*
+var freeCheckedPrice;
+function setItFree(){
+    document.getElementById("FreeCourse").value =  "True";
+    *//*if( document.getElementById("FreeCourse").checked == true){
+        freeCheckedPrice = document.getElementById("coursePriceD").value;
+        document.getElementById("coursePriceD").value = 0;
+    }
+    else{
+        document.getElementById("coursePriceD").value = freeCheckedPrice;
+    }*//*
+}*/
+
+
+//======================================FILL COURSE GAPS=====================================
+
+function fillCourse(idCourse) {
+/*
+    $.ajax({
+        //data: str,
+        type: "GET",
+        url: "rest/course/info/" + idCourse,
+        datatype: "json",
+        contentType: "application/json",
+        success: function(data) {
+            // fill fields
+        }
+    });
+*/
+
+
+
+// GETTING THE COURSE
+    $.ajax({
+        //data: str,
+        type: "GET",
+        url: "rest/course/info/" + idCourse,
+        datatype: "json",
+        contentType: "application/json",
+        success: function(data) {
+            // fill fields
+            document.getElementById("courseNameD").value = data.name;
+            document.getElementById("courseDescD").value = data.description;
+            document.getElementById("coursePriceD").value = data.price;
+            //RATE = data.rate;
+
+//            setItFree();
+            if (data.price == 0 || data.price == null) {
+                document.getElementById("FreeCourse").checked =  true;
+            }
+
+
+//spec
+  /*          var spec = document.getElementById("spID2");
+            spec.onclick();
+  */          //spec.classList.add("active");
+
+
+//disc
+//            var disc = document.getElementById("diID1");
+//  //          disc.onclick();
+//            disc.classList.add("active");
+//
+//
+////subj
+//            var subj = document.getElementById("suID1");
+////            subj.onclick();
+//            subj.classList.add("active");
+//
+//
+//
+//            // category.update(0,2);
+//        //    category.update(1,1);
+        }
+
+    });
+
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!CALL FUNC!!!!!!!!!!!!!!!!!!!!!!!
+fillCourse(ID_COURSE);
+
+
+
+
+//======================================================================================
+
 
 function progressHandler(event){
     var valeur = Math.round((event.loaded / event.total) * 100);
@@ -198,7 +306,7 @@ function progressHandler(event){
 
 var freeCheckedPrice;
 function setItFree(){
-    if( document.getElementById("FreeCourse").checked == true){
+    if (document.getElementById("FreeCourse").checked == true){
         freeCheckedPrice = document.getElementById("coursePriceD").value;
         document.getElementById("coursePriceD").value = 0;
     }
@@ -206,3 +314,4 @@ function setItFree(){
         document.getElementById("coursePriceD").value = freeCheckedPrice;
     }
 }
+

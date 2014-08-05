@@ -79,6 +79,7 @@ public class CourseResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/info/{courseId}") // ...8080/rest/courses/1234
     public Course getCourse(@PathParam("courseId") int courseId) {
+
         return courseDao.selectById(courseId);
     }
 
@@ -236,21 +237,25 @@ public class CourseResource {
         return Response.ok().build();
     }*/
 
-    /*@PUT
-    @Path("{courseId}")
+    @PUT
+    @Path("/put")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response update(Course course) {
-
-        System.out.println(course.getIdCourse());
-
-        course = courseDao.update(course);
-
-        return Response.ok().entity(course).build();
-
+    public Response update(JSONObject json) throws JSONException {
+        //need to manage this code
+        Course course = new Course();
+        course.setIdCourse(new Integer((String)json.get("idCourse")));
+        course.setName((String)json.get("name"));
+        course.setDescription((String)json.get("description"));
+        course.setPrice(new Integer((String)json.get("price")));
+        course.setSubject(subjectDao.selectById((Integer)json.get("subject")));
+        course.setRate(courseDao.selectById(course.getIdCourse()).getRate());
+        if(courseDao.update(course)) {
+            return Response.ok(new String(Integer.toString(course.getIdCourse()))).build();
+        } else return Response.status(401).build();
     }
 
-
+/*
     @POST
     @Path("course")
     @Consumes(MediaType.APPLICATION_JSON)
