@@ -31,12 +31,27 @@ public class Lesson {
     private Test test;
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "lesson")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<CommentLesson> commentsLesson;
+
+
     public int getIdLesson() {
         return idLesson;
     }
 
     public void setIdLesson(int idLesson) {
         this.idLesson = idLesson;
+    }
+
+    @JsonIgnore
+    public List<CommentLesson> getCommentsLesson() {
+        return commentsLesson;
+    }
+
+    public void setCommentsLesson(List<CommentLesson> commentsLesson) {
+        this.commentsLesson = commentsLesson;
     }
 
     public String getLessonVideo() {

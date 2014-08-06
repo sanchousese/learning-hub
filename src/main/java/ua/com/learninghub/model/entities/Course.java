@@ -21,6 +21,7 @@ public class Course implements HibernateL2Cache {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idCourse;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     @LazyCollection(LazyCollectionOption.FALSE)
