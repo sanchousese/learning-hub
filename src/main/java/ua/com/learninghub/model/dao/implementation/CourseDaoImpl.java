@@ -265,6 +265,28 @@ public class CourseDaoImpl implements CourseDao, HibernateL2Cache{
         //delete from course where courseid = ?
     }
 
+    @Override
+    public boolean removeUser(Course course, User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        try {
+            course.getUsers().remove(user);
+            //user.getCourses().add(course);
+            entityManager.merge(course);
+            //entityManager.persist(course);
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e) {
+            return false;
+        }
+        finally{
+            entityManager.close();
+        }
+        return true;
+
+    }
+
+    @Override
     public boolean addUser(Course course, User user){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

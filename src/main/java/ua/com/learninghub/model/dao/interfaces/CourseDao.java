@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface CourseDao {
 
+    boolean removeUser(Course course, User user);
+
     List<Course> selectBySubject(int subjID);
 
     List<Course> selectAll();

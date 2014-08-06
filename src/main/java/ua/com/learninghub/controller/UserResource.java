@@ -66,6 +66,27 @@ public class UserResource {
             return Response.status(403).build();
     }
 
+    @GET
+    @Path("/removeCourse")
+    public  Response removeCourseFromUser(@Context HttpServletRequest hsr, @QueryParam("idCourse") int courseId) {
+        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.selectById(courseId);
+
+        System.out.println(courseId);
+        System.out.println(course);
+
+        System.out.println(user);
+
+        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.removeUser(course, user)){
+            return Response.ok().build();
+        }
+        else
+            return Response.status(403).build();
+    }
+
+
     @RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)

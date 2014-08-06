@@ -17,7 +17,11 @@ document.getElementById("layoutAdminka").onload = function (){
                     '<div class="news_cover_medium"><a href="javascript:openCoursePage(' + data[i].idCourse + ');">' +
                     '<img id = "courseMainImage'+ i +'" src="../img/image.jpg" alt="Course img" class="img-rounded"></a></div>'+
 
-                    '<div class="news_content_medium"><a href="Course_edit.html?' + data[i].idCourse + '">' +
+                    '<div class="news_content_medium">' +
+                    '<a onmouseover="" style="cursor: pointer;"><img width="40" height="20" align="right"' +
+                    'id = "keyImg" src="../img/cross.png" onclick="deleteCourse(' + data[i].idCourse +')"></a>' +
+
+                    '<a href="Course_edit.html?' + data[i].idCourse + '">' +
                     '<img width="40" height="20" align="right"' +
                     'id = "keyImg" src="../img/key.jpg" onclick=""></a>' +
 
