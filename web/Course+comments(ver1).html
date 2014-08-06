@@ -53,9 +53,9 @@
 			#submit_post_box textarea {
 				outline: none;
 				width: 98%;
-				height: 26px;
+				height: 25px;
 				padding: 2px 10px;
-				resize: none;
+				resize: vertical;
 			}
 
 			#send_post {
@@ -96,9 +96,7 @@
 			if (elementHeight!="75px") {
 				element.style.height = "75px";
 
-			} else {
-				element.style.height = "25px";
-			}
+			} 
 		}
 	</script>
 
@@ -201,7 +199,7 @@
 				<div id="comments-section">
 					<h3 class="text-center">Комментарии</h3>
 					<div id="submit_post_box">
-						<textarea id="post_field" onfocus="toggleCommentHeight()" onblur="toggleCommentHeight()"></textarea>
+						<textarea id="post_field" onkeydown="toggleCommentHeight()" placeholder="Оставьте свой комментарий..."></textarea>
 						<button id="send_post" onclick="" class="btn btn-success">Send</button>
 					</div>
 					<div class="comments-area">						
