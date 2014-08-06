@@ -145,7 +145,7 @@ public class LessonResource {
 
     @GET
     @Path("/checkUserLesson/{lessonId}")
-    public Response checkUserLesson(@PathParam("lessonId") int lessonId, @Context HttpServletRequest hsr){
+    public Response checkUserLesson(@PathParam("idLesson") int lessonId, @Context HttpServletRequest hsr){
         int userId = sessionDao.selectBySessionId(cookieUtil.getSessionIdFromRequest(hsr)).getUser().getIdUser();
         if(userLessonDao.selectByUserIdLessonId(lessonId, userId))
             return Response.ok().build();

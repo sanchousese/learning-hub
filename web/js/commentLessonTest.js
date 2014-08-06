@@ -1,10 +1,37 @@
 /**
  * Created by Max on 05.08.2014.
  */
-var ID_LESSON = 1;
+/*
 
-function showAllCommentsLesson() {
-    var commentBox = document.getElementById("commentOBox");
+var query = window.location.search;
+//debugger;
+if (query.substring(0, 1) == '?') {
+    query = query.substring(1);
+}
+
+var ID_LESSON = query;
+*/
+
+
+
+
+var xxx;
+function getIdLson() {
+
+    return xxx;
+}
+
+function setIdLson(yyy) {
+    xxx = yyy;
+}
+
+var commentOBox = document.getElementById("commentOBox");
+
+var lid;
+//showAllCommentsLesson();
+function showAllCommentsLesson(ID_LESSON) {
+    setIdLson(ID_LESSON);
+    var commentOBox = document.getElementById("commentOBox");
 
     $.ajax({
         //data: str,
@@ -13,33 +40,25 @@ function showAllCommentsLesson() {
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
-            commentBox.innerHTML = "";
+            commentOBox.innerHTML = "";
 
             for(var i = 0; i < data.length; i++){
                 var pubDate =  (new Date(data[i].date));
 
-                var minutest = pubDate.getMinutes();
-                if (minutest < 10) {
-                    minutest = "0" + minutest;
-                }
+                var minutest = addZeroDate(pubDate.getMinutes());
 
-                var day = pubDate.getDay();
-                if (day < 10) {
-                    day = "0" + day;
-                }
+                var day = addZeroDate(pubDate.getDay());
 
-                var month = pubDate.getMonth();
-                if (month < 10) {
-                    month = "0" + month;
-                }
+                var month = addZeroDate(pubDate.getMonth());
 
-                var formattedDate = pubDate.getHours() + ":" + minutest + " " + day + "." + month + "." + pubDate.getFullYear();
+                var formattedDate = day + "/" + month + "/" + pubDate.getFullYear() + ' @ ' + pubDate.getHours() + ":" + minutest;
 
 
-                var str = formattedDate + "  " + data[i].body + "<br><br>";
+                commentOBox.innerHTML += '<div class="comment comment-sent"><p>' +
+                    data[i].body +
+                    '</p><h4 class="date">' + formattedDate + '</h4>' +
+                    '</div>';
 
-
-                commentBox.innerHTML += str;
             }
         },
         statusCode: {
@@ -52,8 +71,8 @@ function showAllCommentsLesson() {
     //alert("Hello, World!");
 }
 
-function insertCommentLesson() {
-    var commentBox = document.getElementById("commentIBox");
+function insertCommentLesson(ID_LESSON) {
+    var commentBox = document.getElementById("post_field");
 
     var commentVar = {
         body: commentBox.value,
@@ -68,6 +87,29 @@ function insertCommentLesson() {
         contentType: "application/json",
         dataType: "json",
         success: function() {
+            // clearing the field
+            commentBox.value = "";
+
+
+            // adding new comment to all comments
+            var trash = commentOBox.innerHTML;
+
+            //getting current comment time
+            var currentdate = new Date();
+            var datetime = "Your last comment: "
+                + addZeroDate(currentdate.getDate()) + "/"
+                + addZeroDate(currentdate.getMonth() + 1)  + "/"
+                + addZeroDate(currentdate.getFullYear()) + " @ "
+                + addZeroDate(currentdate.getHours()) + ":"
+                + addZeroDate(currentdate.getMinutes());
+
+            var newComment = '<div class="comment comment-sent"><p>' +
+                commentVar.body +
+                '</p><h4 class="date">' + datetime + '</h4>' +
+                '</div>';
+
+            commentOBox.innerHTML = newComment + trash;
+
         },
         statusCode: {
             401: function() {
@@ -77,3 +119,10 @@ function insertCommentLesson() {
     });
 }
 
+
+function addZeroDate(x) {
+    if (x < 10) {
+        x = "0" + x;
+    }
+    return x;
+}
