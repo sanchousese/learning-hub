@@ -44,6 +44,11 @@ public class User  implements Principal, HibernateL2Cache, Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Session> sessions;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<UserLesson> userLessons;
+
     public int getIdUser() {
         return idUser;
     }

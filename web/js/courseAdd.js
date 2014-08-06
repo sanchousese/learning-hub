@@ -151,7 +151,7 @@ function AddCourseInfo() {
 function uploadCourseLogo(courseId) {
     var file_data = $("#uploadImageFile").prop("files")[0];
     if (file_data != null) {
-        alert("image found");
+        //alert("image found");
         var form_data = new FormData();
         var ajax = new XMLHttpRequest();
         //ajax.upload.addEventListener("progress", progressHandler, false);

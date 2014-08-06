@@ -4,17 +4,25 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.FileSystemUtil;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.implementation.LessonDaoImpl;
+import ua.com.learninghub.model.dao.implementation.SessionDaoImpl;
+import ua.com.learninghub.model.dao.implementation.UserLessonDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CourseDao;
 import ua.com.learninghub.model.dao.interfaces.LessonDao;
+import ua.com.learninghub.model.dao.interfaces.SessionDao;
+import ua.com.learninghub.model.dao.interfaces.UserLessonDao;
 import ua.com.learninghub.model.entities.Course;
 import ua.com.learninghub.model.entities.Lesson;
+import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,6 +37,9 @@ public class LessonResource {
     CourseDao courseDao = new CourseDaoImpl();
     LessonDao lessonDao = new LessonDaoImpl();
     SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
+    CookieUtil cookieUtil = new CookieUtil();
+    SessionDao sessionDao = new SessionDaoImpl();
+    UserLessonDao userLessonDao = new UserLessonDaoImpl();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -130,6 +141,26 @@ public class LessonResource {
         Lesson lesson = lessonDao.selectById(lessonId);
         int courseId = lesson.getCourse().getIdCourse();
         return Response.ok(Integer.toString(courseId)).build();
+    }
+
+    @GET
+    @Path("/checkUserLesson/{lessonId}")
+    public Response checkUserLesson(@PathParam("lessonId") int lessonId, @Context HttpServletRequest hsr){
+        int userId = sessionDao.selectBySessionId(cookieUtil.getSessionIdFromRequest(hsr)).getUser().getIdUser();
+        if(userLessonDao.selectByUserIdLessonId(lessonId, userId))
+            return Response.ok().build();
+        else return Response.status(Response.Status.NO_CONTENT).build(); // code 204
+
+    }
+
+    @GET
+    @Path("/testExist/{lessonId}")
+    public Response testExist(@PathParam("lessonId") int lessonId){
+        Lesson lesson = lessonDao.selectById(lessonId);
+        if(lesson.getTest() != null && lesson.getTest().getQuestions() != null && lesson.getTest().getQuestions().size() != 0)
+            return Response.ok().build();
+        else return Response.status(Response.Status.NO_CONTENT).build(); // code 204
+
     }
 
 }

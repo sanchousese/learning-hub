@@ -149,18 +149,29 @@ public class CourseResource {
             @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 
         String filename = contentDispositionHeader.getFileName();
-        if(filename != null) {
+        if(filename != null || filename != "") {
             String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            System.out.println(extension);
+            if(!(extension.equals("bmp") || extension.equals("jpg") || extension.equals("jpeg") || extension.equals("wbmp") || extension.equals("png") || extension.equals("gif"))) {
+                System.out.println("Incorrect extension");
+                return Response.status(401).build();
+
+            }
             filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
         }
 
         Course course = courseDao.selectById(new Integer(courseId));
         //if not null
-        course.setMainImagePath(filename);
-        if(courseDao.update(course)) {
-            if(filename != null ) FileSystemUtil.writeCourseLogo(fileInputStream, filename, new Integer(courseId));
-            return Response.status(200).build();
-        } else return Response.status(401).build();
+        String oldFilename = course.getMainImagePath();
+        if(filename != null || filename != "") {
+            course.setMainImagePath(filename);
+            if (courseDao.update(course)) {
+                if (oldFilename != null || oldFilename != "")
+                    FileSystemUtil.clearCourseLogo(oldFilename, new Integer(courseId));
+                FileSystemUtil.writeCourseLogo(fileInputStream, filename, new Integer(courseId));
+            } else return Response.status(401).build();
+        }
+        return Response.status(200).build();
     }
 
     //@RolesAllowed({"Moderator", "Teacher"})
@@ -175,16 +186,22 @@ public class CourseResource {
         String filename = contentDispositionHeader.getFileName();
         if(filename != null) {
             String extension = filename.substring(filename.lastIndexOf('.') + 1);
+            if(!extension.equals("mp4")) return Response.status(401).build();
             filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
         }
 
         Course course = courseDao.selectById(new Integer(courseId));
         //if not null
-        course.setMainVideoPath(filename);
-        if(courseDao.update(course)) {
-            if(filename != null ) FileSystemUtil.writeMainIntro(fileInputStream, filename, new Integer(courseId));
-            return Response.status(200).build();
-        } else return Response.status(401).build();
+        String oldFilename = course.getMainVideoPath();
+        if(filename != null || filename != "") {
+            course.setMainVideoPath(filename);
+            if (courseDao.update(course)) {
+                if (oldFilename != null || oldFilename != "")
+                    FileSystemUtil.clearMainIntro(oldFilename, new Integer(courseId));
+                FileSystemUtil.writeMainIntro(fileInputStream, filename, new Integer(courseId));
+            } else return Response.status(401).build();
+        }
+        return Response.status(200).build();
     }
 
 
@@ -212,31 +229,6 @@ public class CourseResource {
             return Response.status(403).build();
     }
 
-/*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("{courseId}/user") // ...8080/rest/courses/1234
-    public User getCourseUser(@PathParam("courseId") String courseId) {
-        return courseDao.selectById((new Integer(courseId)).intValue());
-    }
-*/
-
-
-
-
-
-    /* @DELETE
-    @Path("{courseId}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response delete (@PathParam ("courseId") int courseId) {
-        System.out.println(courseId);
-
-        CourseDao.delete(courseId);
-
-        return Response.ok().build();
-    }*/
-
     @PUT
     @Path("/put")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -250,10 +242,37 @@ public class CourseResource {
         course.setPrice(new Integer((String)json.get("price")));
         course.setSubject(subjectDao.selectById((Integer)json.get("subject")));
         course.setRate(courseDao.selectById(course.getIdCourse()).getRate());
+        course.setMainImagePath(courseDao.selectById(course.getIdCourse()).getMainImagePath());
+        course.setMainVideoPath(courseDao.selectById(course.getIdCourse()).getMainVideoPath());
         if(courseDao.update(course)) {
             return Response.ok(new String(Integer.toString(course.getIdCourse()))).build();
         } else return Response.status(401).build();
     }
+
+
+
+
+
+/*
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{courseId}/user") // ...8080/rest/courses/1234
+    public User getCourseUser(@PathParam("courseId") String courseId) {
+        return courseDao.selectById((new Integer(courseId)).intValue());
+    }
+*/
+
+    /* @DELETE
+    @Path("{courseId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response delete (@PathParam ("courseId") int courseId) {
+        System.out.println(courseId);
+
+        CourseDao.delete(courseId);
+
+        return Response.ok().build();
+    }*/
 
 /*
     @POST

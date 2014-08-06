@@ -122,7 +122,7 @@ function CCategory(){
 
 
 var category = new CCategory();
-category.getSpecialty();
+//category.getSpecialty();
 //category.getDiscipline();
 //category.getSubject();
 
@@ -141,7 +141,10 @@ function changeVisibilityButton() {
 
 // TODO: MUST BE PUT
 function AddCourseInfo() {
-    if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "") {
+    if ($("#courseNameD").val() != "" && $("#courseDescD").val() != "" && $("#coursePriceD").val() != "" &&
+        document.getElementById("inputAgreement").checked == true
+        &&(category.spec != 0 && category.desc != 0
+            && category.subj != 0)) {
         var cour = {
             name: $("#courseNameD").val(),
             description: $("#courseDescD").val(),
@@ -171,7 +174,7 @@ function AddCourseInfo() {
 function uploadCourseLogo(courseId) {
     var file_data = $("#uploadImageFile").prop("files")[0];
     if (file_data != null) {
-        alert("image found");
+        //alert("image found");
         var form_data = new FormData();
         var ajax = new XMLHttpRequest();
         //ajax.upload.addEventListener("progress", progressHandler, false);
