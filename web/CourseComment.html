@@ -34,27 +34,59 @@
 			margin: 4px;
 		}
 
-		.comments-area #submit_post_box {
+
+		.comments-area {
+			max-height: 250px;
+			overflow-y: scroll;
+			margin: 15px 0 30px;
+			padding:0 55px;
+/*			border: 1px solid #eee;
+*/		}
+
+		#comments-section #submit_post_box {
 			padding: 8px;
 			background: #F1F1F1;
 			position: relative;
 			text-align: right;
 		}
 
-		#submit_post_box textarea {
-			outline: none;
-			width: 98%;
-			height: 26px;
-			padding: 2px 10px;
-			resize: none;
-		}
+			#submit_post_box textarea {
+				outline: none;
+				width: 98%;
+				height: 26px;
+				padding: 2px 10px;
+				resize: none;
+			}
 
-		#send_post {
-			vertical-align: top;
-			text-align: right;
+			#send_post {
+				vertical-align: top;
+				text-align: right;
+			}
+
+		.comments-area .comment-sent {
+			padding: 15px 0 15px 50px;
+			border-bottom: 1px dashed #ccc;
+			background: url('http://placehold.it/40x40') no-repeat 0px 15px;
 		}
+			.comment-sent .date {
+				margin-top: 5px;
+				font-style: italic;
+				color:#777;
+				font-size: 12px;
+				margin: 0;
+			}
+
+			.comment-sent p {
+				margin-bottom: 5px;
+			}
+
+
 	</style>
+
+
 	
+
+
 	<!-- JS ДЛЯ КОММЕНТАРИЕВ ОТ АРТЕМА -->
 	<script type="text/javascript">
 		function toggleCommentHeight() {
@@ -62,11 +94,18 @@
 			var elementHeight = document.getElementById("post_field").style.height;
 
 			if (elementHeight!="75px") {
-			element.style.height = "75px";
+				element.style.height = "75px";
 
+			} else {
+				element.style.height = "25px";
 			}
 		}
 	</script>
+
+
+
+
+
 
   </head>
   <body>
@@ -156,19 +195,32 @@
 			<div id="descriptionCourse"></div>
  </div>
 </div>
-												  <h3 class="text-center">Коментарии</h3>
+												  
 
 				  <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
-				  <div class="comments-area">
-					  <div id="submit_post_box">
-							<textarea id="post_field" onfocus="toggleCommentHeight()"></textarea>
-							<button id="send_post" onclick="wall.sendPost()" class="btn btn-success">Send</button>
-					  </div>
-				  </div>
+				<div id="comments-section">
+					<h3 class="text-center">Комментарии</h3>
+					<div id="submit_post_box">
+						<textarea id="post_field" onfocus="toggleCommentHeight()" onblur="toggleCommentHeight()"></textarea>
+						<button id="send_post" onclick="" class="btn btn-success">Send</button>
+					</div>
+					<div class="comments-area">						
+						<div class="comment comment-sent"> 
+							<p>Чей-то короткий комментарий</p>
+							<h4 class="date">32-авг-2014</h4> 
+						</div>
+						<div class="comment comment-sent"> 
+							<p>Чей-то средний комментарий о какой-то очень важной херне/ Словарь русских синонимов (online онлайн версия). ...</p>
+							<h4 class="date">32-авг-2014</h4> 
+						</div>
+						<div class="comment comment-sent"> 
+							<p>Чей-то длинный Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa facilis nesciunt, mollitia at sed. Nemo, earum tenetur itaque temporibus asperiores porro dolor beatae, iste incidunt, officia ducimus doloribus odit minus unde deserunt. Rerum eum dicta ratione assumenda consectetur numquam facilis, debitis commodi. Inventore et, iste doloribus voluptate ratione, consequuntur maxime tempore reprehenderit fugiat, unde maiores ipsum! комментарий</p>
+							<h4 class="date">32-авг-2014</h4> 
+						</div>
+					</div>
 
-				  <div>
-					 <div contenteditable="true"></div>
-				  </div> 
+
+				</div>
 				  
 				  <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
 	
