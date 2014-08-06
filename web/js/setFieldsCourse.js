@@ -82,7 +82,7 @@ document.getElementById("buyCourseButton").onclick = function (){
         datatype: String,
         contentType: "text/plain",
         success: function() {
-            window.location = "index.html";
+            window.location = "/Adminka.html";
         }
     });
 }
