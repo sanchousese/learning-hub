@@ -27,7 +27,7 @@ function CCategory(){
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
                         '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5" ' +
-                        'id="spID' + (i + 1) +'" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
+                        'id="spID' + data[i].idSpecialty +'" onclick="category.update(0, '+ data[i].idSpecialty +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 category.desc = 0;
@@ -54,7 +54,7 @@ function CCategory(){
                 for(var i = 0; i < data.length; i++){
                     div.innerHTML +=
                         '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5"' +
-                        'id="diID' + (i + 1) + '" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
+                        'id="diID' + data[i].idDiscipline + '" onclick="category.update(1, '+ data[i].idDiscipline +')">' +
                         '<input type="radio" name="options" id="option1" > '+ data[i].name+ '</label>';
                 }
                 category.subj = 0;
@@ -207,36 +207,10 @@ function uploadCourseIntro(courseId){
     }
 }
 
-/*
-var freeCheckedPrice;
-function setItFree(){
-    document.getElementById("FreeCourse").value =  "True";
-    *//*if( document.getElementById("FreeCourse").checked == true){
-        freeCheckedPrice = document.getElementById("coursePriceD").value;
-        document.getElementById("coursePriceD").value = 0;
-    }
-    else{
-        document.getElementById("coursePriceD").value = freeCheckedPrice;
-    }*//*
-}*/
-
 
 //======================================FILL COURSE GAPS=====================================
 
 function fillCourse(idCourse) {
-/*
-    $.ajax({
-        //data: str,
-        type: "GET",
-        url: "rest/course/info/" + idCourse,
-        datatype: "json",
-        contentType: "application/json",
-        success: function(data) {
-            // fill fields
-        }
-    });
-*/
-
 
 
 // GETTING THE COURSE
@@ -259,27 +233,117 @@ function fillCourse(idCourse) {
             }
 
 
-//spec
-  /*          var spec = document.getElementById("spID2");
-            spec.onclick();
-  */          //spec.classList.add("active");
+            category.spec = data.subject.discipline.specialty.idSpecialty;
+            category.desc = data.subject.discipline.idDiscipline;
+            category.subj = data.subject.idSubject;
+            $.ajax({
+                //data: str,
+                type: "GET",
+                url: "rest/course/getSpecialty",
+                datatype: "json",
+                contentType: "application/json",
+                success: function(dataS) {
+                    var div = document.getElementById("collapseOne");
+                    div.innerHTML = "";
+                    for(var i = 0; i < dataS.length; i++){
+                        if(dataS[i].idSpecialty != data.subject.discipline.specialty.idSpecialty) {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5" ' +
+                                'id="spID' + dataS[i].idSpecialty + '" onclick="category.update(0, ' + dataS[i].idSpecialty + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataS[i].name + '</label>';
+                        } else {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5 active" ' +
+                                'id="spID' + dataS[i].idSpecialty + '" onclick="category.update(0, ' + dataS[i].idSpecialty + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataS[i].name + '</label>';
+                        }
+                    }
+                    //category.desc = 0;
+                    //debugger;
+                },
+                statusCode: {
+                    410: function() {
+                        alert("Internal error")
+                    }
+                }
+            });
 
+            //var specJ = document.getElementById("spID"+data.subject.discipline.specialty.idSpecialty);
+            //specJ.click();
+            $("#discipline").removeAttr("disabled");
+            //$("#discipline").click();
 
-//disc
-//            var disc = document.getElementById("diID1");
-//  //          disc.onclick();
-//            disc.classList.add("active");
-//
-//
-////subj
-//            var subj = document.getElementById("suID1");
-////            subj.onclick();
-//            subj.classList.add("active");
-//
-//
-//
-//            // category.update(0,2);
-//        //    category.update(1,1);
+            //debugger;
+            $.ajax({
+                //data: category.spec,
+                type: "GET",
+                url: "rest/search/filter/disciplines?idSpecialty=" + data.subject.discipline.specialty.idSpecialty,
+                datatype: "json",
+                contentType: "application/json",
+                success: function(dataD) {
+                    var div = document.getElementById("DisciplineD");
+                    div.innerHTML = "";
+                    for(var i = 0; i < dataD.length; i++){
+                        if(dataD[i].idDiscipline != data.subject.discipline.idDiscipline) {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5"' +
+                                'id="diID' + dataD[i].idDiscipline + '" onclick="category.update(1, ' + dataD[i].idDiscipline + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataD[i].name + '</label>';
+                        } else {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5 active" ' +
+                                'id="diID' + dataD[i].idDiscipline + '" onclick="category.update(1, ' + dataD[i].idDiscipline + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataD[i].name + '</label>';
+                        }
+                    }
+                    //category.subj = 0;
+                },
+                statusCode: {
+                    404: function() {
+                        var div = document.getElementById("DisciplineD");
+                        div.innerHTML = "";
+                    }
+                }
+            });
+
+            //category.subj = data.subject.idSubject;
+            $("#subject").removeAttr("disabled");
+            //$("#discipline").click();
+            $("#subject").click();
+            $.ajax({
+                //data: str,
+                type: "GET",
+                url: "rest/search/filter/subjects?idDiscipline=" + category.desc,
+                datatype: "json",
+                contentType: "application/json",
+                success: function(dataS) {
+                    var div = document.getElementById("collapseThree");
+                    div.innerHTML = "";
+                    for(var i = 0; i < dataS.length; i++){
+                        if(dataS[i].idSubject != data.subject.idSubject) {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5" ' +
+                                'id="suID' + (i + 1) + '" onclick="category.update(2, ' + dataS[i].idSubject + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataS[i].name + '</label>';
+                        } else {
+                            div.innerHTML +=
+                                '<label class="text-left btn btn-default border-fix sidebar-btn margin_bottom_5 active" ' +
+                                'id="suID' + (i + 1) + '" onclick="category.update(2, ' + dataS[i].idSubject + ')">' +
+                                '<input type="radio" name="options" id="option1" > ' + dataS[i].name + '</label>';
+                        }
+                    }
+                },
+                statusCode: {
+                    404: function() {
+                        var div = document.getElementById("collapseThree");
+                        div.innerHTML = "";
+                    }
+                }
+            });
+            category.spec = data.subject.discipline.specialty.idSpecialty;
+            category.desc = data.subject.discipline.idDiscipline;
+            category.subj = data.subject.idSubject;
+
         }
 
     });
@@ -289,7 +353,6 @@ function fillCourse(idCourse) {
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!CALL FUNC!!!!!!!!!!!!!!!!!!!!!!!
 fillCourse(ID_COURSE);
-
 
 
 

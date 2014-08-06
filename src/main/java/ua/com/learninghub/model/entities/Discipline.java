@@ -21,7 +21,7 @@ public class Discipline implements HibernateL2Cache{
     @Column(columnDefinition="text)")
     private String description;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idSpecialty")
     private Specialty specialty;
@@ -55,7 +55,7 @@ public class Discipline implements HibernateL2Cache{
         this.description = description;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     public Specialty getSpecialty() {
         return specialty;
     }
