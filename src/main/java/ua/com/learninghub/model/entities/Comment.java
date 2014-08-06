@@ -3,6 +3,7 @@ package ua.com.learninghub.model.entities;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by Max on 05.08.2014.
@@ -15,6 +16,8 @@ public class Comment {
 
     String body;
 
+    Timestamp date;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idCourse")
@@ -26,6 +29,14 @@ public class Comment {
 
     public void setIdComment(int idComment) {
         this.idComment = idComment;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public String getBody() {
@@ -54,7 +65,8 @@ public class Comment {
 
         if (idComment != comment.idComment) return false;
         if (!body.equals(comment.body)) return false;
-    //    if (!course.equals(comment.course)) return false;
+        if (!course.equals(comment.course)) return false;
+        if (!date.equals(comment.date)) return false;
 
         return true;
     }
@@ -63,6 +75,7 @@ public class Comment {
     public int hashCode() {
         int result = idComment;
         result = 31 * result + body.hashCode();
+        result = 31 * result + date.hashCode();
         result = 31 * result + course.hashCode();
         return result;
     }
@@ -72,6 +85,7 @@ public class Comment {
         return "Comment{" +
                 "idComment=" + idComment +
                 ", body='" + body + '\'' +
+                ", date=" + date +
                 ", course=" + course +
                 '}';
     }

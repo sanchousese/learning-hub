@@ -47,6 +47,7 @@ public class CommentLessonDaoImpl implements CommentLessonDao {
             entityManager.getTransaction().begin();
             commentUpd.setBody(comment.getBody());
             commentUpd.setLesson(comment.getLesson());
+            commentUpd.setDate(comment.getDate());
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e){

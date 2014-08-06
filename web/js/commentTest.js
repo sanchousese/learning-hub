@@ -16,10 +16,30 @@ function showAllComments() {
             commentBox.innerHTML = "";
 
             for(var i = 0; i < data.length; i++){
-                var str = data[i].body + "<br><br>";
+                var pubDate =  (new Date(data[i].date));
+
+                var minutest = pubDate.getMinutes();
+                if (minutest < 10) {
+                    minutest = "0" + minutest;
+                }
+
+                var day = pubDate.getDay();
+                if (day < 10) {
+                    day = "0" + day;
+                }
+
+                var month = pubDate.getMonth();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+
+                var formattedDate = pubDate.getHours() + ":" + minutest + " " + day + "." + month + "." + pubDate.getFullYear();
 
 
-                commentBox.innerHTML += str;
+                commentBox.innerHTML += '<div class="comment comment-sent"><p>' +
+                    data[i].body +
+                    '</p><h4 class="date">' + formattedDate + '</h4>' +
+                '</div>';
             }
         },
         statusCode: {
@@ -32,8 +52,10 @@ function showAllComments() {
     //alert("Hello, World!");
 }
 
+showAllComments();
+
 function insertComment() {
-    var commentBox = document.getElementById("commentIBox");
+    var commentBox = document.getElementById("post_field");
 
     var commentVar = {
         body: commentBox.value,
@@ -48,6 +70,8 @@ function insertComment() {
         contentType: "application/json",
         dataType: "json",
         success: function() {
+            window.location.href = "CourseComment.html";
+
         },
         statusCode: {
             401: function() {

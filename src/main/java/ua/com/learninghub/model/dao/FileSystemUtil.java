@@ -69,6 +69,13 @@ public class FileSystemUtil {
         }
     }
 
+    public static void clearCourseLogo(String filename, int courseId){
+        File file = new File(storagePath + "courses" + separator + courseId + separator + "img" + separator + filename);
+        if(file.exists()){
+            file.delete();
+        }
+    }
+
     public static void writeMainIntro(InputStream fileInputStream, String filename, int courseId) {
         try {
             File out = new File(storagePath + "courses" + separator + courseId + separator + "video" + separator + filename);
@@ -88,6 +95,13 @@ public class FileSystemUtil {
         } catch (IOException e) {
 
             e.printStackTrace();
+        }
+    }
+
+    public static void clearMainIntro(String filename, int courseId){
+        File file = new File(storagePath + "courses" + separator + courseId + separator + "video" + separator + filename);
+        if(file.exists()){
+            file.delete();
         }
     }
 
