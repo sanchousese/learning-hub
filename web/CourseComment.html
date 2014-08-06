@@ -1,353 +1,334 @@
 <!DOCTYPE html>
-<html lang="ru"> 
-  <head>
-	 <script src="http://jwpsrv.com/library/GqOiVBZUEeScbiIACyaB8g.js"></script>
-	 <meta charset="utf-8"> 
-	 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	 <meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--Next three lines need to disable caching to make player work-->
-		<meta http-equiv='cache-control' content='no-cache'>
-		<meta http-equiv='expires' content='0'>
-		<meta http-equiv='pragma' content='no-cache'>
-	 <title>Learning Hub</title>
-	 <!-- Bootstrap -->
-	 <link href="css/bootstrap.min.css" rel="stylesheet">
-	 <link href="css/style.css" rel="stylesheet"> <!-- здесь мы будем перезаписывать стандартные классы бутстрапа -->
+<html lang="ru">
+<head>
+    <script src="http://jwpsrv.com/library/GqOiVBZUEeScbiIACyaB8g.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Next three lines need to disable caching to make player work-->
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Learning Hub</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"> <!-- здесь мы будем перезаписывать стандартные классы бутстрапа -->
 
-	 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	 <!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	 <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-	 <!-- СТИЛИ КОММЕНТАРИЕВ ОТ АРТЕМА -->
-	 <style type="text/css">
-		/* ====================================
-		==== СТИЛИ КОММЕНТАРИЕВ ОТ АРТЕМА =====
-		====================================== */
-		textarea {
-			background: #FFF;
-			color: #000;
-			border: 1px solid #C3CBD4;
-			padding: 3px;
-			margin: 4px;
-		}
-
-
-		.comments-area {
-			max-height: 250px;
-			overflow-y: scroll;
-			margin: 15px 0 30px;
-			padding:0 55px;
-/*			border: 1px solid #eee;
-*/		}
-
-		#comments-section #submit_post_box {
-			padding: 8px;
-			background: #F1F1F1;
-			position: relative;
-			text-align: right;
-		}
-
-			#submit_post_box textarea {
-				outline: none;
-				width: 98%;
-				height: 25px;
-				padding: 2px 10px;
-				resize: vertical;
-			}
-
-			#send_post {
-				vertical-align: top;
-				text-align: right;
-			}
-
-		.comments-area .comment-sent {
-			padding: 15px 0 15px 50px;
-			border-bottom: 1px dashed #ccc;
-			background: url('http://placehold.it/40x40') no-repeat 0px 15px;
-		}
-			.comment-sent .date {
-				margin-top: 5px;
-				font-style: italic;
-				color:#777;
-				font-size: 12px;
-				margin: 0;
-			}
-
-			.comment-sent p {
-				margin-bottom: 5px;
-			}
+    <!-- СТИЛИ КОММЕНТАРИЕВ ОТ АРТЕМА -->
+    <style type="text/css">
+        /* ====================================
+        ==== СТИЛИ КОММЕНТАРИЕВ ОТ АРТЕМА =====
+        ====================================== */
+        textarea {
+            background: #FFF;
+            color: #000;
+            border: 1px solid #C3CBD4;
+            padding: 3px;
+            margin: 4px;
+        }
 
 
-	</style>
+        .comments-area {
+            max-height: 250px;
+            overflow-y: scroll;
+            margin: 15px 0 30px;
+            padding:0 55px;
+            /*			border: 1px solid #eee;
+            */		}
+
+        #comments-section #submit_post_box {
+            padding: 8px;
+            background: #F1F1F1;
+            position: relative;
+            text-align: right;
+        }
+
+        #submit_post_box textarea {
+            outline: none;
+            width: 98%;
+            height: 25px;
+            padding: 2px 10px;
+            resize: vertical;
+        }
+
+        #send_post {
+            vertical-align: top;
+            text-align: right;
+        }
+
+        .comments-area .comment-sent {
+            padding: 15px 0 15px 50px;
+            border-bottom: 1px dashed #ccc;
+            background: url('http://placehold.it/40x40') no-repeat 0px 15px;
+        }
+        .comment-sent .date {
+            margin-top: 5px;
+            font-style: italic;
+            color:#777;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .comment-sent p {
+            margin-bottom: 5px;
+        }
 
 
-	
-
-
-	<!-- JS ДЛЯ КОММЕНТАРИЕВ ОТ АРТЕМА -->
-	<script type="text/javascript">
-		function toggleCommentHeight() {
-			var element = document.getElementById("post_field");
-			var elementHeight = document.getElementById("post_field").style.height;
-
-			if (elementHeight!="75px") {
-				element.style.height = "75px";
-
-			} 
-		}
-	</script>
+    </style>
 
 
 
 
 
+    <!-- JS ДЛЯ КОММЕНТАРИЕВ ОТ АРТЕМА -->
+    <script type="text/javascript">
+        function toggleCommentHeight() {
+            var element = document.getElementById("post_field");
+            var elementHeight = document.getElementById("post_field").style.height;
 
-  </head>
-  <body>
-	  <div class="navbar navbar-default navbar-fixed-top"> 
-			<div class="col-md-11">
-			  <div class="col-md-1"></div>
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						  <span class="sr-only">Toggle navigation</span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-					 </button>
-					 <a class="navbar-brand" href="index.html">Learning <span>Hub</span></a>
-				<button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
-				</button>
-				</div>
-				<div class="navbar-collapse collapse">
-				  <ul class="nav navbar-nav navbar-right">
-						<li><a href="Catalog.html">Курсы</a></li>
-						<li><a href="Specialnosti.html">Специализация</a></li>
-						<li><a href="about.html">О нас</a></li>
-						<li>                  
-						<a id="user-info" class="hover-fix">Link</a>
-						</li>
-					  
-						  <!--  Форма входа в систему-->
-						  <div id = "hideRegisterForm" class="popover-markup  login-bl">    
-								<a id="login" class="trigger btn-default btn-login " data-placement="bottom">Войти</a> 
-<!--                       <a class="btn btn-primary " data-placement="bottom" role="button">Primary link</a>-->
-								<div class="head hide">Войдите </div>
-								<div class="content hide">
-									 <div class="form-group">
-										  <input type="text" id="loginField" class="form-control" placeholder="Login">
-										  <input type="password" id="password" class="form-control" placeholder="Password">
-									 </div>
-									 <button type="submit" class="btn btn-default btn-block btn-login" onclick="submitButton()" id="but">Submit</button>
-								</div>
-						  </div>
-				  
-						<li>               
-<!--                      Button trigger modal -->
-						<button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal" >
-							 Регистрация
-						</button>
-						<!-- Button trigger modal end --></li>
-						<li>
-							<button class="btn btn-danger margin_8" id="logout" onclick="logoutButton()">
-							 Выйти
-						</button>
-						</li>
-<!--                 <div class="btn-group">-->
-<!--                  <button type="button" class="btn btn-link" id="user-info">Link</button>-->
-				 
+            if (elementHeight!="75px") {
+                element.style.height = "75px";
+
+            }
+        }
+    </script>
 
 
-<!--                  </div>-->
-						</ul>
-				</div> 
-				  <div class="search-collapse">              
-				  <input type="text" class="search-text" value="Enter text here">
-				  <input type="submit" class="search-btn" value="ok">
-				</div>  
-				</div>      
-			</div>
-<!--   slaider -->
-		<div class="container-fluid margin_top_70">
-			 <div class="row ">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="col-md-3 padding_5">
-	 <div class="thumbnail">
-		<img id="courseLogo" src="img/softwaretraining.jpg"  data-src="holder.js/300x300" alt="...">
-		<div class="caption">
-		  <h3 id="titleCourse"></h3>
-			 <div id="ratingCourse">
-			 </div>
-		  <p><span class="glyphicon glyphicon-user" id="numberUsersCourse"> </span></p>
-		</div>
-	 </div>				    
-				</div>
-		 <div class="col-md-6 padding_5">
-		 <div class="panel panel-default">
-  <div class="panel-body">
-		  <div class="thumbnail" id="IntroVideo">
-		  <img id="IntroImage" src="img/softwaretraining.jpg"  data-src="holder.js/100%x180" alt="...">
-		  </div>
-			<div id="descriptionCourse"></div>
- </div>
-</div>
-												  
 
-				  <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
-				<div id="comments-section">
-					<h3 class="text-center">Комментарии</h3>
-					<div id="submit_post_box">
-<<<<<<< HEAD:web/Course+comments(ver1).html
-						<textarea id="post_field" onkeydown="toggleCommentHeight()" placeholder="Оставьте свой комментарий..."></textarea>
-						<button id="send_post" onclick="" class="btn btn-success">Send</button>
-					</div>
-					<div class="comments-area">						
-						<div class="comment comment-sent"> 
-							<p>Чей-то короткий комментарий</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-						<div class="comment comment-sent"> 
-							<p>Чей-то средний комментарий о какой-то очень важной херне/ Словарь русских синонимов (online онлайн версия). ...</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-						<div class="comment comment-sent"> 
-							<p>Чей-то длинный Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa facilis nesciunt, mollitia at sed. Nemo, earum tenetur itaque temporibus asperiores porro dolor beatae, iste incidunt, officia ducimus doloribus odit minus unde deserunt. Rerum eum dicta ratione assumenda consectetur numquam facilis, debitis commodi. Inventore et, iste doloribus voluptate ratione, consequuntur maxime tempore reprehenderit fugiat, unde maiores ipsum! комментарий</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-=======
-						<textarea id="post_field" onfocus="toggleCommentHeight()" onblur="toggleCommentHeight()"></textarea>
-						<button id="send_post" onclick="insertComment()" class="btn btn-success">Send</button>
->>>>>>> origin/master:web/CourseComment.html
-					</div>
-					<div class="comments-area" id="commentOBox">
-                        <!-- pass -->
+
+
+
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="col-md-11">
+        <div class="col-md-1"></div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Learning <span>Hub</span></a>
+            <button type="button" class="navbar-toggle-search collapsed" data-toggle="collapse" data-target=".search-collapse">
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="Catalog.html">Курсы</a></li>
+                <li><a href="Specialnosti.html">Специализация</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li>
+                    <a id="user-info" class="hover-fix">Link</a>
+                </li>
+
+                <!--  Форма входа в систему-->
+                <div id = "hideRegisterForm" class="popover-markup  login-bl">
+                    <a id="login" class="trigger btn-default btn-login " data-placement="bottom">Войти</a>
+                    <!--                       <a class="btn btn-primary " data-placement="bottom" role="button">Primary link</a>-->
+                    <div class="head hide">Войдите </div>
+                    <div class="content hide">
+                        <div class="form-group">
+                            <input type="text" id="loginField" class="form-control" placeholder="Login">
+                            <input type="password" id="password" class="form-control" placeholder="Password">
                         </div>
+                        <button type="submit" class="btn btn-default btn-block btn-login" onclick="submitButton()" id="but">Submit</button>
+                    </div>
+                </div>
+
+                <li>
+                    <!--                      Button trigger modal -->
+                    <button class="btn btn-success margin_8"  id="register-btn" data-toggle="modal" data-target="#myModal" >
+                        Регистрация
+                    </button>
+                    <!-- Button trigger modal end --></li>
+                <li>
+                    <button class="btn btn-danger margin_8" id="logout" onclick="logoutButton()">
+                        Выйти
+                    </button>
+                </li>
+                <!--                 <div class="btn-group">-->
+                <!--                  <button type="button" class="btn btn-link" id="user-info">Link</button>-->
 
 
-				</div>
-				  
-				  <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
-	
-			  
-		 </div>
-		 <div class="col-md-3 padding_5">
-			  <div class="thumbnail">
-<div class="list-group">
-  <button type="button " class="btn btn-success btn-lg buy-btn center-block" id="buyCourseButton">Купить курс</button>
-  <p></p>
-<!--  <a href="#" class="list-group-item border-fix">Dapibus ac facilisis in</a>-->
-<li class="list-group-item border-fix" id="priceCourse">Стоимость курса:  <span class="glyphicon glyphicon-shopping-cart float-right"></span></li>
-  <hr class="margin-fix">
-<li class="list-group-item border-fix">Продолжительность видео <span class="glyphicon glyphicon-eye-open float-right"></span></li>
-	<hr class="margin-fix">
-<li class="list-group-item border-fix">Сертификат <span class="glyphicon glyphicon-bookmark float-right"></span></li>
-	<hr class="margin-fix">
-<li class="list-group-item border-fix">Учебные материалы <span class="glyphicon glyphicon-book float-right"></span></li>
+
+                <!--                  </div>-->
+            </ul>
+        </div>
+        <div class="search-collapse">
+            <input type="text" class="search-text" value="Enter text here">
+            <input type="submit" class="search-btn" value="ok">
+        </div>
+    </div>
 </div>
-			</div> 
-			<!--         Блок Преподавателя-->
-		  <div class="thumbnail">
-		  <h3 class="text-center margin_top_10">Автор курса</h3>
-		<img src="img/Teacher.jpg"  data-src="holder.js/300x300" alt="...">
-		<div class="caption">
-		  <h3>Коротков Виктор</h3>
-		  <ul class="list-group">
-		<li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
-		  <span class="badge">14</span>
-	Количество курсов
-  </li>
-		  <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
-		  <span class="badge">14</span>
-	Количество курсов
-  </li>
-		  <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
-		  <span class="badge">14</span>
-	Количество курсов
-  </li>
-</ul>
-		</div>
-	 </div>			 
-		 </div>
-		 
-		 
-		 
-					  </div>
-			  </div>
-			  </div>
-		  <!-- Modal -->
-						  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							 <div class="modal-dialog">
-								<div class="modal-content">
-								  <div class="modal-header">
-									 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									 <h4 class="modal-title" id="myModalLabel">Регистрация нового пользователя</h4>
-								  </div>
-								  <div class="modal-body">
-										  <form class="form-horizontal" data-toggle="validator">
-<!--                                <fieldset>-->
-										  <!-- Text input-->
-										  <div class="form-group margin-vertical-fix">
-											  <div class="col-sm-12">
-												<label for="inputName" class="control-label">Имя</label>
-												<input type="text" class="form-control" id="inputName" placeholder="Вася Пупкин" onemptied="regButton()"  onchange="regButton()" required> 
-												</div>
-											 </div>
-										  <!-- Password input-->
-											  <div class="form-group margin-vertical-fix">
-											  <div class="col-sm-12">
-												<label for="inputEmail" class="control-label">Email</label>
-												<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Недействительный Email"  onchange="regButton()" required>  <!--required-->
-												<div class="help-block with-errors"></div>
-												</div>
-											 </div>
-										 <!-- Password input-->
-										 <div class="form-group">
-										  <div class="col-sm-12">
-											 <label for="inputPassword" class="control-label">Введите  пароль</label>
-											 <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Пароль" > <!--required-->
-										  </div>
-										  <div class="col-sm-12">
-											 <label for="inputPassword" class="control-label">Повторите пароль</label>
-											 <input type="password" class="form-control " id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Пароли не совпадают" placeholder="Повторите пароль"  onchange="regButton()" required> <!--required-->
-											 <div class="help-block with-errors"></div>
-										  </div>
-										  </div>
-										  <!-- Button -->
-												<button id="reg-btn" type="button" class="btn btn-success btn-block" onclick="registerButton()" disabled="disabled">Регистрация</button>
-<!--                                </div>-->
-<!--                                </fieldset>-->
-										  </form>
-								  </div>
-								</div>
-							 </div>
-						  </div>
-		  <div class="footer">
-			<div class="container">
-			<div class="social-bl">
-			<a href="#"><img src="img/vk.png" alt="vk" class="social"></a>
-				<a href="#"><img src="img/fb.png" alt="fb" class="social"></a>
-				<a href="#"><img src="img/rss.png" alt="rss" class="social"></a>
-				<a href="#"><img src="img/google.png" alt="g+" class="social"></a>
-				<p class="text-right copy-right" ><a href="">&copy; 2014 Detroit team</a></p>
-			</div>
-			</div>
-		</div>
+<!--   slaider -->
+<div class="container-fluid margin_top_70">
+    <div class="row ">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-3 padding_5">
+                <div class="thumbnail">
+                    <img id="courseLogo" src="img/softwaretraining.jpg"  data-src="holder.js/300x300" alt="...">
+                    <div class="caption">
+                        <h3 id="titleCourse"></h3>
+                        <div id="ratingCourse">
+                        </div>
+                        <p><span class="glyphicon glyphicon-user" id="numberUsersCourse"> </span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 padding_5">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="thumbnail" id="IntroVideo">
+                            <img id="IntroImage" src="img/softwaretraining.jpg"  data-src="holder.js/100%x180" alt="...">
+                        </div>
+                        <div id="descriptionCourse"></div>
+                    </div>
+                </div>
 
-			
-	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+
+                <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
+                <div id="comments-section">
+                    <h3 class="text-center">Комментарии</h3>
+                    <div id="submit_post_box">
+                        <textarea id="post_field" onkeydown="toggleCommentHeight()" placeholder="Оставьте свой комментарий..."></textarea>
+                        <button id="send_post" onclick="insertComment()" class="btn btn-success">Send</button>
+                    </div>
+                    <div class="comments-area" id="commentOBox">
+                        <!-- CODE WILL BE THERE. FROM JS. -->
+                    </div>
+
+
+                </div>
+
+                <!-- =================== ЭКСПЕРИМЕНТАЛЬНЫЕ КОММЕНТАРИИ ОТ АРТЕМА =========================== -->
+
+
+            </div>
+            <div class="col-md-3 padding_5">
+                <div class="thumbnail">
+                    <div class="list-group">
+                        <button type="button " class="btn btn-success btn-lg buy-btn center-block" id="buyCourseButton">Купить курс</button>
+                        <p></p>
+                        <!--  <a href="#" class="list-group-item border-fix">Dapibus ac facilisis in</a>-->
+                        <li class="list-group-item border-fix" id="priceCourse">Стоимость курса:  <span class="glyphicon glyphicon-shopping-cart float-right"></span></li>
+                        <hr class="margin-fix">
+                        <li class="list-group-item border-fix">Продолжительность видео <span class="glyphicon glyphicon-eye-open float-right"></span></li>
+                        <hr class="margin-fix">
+                        <li class="list-group-item border-fix">Сертификат <span class="glyphicon glyphicon-bookmark float-right"></span></li>
+                        <hr class="margin-fix">
+                        <li class="list-group-item border-fix">Учебные материалы <span class="glyphicon glyphicon-book float-right"></span></li>
+                    </div>
+                </div>
+                <!--         Блок Преподавателя-->
+                <div class="thumbnail">
+                    <h3 class="text-center margin_top_10">Автор курса</h3>
+                    <img src="img/Teacher.jpg"  data-src="holder.js/300x300" alt="...">
+                    <div class="caption">
+                        <h3>Коротков Виктор</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+                                <span class="badge">14</span>
+                                Количество курсов
+                            </li>
+                            <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+                                <span class="badge">14</span>
+                                Количество курсов
+                            </li>
+                            <li class="list-group-item border-fix padding-gorizontal-fix padding-vertical-5">
+                                <span class="badge">14</span>
+                                Количество курсов
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Регистрация нового пользователя</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" data-toggle="validator">
+                    <!--                                <fieldset>-->
+                    <!-- Text input-->
+                    <div class="form-group margin-vertical-fix">
+                        <div class="col-sm-12">
+                            <label for="inputName" class="control-label">Имя</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Вася Пупкин" onemptied="regButton()"  onchange="regButton()" required>
+                        </div>
+                    </div>
+                    <!-- Password input-->
+                    <div class="form-group margin-vertical-fix">
+                        <div class="col-sm-12">
+                            <label for="inputEmail" class="control-label">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Недействительный Email"  onchange="regButton()" required>  <!--required-->
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label for="inputPassword" class="control-label">Введите  пароль</label>
+                            <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Пароль" > <!--required-->
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="inputPassword" class="control-label">Повторите пароль</label>
+                            <input type="password" class="form-control " id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Пароли не совпадают" placeholder="Повторите пароль"  onchange="regButton()" required> <!--required-->
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <button id="reg-btn" type="button" class="btn btn-success btn-block" onclick="registerButton()" disabled="disabled">Регистрация</button>
+                    <!--                                </div>-->
+                    <!--                                </fieldset>-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="social-bl">
+            <a href="#"><img src="img/vk.png" alt="vk" class="social"></a>
+            <a href="#"><img src="img/fb.png" alt="fb" class="social"></a>
+            <a href="#"><img src="img/rss.png" alt="rss" class="social"></a>
+            <a href="#"><img src="img/google.png" alt="g+" class="social"></a>
+            <p class="text-right copy-right" ><a href="">&copy; 2014 Detroit team</a></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-	  <script src="js/jquery-2.1.1.min.js"></script>
-	 <!-- Include all compiled plugins (below), or include individual files as needed -->
-	 <script src="js/bootstrap.min.js"></script>
-	 <script src="js/login.js"></script>
-	 <script src="js/autorization.js"></script>
-	 <script src="js/validator.js"></script>
-	 <script src="js/register.js"></script>
-	 <script src="js/btnHide.js"></script>
-	 <script src="js/setFieldsCourse.js"></script>
-	 <script src="js/commentTest.js"></script>
+<script src="js/jquery-2.1.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/autorization.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/register.js"></script>
+<script src="js/btnHide.js"></script>
+<script src="js/setFieldsCourse.js"></script>
+<script src="js/commentTest.js"></script>
 
-  </body>
+</body>
 </html>
