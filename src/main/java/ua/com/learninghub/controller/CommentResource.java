@@ -6,12 +6,15 @@ import ua.com.learninghub.model.dao.implementation.CommentDaoImpl;
 import ua.com.learninghub.model.dao.implementation.CourseDaoImpl;
 import ua.com.learninghub.model.dao.interfaces.CommentDao;
 import ua.com.learninghub.model.entities.Comment;
+import ua.com.learninghub.model.entities.CommentLesson;
 import ua.com.learninghub.model.entities.Course;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -27,6 +30,12 @@ public class CommentResource {
         //need to manage this code
         Comment comment = new Comment();
         comment.setBody((String) json.get("body"));
+
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        comment.setDate(new Timestamp(now.getTime()));
+
+
         comment.setCourse((new CourseDaoImpl()).selectById((Integer) json.get("idCourse")));
 
         if (commentDao.insert(comment)) {

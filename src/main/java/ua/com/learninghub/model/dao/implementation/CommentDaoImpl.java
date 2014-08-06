@@ -45,6 +45,7 @@ public class CommentDaoImpl implements CommentDao {
         try {
             entityManager.getTransaction().begin();
             commentUpd.setBody(comment.getBody());
+            commentUpd.setDate(comment.getDate());
             commentUpd.setCourse(comment.getCourse());
             entityManager.getTransaction().commit();
             return true;

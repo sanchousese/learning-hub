@@ -16,7 +16,27 @@ function showAllComments() {
             commentBox.innerHTML = "";
 
             for(var i = 0; i < data.length; i++){
-                var str = data[i].body + "<br><br>";
+                var pubDate =  (new Date(data[i].date));
+
+                var minutest = pubDate.getMinutes();
+                if (minutest < 10) {
+                    minutest = "0" + minutest;
+                }
+
+                var day = pubDate.getDay();
+                if (day < 10) {
+                    day = "0" + day;
+                }
+
+                var month = pubDate.getMonth();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+
+                var formattedDate = pubDate.getHours() + ":" + minutest + " " + day + "." + month + "." + pubDate.getFullYear();
+
+
+                var str = formattedDate + "  " + data[i].body + "<br><br>";
 
 
                 commentBox.innerHTML += str;

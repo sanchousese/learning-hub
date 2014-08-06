@@ -11,6 +11,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,8 +28,11 @@ public class CommentLessonResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response create(JSONObject json) throws JSONException {
         //need to manage this code
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
         CommentLesson comment = new CommentLesson();
         comment.setBody((String) json.get("body"));
+        comment.setDate(new Timestamp(now.getTime()));
         comment.setLesson((new LessonDaoImpl()).selectById((Integer) json.get("idLesson")));
 
         if (commentLessonDao.insert(comment)) {
@@ -40,7 +45,6 @@ public class CommentLessonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getByCourse(@QueryParam(value = "idLesson") int lessonID) {
         List<CommentLesson> comments = (new LessonDaoImpl()).selectById(lessonID).getCommentsLesson();
-
         if (comments == null || comments.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
