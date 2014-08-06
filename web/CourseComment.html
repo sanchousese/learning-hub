@@ -202,22 +202,11 @@
 					<h3 class="text-center">Комментарии</h3>
 					<div id="submit_post_box">
 						<textarea id="post_field" onfocus="toggleCommentHeight()" onblur="toggleCommentHeight()"></textarea>
-						<button id="send_post" onclick="" class="btn btn-success">Send</button>
+						<button id="send_post" onclick="insertComment()" class="btn btn-success">Send</button>
 					</div>
-					<div class="comments-area">						
-						<div class="comment comment-sent"> 
-							<p>Чей-то короткий комментарий</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-						<div class="comment comment-sent"> 
-							<p>Чей-то средний комментарий о какой-то очень важной херне/ Словарь русских синонимов (online онлайн версия). ...</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-						<div class="comment comment-sent"> 
-							<p>Чей-то длинный Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa facilis nesciunt, mollitia at sed. Nemo, earum tenetur itaque temporibus asperiores porro dolor beatae, iste incidunt, officia ducimus doloribus odit minus unde deserunt. Rerum eum dicta ratione assumenda consectetur numquam facilis, debitis commodi. Inventore et, iste doloribus voluptate ratione, consequuntur maxime tempore reprehenderit fugiat, unde maiores ipsum! комментарий</p>
-							<h4 class="date">32-авг-2014</h4> 
-						</div>
-					</div>
+					<div class="comments-area" id="commentOBox">
+                        <!-- pass -->
+                        </div>
 
 
 				</div>
@@ -341,6 +330,7 @@
 	 <script src="js/register.js"></script>
 	 <script src="js/btnHide.js"></script>
 	 <script src="js/setFieldsCourse.js"></script>
+	 <script src="js/commentTest.js"></script>
 
   </body>
 </html>
