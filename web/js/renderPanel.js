@@ -23,15 +23,24 @@ $.ajax({
     success: function(data) {
         setCourseNameInDiv();
         var div =  document.getElementById("listOfLessons");
+
+        // trash
+        var div2 = document.getElementById("");
+
+        //
+
+
         setMainForm(data[idLesson].idLesson);
         sizeOfCourse = data.length;
+        //setLastLID(data[data.length-1].idLesson);
+        showAllCommentsLesson(data[0].idLesson);
         for (var i = 0; i < data.length; i++) {
             var style;
             if (checkLesson(data[i].idLesson))
                 style = "glyphicon-ok-sign";
             else style = "glyphicon-exclamation-sign";
             div.innerHTML+= '<li class="list-group-item border-fix course-process-bg"><a onclick="setMainForm('
-                + data[i].idLesson + ')"><span class="glyphicon '+ style + '"></span> '+ data[i].name +'</a></li>'
+                + data[i].idLesson + ');' + 'showAllCommentsLesson(' + data[i].idLesson + ');' + '"><span class="glyphicon '+ style + '"></span> '+ data[i].name +'</a></li>'
             idLesArr[i] = data[i].idLesson;
         }
     }

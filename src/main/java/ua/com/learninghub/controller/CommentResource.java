@@ -16,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -38,7 +40,7 @@ public class CommentResource {
         comment.setDate(new Timestamp(now.getTime()));
 
 
-        comment.setCourse((new CourseDaoImpl()).selectById((Integer) json.get("idCourse")));
+        comment.setCourse((new CourseDaoImpl()).selectById((new Integer(json.get("idCourse").toString()))));
 
         if (commentDao.insert(comment)) {
             return Response.ok(new String(Integer.toString(comment.getIdComment()))).build();
@@ -51,6 +53,9 @@ public class CommentResource {
     public Response getByCourse(@QueryParam(value = "idCourse") int courseID) {
         List<Comment> comments = (new CourseDaoImpl()).selectById(courseID).getComments();
 
+        Collections.sort(comments, new DateComparator());
+        Collections.reverse(comments);
+
         if (comments == null || comments.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -58,5 +63,12 @@ public class CommentResource {
         return Response.ok().entity(new GenericEntity<List<Comment>>(comments) {
         }).build();
 
+    }
+}
+
+class DateComparator implements Comparator<Comment> {
+    @Override
+    public int compare(Comment a, Comment b) {
+        return a.getDate().compareTo(b.getDate());
     }
 }

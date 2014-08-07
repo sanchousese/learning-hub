@@ -1,10 +1,24 @@
 /**
  * Created by Max on 05.08.2014.
  */
-var ID_COURSE = 2;
 
+var query = window.location.search;
+//debugger;
+if (query.substring(0, 1) == '?') {
+    query = query.substring(1);
+}
+
+
+var ID_COURSE = query;
+var commentOBox = document.getElementById("commentOBox");
+
+function addZeroDate(x) {
+    if (x < 10) {
+        x = "0" + x;
+    }
+    return x;
+}
 function showAllComments() {
-    var commentBox = document.getElementById("commentOBox");
 
     $.ajax({
         //data: str,
@@ -13,30 +27,21 @@ function showAllComments() {
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
-            commentBox.innerHTML = "";
+            commentOBox.innerHTML = "";
 
             for(var i = 0; i < data.length; i++){
                 var pubDate =  (new Date(data[i].date));
 
-                var minutest = pubDate.getMinutes();
-                if (minutest < 10) {
-                    minutest = "0" + minutest;
-                }
+                var minutest = addZeroDate(pubDate.getMinutes());
 
-                var day = pubDate.getDay();
-                if (day < 10) {
-                    day = "0" + day;
-                }
+                var day = addZeroDate(pubDate.getDay());
 
-                var month = pubDate.getMonth();
-                if (month < 10) {
-                    month = "0" + month;
-                }
+                var month = addZeroDate(pubDate.getMonth());
 
-                var formattedDate = pubDate.getHours() + ":" + minutest + " " + day + "." + month + "." + pubDate.getFullYear();
+                var formattedDate = day + "/" + month + "/" + pubDate.getFullYear() + ' @ ' + pubDate.getHours() + ":" + minutest;
 
 
-                commentBox.innerHTML += '<div class="comment comment-sent"><p>' +
+                commentOBox.innerHTML += '<div class="comment comment-sent"><p>' +
                     data[i].body +
                     '</p><h4 class="date">' + formattedDate + '</h4>' +
                 '</div>';
@@ -44,7 +49,7 @@ function showAllComments() {
         },
         statusCode: {
             404: function() {
-                commentBox.innerHTML = "";
+                commentOBox.innerHTML = "";
             }
         }
     });
@@ -70,7 +75,30 @@ function insertComment() {
         contentType: "application/json",
         dataType: "json",
         success: function() {
-            window.location.href = "CourseComment.html";
+            // clearing the field
+            commentBox.value = "";
+
+
+            // adding new comment to all comments
+            var trash = commentOBox.innerHTML;
+
+            //getting current comment time
+            var currentdate = new Date();
+            var datetime = "Your last comment: "
+                + addZeroDate(currentdate.getDate()) + "/"
+                + addZeroDate(currentdate.getMonth() + 1)  + "/"
+                + addZeroDate(currentdate.getFullYear()) + " @ "
+                + addZeroDate(currentdate.getHours()) + ":"
+                + addZeroDate(currentdate.getMinutes());
+
+            var newComment = '<div class="comment comment-sent"><p>' +
+                commentVar.body +
+                '</p><h4 class="date">' + datetime + '</h4>' +
+                '</div>';
+
+            commentOBox.innerHTML = newComment + trash;
+
+//            window.location.href = "CourseComment.html";
 
         },
         statusCode: {
