@@ -22,7 +22,7 @@ public class CookieUtil {
         if (hsr == null) return null;
         Cookie[] cookies = hsr.getCookies();
         for (Cookie c : cookies) {
-            System.out.println(c);
+            //System.out.println(c);
             if (c.getName().equals("sessionUID")) {
                 return c.getValue();
             }

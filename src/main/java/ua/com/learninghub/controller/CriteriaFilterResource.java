@@ -11,6 +11,7 @@ import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Specialty;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -24,6 +25,7 @@ import java.util.List;
  * Created by Max on 28.07.2014.
  */
 @Path("search/filter")
+@PermitAll
 public class CriteriaFilterResource {
 
     SpecialtyDao specialtyDao = new SpecialtyDaoImpl();

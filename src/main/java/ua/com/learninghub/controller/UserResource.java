@@ -43,6 +43,7 @@ public class UserResource {
     }
     
     //need to manage this
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}")
@@ -51,12 +52,13 @@ public class UserResource {
         return anUser;
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("addCourse/{courseId}")
     public Response addCourseToUser(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
         String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
         User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
-        System.out.println(user);
+        //System.out.println(user);
         CourseDao courseDao = new CourseDaoImpl();
         Course course = courseDao.selectById(courseId);
         if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.addUser(course, user)){
@@ -66,6 +68,7 @@ public class UserResource {
             return Response.status(403).build();
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("/removeCourse")
     public  Response removeCourseFromUser(@Context HttpServletRequest hsr, @QueryParam("idCourse") int courseId) {
@@ -74,10 +77,10 @@ public class UserResource {
         CourseDao courseDao = new CourseDaoImpl();
         Course course = courseDao.selectById(courseId);
 
-        System.out.println(courseId);
-        System.out.println(course);
+        //System.out.println(courseId);
+        //System.out.println(course);
 
-        System.out.println(user);
+        //System.out.println(user);
 
         if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.removeUser(course, user)){
             return Response.ok().build();
@@ -115,8 +118,8 @@ public class UserResource {
 //    @Path("verifyCourse/{courseId}")
 //    public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
 //        String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
+//        if(sessionId == null) return Response.status(403).build();
 //        User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
-//        System.out.println(user);
 //        CourseDao courseDao = new CourseDaoImpl();
 //        Course course = courseDao.selectById(courseId);
 //        if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){

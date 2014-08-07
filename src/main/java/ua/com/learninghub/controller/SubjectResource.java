@@ -6,6 +6,7 @@ import ua.com.learninghub.model.entities.Course;
 import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @Path("/subjects")
+@PermitAll
 public class SubjectResource {
     private SubjectDao subjectDao = new SubjectDaoImpl();
 

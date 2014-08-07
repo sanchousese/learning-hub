@@ -1,5 +1,10 @@
+if(!isLogin()){
+    accessDeniedP();
+    throw new Error();
+}
+
 var query = window.location.search;
-//debugger;
+if(query == "") document.body.innerHTML = "<H1>Course identifier is wrong</H1>"
 if (query.substring(0, 1) == '?') {
     query = query.substring(1);
 }

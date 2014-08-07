@@ -6,6 +6,7 @@ import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Specialty;
 import ua.com.learninghub.model.entities.Subject;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @Path("/specialities")
+@PermitAll
 public class SpecialityResource {
     SpecialtyDao specialtyDao = new SpecialtyDaoImpl();
 

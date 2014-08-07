@@ -1,4 +1,9 @@
 
+if(!isLogin()){
+    accessDeniedP();
+    throw new Error();
+}
+
 function CCategory(){
     var spec = 0
     var desc = 0

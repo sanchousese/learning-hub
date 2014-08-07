@@ -26,6 +26,7 @@ import javax.ws.rs.core.Response;
  */
 //@PermitAll
 @Path("/")
+@PermitAll
 public class AuthRecourse {
 
     private UserDao userDao = new UserDaoImpl();

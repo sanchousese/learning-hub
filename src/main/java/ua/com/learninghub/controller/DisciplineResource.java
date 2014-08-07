@@ -5,6 +5,7 @@ import ua.com.learninghub.model.dao.interfaces.DisciplineDao;
 import ua.com.learninghub.model.entities.Discipline;
 import ua.com.learninghub.model.entities.Specialty;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 
 @Path("/disciplines")
+@PermitAll
 public class DisciplineResource {
     DisciplineDao disciplineDao = new DisciplineDaoImpl();
 

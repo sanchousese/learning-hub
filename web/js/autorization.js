@@ -1,4 +1,4 @@
-      function submitButton() {
+    function submitButton() {
           var Auth = {
             login: $('#loginField').val(),
             password: $('#password').val()
@@ -28,6 +28,8 @@
                           contentType: "application/json",
                           success: function(data) {
                               document.getElementById("user-info").innerHTML = data.login;
+                              var str = (String)(window.location);
+                              if(str.indexOf("index.html") <= -1) window.location.reload(true);
                           },
                           statusCode: {
                               403: function() {
@@ -54,6 +56,8 @@
                       $('#register-btn').css('display', 'block');
                       $('#hideRegisterForm').css('display', 'block');
                       $('#user-info').css('display', 'none');
+                      var str = (String)(window.location);
+                      if(str.indexOf("index.html") <= -1) window.location = "index.html";
                   },
                   404: function () {
                       alert("Invalid request");
@@ -91,3 +95,28 @@
               }
           }
       });
+
+    function isLogin(){
+        var rez = true;
+        $.ajax({
+            //data: str,
+            async: false,
+            type: "POST",
+            url: "rest/userInfo",
+            datatype: "json",
+            contentType: "application/json",
+            success: function(data) {
+                rez = true;
+            },
+            statusCode: {
+                403: function() {
+                    rez = false;
+                }
+            }
+        });
+        return rez;
+    }
+
+    function accessDeniedP(){
+        document.body.innerHTML = "<H1>Access error</H1>";
+    }

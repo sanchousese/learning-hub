@@ -20,6 +20,7 @@ import ua.com.learninghub.model.entities.Lesson;
 import ua.com.learninghub.model.entities.User;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -41,15 +42,12 @@ public class LessonResource {
     SessionDao sessionDao = new SessionDaoImpl();
     UserLessonDao userLessonDao = new UserLessonDaoImpl();
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLessons(@QueryParam(value = "idCourse") int courseID) {
 
-        System.out.println("CID:" + courseID);
-
         Course course = courseDao.selectById(courseID);
-
-        System.out.println("CRS:" + course);
 
         if (course == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -58,7 +56,6 @@ public class LessonResource {
         List<Lesson> lessons = course.getLessons();
 
         for (Lesson l : lessons)
-        System.out.println("ls:" + l);
 
         if (lessons == null || lessons.size() <= 0) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -68,6 +65,7 @@ public class LessonResource {
         }).build();
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/lesson/{idLesson}") // ...8080/rest/courses/1234
@@ -81,6 +79,7 @@ public class LessonResource {
         }
     }
 
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -96,6 +95,7 @@ public class LessonResource {
         } else return Response.status(401).build();
     }
 
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/uploadVideo")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -105,9 +105,9 @@ public class LessonResource {
             @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 
         String filename = contentDispositionHeader.getFileName();
-        System.out.println("File f: " + filename);
+        //System.out.println("File f: " + filename);
         if(filename != null) {
-            System.out.println("File found.");
+            //System.out.println("File found.");
             String extension = filename.substring(filename.lastIndexOf('.') + 1);
             filename = sessionIdentifierGenerator.nextSessionId() + "." + extension;
         }
@@ -134,6 +134,7 @@ public class LessonResource {
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).build();
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("/getCourseId/{lessonId}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -143,6 +144,7 @@ public class LessonResource {
         return Response.ok(Integer.toString(courseId)).build();
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("/checkUserLesson/{lessonId}")
     public Response checkUserLesson(@PathParam("lessonId") int lessonId, @Context HttpServletRequest hsr){
@@ -153,6 +155,7 @@ public class LessonResource {
 
     }
 
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("/testExist/{lessonId}")
     public Response testExist(@PathParam("lessonId") int lessonId){

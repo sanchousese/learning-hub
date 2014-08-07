@@ -45,7 +45,7 @@ var but =  document.getElementById("buyCourseButton");
 $.ajax({
     //data: str,
     type: "GET",
-    url: "rest/user/verifyCourse/" + query,
+    url: "rest/course/verifyCourse/" + query,
     datatype: String,
     contentType: "text/plain",
     success: function() {
@@ -55,6 +55,7 @@ $.ajax({
     },
     statusCode: {
         403: function() {
+
         }
 
     }

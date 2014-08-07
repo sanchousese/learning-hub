@@ -2,6 +2,11 @@
  * Created by vasax32 on 04.08.14.
  */
 
+if(!isLogin()){
+    accessDeniedP();
+    throw new Error();
+}
+
 function changeVisibilityButton() {
     //need to manage this code
     if ($("#lessonNameD").val() != "" && $("#lessonDescD").val() != "" && (ques.length != 0 ||

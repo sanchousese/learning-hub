@@ -1,6 +1,10 @@
 /**
  * Created by Sania_000 on 8/1/2014.
  */
+if(!isLogin()){
+    accessDeniedP();
+}
+
 document.getElementById("layoutAdminka").onload = function (){
     $.ajax({
         //data: str,
@@ -18,15 +22,14 @@ document.getElementById("layoutAdminka").onload = function (){
                     '<img id = "courseMainImage'+ i +'" src="../img/image.jpg" alt="Course img" class="img-rounded"></a></div>'+
 
                     '<div class="news_content_medium">' +
-                    '<a onmouseover="" style="cursor: pointer;"><img width="40" height="20" align="right"' +
-                    'id = "keyImg" src="../img/cross.png" onclick="deleteCourse(' + data[i].idCourse +')"></a>' +
+                    '<a class="btn btn-default pull-right" onmouseover="" style="cursor: pointer;" onclick="deleteCourse(' + data[i].idCourse +')">' +
+                    '<span class="glyphicon glyphicon-remove"></span></a>' +
 
-                    '<a href="Course_edit.html?' + data[i].idCourse + '">' +
-                    '<img width="40" height="20" align="right"' +
-                    'id = "keyImg" src="../img/key.jpg" onclick=""></a>' +
+                    '<a class="btn btn-default pull-right" href="Course_edit.html?' + data[i].idCourse + '">' +
+                    ' <span class="glyphicon glyphicon-wrench"></span></a>' +
 
                     '<h3><a href="javascript:openCoursePage(' + data[i].idCourse + ');">' + data[i].name + '</a></h3>' +
-                    '<div class="progress">' +
+                    '<div class="progress progress_fix">' +
                     '<div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">'+
                     '<span class="sr-only">45% Complete</span>'+
                     '</div>' +

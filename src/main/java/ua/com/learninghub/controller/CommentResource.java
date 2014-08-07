@@ -9,6 +9,7 @@ import ua.com.learninghub.model.entities.Comment;
 import ua.com.learninghub.model.entities.CommentLesson;
 import ua.com.learninghub.model.entities.Course;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +20,7 @@ import java.util.List;
 
 
 @Path("/comment")
+@PermitAll
 public class CommentResource {
     CommentDao commentDao = new CommentDaoImpl();
 

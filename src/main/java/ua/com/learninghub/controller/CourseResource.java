@@ -44,7 +44,6 @@ public class CourseResource {
     private SessionDaoImpl sessionDaoImpl = new SessionDaoImpl();
     private CookieUtil cookieUtil = new CookieUtil();
 
-    //@RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Path("/getSpecialty")
     @Produces(MediaType.APPLICATION_JSON)
@@ -122,7 +121,7 @@ public class CourseResource {
         return Response.ok(f, mt).build();
     }
 
-    //@RolesAllowed({"Moderator", "Teacher"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -139,7 +138,7 @@ public class CourseResource {
         } else return Response.status(401).build();
     }
 
-    //@RolesAllowed({"Moderator", "Teacher"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/uploadMainLogo")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -174,7 +173,7 @@ public class CourseResource {
         return Response.status(200).build();
     }
 
-    //@RolesAllowed({"Moderator", "Teacher"})
+    @RolesAllowed({"Moderator", "Teacher"})
     @POST
     @Path("/uploadMainIntro")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -217,9 +216,7 @@ public class CourseResource {
     @Path("verifyCourse/{courseId}")
     public Response verifyCourse(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
         String sessionId = cookieUtil.getSessionIdFromRequest(hsr);
-        System.out.println(sessionId);
         User user  = sessionDaoImpl.selectBySessionId(sessionId).getUser();
-        System.out.println(user);
         CourseDao courseDao = new CourseDaoImpl();
         Course course = courseDao.selectById(courseId);
         if(sessionId != null && (user = sessionDaoImpl.selectBySessionId(sessionId).getUser()) != null && courseDao.checkUser(course, user)){
@@ -229,6 +226,7 @@ public class CourseResource {
             return Response.status(403).build();
     }
 
+    @RolesAllowed({"Moderator", "Teacher"})
     @PUT
     @Path("/put")
     @Consumes(MediaType.APPLICATION_JSON)

@@ -5,6 +5,8 @@ import ua.com.learninghub.model.dao.interfaces.QuestionDao;
 import ua.com.learninghub.model.entities.Answer;
 import ua.com.learninghub.model.entities.Question;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,9 +20,12 @@ import java.util.List;
  * Created by Max on 04.08.2014.
  */
 @Path("/answers")
+@PermitAll
 public class AnswerResource {
 
-    QuestionDao questionDao = new QuestionDaoImpl();
+    private QuestionDao questionDao = new QuestionDaoImpl();
+
+    @RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnswers(@QueryParam(value = "idQuestion") int questionId) {

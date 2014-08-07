@@ -8,6 +8,7 @@ import ua.com.learninghub.model.dao.interfaces.SpecialtyDao;
 import ua.com.learninghub.model.dao.interfaces.SubjectDao;
 import ua.com.learninghub.model.entities.*;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -20,6 +21,7 @@ import java.util.List;
  * Created by Max on 18.07.2014.
  */
 @Path("search/courses")
+@PermitAll
 public class CourseSearchResource {
 
     private CourseDao courseDao = new CourseDaoImpl();

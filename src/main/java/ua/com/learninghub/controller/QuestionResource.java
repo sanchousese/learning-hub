@@ -2,12 +2,15 @@ package ua.com.learninghub.controller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import ua.com.learninghub.controller.auth.CookieUtil;
 import ua.com.learninghub.controller.auth.SessionIdentifierGenerator;
 import ua.com.learninghub.model.dao.implementation.*;
 import ua.com.learninghub.model.dao.interfaces.*;
 import ua.com.learninghub.model.entities.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -23,6 +26,9 @@ public class QuestionResource {
     TestDao testDao= new TestDaoImpl();
     AnswerDao answerDao = new AnswerDaoImpl();
     private LessonDao lessonDao = new LessonDaoImpl();
+    private UserLessonDao userLessonDao = new UserLessonDaoImpl();
+    SessionDao sessionDao = new SessionDaoImpl();
+    CookieUtil cookieUtil = new CookieUtil();
 
     SessionIdentifierGenerator sessionIdentifierGenerator = new SessionIdentifierGenerator();
 
@@ -113,7 +119,7 @@ public class QuestionResource {
     @POST
     @Path("/validateAnswers")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response validateAnswers(List<Question> ques){
+    public Response validateAnswers(List<Question> ques, @Context HttpServletRequest hsr){
         double sum = 0;
         for(Question question : ques){
             List<Answer> masterAnswers = questionDao.selectById(question.getIdQuestion()).getAnswers();
@@ -136,6 +142,11 @@ public class QuestionResource {
             }
         }
         sum /= ques.size();
+        UserLesson userLesson = new UserLesson();
+        userLesson.setScore(sum);
+        userLesson.setLesson(questionDao.selectById(ques.get(0).getIdQuestion()).getTest().getLesson());
+        userLesson.setUser(sessionDao.selectBySessionId(cookieUtil.getSessionIdFromRequest(hsr)).getUser());
+        userLessonDao.insert(userLesson);
         return Response.ok(sum).build();
     }
 }
