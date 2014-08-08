@@ -33,7 +33,7 @@ CREATE TABLE `Answer` (
   UNIQUE KEY `idAnswer_UNIQUE` (`idAnswer`),
   KEY `idQuestion_idx` (`idQuestion`),
   CONSTRAINT `idQuestion` FOREIGN KEY (`idQuestion`) REFERENCES `Question` (`idQuestion`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `Answer` (
 
 LOCK TABLES `Answer` WRITE;
 /*!40000 ALTER TABLE `Answer` DISABLE KEYS */;
-INSERT INTO `Answer` VALUES (1,'Do',1,''),(2,'Kami',1,'\0'),(3,'God',1,'\0'),(4,'Guge',1,'\0'),(5,'Homi',2,'\0'),(6,'Code',2,''),(7,'Must',2,'\0'),(8,'Soje',2,'');
+INSERT INTO `Answer` VALUES (1,'Do',1,''),(2,'Kami',1,'\0'),(3,'God',1,'\0'),(4,'Guge',1,'\0'),(5,'Homi',2,'\0'),(6,'Code',2,''),(7,'Must',2,'\0'),(8,'Soje',2,''),(9,'3',3,'\0'),(10,'Exe file',4,'\0'),(11,'4',3,'\0'),(12,'Deb file',4,'\0'),(13,'5',3,'\0'),(14,'Terminal',4,'\0'),(15,'6',3,'\0'),(16,'CD Disk',4,'\0');
 /*!40000 ALTER TABLE `Answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `Course` (
 
 LOCK TABLES `Course` WRITE;
 /*!40000 ALTER TABLE `Course` DISABLE KEYS */;
-INSERT INTO `Course` VALUES (1,'Jersey','2005-12-20','2015-01-25','Some greate description',100,5,1,'1.jpg','1.mp4'),(2,'Json','2014-06-28','2014-08-28','Some very good description',50,2,1,NULL,''),(3,'Transactions in MySQL','2014-09-04','2014-10-24','Transactions in MySQL',45,3,3,NULL,NULL),(4,'MySQL Stored Procedures and Functions','2014-10-26','2014-12-12','MySQL Stored Procedures and Functions',65,4,3,NULL,NULL),(5,'MySQL for beginners','2015-01-30','2015-04-12','Mysql for beginners',75,4,3,NULL,NULL),(6,'Oracle on the Web','2015-03-22','2015-05-18','Oracle on the Web',50,5,4,NULL,NULL),(7,'Object-Oriented PHP Basics','2014-09-16','2014-11-28','Learn the basics of OO coding in PHP',95,4,5,NULL,NULL),(8,'PHP Basics','2014-09-22','2014-12-21','Lets learn PHP!',80,5,5,NULL,NULL),(9,'Enhancing a Simple PHP Application','2014-12-24','2015-04-12','Enhancing a Simple PHP Application',100,3,5,NULL,NULL),(10,'PHP & The Stripe API','2015-03-14','2015-05-25','PHP & The Stripe API',60,4,5,NULL,NULL),(11,'Security in PHP Application','2015-03-20','2015-05-24','Building Security into your PHP Applications',70,4,5,NULL,NULL),(16,'Imageg',NULL,NULL,'hkj',67,0,1,'c405t13cj9o53culg97v547gs9.jpg',NULL),(17,'Boom',NULL,NULL,'Temp',45,0,1,NULL,NULL),(18,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(19,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(20,'yt',NULL,NULL,'io',89,0,1,NULL,NULL),(21,'Thkl',NULL,NULL,'io',56,0,1,NULL,NULL),(25,'rty',NULL,NULL,'ty',78,0,2,NULL,NULL),(26,'TestAdd',NULL,NULL,'Boom Boom Boom Boom Boom',12,12,1,'i6us1a31nnl81t4jmbecvolage.png','be4olbiljgahfe0v06mhjcm8sp.mp4');
+INSERT INTO `Course` VALUES (1,'Jersey','2005-12-20','2015-01-25','Some greate description',100,5,1,'1.jpg','1.mp4'),(2,'Steam on Ubuntu','2014-06-28','2014-08-28','A quick tutorial showing you how to get Steam on Ubuntu 12.04 LTS',0,2,1,'ie3gich1n3haj5lo1uibomo8c7.png','jo0oh8636qe3u14ejnq7ai0frr.mp4'),(3,'Transactions in MySQL','2014-09-04','2014-10-24','Transactions in MySQL',45,3,3,NULL,NULL),(4,'MySQL Stored Procedures and Functions','2014-10-26','2014-12-12','MySQL Stored Procedures and Functions',65,4,3,NULL,NULL),(5,'MySQL for beginners','2015-01-30','2015-04-12','Mysql for beginners',75,4,3,NULL,NULL),(6,'Oracle on the Web','2015-03-22','2015-05-18','Oracle on the Web',50,5,4,NULL,NULL),(7,'Object-Oriented PHP Basics','2014-09-16','2014-11-28','Learn the basics of OO coding in PHP',95,4,5,NULL,NULL),(8,'PHP Basics','2014-09-22','2014-12-21','Lets learn PHP!',80,5,5,NULL,NULL),(9,'Enhancing a Simple PHP Application','2014-12-24','2015-04-12','Enhancing a Simple PHP Application',100,3,5,NULL,NULL),(10,'PHP & The Stripe API','2015-03-14','2015-05-25','PHP & The Stripe API',60,4,5,NULL,NULL),(11,'Security in PHP Application','2015-03-20','2015-05-24','Building Security into your PHP Applications',70,4,5,NULL,NULL),(16,'Imageg',NULL,NULL,'hkj',67,0,1,'c405t13cj9o53culg97v547gs9.jpg',NULL),(17,'Boom',NULL,NULL,'Temp',45,0,1,NULL,NULL),(18,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(19,'Boom2',NULL,NULL,'Temp',45,0,1,NULL,NULL),(20,'yt',NULL,NULL,'io',89,0,1,NULL,NULL),(21,'Thkl',NULL,NULL,'io',56,0,1,NULL,NULL),(25,'rty',NULL,NULL,'ty',78,0,2,NULL,NULL),(26,'TestAdd',NULL,NULL,'Boom Boom Boom Boom Boom',12,12,1,'i6us1a31nnl81t4jmbecvolage.png','be4olbiljgahfe0v06mhjcm8sp.mp4');
 /*!40000 ALTER TABLE `Course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `Lesson` (
   PRIMARY KEY (`idLesson`),
   UNIQUE KEY `idModule_UNIQUE` (`idLesson`),
   KEY `fk_Module_1_idx` (`idCourse`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `Lesson` (
 
 LOCK TABLES `Lesson` WRITE;
 /*!40000 ALTER TABLE `Lesson` DISABLE KEYS */;
-INSERT INTO `Lesson` VALUES (1,'FormData','Some desc',NULL,1),(2,'Insert OK','Bla OK',NULL,1);
+INSERT INTO `Lesson` VALUES (1,'FormData','Some desc',NULL,1),(2,'Insert OK','Bla OK',NULL,1),(3,'Steam','Check functionality of steam on Linux OS',NULL,2);
 /*!40000 ALTER TABLE `Lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `Question` (
   UNIQUE KEY `idQuestion_UNIQUE` (`idQuestion`),
   KEY `idTest_idx` (`idTest`),
   CONSTRAINT `fk_Question_1` FOREIGN KEY (`idTest`) REFERENCES `Test` (`idTest`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ CREATE TABLE `Question` (
 
 LOCK TABLES `Question` WRITE;
 /*!40000 ALTER TABLE `Question` DISABLE KEYS */;
-INSERT INTO `Question` VALUES (1,'What',3),(2,'Why',3);
+INSERT INTO `Question` VALUES (1,'What',3),(2,'Why',3),(3,'How many commands you need to execute on terminal to install Steam?',4),(4,'What you need to install steam on Linux?',4);
 /*!40000 ALTER TABLE `Question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +386,6 @@ CREATE TABLE `Session` (
 
 LOCK TABLES `Session` WRITE;
 /*!40000 ALTER TABLE `Session` DISABLE KEYS */;
-INSERT INTO `Session` VALUES (1,'2014-08-06 13:37:52','2014-08-06 13:38:43','94b4rai40s85vcfi8g002qm30p');
 /*!40000 ALTER TABLE `Session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +460,7 @@ CREATE TABLE `Test` (
   UNIQUE KEY `idTest_UNIQUE` (`idTest`),
   KEY `fk_Test_1_idModule_idx` (`idLesson`),
   CONSTRAINT `fk_Test_1_id_Lesson` FOREIGN KEY (`idLesson`) REFERENCES `Lesson` (`idLesson`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +469,7 @@ CREATE TABLE `Test` (
 
 LOCK TABLES `Test` WRITE;
 /*!40000 ALTER TABLE `Test` DISABLE KEYS */;
-INSERT INTO `Test` VALUES (3,'Test 1',2);
+INSERT INTO `Test` VALUES (3,'Test 1',2),(4,'Test 1',3);
 /*!40000 ALTER TABLE `Test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -549,7 +548,7 @@ CREATE TABLE `UserCourse` (
   KEY `idCourse_idx` (`idCourse`),
   CONSTRAINT `idCourse` FOREIGN KEY (`idCourse`) REFERENCES `Course` (`idCourse`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `idUser` FOREIGN KEY (`idUser`) REFERENCES `User` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -558,7 +557,7 @@ CREATE TABLE `UserCourse` (
 
 LOCK TABLES `UserCourse` WRITE;
 /*!40000 ALTER TABLE `UserCourse` DISABLE KEYS */;
-INSERT INTO `UserCourse` VALUES (16,1,2),(20,3,4);
+INSERT INTO `UserCourse` VALUES (16,1,2),(20,3,4),(23,1,1);
 /*!40000 ALTER TABLE `UserCourse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -578,8 +577,8 @@ CREATE TABLE `UserLesson` (
   UNIQUE KEY `idUserLesson_UNIQUE` (`idUserLesson`),
   KEY `fk_UserLesson_1_User_idx` (`idUser`),
   KEY `fk_UserLesson_1_Lesson_idx` (`idLesson`),
-  CONSTRAINT `fk_UserLesson_1_User` FOREIGN KEY (`idUser`) REFERENCES `User` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `fk_UserLesson_1_Lesson` FOREIGN KEY (`idLesson`) REFERENCES `Lesson` (`idLesson`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `fk_UserLesson_1_Lesson` FOREIGN KEY (`idLesson`) REFERENCES `Lesson` (`idLesson`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_UserLesson_1_User` FOREIGN KEY (`idUser`) REFERENCES `User` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -602,4 +601,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-06 16:40:06
+-- Dump completed on 2014-08-08  9:32:09

@@ -43,7 +43,7 @@ public class UserResource {
     }
     
     //need to manage this
-    @RolesAllowed({"Student", "Moderator", "Teacher"})
+    //@RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{userId}")
@@ -52,7 +52,7 @@ public class UserResource {
         return anUser;
     }
 
-    @RolesAllowed({"Student", "Moderator", "Teacher"})
+    //@RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("addCourse/{courseId}")
     public Response addCourseToUser(@Context HttpServletRequest hsr, @PathParam("courseId") int courseId) {
@@ -68,7 +68,7 @@ public class UserResource {
             return Response.status(403).build();
     }
 
-    @RolesAllowed({"Student", "Moderator", "Teacher"})
+    //@RolesAllowed({"Student", "Moderator", "Teacher"})
     @GET
     @Path("/removeCourse")
     public  Response removeCourseFromUser(@Context HttpServletRequest hsr, @QueryParam("idCourse") int courseId) {
@@ -90,7 +90,7 @@ public class UserResource {
     }
 
 
-    @RolesAllowed({"Moderator", "Teacher"})
+    //@RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("courses")
@@ -106,7 +106,7 @@ public class UserResource {
             return Response.status(403).build();
     }
 
-    @RolesAllowed({"Moderator", "Teacher"})
+    //@RolesAllowed({"Moderator", "Teacher"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {

@@ -28,6 +28,13 @@ public class SessionDaoImpl implements SessionDao, HibernateL2Cache {
         return sessions;
     }
 
+    //rest/user/login
+    //rest/jerseyservice/login
+    //rest/jerseyservice/user
+    //rest/jerseyservice/checksession
+    //rest/course/user
+
+
     public Session selectBySessionId(String sessionId){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery(
